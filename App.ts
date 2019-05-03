@@ -4,34 +4,57 @@ import * as logger from 'morgan';
 import * as mongodb from 'mongodb';
 import * as url from 'url';
 import * as bodyParser from 'body-parser';
+//var MongoClient = require('mongodb').MongoClient;
+//var Q = require('q');
 
+//connect to the model 
+import {DataAccess} from './DataAccess';
+
+// Creates and configures an ExpressJS web server.
 class App {
 
-    public app: express.Application;
-    public mongoDBConnection:string = 'mongodb://localhost:27017/classSample';
-    public dbConnection: any = null; //store db connection 
+  // ref to Express instance
+  public expressApp: express.Application;
+  public idGenerator:number;
 
-    constructor() {
-        this.app = express();
-        this.middleware();
-        this.routes();   
-    }
+  //Run configuration methods on the Express instance.
+  constructor() {
+    this.expressApp = express();
+    this.middleware();
+    this.routes();
+    this.idGenerator = 100;
+  }
 
-    // Configure Express middleware.
-    private middleware(): void {
-        this.app.use(logger('dev'));
+  // Configure Express middleware.
+  private middleware(): void {
+    this.expressApp.use(logger('dev'));
+    this.expressApp.use(bodyParser.json());
+    this.expressApp.use(bodyParser.urlencoded({ extended: false }));
+  }
 
-        // support application/json type post data
-        this.app.use(bodyParser.json());
+  // Configure API endpoints.
+  private routes(): void {
+    let router = express.Router();
+    router.get('/app/list/:listId/count', (req, res) => {
+    });
 
-        //support application/x-www-form-urlencoded post data
-        this.app.use(bodyParser.urlencoded({ extended: false }));
-    }
+    router.post('/app/list/', (req, res) => { //app => api 
+    });
 
+    router.get('/app/list/:listId', (req, res) => {
+    });
 
-    // Configure API endpoints.
-    private routes(): void {
-    }
+    router.get('/app/list/', (req, res) => {
+    });
+
+    this.expressApp.use('/', router);
+
+    this.expressApp.use('/app/json/', express.static(__dirname+'/app/json'));
+    this.expressApp.use('/images', express.static(__dirname+'/img'));
+    this.expressApp.use('/', express.static(__dirname+'/pages'));
+    
+  }
+
 }
 
-export {App};    // correlate to the import statement in sever.ts
+export {App};
