@@ -1,0 +1,33 @@
+{
+  "name": "foodhunter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "dev": "ts-node ./lib/server.ts",
+    "start": "nodemon ./dist/server.js",
+    "prod": "npm run build && npm run start"
+  },
+  "author": "pandaman",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.16.1",
+    "@types/mongodb": "^3.1.26",
+    "@types/mongoose": "^5.3.27",
+    "@types/morgan": "^1.7.35",
+    "@types/node": "^9.6.48",
+    "assert": "^1.4.1",
+    "body-parser": "^1.19.0",
+    "debug": "^2.6.3",
+    "express": "^4.16.4",
+    "mongodb": "^2.2.36",
+    "mongoose": "^5.5.5",
+    "morgan": "^1.9.1",
+    "path": "^0.12.7",
+    "q": "^1.5.0",
+    "typescript": "^2.9.2",
+    "url": "^0.11.0"
+  }
+}
