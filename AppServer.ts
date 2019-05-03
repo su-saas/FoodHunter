@@ -1,12 +1,10 @@
-import path = require('path');
-import express = require('express');
+import * as path from 'path';
+import * as express from 'express';
 import * as logger from 'morgan';
 import * as mongodb from 'mongodb';
 import * as url from 'url';
 import * as bodyParser from 'body-parser';
-import {App} from './App'; 
+import {App} from './App';
 
-let server: any = new App().app;
+let server: any = new App().expressApp;
 server.listen(8080);
-
-
