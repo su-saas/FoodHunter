@@ -1,7 +1,7 @@
 import Mongoose = require("mongoose");
 
 interface ITagModel extends Mongoose.Document {
-    ID: number;
-    name: string;
+    tagID: number;
+    tagName: string;
 }
 export {ITagModel};

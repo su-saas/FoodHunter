@@ -1,11 +1,11 @@
 import Mongoose = require("mongoose");
 
 interface IFoodieTagListModel extends Mongoose.Document {
-    ID: number;
+    tagListID: number;
     userID: number;
     tagList: [{
-        ID: number;
-        name: string;
+        tagID: number;
+        tagName: string;
     }];
 }
 export {IFoodieTagListModel};
