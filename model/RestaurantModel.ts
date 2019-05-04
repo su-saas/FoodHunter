@@ -17,7 +17,8 @@ class RestaurantModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                userID: String,
+                userID: Number,
+                restaurantID: Number, 
                 restaurantName: {
                     type: String,
                     require: true
@@ -36,14 +37,21 @@ class RestaurantModel {
                     require: true
                 },
                 disklist: [{
-                    diskID: String
+                    diskID: Number
                 }]
-            }, {collection: 'Restaurants'}
+            }, {collection: 'restaurant'}
         );
     }
 
     public createModel(): void {
         this.model = mongooseConnection.model<IRestaurantModel>("Restaurant", this.schema);
+    }
+
+    public retrieveAll(response:any): any {
+        var query = this.model.find({});
+        query.exec( (err, itemArray) => {
+            response.json(itemArray) ;
+        });
     }
     
     public retrieveRestaurantDetails(response:any, filter:Object) {
@@ -53,5 +61,10 @@ class RestaurantModel {
         });
     }
 
+    public updateRestaurant(response:any, filter:Object, filter2:Object, filter3:Object, filter4:Object, filter5:Object, filter6:Object) {
+        var query = this.model.findOneAndUpdate({restaurantID: {$gte: filter}}, {$set: {restaurantName:filter2, address: filter3, 
+            phoneNum: filter4, introductionContent: filter5, hours: filter6}});
+        query.exec ( function (err, results) { console.log('updated doc'); } );
+    }
 }
 export {RestaurantModel};
