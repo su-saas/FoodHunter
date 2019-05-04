@@ -29,10 +29,7 @@ var RestaurantModel = /** @class */ (function () {
             hours: {
                 type: String,
                 require: true
-            },
-            disklist: [{
-                    diskID: Number
-                }]
+            }
         }, { collection: 'restaurant' });
     };
     RestaurantModel.prototype.createModel = function () {

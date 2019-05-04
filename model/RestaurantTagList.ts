@@ -1,11 +1,11 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from './../DataAccess';
-import {IDishModel} from '../interfaces/IDishModel';
+import {IRestaurantTagListModel} from '../interfaces/IRestaurantTagListModel';
 
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
 
-class DishModel {
+class RestaurantTagListModel {
     public schema:any;
     public model:any;
 
@@ -17,20 +17,12 @@ class DishModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                restaurantID: Number,
-                dishes: [{
-                    dishID: Number,
-                    dishName: String,
-                    dishDetails: String,
-                    dishPrice: Number
-                }]
-
-            }, {collection: 'dish'}
+            }, {collection: 'restauranttaglist'}
         );
     }
 
     public createModel(): void {
-        this.model = mongooseConnection.model<IDishModel>("Dish", this.schema);
+        this.model = mongooseConnection.model<IRestaurantTagListModel>("RestaurantTagList", this.schema);
     }
 
     public retrieveAll(response:any): any {
@@ -41,10 +33,10 @@ class DishModel {
     }
     
     public retrieveDishDetails(response:any, filter:Object) {
-        var query = this.model.findOne(filter);
+        var query = this.model.find({"restauranttaglistID": filter});
         query.exec( (err, itemArray) => {
             response.json(itemArray);
         });
     }
 }
-export {DishModel};
+export {RestaurantTagListModel};

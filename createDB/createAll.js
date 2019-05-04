@@ -58,10 +58,7 @@ restaurantCollection.insert(
         address:"Downtown",
         phoneNum: "206-0000-0000",
         introductionContent: "Italian Restaurant",
-        hours: "M-F 11:30am - 1:00am",
-        disklist: [{
-            dishID: 1
-        }]
+        hours: "M-F 11:30am - 1:00am"
     }
 )
 
@@ -73,10 +70,7 @@ restaurantCollection.insert(
         address:"Downtown",
         phoneNum: "206-0000-0001",
         introductionContent: "Japanese Restaurant",
-        hours: "M-F 11:30am - 9:00pm",
-        disklist: [{
-            dishID: 2
-        }]
+        hours: "M-F 11:30am - 9:00pm"
     }
 )
 
@@ -88,10 +82,7 @@ restaurantCollection.insert(
         address:"Downtown",
         phoneNum: "206-0000-0002",
         introductionContent: "Thai Restaurant",
-        hours: "M-F 11:00am - 8:00pm",
-        disklist: [{
-            dishID: 3
-        }]
+        hours: "M-F 11:00am - 8:00pm"
     }
 )
 
@@ -102,30 +93,40 @@ dishCollection.remove({})
 dishCollection.insert(
     {
         restaurantID: 1,
-        dishID: 1,
-        dishName: "Fall Risotto",
-        dishDetails: "butternut squash",
-        dishPrice: 19
+        dishes : [
+            {
+                dishID: 1,
+                dishName: "Fall Risotto",
+                dishDetails: "butternut squash",
+                dishPrice: 19
+            }
+        ]
+
     }
 )
 
 dishCollection.insert(
     {
         restaurantID: 2,
-        dishID: 2,
-        dishName: "sushi set a",
-        dishDetails: "tuna salmon, yellowtail",
-        dishPrice: 9
+        dishes : {
+            dishID: 1,
+            dishName: "sushi set a",
+            dishDetails: "tuna salmon, yellowtail",
+            dishPrice: 9
+        }
     }
 )
 
 dishCollection.insert(
     {
         restaurantID: 3,
-        dishID: 3,
-        dishName: "Pad Thai",
-        dishDetails: "Stir-fried Thai rice noodles",
-        dishPrice: 9.95
+        dishes : {
+            dishID: 1,
+            dishName: "Pad Thai",
+            dishDetails: "Stir-fried Thai rice noodles",
+            dishPrice: 9.95
+        }
     }
 )
 
+/************ Restaurant Owner **********/

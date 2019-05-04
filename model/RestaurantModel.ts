@@ -35,10 +35,7 @@ class RestaurantModel {
                 hours: {
                     type: String,
                     require: true
-                },
-                disklist: [{
-                    diskID: Number
-                }]
+                }
             }, {collection: 'restaurant'}
         );
     }
