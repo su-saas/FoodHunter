@@ -3,6 +3,10 @@ exports.__esModule = true;
 var express = require("express");
 var logger = require("morgan");
 var bodyParser = require("body-parser");
+//var MongoClient = require('mongodb').MongoClient;
+//var Q = require('q');
+//connect to the model 
+var UserModel_1 = require("./model/UserModel");
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
@@ -11,6 +15,7 @@ var App = /** @class */ (function () {
         this.middleware();
         this.routes();
         this.idGenerator = 100;
+        this.Users = new UserModel_1.UserModel();
     }
     // Configure Express middleware.
     App.prototype.middleware = function () {
@@ -20,14 +25,11 @@ var App = /** @class */ (function () {
     };
     // Configure API endpoints.
     App.prototype.routes = function () {
+        var _this = this;
         var router = express.Router();
-        router.get('/app/list/:listId/count', function (req, res) {
-        });
-        router.post('/app/list/', function (req, res) {
-        });
-        router.get('/app/list/:listId', function (req, res) {
-        });
-        router.get('/app/list/', function (req, res) {
+        router.get('/users', function (req, res) {
+            console.log('Query All list');
+            _this.Users.retrieveAllUsers(res);
         });
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
