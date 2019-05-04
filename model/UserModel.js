@@ -34,7 +34,7 @@ var UserModel = /** @class */ (function () {
     UserModel.prototype.getByUserID = function (id) {
         var deferred = Q.defer();
         var query = this.model.find({ userID: id });
-        var user = null;
+        var user;
         query.exec(function (err, users) {
             if (err) {
                 console.error(err);

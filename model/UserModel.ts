@@ -44,7 +44,7 @@ class UserModel {
     public getByUserID(id: Number) :IUserModel {
         var deferred = Q.defer();
         var query = this.model.find({userID: id});
-        var user :IUserModel = null;
+        var user :IUserModel;
         query.exec((err, users) => {
             if(err){
                 console.error(err);
