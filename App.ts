@@ -5,6 +5,12 @@ import * as bodyParser from 'body-parser';
 import {User} from './route/User';
 import { Review } from './route/Review';
 import { FavoriteList } from './route/FavoriteList';
+//var MongoClient = require('mongodb').MongoClient;
+//var Q = require('q');
+
+//connect to the model 
+import {DataAccess} from './DataAccess';
+import {RestaurantModel} from './model/RestaurantModel';
 
 // Creates and configures an ExpressJS web server.
 class App {

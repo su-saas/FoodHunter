@@ -17,13 +17,24 @@ class RestaurantModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                restaurantID: String,
-                oweneruserID: String,
-                restaurantName: String,
-                address:String,
-                phoneNum: String,
+                userID: String,
+                restaurantName: {
+                    type: String,
+                    require: true
+                },
+                address:{
+                    type: String,
+                    require: true
+                },
+                phoneNum: {
+                    type: String,
+                    require: true
+                },
                 introductionContent: String,
-                hours: String,
+                hours: {
+                    type: String,
+                    require: true
+                },
                 disklist: [{
                     diskID: String
                 }]
@@ -39,14 +50,6 @@ class RestaurantModel {
         var query = this.model.findOne(filter);
         query.exec( (err, itemArray) => {
             response.json(itemArray);
-        });
-    }
-
-    public retrieveRestaurantsCount(response:any, filter:Object) {
-        var query = this.model.find(filter).select('Restaurants').count();
-        query.exec( (err, numberOfRestaurants) => {
-            console.log('number of Restaurants: ' + numberOfRestaurants);
-            response.json(numberOfRestaurants);
         });
     }
 
