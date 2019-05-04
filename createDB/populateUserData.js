@@ -5,26 +5,14 @@ db = db.getSiblingDB(dbname)
 db.createCollection(collectionName)
 userCollection = db.getCollection(collectionName)
 userCollection.remove({})
-userCollection.insert(
-{
-    userID: 1,
-    userName: "user01",
-    password: "pwd01",
-    emailAddress: "user01@gmail.com",
-})
 
-userCollection.insert(
-{
-    userID: 2,
-    userName: "user02",
-    password: "pwd02",
-    emailAddress: "user02@gmail.com",
-})
-
-userCollection.insert(
-{
-        userID: 3,
-        userName: "user03",
-        password: "pwd03",
-        emailAddress: "user03@gmail.com",
-})
+var usersList = ['user01', 'user02', 'user03', 'user04', 'user05']
+for (i = 0, len = usersList.length; i < len; i ++){
+    userCollection.insert(
+        {
+            userID: i + 1,
+            userName: usersList[i],
+            password: "pwdOf" + usersList[i],
+            emailAddress: usersList[i]+"@gmail.com",
+        })
+}
