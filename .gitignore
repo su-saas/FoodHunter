@@ -1,4 +1,5 @@
 .DS_Store
 db/*
+.vscode/
 node_modules/*
 *.sh
