@@ -44,7 +44,7 @@ class UserModel {
     public getByUserID(id: Number) :IUserModel {
         var deferred = Q.defer();
         var query = this.model.find({userID: id});
-        var user :IUserModel;
+        var user :IUserModel = null;
         query.exec((err, users) => {
             if(err){
                 console.error(err);
@@ -55,13 +55,12 @@ class UserModel {
             else if(users.length == 1){
                 for (let u of users){
                     user = u;
-                    console.log('in model: ', user);
-                    deferred.resolve(user);
                 }
             }
             else{
                 console.log('no result');
-            } 
+            }
+            deferred.resolve(user);
         });
         return deferred.promise;
     }

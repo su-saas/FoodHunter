@@ -34,7 +34,7 @@ var UserModel = /** @class */ (function () {
     UserModel.prototype.getByUserID = function (id) {
         var deferred = Q.defer();
         var query = this.model.find({ userID: id });
-        var user;
+        var user = null;
         query.exec(function (err, users) {
             if (err) {
                 console.error(err);
@@ -46,13 +46,12 @@ var UserModel = /** @class */ (function () {
                 for (var _i = 0, users_1 = users; _i < users_1.length; _i++) {
                     var u = users_1[_i];
                     user = u;
-                    console.log('in model: ', user);
-                    deferred.resolve(user);
                 }
             }
             else {
                 console.log('no result');
             }
+            deferred.resolve(user);
         });
         return deferred.promise;
     };

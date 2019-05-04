@@ -71,12 +71,15 @@ var App = /** @class */ (function () {
             var user;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        console.log('in route: get a users');
-                        return [4 /*yield*/, (this.Users.getByUserID(2))];
+                    case 0: return [4 /*yield*/, (this.Users.getByUserID(20))];
                     case 1:
                         user = _a.sent();
-                        console.log('in route:', user);
+                        if (user == null) {
+                            console.log('in route: no user');
+                        }
+                        else {
+                            console.log('in route:', user);
+                        }
                         res.status(200).send('ok');
                         return [2 /*return*/];
                 }

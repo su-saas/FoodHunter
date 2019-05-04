@@ -47,9 +47,13 @@ class App {
         });
 
         router.get('/users/get',async (req, res) => {
-            console.log('in route: get a users');
-            var user = await(this.Users.getByUserID(2));
-            console.log('in route:', user);
+            var user = await(this.Users.getByUserID(20));
+            if(user == null){
+                console.log('in route: no user');
+            }
+            else{
+                console.log('in route:', user);
+            }
             res.status(200).send('ok');
         });
 
