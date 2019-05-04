@@ -12,6 +12,7 @@ import { FavoriteList } from './route/FavoriteList';
 import {DataAccess} from './DataAccess';
 import {RestaurantModel} from './model/RestaurantModel';
 import {DishModel} from './model/DishModel';
+import {RestaurantTagListModel} from './model/RestaurantTagListModel';
 
 // Creates and configures an ExpressJS web server.
 class App {

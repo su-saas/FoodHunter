@@ -1,10 +1,9 @@
 import Mongoose = require("mongoose");
 
 interface IRestaurantTagListModel extends Mongoose.Document {
-    restaurantTagListID: number, 
     restaurantID: number; 
-    tagList: [{
-        tagID: string; 
+    rtaglist : [{
+        tagID: number; 
     }]
 }
 export {IRestaurantTagListModel};

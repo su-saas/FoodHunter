@@ -129,4 +129,54 @@ dishCollection.insert(
     }
 )
 
-/************ Restaurant Owner **********/
+/************ Tag **********/
+db.createCollection("tag")
+tagCollection = db.getCollection("tag")
+tagCollection.remove({})
+tagCollection.insert({
+    tagID: 1,
+    tagName: "Tasty"
+   
+})
+
+tagCollection.insert({
+    tagID: 2,
+    tagName: "Great Service"
+   
+})
+
+tagCollection.insert({
+    tagID: 3,
+    tagName: "Good Environment"
+   
+})
+
+tagCollection.insert({
+    tagID: 4,
+    tagName: "Scenic View"
+   
+})
+
+tagCollection.insert({
+    tagID: 5,
+    tagName: "Price under 30"
+   
+})
+
+/************ Restaurant Tag List **********/
+db.createCollection("rtaglist")
+rtaglistCollection = db.getCollection("rtaglist")
+rtaglistCollection.remove({})
+rtaglistCollection.insert(
+    {
+        restaurantID: 3,
+        rtaglist : [
+            {
+                tagID: 2
+            },
+            {
+                tagID: 4
+            }
+        ]
+    }
+)
