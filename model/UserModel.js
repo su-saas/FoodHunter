@@ -14,7 +14,8 @@ var UserModel = /** @class */ (function () {
             userID: Number,
             userName: String,
             password: String,
-            emailAddress: String
+            emailAddress: String,
+            userType: Number
         }, { collection: 'user' });
     };
     UserModel.prototype.createModel = function () {

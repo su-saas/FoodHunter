@@ -21,6 +21,7 @@ class UserModel {
                 userName: String,
                 password: String,
                 emailAddress: String,
+                userType: Number,
             }, {collection: 'user'}
         );
     }
