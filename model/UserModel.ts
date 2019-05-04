@@ -17,10 +17,10 @@ class UserModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                name: String,
+                userID: Number,
+                userName: String,
                 password: String,
                 emailAddress: String,
-                loginStatus: String,
             }, {collection: 'user'}
         );
     }

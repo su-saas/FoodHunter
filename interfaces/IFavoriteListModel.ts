@@ -1,7 +1,8 @@
 import Mongoose = require("mongoose");
 
 interface IFavoriteListModel extends Mongoose.Document {
-    userId: string;
-    restaurantIDList: string[];
+    favoriteListID: number;
+    userID: number;
+    restaurantIDList: number[];
 }
 export {IFavoriteListModel};

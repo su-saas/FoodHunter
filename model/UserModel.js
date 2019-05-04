@@ -11,10 +11,10 @@ var UserModel = /** @class */ (function () {
     }
     UserModel.prototype.createSchema = function () {
         this.schema = new Mongoose.Schema({
-            name: String,
+            userID: Number,
+            userName: String,
             password: String,
-            emailAddress: String,
-            loginStatus: String
+            emailAddress: String
         }, { collection: 'user' });
     };
     UserModel.prototype.createModel = function () {
