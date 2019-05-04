@@ -1,5 +1,5 @@
 var dbname = 'foodhunter'
-var collectionName = 'foodie'
+var collectionName = 'user'
 
 var db = db.getSiblingDB(dbname)
 db.createCollection(collectionName)
