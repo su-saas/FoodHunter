@@ -1,12 +1,12 @@
 var dbname = 'foodhunter'
 var collectionName = 'review'
 
-db = db.getSiblingDB(dbname)
+var db = db.getSiblingDB(dbname)
 db.createCollection(collectionName)
-reviewCollection = db.getCollection(collectionName)
+var reviewCollection = db.getCollection(collectionName)
 reviewCollection.remove({})
 
-userCollection.insert(
+reviewCollection.insert(
 {
     reviewID: 1,
     userID: 1,
@@ -16,7 +16,7 @@ userCollection.insert(
     date: "2019-01-01T01:00:00",
 })
 
-userCollection.insert(
+reviewCollection.insert(
 {
     reviewID: 2,
     userID: 2,
@@ -26,7 +26,7 @@ userCollection.insert(
     date: "2019-01-02T01:00:00",
 })
 
-userCollection.insert(
+reviewCollection.insert(
 {
     reviewID: 3,
     userID: 3,
@@ -36,7 +36,7 @@ userCollection.insert(
     date: "2019-01-03T01:00:00",
 })
 
-userCollection.insert(
+reviewCollection.insert(
 {
     reviewID: 4,
     userID: 1,

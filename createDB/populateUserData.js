@@ -1,9 +1,9 @@
 var dbname = 'foodhunter'
 var collectionName = 'user'
 
-db = db.getSiblingDB(dbname)
+var db = db.getSiblingDB(dbname)
 db.createCollection(collectionName)
-userCollection = db.getCollection(collectionName)
+var userCollection = db.getCollection(collectionName)
 userCollection.remove({})
 
 // generate 3 foodie
