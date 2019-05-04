@@ -35,6 +35,22 @@ var DishModel = /** @class */ (function () {
             response.json(itemArray);
         });
     };
+    DishModel.prototype.updateDish = function (response, filter, body) {
+        this.model.findOneAndUpdate(filter, body, { "new": true }, function (err, dish) {
+            if (err) {
+                response.send(err);
+            }
+            response.json(dish);
+        });
+    };
+    DishModel.prototype.deleteDish = function (response, filter) {
+        this.model.remove(filter, function (err, dish) {
+            if (err) {
+                response.send(err);
+            }
+            response.json({ message: 'Successfully deleted Dish!' });
+        });
+    };
     return DishModel;
 }());
 exports.DishModel = DishModel;

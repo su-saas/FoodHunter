@@ -32,6 +32,22 @@ var RestaurantTagListModel = /** @class */ (function () {
             response.json(itemArray);
         });
     };
+    RestaurantTagListModel.prototype.updateTagList = function (response, filter, body) {
+        this.model.findOneAndUpdate(filter, body, { "new": true }, function (err, tagList) {
+            if (err) {
+                response.send(err);
+            }
+            response.json(tagList);
+        });
+    };
+    RestaurantTagListModel.prototype.deleteTagList = function (response, filter) {
+        this.model.remove(filter, function (err, tagList) {
+            if (err) {
+                response.send(err);
+            }
+            response.json({ message: 'Successfully deleted restaurant tagList!' });
+        });
+    };
     return RestaurantTagListModel;
 }());
 exports.RestaurantTagListModel = RestaurantTagListModel;

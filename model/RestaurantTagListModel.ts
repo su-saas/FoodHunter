@@ -42,5 +42,23 @@ class RestaurantTagListModel {
             response.json(itemArray);
         });
     }
+
+    public updateTagList(response:any, filter:Object, body: any) {
+        this.model.findOneAndUpdate(filter, body, { new: true }, (err, tagList) => {
+            if(err){
+                response.send(err);
+            }
+            response.json(tagList);
+        });
+    }
+
+    public deleteTagList(response:any, filter:Object) {
+        this.model.remove(filter, (err, tagList) => {
+            if(err){
+                response.send(err);
+            }
+            response.json({ message: 'Successfully deleted restaurant tagList!'});
+        });
+    }
 }
 export {RestaurantTagListModel};

@@ -46,5 +46,23 @@ class DishModel {
             response.json(itemArray);
         });
     }
+
+    public updateDish(response:any, filter:Object, body: any) {
+        this.model.findOneAndUpdate(filter, body, { new: true }, (err, dish) => {
+            if(err){
+                response.send(err);
+            }
+            response.json(dish);
+        });
+    }
+
+    public deleteDish(response:any, filter:Object) {
+        this.model.remove(filter, (err, dish) => {
+            if(err){
+                response.send(err);
+            }
+            response.json({ message: 'Successfully deleted Dish!'});
+        });
+    }
 }
 export {DishModel};

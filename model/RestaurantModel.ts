@@ -58,10 +58,44 @@ class RestaurantModel {
         });
     }
 
-    public updateRestaurant(response:any, filter:Object, filter2:Object, filter3:Object, filter4:Object, filter5:Object, filter6:Object) {
-        var query = this.model.findOneAndUpdate({restaurantID: {$gte: filter}}, {$set: {restaurantName:filter2, address: filter3, 
-            phoneNum: filter4, introductionContent: filter5, hours: filter6}});
-        query.exec ( function (err, results) { console.log('updated doc'); } );
+    public updateRestaurant(response:any, filter:Object, body: any) {
+        this.model.findOneAndUpdate(filter, body, { new: true }, (err, restaurant) => {
+            if(err){
+                response.send(err);
+            }
+            response.json(restaurant);
+        });
     }
+
+    public deleteRestaurant(response:any, filter:Object) {
+        this.model.remove(filter, (err, restaurant) => {
+            if(err){
+                response.send(err);
+            }
+            response.json({ message: 'Successfully deleted restaurant!'});
+        });
+    }
+
+    /*
+    public getByRestaurantName(response:any, filter:Object) {
+        this.model.find(filter, (err, restaurant) => {
+            if(err){
+                response.send(err);
+            }
+            response.json(restaurant);
+        });
+    }*/
+
+    public getByKeyword(response:any, filter:Object) {
+        this.model.find(filter, (err, restaurant) => {
+            if(err){
+                response.send(err);
+            }
+            response.json(restaurant);
+        });
+    }
+
+    /*public rankByPrice(response:any) {}*/
+    
 }
 export {RestaurantModel};

@@ -47,10 +47,39 @@ var RestaurantModel = /** @class */ (function () {
             response.json(itemArray);
         });
     };
-    RestaurantModel.prototype.updateRestaurant = function (response, filter, filter2, filter3, filter4, filter5, filter6) {
-        var query = this.model.findOneAndUpdate({ restaurantID: { $gte: filter } }, { $set: { restaurantName: filter2, address: filter3,
-                phoneNum: filter4, introductionContent: filter5, hours: filter6 } });
-        query.exec(function (err, results) { console.log('updated doc'); });
+    RestaurantModel.prototype.updateRestaurant = function (response, filter, body) {
+        this.model.findOneAndUpdate(filter, body, { "new": true }, function (err, restaurant) {
+            if (err) {
+                response.send(err);
+            }
+            response.json(restaurant);
+        });
+    };
+    RestaurantModel.prototype.deleteRestaurant = function (response, filter) {
+        this.model.remove(filter, function (err, restaurant) {
+            if (err) {
+                response.send(err);
+            }
+            response.json({ message: 'Successfully deleted restaurant!' });
+        });
+    };
+    RestaurantModel.prototype.getByRestaurantName = function (response, filter) {
+        this.model.find(filter, function (err, restaurant) {
+            if (err) {
+                response.send(err);
+            }
+            response.json(restaurant);
+        });
+    };
+    RestaurantModel.prototype.getByKeyword = function (response, filter) {
+        this.model.find(filter, function (err, restaurant) {
+            if (err) {
+                response.send(err);
+            }
+            response.json(restaurant);
+        });
+    };
+    RestaurantModel.prototype.rankByPrice = function (response, filter) {
     };
     return RestaurantModel;
 }());
