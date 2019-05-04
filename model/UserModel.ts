@@ -1,6 +1,6 @@
 import Mongoose = require("mongoose");
-import {DataAccess} from "../DataAccess";
-import {IUserModel} from "../interfaces/IUserModel";
+import {DataAccess} from '../DataAccess';
+import {IUserModel} from '../interfaces/IUserModel';
 
 var mongooseConnection = DataAccess.mongooseConnection;
 
