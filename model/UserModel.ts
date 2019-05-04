@@ -27,7 +27,6 @@ class UserModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-<<<<<<< HEAD
                 userID: {
                     type: Number,
                     required: true,
@@ -51,13 +50,6 @@ class UserModel {
                     required: true
                 },
             }, {collection: 'user'}
-=======
-                userID: Number,
-                userName: String,
-                password: String,
-                emailAddress: String,
-            }, {collection: "user"}
->>>>>>> interface(foodie, tag, taglist) created
         );
     }
     public createModel(): void {
