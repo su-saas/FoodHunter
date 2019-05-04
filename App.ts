@@ -8,6 +8,7 @@ import * as bodyParser from 'body-parser';
 //var Q = require('q');
 
 //connect to the model 
+import {UserModel} from './model/UserModel'
 import {DataAccess} from './DataAccess';
 
 // Creates and configures an ExpressJS web server.
@@ -16,6 +17,7 @@ class App {
   // ref to Express instance
   public expressApp: express.Application;
   public idGenerator:number;
+  public Users: UserModel;
 
   //Run configuration methods on the Express instance.
   constructor() {
@@ -23,6 +25,7 @@ class App {
     this.middleware();
     this.routes();
     this.idGenerator = 100;
+    this.Users = new UserModel();
   }
 
   // Configure Express middleware.
@@ -35,16 +38,10 @@ class App {
   // Configure API endpoints.
   private routes(): void {
     let router = express.Router();
-    router.get('/app/list/:listId/count', (req, res) => {
-    });
 
-    router.post('/app/list/', (req, res) => { //app => api 
-    });
-
-    router.get('/app/list/:listId', (req, res) => {
-    });
-
-    router.get('/app/list/', (req, res) => {
+    router.get('/users', (req, res) => {
+        console.log('Query All list');
+        this.Users.retrieveAllUsers(res);
     });
 
     this.expressApp.use('/', router);
