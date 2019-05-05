@@ -26,49 +26,38 @@ class UserModel {
         return newObj;
     }
 
-    private checkUserProperty(user: any): boolean{
-        if(("userID" in user) == false){
-            //console.log(1);
-            return false;
-        }
-        if(("userName" in user) == false){
-            //console.log(2);
-            return false;
-        }
-        if(("password" in user) == false){
-            //console.log(3);
-            return false;
-        }
-        if(("emailAddress" in user) == false){
-            //console.log(4);
-            return false;
-        }
-        if(("userType" in user) == false){
-            //console.log(5);
-            return false;
-        }
-        return true;
-    }
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                userID: Number,
-                userName: String,
-                password: String,
-                emailAddress: String,
-                userType: Number,
+                userID: {
+                    type: Number,
+                    required: true,
+                    unique : true, 
+                    dropDups: true
+                },
+                userName: {
+                    type: String,
+                    required: true
+                },
+                password: {
+                    type: String,
+                    required: true
+                },
+                emailAddress: {
+                    type: String,
+                    required: true
+                },
+                userType: {
+                    type: Number,
+                    required: true
+                },
             }, {collection: 'user'}
         );
-        this.schema.index({userID: 1}, {unique: true});
     }
     public createModel(): void {
         this.model = mongooseConnection.model<IUserModel>("user", this.schema);
     }
     public createUser(user: any): boolean {
-        if(!this.checkUserProperty(user)){
-            console.error("Something of the user you want to create is missing");
-            return;
-        }
         var deferred = Q.defer();
         var res = false;
         this.model(user).save(function (err){
@@ -99,11 +88,6 @@ class UserModel {
     }
 
     public updateUser(user: any): boolean {
-        if(!this.checkUserProperty(user)){
-            console.error("Something of the user you want to update is missing");
-            return;
-        }
-
         var deferred = Q.defer();
         var res = false;
         this.model.findOneAndUpdate({userID: user.userID}, user, { new: true } , function (err){

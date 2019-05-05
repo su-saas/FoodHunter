@@ -25,28 +25,7 @@ class ReviewModel {
         }
         return newObj;
     }
-
-    /* private checkUserProperty(user: any): boolean{
-        if(("reviewID" in user) == false){
-            return false;
-        }
-        if(("userID" in user) == false){
-            return false;
-        }
-        if(("restaurantID" in user) == false){
-            return false;
-        }
-        if(("title" in user) == false){
-            return false;
-        }
-        if(("content" in user) == false){
-            return false;
-        }
-        if(("date" in user) == false){
-            return false;
-        }
-        return true;
-    } */
+    
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
