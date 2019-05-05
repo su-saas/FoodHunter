@@ -26,27 +26,6 @@ class ReviewModel {
         return newObj;
     }
 
-    /* private checkUserProperty(user: any): boolean{
-        if(("reviewID" in user) == false){
-            return false;
-        }
-        if(("userID" in user) == false){
-            return false;
-        }
-        if(("restaurantID" in user) == false){
-            return false;
-        }
-        if(("title" in user) == false){
-            return false;
-        }
-        if(("content" in user) == false){
-            return false;
-        }
-        if(("date" in user) == false){
-            return false;
-        }
-        return true;
-    } */
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
@@ -78,7 +57,6 @@ class ReviewModel {
                 },
             }, {collection: 'review'}
         );
-        this.schema.index({reviewID: 1}, {unique: true});
     }
     public createModel(): void {
         this.model = mongooseConnection.model<IReviewModel>("review", this.schema);
@@ -113,10 +91,10 @@ class ReviewModel {
         return deferred.promise;
     }
 
-    public updateReview(review: any): boolean {
+    public updateReview(reviewID: Number, review: any): boolean {
         var deferred = Q.defer();
         var res = false;
-        this.model.findOneAndUpdate({reviewID: review.reviewID}, review, { new: true } , function (err){
+        this.model.findOneAndUpdate({reviewID: reviewID}, review, { new: true } , function (err){
             if(err){
                 console.error(err);
             }

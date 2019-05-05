@@ -35,75 +35,73 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-//var MongoClient = require('mongodb').MongoClient;
-//var Q = require('q');
 //connect to the model 
-var UserModel_1 = require("./model/UserModel");
+var FavoriteListModel_1 = require("./model/FavoriteListModel");
 // Creates and configures an ExpressJS web server.
-var User = /** @class */ (function () {
+var FavoriteList = /** @class */ (function () {
     //Run configuration methods on the Express instance.
-    function User() {
-        this.Users = new UserModel_1.UserModel();
+    function FavoriteList() {
+        this.FavoriteLists = new FavoriteListModel_1.FavoriteListModel();
     }
-    User.prototype.registerRoutes = function (router) {
+    FavoriteList.prototype.registerRoutes = function (router) {
         this.routes(router);
     };
     // Configure API endpoints.
-    User.prototype.routes = function (router) {
+    FavoriteList.prototype.routes = function (router) {
         var _this = this;
-        router.get('/user', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var users;
+        router.get('/favoriteList', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var favoriteLists;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        console.log('get all users');
-                        return [4 /*yield*/, this.Users.getAllUsers()];
+                        console.log('get all favoriteLists');
+                        return [4 /*yield*/, this.FavoriteLists.getAllFavoriteLists()];
                     case 1:
-                        users = _a.sent();
-                        console.log('get all users finished');
-                        res.status(200).send(users);
+                        favoriteLists = _a.sent();
+                        console.log('get all favoriteLists finished');
+                        res.status(200).send(favoriteLists);
                         return [2 /*return*/];
                 }
             });
         }); });
-        router.get('/user/:userID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var userID, user;
+        router.get('/favoriteList/:favoriteListID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var favoriteListID, favoriteList;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        userID = req.params.userID;
-                        return [4 /*yield*/, this.Users.getUserByID(userID)];
+                        favoriteListID = req.params.favoriteListID;
+                        return [4 /*yield*/, this.FavoriteLists.getFavoriteListByID(favoriteListID)];
                     case 1:
-                        user = _a.sent();
-                        console.log('in get route:', user);
-                        res.status(200).send(user);
+                        favoriteList = _a.sent();
+                        console.log('in get route:', favoriteList);
+                        res.status(200).send(favoriteList);
                         return [2 /*return*/];
                 }
             });
         }); });
-        router["delete"]('/user/:userID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var userID, user;
+        router["delete"]('/favoriteList/:favoriteListID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var favoriteListID, favoriteList;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        userID = req.params.userID;
-                        return [4 /*yield*/, this.Users.deleteUserByID(userID)];
+                        favoriteListID = req.params.favoriteListID;
+                        return [4 /*yield*/, this.FavoriteLists.deleteFavoriteListByID(favoriteListID)];
                     case 1:
-                        user = _a.sent();
-                        console.log('in delete route:', user);
-                        res.status(200).send(user);
+                        favoriteList = _a.sent();
+                        console.log('in delete route:', favoriteList);
+                        res.status(200).send(favoriteList);
                         return [2 /*return*/];
                 }
             });
         }); });
-        router.put('/user/:userID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var userID, userBody, successOrNot;
+        router.put('/favoriteList/:favoriteListID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var favoriteListID, favoriteListBody, successOrNot;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        userID = req.params.userID;
-                        userBody = req.body;
-                        return [4 /*yield*/, this.Users.updateUser(userID, userBody)];
+                        favoriteListID = req.params.favoriteListID;
+                        favoriteListBody = req.body;
+                        return [4 /*yield*/, this.FavoriteLists.updateFavoriteList(favoriteListID, favoriteListBody)];
                     case 1:
                         successOrNot = _a.sent();
                         console.log('in update route:', successOrNot);
@@ -112,13 +110,13 @@ var User = /** @class */ (function () {
                 }
             });
         }); });
-        router.post('/user', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var user, successOrNot;
+        router.post('/favoriteList', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var favoriteList, successOrNot;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        user = req.body;
-                        return [4 /*yield*/, this.Users.createUser(user)];
+                        favoriteList = req.body;
+                        return [4 /*yield*/, this.FavoriteLists.createFavoriteList(favoriteList)];
                     case 1:
                         successOrNot = _a.sent();
                         console.log('in create route:', successOrNot);
@@ -128,6 +126,6 @@ var User = /** @class */ (function () {
             });
         }); });
     };
-    return User;
+    return FavoriteList;
 }());
-exports.User = User;
+exports.FavoriteList = FavoriteList;

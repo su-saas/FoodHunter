@@ -1,12 +1,11 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from '../DataAccess';
-import {IUserModel} from '../interfaces/IUserModel';
+import { IFavoriteListModel } from "../interfaces/IFavoriteListModel";
 
 var mongooseConnection = DataAccess.mongooseConnection;
-//let mongooseObj = DataAccess.mongooseInstance;
 var Q = require('q');
 
-class UserModel {
+class FavoriteListModel {
     public schema:any;
     public model:any;
 
@@ -15,13 +14,11 @@ class UserModel {
         this.createModel();
     }
 
-    public static constructorFromData(id: Number, name: String, pwd: String, email: String, typ: Number){
+    public static constructorFromData(favoriteListID: Number, userID: Number, restaurantIDList: Number[]){
         let newObj = {
-            userID: id,
-            userName: name,
-            password: pwd,
-            emailAddress: email,
-            userType: typ,
+            favoriteListID: favoriteListID,
+            userID: userID,
+            restaurantIDList: restaurantIDList
         }
         return newObj;
     }
@@ -29,38 +26,30 @@ class UserModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                userID: {
+                favoriteListID: {
                     type: Number,
                     required: true,
                     unique : true, 
                     dropDups: true
                 },
-                userName: {
-                    type: String,
-                    required: true
-                },
-                password: {
-                    type: String,
-                    required: true
-                },
-                emailAddress: {
-                    type: String,
-                    required: true
-                },
-                userType: {
+                userID: {
                     type: Number,
                     required: true
                 },
-            }, {collection: 'user'}
+                restaurantIDList: {
+                    type: [Number],
+                    required: true
+                },
+            }, {collection: 'favoriteList'}
         );
     }
     public createModel(): void {
-        this.model = mongooseConnection.model<IUserModel>("user", this.schema);
+        this.model = mongooseConnection.model<IFavoriteListModel>("favoriteList", this.schema);
     }
-    public createUser(user: any): boolean {
+    public createFavoriteList(favoriteList: any): boolean {
         var deferred = Q.defer();
         var res = false;
-        this.model(user).save(function (err){
+        this.model(favoriteList).save(function (err){
             if(err){
                 console.error(err);
             }
@@ -72,10 +61,10 @@ class UserModel {
         return deferred.promise;
     }
 
-    public deleteUserByID(id: Number): boolean {
+    public deleteFavoriteListByID(favoriteListID: Number): boolean {
         var deferred = Q.defer();
         var res = false;
-        this.model.deleteOne({userID: id}, function(err){
+        this.model.deleteOne({favoriteListID: favoriteListID}, function(err){
             if(err){
                 console.error(err);
             }
@@ -87,10 +76,10 @@ class UserModel {
         return deferred.promise;
     }
 
-    public updateUser(userID: Number, user: any): boolean {
+    public updateFavoriteList(favoriteListID: Number, favoriteList: any): boolean {
         var deferred = Q.defer();
         var res = false;
-        this.model.findOneAndUpdate({userID: userID}, user, { new: true } , function (err){
+        this.model.findOneAndUpdate({favoriteListID: favoriteListID}, favoriteList, { new: true } , function (err){
             if(err){
                 console.error(err);
             }
@@ -101,47 +90,47 @@ class UserModel {
         });
         return deferred.promise;
     }
-    public getUserByID(id: Number): any{
+    public getFavoriteListByID(favoriteListID: Number): any{
         var deferred = Q.defer();
-        var query = this.model.find({userID: id});
-        var user = null;
-        query.exec((err, users) => {
+        var query = this.model.find({favoriteListID: favoriteListID});
+        var favoriteList = null;
+        query.exec((err, favoriteLists) => {
             if(err){
                 console.error(err);
             }
-            else if(users.length > 1){
-                console.error('Duplicate error in User');
+            else if(favoriteLists.length > 1){
+                console.error('Duplicate error in FavoriteList');
             }
-            else if(users.length == 1){
-                for (let u of users){
-                    user = u;
+            else if(favoriteLists.length == 1){
+                for (let u of favoriteLists){
+                    favoriteList = u;
                 }
             }
             else{
                 console.log('no result');
             }
-            deferred.resolve(user);
+            deferred.resolve(favoriteList);
         });
         return deferred.promise;
     }
 
-    public getAllUsers(): IUserModel[] {
+    public getAllFavoriteLists(): any {
         var deferred = Q.defer();
         var query = this.model.find({});
-        var users :IUserModel[];
+        var favoriteLists = null;
         query.exec((err, res) => {
             if(err){
                 console.error(err);
             }
             else if(res.length > 0){
-                users = res;
+                favoriteLists = res;
             }
             else{
                 console.log('no result');
             }
-            deferred.resolve(users);
+            deferred.resolve(favoriteLists);
         });
         return deferred.promise;
     }
 }
-export {UserModel};
+export {FavoriteListModel};

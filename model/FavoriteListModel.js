@@ -4,25 +4,22 @@ var Mongoose = require("mongoose");
 var DataAccess_1 = require("../DataAccess");
 var mongooseConnection = DataAccess_1.DataAccess.mongooseConnection;
 var Q = require('q');
-var ReviewModel = /** @class */ (function () {
-    function ReviewModel() {
+var FavoriteListModel = /** @class */ (function () {
+    function FavoriteListModel() {
         this.createSchema();
         this.createModel();
     }
-    ReviewModel.constructorFromData = function (reviewID, userID, restaurantID, title, content, date) {
+    FavoriteListModel.constructorFromData = function (favoriteListID, userID, restaurantIDList) {
         var newObj = {
-            reviewID: reviewID,
+            favoriteListID: favoriteListID,
             userID: userID,
-            restaurantID: restaurantID,
-            title: title,
-            content: content,
-            date: date
+            restaurantIDList: restaurantIDList
         };
         return newObj;
     };
-    ReviewModel.prototype.createSchema = function () {
+    FavoriteListModel.prototype.createSchema = function () {
         this.schema = new Mongoose.Schema({
-            reviewID: {
+            favoriteListID: {
                 type: Number,
                 required: true,
                 unique: true,
@@ -32,31 +29,19 @@ var ReviewModel = /** @class */ (function () {
                 type: Number,
                 required: true
             },
-            restaurantID: {
-                type: Number,
-                required: true
-            },
-            title: {
-                type: String,
-                required: true
-            },
-            content: {
-                type: String,
-                required: true
-            },
-            date: {
-                type: String,
+            restaurantIDList: {
+                type: [Number],
                 required: true
             }
-        }, { collection: 'review' });
+        }, { collection: 'favoriteList' });
     };
-    ReviewModel.prototype.createModel = function () {
-        this.model = mongooseConnection.model("review", this.schema);
+    FavoriteListModel.prototype.createModel = function () {
+        this.model = mongooseConnection.model("favoriteList", this.schema);
     };
-    ReviewModel.prototype.createReview = function (review) {
+    FavoriteListModel.prototype.createFavoriteList = function (favoriteList) {
         var deferred = Q.defer();
         var res = false;
-        this.model(review).save(function (err) {
+        this.model(favoriteList).save(function (err) {
             if (err) {
                 console.error(err);
             }
@@ -67,10 +52,10 @@ var ReviewModel = /** @class */ (function () {
         });
         return deferred.promise;
     };
-    ReviewModel.prototype.deleteReviewByID = function (reviewID) {
+    FavoriteListModel.prototype.deleteFavoriteListByID = function (favoriteListID) {
         var deferred = Q.defer();
         var res = false;
-        this.model.deleteOne({ reviewID: reviewID }, function (err) {
+        this.model.deleteOne({ favoriteListID: favoriteListID }, function (err) {
             if (err) {
                 console.error(err);
             }
@@ -81,10 +66,10 @@ var ReviewModel = /** @class */ (function () {
         });
         return deferred.promise;
     };
-    ReviewModel.prototype.updateReview = function (reviewID, review) {
+    FavoriteListModel.prototype.updateFavoriteList = function (favoriteListID, favoriteList) {
         var deferred = Q.defer();
         var res = false;
-        this.model.findOneAndUpdate({ reviewID: reviewID }, review, { "new": true }, function (err) {
+        this.model.findOneAndUpdate({ favoriteListID: favoriteListID }, favoriteList, { "new": true }, function (err) {
             if (err) {
                 console.error(err);
             }
@@ -95,48 +80,48 @@ var ReviewModel = /** @class */ (function () {
         });
         return deferred.promise;
     };
-    ReviewModel.prototype.getReviewByID = function (reviewID) {
+    FavoriteListModel.prototype.getFavoriteListByID = function (favoriteListID) {
         var deferred = Q.defer();
-        var query = this.model.find({ reviewID: reviewID });
-        var review = null;
-        query.exec(function (err, reviews) {
+        var query = this.model.find({ favoriteListID: favoriteListID });
+        var favoriteList = null;
+        query.exec(function (err, favoriteLists) {
             if (err) {
                 console.error(err);
             }
-            else if (reviews.length > 1) {
-                console.error('Duplicate error in Review');
+            else if (favoriteLists.length > 1) {
+                console.error('Duplicate error in FavoriteList');
             }
-            else if (reviews.length == 1) {
-                for (var _i = 0, reviews_1 = reviews; _i < reviews_1.length; _i++) {
-                    var u = reviews_1[_i];
-                    review = u;
+            else if (favoriteLists.length == 1) {
+                for (var _i = 0, favoriteLists_1 = favoriteLists; _i < favoriteLists_1.length; _i++) {
+                    var u = favoriteLists_1[_i];
+                    favoriteList = u;
                 }
             }
             else {
                 console.log('no result');
             }
-            deferred.resolve(review);
+            deferred.resolve(favoriteList);
         });
         return deferred.promise;
     };
-    ReviewModel.prototype.getAllReviews = function () {
+    FavoriteListModel.prototype.getAllFavoriteLists = function () {
         var deferred = Q.defer();
         var query = this.model.find({});
-        var reviews = null;
+        var favoriteLists = null;
         query.exec(function (err, res) {
             if (err) {
                 console.error(err);
             }
             else if (res.length > 0) {
-                reviews = res;
+                favoriteLists = res;
             }
             else {
                 console.log('no result');
             }
-            deferred.resolve(reviews);
+            deferred.resolve(favoriteLists);
         });
         return deferred.promise;
     };
-    return ReviewModel;
+    return FavoriteListModel;
 }());
-exports.ReviewModel = ReviewModel;
+exports.FavoriteListModel = FavoriteListModel;

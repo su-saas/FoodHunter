@@ -4,6 +4,8 @@ var express = require("express");
 var logger = require("morgan");
 var bodyParser = require("body-parser");
 var User_1 = require("./User");
+var Review_1 = require("./Review");
+var FavoriteList_1 = require("./FavoriteList");
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
@@ -31,6 +33,10 @@ var App = /** @class */ (function () {
     App.prototype.addRoutes = function (router) {
         var user = new User_1.User();
         user.registerRoutes(router);
+        var review = new Review_1.Review();
+        review.registerRoutes(router);
+        var favoriteList = new FavoriteList_1.FavoriteList();
+        favoriteList.registerRoutes(router);
     };
     return App;
 }());

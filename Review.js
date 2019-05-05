@@ -35,75 +35,73 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-//var MongoClient = require('mongodb').MongoClient;
-//var Q = require('q');
 //connect to the model 
-var UserModel_1 = require("./model/UserModel");
+var ReviewModel_1 = require("./model/ReviewModel");
 // Creates and configures an ExpressJS web server.
-var User = /** @class */ (function () {
+var Review = /** @class */ (function () {
     //Run configuration methods on the Express instance.
-    function User() {
-        this.Users = new UserModel_1.UserModel();
+    function Review() {
+        this.Reviews = new ReviewModel_1.ReviewModel();
     }
-    User.prototype.registerRoutes = function (router) {
+    Review.prototype.registerRoutes = function (router) {
         this.routes(router);
     };
     // Configure API endpoints.
-    User.prototype.routes = function (router) {
+    Review.prototype.routes = function (router) {
         var _this = this;
-        router.get('/user', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var users;
+        router.get('/review', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var reviews;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        console.log('get all users');
-                        return [4 /*yield*/, this.Users.getAllUsers()];
+                        console.log('get all reviews');
+                        return [4 /*yield*/, this.Reviews.getAllReviews()];
                     case 1:
-                        users = _a.sent();
-                        console.log('get all users finished');
-                        res.status(200).send(users);
+                        reviews = _a.sent();
+                        console.log('get all reviews finished');
+                        res.status(200).send(reviews);
                         return [2 /*return*/];
                 }
             });
         }); });
-        router.get('/user/:userID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var userID, user;
+        router.get('/review/:reviewID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var reviewID, review;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        userID = req.params.userID;
-                        return [4 /*yield*/, this.Users.getUserByID(userID)];
+                        reviewID = req.params.reviewID;
+                        return [4 /*yield*/, this.Reviews.getReviewByID(reviewID)];
                     case 1:
-                        user = _a.sent();
-                        console.log('in get route:', user);
-                        res.status(200).send(user);
+                        review = _a.sent();
+                        console.log('in get route:', review);
+                        res.status(200).send(review);
                         return [2 /*return*/];
                 }
             });
         }); });
-        router["delete"]('/user/:userID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var userID, user;
+        router["delete"]('/review/:reviewID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var reviewID, review;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        userID = req.params.userID;
-                        return [4 /*yield*/, this.Users.deleteUserByID(userID)];
+                        reviewID = req.params.reviewID;
+                        return [4 /*yield*/, this.Reviews.deleteReviewByID(reviewID)];
                     case 1:
-                        user = _a.sent();
-                        console.log('in delete route:', user);
-                        res.status(200).send(user);
+                        review = _a.sent();
+                        console.log('in delete route:', review);
+                        res.status(200).send(review);
                         return [2 /*return*/];
                 }
             });
         }); });
-        router.put('/user/:userID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var userID, userBody, successOrNot;
+        router.put('/review/:reviewID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var reviewID, reviewBody, successOrNot;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        userID = req.params.userID;
-                        userBody = req.body;
-                        return [4 /*yield*/, this.Users.updateUser(userID, userBody)];
+                        reviewID = req.params.reviewID;
+                        reviewBody = req.body;
+                        return [4 /*yield*/, this.Reviews.updateReview(reviewID, reviewBody)];
                     case 1:
                         successOrNot = _a.sent();
                         console.log('in update route:', successOrNot);
@@ -112,13 +110,13 @@ var User = /** @class */ (function () {
                 }
             });
         }); });
-        router.post('/user', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var user, successOrNot;
+        router.post('/review', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var review, successOrNot;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        user = req.body;
-                        return [4 /*yield*/, this.Users.createUser(user)];
+                        review = req.body;
+                        return [4 /*yield*/, this.Reviews.createReview(review)];
                     case 1:
                         successOrNot = _a.sent();
                         console.log('in create route:', successOrNot);
@@ -128,6 +126,6 @@ var User = /** @class */ (function () {
             });
         }); });
     };
-    return User;
+    return Review;
 }());
-exports.User = User;
+exports.Review = Review;
