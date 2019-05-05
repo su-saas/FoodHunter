@@ -26,28 +26,28 @@ class User {
 
     // Configure API endpoints.
     private routes(router: express.Router): void {
-        router.get('/users', async (req, res) => {
+        router.get('/user', async (req, res) => {
             console.log('get all users');
             var users = await this.Users.getAllUsers();
             console.log('get all users finished');
             res.status(200).send(users);
         });
 
-        router.get('/users/:userID',async (req, res) => {
+        router.get('/user/:userID',async (req, res) => {
             var userID = req.params.userID;
             var user = await this.Users.getUserByID(userID);
             console.log('in get route:', user);
             res.status(200).send(user);
         });
 
-        router.delete('/users/:userID',async (req, res) => {
+        router.delete('/user/:userID',async (req, res) => {
             var userID = req.params.userID;
             var user = await this.Users.deleteUserByID(userID);
             console.log('in delete route:', user);
             res.status(200).send(user);
         });
 
-        router.put('/users/:userID',async (req, res) => {
+        router.put('/user/:userID',async (req, res) => {
             var userID = req.params.userID;
             var userBody = req.body;
             var successOrNot = await this.Users.updateUser(userID, userBody);
@@ -55,7 +55,7 @@ class User {
             res.status(200).send(successOrNot);
         });
 
-        router.post('/users', async (req, res) => {
+        router.post('/user', async (req, res) => {
             var user = req.body;
             var successOrNot = await this.Users.createUser(user);
             console.log('in create route:', successOrNot);

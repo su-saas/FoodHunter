@@ -1,11 +1,11 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from '../DataAccess';
-import { IReviewModel } from "../interfaces/IReviewModel";
+import { IFavoriteListModel } from "../interfaces/IFavoriteListModel";
 
 var mongooseConnection = DataAccess.mongooseConnection;
 var Q = require('q');
 
-class ReviewModel {
+class FavoriteListModel {
     public schema:any;
     public model:any;
 
@@ -14,14 +14,11 @@ class ReviewModel {
         this.createModel();
     }
 
-    public static constructorFromData(reviewID: Number, userID: Number, restaurantID: Number, title: String, content: String, date: String){
+    public static constructorFromData(favoriteListID: Number, userID: Number, restaurantIDList: Number[]){
         let newObj = {
-            reviewID: reviewID,
+            favoriteListID: favoriteListID,
             userID: userID,
-            restaurantID: restaurantID,
-            title: title,
-            content: content,
-            date: date,
+            restaurantIDList: restaurantIDList
         }
         return newObj;
     }
@@ -29,7 +26,7 @@ class ReviewModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                reviewID: {
+                favoriteListID: {
                     type: Number,
                     required: true,
                     unique : true, 
@@ -39,32 +36,20 @@ class ReviewModel {
                     type: Number,
                     required: true
                 },
-                restaurantID: {
-                    type: Number,
+                restaurantIDList: {
+                    type: [Number],
                     required: true
                 },
-                title: {
-                    type: String,
-                    required: true
-                },
-                content: {
-                    type: String,
-                    required: true
-                },
-                date: {
-                    type: String,
-                    required: true
-                },
-            }, {collection: 'review'}
+            }, {collection: 'favoriteList'}
         );
     }
     public createModel(): void {
-        this.model = mongooseConnection.model<IReviewModel>("review", this.schema);
+        this.model = mongooseConnection.model<IFavoriteListModel>("favoriteList", this.schema);
     }
-    public createReview(review: any): boolean {
+    public createFavoriteList(favoriteList: any): boolean {
         var deferred = Q.defer();
         var res = false;
-        this.model(review).save(function (err){
+        this.model(favoriteList).save(function (err){
             if(err){
                 console.error(err);
             }
@@ -76,10 +61,10 @@ class ReviewModel {
         return deferred.promise;
     }
 
-    public deleteReviewByID(reviewID: Number): boolean {
+    public deleteFavoriteListByID(favoriteListID: Number): boolean {
         var deferred = Q.defer();
         var res = false;
-        this.model.deleteOne({reviewID: reviewID}, function(err){
+        this.model.deleteOne({favoriteListID: favoriteListID}, function(err){
             if(err){
                 console.error(err);
             }
@@ -91,10 +76,10 @@ class ReviewModel {
         return deferred.promise;
     }
 
-    public updateReview(reviewID: Number, review: any): boolean {
+    public updateFavoriteList(favoriteListID: Number, favoriteList: any): boolean {
         var deferred = Q.defer();
         var res = false;
-        this.model.findOneAndUpdate({reviewID: reviewID}, review, { new: true } , function (err){
+        this.model.findOneAndUpdate({favoriteListID: favoriteListID}, favoriteList, { new: true } , function (err){
             if(err){
                 console.error(err);
             }
@@ -105,47 +90,47 @@ class ReviewModel {
         });
         return deferred.promise;
     }
-    public getReviewByID(reviewID: Number): any{
+    public getFavoriteListByID(favoriteListID: Number): any{
         var deferred = Q.defer();
-        var query = this.model.find({reviewID: reviewID});
-        var review = null;
-        query.exec((err, reviews) => {
+        var query = this.model.find({favoriteListID: favoriteListID});
+        var favoriteList = null;
+        query.exec((err, favoriteLists) => {
             if(err){
                 console.error(err);
             }
-            else if(reviews.length > 1){
-                console.error('Duplicate error in Review');
+            else if(favoriteLists.length > 1){
+                console.error('Duplicate error in FavoriteList');
             }
-            else if(reviews.length == 1){
-                for (let u of reviews){
-                    review = u;
+            else if(favoriteLists.length == 1){
+                for (let u of favoriteLists){
+                    favoriteList = u;
                 }
             }
             else{
                 console.log('no result');
             }
-            deferred.resolve(review);
+            deferred.resolve(favoriteList);
         });
         return deferred.promise;
     }
 
-    public getAllReviews(): any {
+    public getAllFavoriteLists(): any {
         var deferred = Q.defer();
         var query = this.model.find({});
-        var reviews = null;
+        var favoriteLists = null;
         query.exec((err, res) => {
             if(err){
                 console.error(err);
             }
             else if(res.length > 0){
-                reviews = res;
+                favoriteLists = res;
             }
             else{
                 console.log('no result');
             }
-            deferred.resolve(reviews);
+            deferred.resolve(favoriteLists);
         });
         return deferred.promise;
     }
 }
-export {ReviewModel};
+export {FavoriteListModel};

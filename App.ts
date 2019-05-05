@@ -4,6 +4,7 @@ import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import {User} from './User';
 import { Review } from './Review';
+import { FavoriteList } from './FavoriteList';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -43,6 +44,8 @@ class App {
         user.registerRoutes(router);
         var review = new Review();
         review.registerRoutes(router);
+        var favoriteList = new FavoriteList();
+        favoriteList.registerRoutes(router);
     }
 
 }

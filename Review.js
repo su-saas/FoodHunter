@@ -49,7 +49,7 @@ var Review = /** @class */ (function () {
     // Configure API endpoints.
     Review.prototype.routes = function (router) {
         var _this = this;
-        router.get('/reviews', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+        router.get('/review', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             var reviews;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -64,7 +64,7 @@ var Review = /** @class */ (function () {
                 }
             });
         }); });
-        router.get('/reviews/:reviewID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+        router.get('/review/:reviewID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             var reviewID, review;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -79,7 +79,7 @@ var Review = /** @class */ (function () {
                 }
             });
         }); });
-        router["delete"]('/reviews/:reviewID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+        router["delete"]('/review/:reviewID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             var reviewID, review;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -94,7 +94,7 @@ var Review = /** @class */ (function () {
                 }
             });
         }); });
-        router.put('/reviews/:reviewID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+        router.put('/review/:reviewID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             var reviewID, reviewBody, successOrNot;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -110,7 +110,7 @@ var Review = /** @class */ (function () {
                 }
             });
         }); });
-        router.post('/reviews', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+        router.post('/review', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             var review, successOrNot;
             return __generator(this, function (_a) {
                 switch (_a.label) {
