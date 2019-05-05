@@ -3,6 +3,7 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import {User} from './User';
+import { Review } from './Review';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -38,8 +39,10 @@ class App {
     }
 
     private addRoutes(router: express.Router): void{
-        var user: User = new User();
+        var user = new User();
         user.registerRoutes(router);
+        var review = new Review();
+        review.registerRoutes(router);
     }
 
 }
