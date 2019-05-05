@@ -20,7 +20,7 @@ class User {
         this.Users = new UserModel();
     }
 
-    public addRoutes(router: express.Router) {
+    public registerRoutes(router: express.Router) {
         this.routes(router);
     }
 
@@ -33,29 +33,32 @@ class User {
             res.status(200).send(users);
         });
 
-        router.get('/users/get',async (req, res) => {
-            var user = await this.Users.getUserByID(2);
+        router.get('/users/:userID',async (req, res) => {
+            var userID = req.params.userID;
+            var user = await this.Users.getUserByID(userID);
             console.log('in get route:', user);
             res.status(200).send(user);
         });
 
-        router.get('/users/del',async (req, res) => {
-            var user = await this.Users.deleteUserByID(2);
+        router.delete('/users/:userID',async (req, res) => {
+            var userID = req.params.userID;
+            var user = await this.Users.deleteUserByID(userID);
             console.log('in delete route:', user);
             res.status(200).send(user);
         });
 
-        router.get('/users/update',async (req, res) => {
+        router.post('/users',async (req, res) => {
             var user = UserModel.constructorFromData(2, "user007-new", "user007Pwd", "user007@gmail.com", 1);
             var successOrNot = await this.Users.updateUser(user);
-            console.log('in route:', successOrNot);
+            console.log('in update route:', successOrNot);
             res.status(200).send(successOrNot);
         });
 
-        router.get('/users/add', async (req, res) => {
+        router.put('/users', async (req, res) => {
             console.log('add one user');
             var user = UserModel.constructorFromData(7, "user007", "user007Pwd", "user007@gmail.com", 1);
             var successOrNot = await this.Users.createUser(user);
+            console.log('in create route:', successOrNot);
             res.status(200).send(successOrNot);
         });
     }

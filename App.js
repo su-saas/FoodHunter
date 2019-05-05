@@ -8,7 +8,6 @@ var User_1 = require("./User");
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
     function App() {
-        this.user = new User_1.User();
         this.expressApp = express();
         this.middleware();
         this.routes();
@@ -22,11 +21,16 @@ var App = /** @class */ (function () {
     // Configure API endpoints.
     App.prototype.routes = function () {
         var router = express.Router();
-        this.user.addRoutes(router);
+        // add user routes
+        this.addRoutes(router);
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
         this.expressApp.use('/images', express.static(__dirname + '/img'));
         this.expressApp.use('/', express.static(__dirname + '/pages'));
+    };
+    App.prototype.addRoutes = function (router) {
+        var user = new User_1.User();
+        user.registerRoutes(router);
     };
     return App;
 }());
