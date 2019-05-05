@@ -2,6 +2,7 @@
 exports.__esModule = true;
 var Mongoose = require("mongoose");
 var DataAccess_1 = require("../DataAccess");
+var Q = require('q');
 var mongooseConnection = DataAccess_1.DataAccess.mongooseConnection;
 var mongooseObj = DataAccess_1.DataAccess.mongooseInstance;
 var RestaurantTagListModel = /** @class */ (function () {
@@ -20,33 +21,86 @@ var RestaurantTagListModel = /** @class */ (function () {
     RestaurantTagListModel.prototype.createModel = function () {
         this.model = mongooseConnection.model("RestaurantTagList", this.schema);
     };
-    RestaurantTagListModel.prototype.retrieveAll = function (response) {
+    RestaurantTagListModel.prototype.createrTagList = function (rTagList) {
+        var deferred = Q.defer();
+        var res = false;
+        this.model(rTagList).save(function (err) {
+            if (err) {
+                console.error(err);
+            }
+            else {
+                res = true;
+            }
+            deferred.resolve(res);
+        });
+        return deferred.promise;
+    };
+    RestaurantTagListModel.prototype.retrieveAll = function () {
+        var deferred = Q.defer();
         var query = this.model.find({});
-        query.exec(function (err, itemArray) {
-            response.json(itemArray);
-        });
-    };
-    RestaurantTagListModel.prototype.retrieverTagListDetails = function (response, filter) {
-        var query = this.model.findOne(filter);
-        query.exec(function (err, itemArray) {
-            response.json(itemArray);
-        });
-    };
-    RestaurantTagListModel.prototype.updateTagList = function (response, filter, body) {
-        this.model.findOneAndUpdate(filter, body, { "new": true }, function (err, tagList) {
+        var rTagLists;
+        query.exec(function (err, res) {
             if (err) {
-                response.send(err);
+                console.error(err);
             }
-            response.json(tagList);
+            else if (res.length > 0) {
+                rTagLists = res;
+            }
+            else {
+                console.log('no result');
+            }
+            deferred.resolve(rTagLists);
         });
+        return deferred.promise;
     };
-    RestaurantTagListModel.prototype.deleteTagList = function (response, filter) {
-        this.model.remove(filter, function (err, tagList) {
+    RestaurantTagListModel.prototype.retrieverTagListDetails = function (filter) {
+        var deferred = Q.defer();
+        var query = this.model.find(filter);
+        var rTagList = null;
+        query.exec(function (err, res) {
             if (err) {
-                response.send(err);
+                console.error(err);
             }
-            response.json({ message: 'Successfully deleted restaurant tagList!' });
+            else if (res.length == 1) {
+                for (var _i = 0, res_1 = res; _i < res_1.length; _i++) {
+                    var r = res_1[_i];
+                    rTagList = r;
+                }
+            }
+            else {
+                console.log('no result');
+            }
+            deferred.resolve(rTagList);
         });
+        return deferred.promise;
+    };
+    RestaurantTagListModel.prototype.updaterTagList = function (filter, body) {
+        var deferred = Q.defer();
+        var res = false;
+        this.model.findOneAndUpdate(filter, body, { "new": true }, function (err) {
+            if (err) {
+                console.error(err);
+            }
+            else {
+                res = true;
+            }
+            deferred.resolve(res);
+        });
+        return deferred.promise;
+    };
+    RestaurantTagListModel.prototype.deleterTagList = function (filter) {
+        var deferred = Q.defer();
+        var res = false;
+        this.model.remove(filter, function (err) {
+            if (err) {
+                console.error(err);
+            }
+            else {
+                res = true;
+            }
+            deferred.resolve(res);
+        });
+        return deferred.promise;
     };
     return RestaurantTagListModel;
 }());

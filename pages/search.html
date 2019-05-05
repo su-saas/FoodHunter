@@ -16,9 +16,14 @@
     <body>
         <div class="wrap">
             <div class="search">
-                <form  method="POST" action="/search">
+                <form id = 'search' method="GET" action="/search">
+                    <select class="product-select">
+                        <option value="">&nbsp;---</option>
+                        <option value="a">restaurantName</option>
+                        <option value="b">address</option>
+                    </select>
                     <input type="text" class="searchTerm" placeholder="What are you looking for?">
-                    <button type="submit" class="searchButton">
+                    <button id = "btn" type="submit" class="searchButton">
                         <i class="fa fa-search"></i>
                     </button>
                 </form>
