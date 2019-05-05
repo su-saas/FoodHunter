@@ -17,9 +17,6 @@ userCollection.insert(
     reviewList: [{
         reviewID: 1,
         restaurantID: 1,
-        reviewTitle: "I like it",
-        reviewContent: "Food is so tasty!",
-        date: "2019-01-01T01:00:00",
     }],
 })
 
@@ -33,9 +30,6 @@ userCollection.insert(
     reviewList: [{
         reviewID: 2,
         restaurantID: 2,
-        reviewTitle: "Recommend",
-        reviewContent: "The environment is so romantic!",
-        date: "2019-01-02T01:00:00",
     }],
 })
 
@@ -49,8 +43,5 @@ userCollection.insert(
     reviewList: [{
         reviewID: 3,
         restaurantID: 3,
-        reviewTitle: "Not bad",
-        reviewContent: "It's easy to find a parking lot.",
-        date: "2019-01-03T01:00:00",
     }],
 })

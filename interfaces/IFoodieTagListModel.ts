@@ -5,7 +5,6 @@ interface IFoodieTagListModel extends Mongoose.Document {
     userID: number;
     tagList: [{
         tagID: number;
-        tagName: string;
     }];
 }
 export {IFoodieTagListModel};

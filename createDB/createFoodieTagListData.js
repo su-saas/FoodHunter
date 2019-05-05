@@ -13,7 +13,6 @@ foodieTagListCollection.insert(
     tagList: [
         {
             tagID: 3,
-            tagName: "Good Environment",
         },
     ],
 })
@@ -25,19 +24,15 @@ foodieTagListCollection.insert(
     tagList: [
         {
             tagID: 1,
-            tagName: "Tasty",
         },
         {
             tagID: 3,
-            tagName: "Good Environment",
         },
         {
             tagID: 4,
-            tagName: "Scenic View",
         },
         {
             tagID: 7,
-            tagName: "Price between 30 and 60",
         }
     ],
 })
@@ -49,35 +44,27 @@ foodieTagListCollection.insert(
     tagList: [
         {
             tagID: 8,
-            tagName: "Price over 60",
         },
         {
             tagID: 7,
-            tagName: "Price between 30 and 60",
         },
         {
             tagID: 2,
-            tagName: "Great Service",
         },
         {
             tagID: 4,
-            tagName: "Scenic View",
         },
         {
             tagID: 6,
-            tagName: "Price under 30",
         },
         {
             tagID: 3,
-            tagName: "Good Environment",
         },
         {
             tagID: 1,
-            tagName: "Tasty",
         },
         {
             tagID: 5,
-            tagName: "Easy to park",
         }       
     ],
 })
