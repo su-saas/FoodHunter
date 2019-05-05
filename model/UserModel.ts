@@ -83,8 +83,22 @@ class UserModel {
         return deferred.promise;
     }
 
+    public deleteUserByID(id: Number): boolean {
+        var deferred = Q.defer();
+        var res = false;
+        this.model.deleteOne({userID: id}, function(err){
+            if(err){
+                console.error(err);
+            }
+            else{
+                res = true;
+            }
+            deferred.resolve(res);
+        });
+        return deferred.promise;
+    }
+
     public updateUser(user: any): boolean {
-        console.log('in updateUser:', user);
         if(!this.checkUserProperty(user)){
             console.error("Something of the user you want to update is missing");
             return;

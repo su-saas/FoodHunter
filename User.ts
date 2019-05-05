@@ -35,7 +35,13 @@ class User {
 
         router.get('/users/get',async (req, res) => {
             var user = await this.Users.getUserByID(2);
-            console.log('in route:', user);
+            console.log('in get route:', user);
+            res.status(200).send(user);
+        });
+
+        router.get('/users/del',async (req, res) => {
+            var user = await this.Users.deleteUserByID(2);
+            console.log('in delete route:', user);
             res.status(200).send(user);
         });
 

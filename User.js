@@ -73,7 +73,20 @@ var User = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.Users.getUserByID(2)];
                     case 1:
                         user = _a.sent();
-                        console.log('in route:', user);
+                        console.log('in get route:', user);
+                        res.status(200).send(user);
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+        router.get('/users/del', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var user;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.Users.deleteUserByID(2)];
+                    case 1:
+                        user = _a.sent();
+                        console.log('in delete route:', user);
                         res.status(200).send(user);
                         return [2 /*return*/];
                 }

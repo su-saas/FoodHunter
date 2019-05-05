@@ -74,8 +74,21 @@ var UserModel = /** @class */ (function () {
         });
         return deferred.promise;
     };
+    UserModel.prototype.deleteUserByID = function (id) {
+        var deferred = Q.defer();
+        var res = false;
+        this.model.deleteOne({ userID: id }, function (err) {
+            if (err) {
+                console.error(err);
+            }
+            else {
+                res = true;
+            }
+            deferred.resolve(res);
+        });
+        return deferred.promise;
+    };
     UserModel.prototype.updateUser = function (user) {
-        console.log('in updateUser:', user);
         if (!this.checkUserProperty(user)) {
             console.error("Something of the user you want to update is missing");
             return;
