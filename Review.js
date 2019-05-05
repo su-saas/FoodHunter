@@ -94,13 +94,14 @@ var Review = /** @class */ (function () {
                 }
             });
         }); });
-        router.post('/reviews', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var review, successOrNot;
+        router.put('/reviews/:reviewID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var reviewID, reviewBody, successOrNot;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        review = ReviewModel_1.ReviewModel.constructorFromData(1, 1, 1, "review007-new", "review007Content", "2019-11-02T01:00:00");
-                        return [4 /*yield*/, this.Reviews.updateReview(review)];
+                        reviewID = req.params.reviewID;
+                        reviewBody = req.body;
+                        return [4 /*yield*/, this.Reviews.updateReview(reviewID, reviewBody)];
                     case 1:
                         successOrNot = _a.sent();
                         console.log('in update route:', successOrNot);
@@ -109,14 +110,12 @@ var Review = /** @class */ (function () {
                 }
             });
         }); });
-        router.put('/reviews', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+        router.post('/reviews', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             var review, successOrNot;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        console.log('add one review');
-                        review = ReviewModel_1.ReviewModel.constructorFromData(7, 1, 1, "review-7-title", "review-7-Content", "2019-12-02T01:00:00");
-                        ;
+                        review = req.body;
                         return [4 /*yield*/, this.Reviews.createReview(review)];
                     case 1:
                         successOrNot = _a.sent();

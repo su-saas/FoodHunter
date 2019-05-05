@@ -87,10 +87,10 @@ class UserModel {
         return deferred.promise;
     }
 
-    public updateUser(user: any): boolean {
+    public updateUser(userID: Number, user: any): boolean {
         var deferred = Q.defer();
         var res = false;
-        this.model.findOneAndUpdate({userID: user.userID}, user, { new: true } , function (err){
+        this.model.findOneAndUpdate({userID: userID}, user, { new: true } , function (err){
             if(err){
                 console.error(err);
             }

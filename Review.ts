@@ -41,16 +41,16 @@ class Review {
             res.status(200).send(review);
         });
 
-        router.post('/reviews',async (req, res) => {
-            var review = ReviewModel.constructorFromData(1, 1, 1, "review007-new", "review007Content", "2019-11-02T01:00:00");
-            var successOrNot = await this.Reviews.updateReview(review);
+        router.put('/reviews/:reviewID',async (req, res) => {
+            var reviewID = req.params.reviewID;
+            var reviewBody = req.body;
+            var successOrNot = await this.Reviews.updateReview(reviewID, reviewBody);
             console.log('in update route:', successOrNot);
             res.status(200).send(successOrNot);
         });
 
-        router.put('/reviews', async (req, res) => {
-            console.log('add one review');
-            var review = ReviewModel.constructorFromData(7, 1, 1, "review-7-title", "review-7-Content", "2019-12-02T01:00:00");;
+        router.post('/reviews', async (req, res) => {
+            var review = req.body;
             var successOrNot = await this.Reviews.createReview(review);
             console.log('in create route:', successOrNot);
             res.status(200).send(successOrNot);

@@ -25,7 +25,7 @@ class ReviewModel {
         }
         return newObj;
     }
-    
+
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
@@ -92,10 +92,10 @@ class ReviewModel {
         return deferred.promise;
     }
 
-    public updateReview(review: any): boolean {
+    public updateReview(reviewID: Number, review: any): boolean {
         var deferred = Q.defer();
         var res = false;
-        this.model.findOneAndUpdate({reviewID: review.reviewID}, review, { new: true } , function (err){
+        this.model.findOneAndUpdate({reviewID: reviewID}, review, { new: true } , function (err){
             if(err){
                 console.error(err);
             }

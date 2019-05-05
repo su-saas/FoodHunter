@@ -82,10 +82,10 @@ var ReviewModel = /** @class */ (function () {
         });
         return deferred.promise;
     };
-    ReviewModel.prototype.updateReview = function (review) {
+    ReviewModel.prototype.updateReview = function (reviewID, review) {
         var deferred = Q.defer();
         var res = false;
-        this.model.findOneAndUpdate({ reviewID: review.reviewID }, review, { "new": true }, function (err) {
+        this.model.findOneAndUpdate({ reviewID: reviewID }, review, { "new": true }, function (err) {
             if (err) {
                 console.error(err);
             }

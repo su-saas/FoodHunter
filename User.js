@@ -96,13 +96,14 @@ var User = /** @class */ (function () {
                 }
             });
         }); });
-        router.post('/users', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var user, successOrNot;
+        router.put('/users/:userID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var userID, userBody, successOrNot;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        user = UserModel_1.UserModel.constructorFromData(2, "user007-new", "user007Pwd", "user007@gmail.com", 1);
-                        return [4 /*yield*/, this.Users.updateUser(user)];
+                        userID = req.params.userID;
+                        userBody = req.body;
+                        return [4 /*yield*/, this.Users.updateUser(userID, userBody)];
                     case 1:
                         successOrNot = _a.sent();
                         console.log('in update route:', successOrNot);
@@ -111,13 +112,12 @@ var User = /** @class */ (function () {
                 }
             });
         }); });
-        router.put('/users', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+        router.post('/users', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             var user, successOrNot;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        console.log('add one user');
-                        user = UserModel_1.UserModel.constructorFromData(7, "user007", "user007Pwd", "user007@gmail.com", 1);
+                        user = req.body;
                         return [4 /*yield*/, this.Users.createUser(user)];
                     case 1:
                         successOrNot = _a.sent();

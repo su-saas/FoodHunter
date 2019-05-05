@@ -77,10 +77,10 @@ var UserModel = /** @class */ (function () {
         });
         return deferred.promise;
     };
-    UserModel.prototype.updateUser = function (user) {
+    UserModel.prototype.updateUser = function (userID, user) {
         var deferred = Q.defer();
         var res = false;
-        this.model.findOneAndUpdate({ userID: user.userID }, user, { "new": true }, function (err) {
+        this.model.findOneAndUpdate({ userID: userID }, user, { "new": true }, function (err) {
             if (err) {
                 console.error(err);
             }
