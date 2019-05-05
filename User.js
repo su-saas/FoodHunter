@@ -45,7 +45,7 @@ var User = /** @class */ (function () {
     function User() {
         this.Users = new UserModel_1.UserModel();
     }
-    User.prototype.addRoutes = function (router) {
+    User.prototype.registerRoutes = function (router) {
         this.routes(router);
     };
     // Configure API endpoints.
@@ -66,11 +66,13 @@ var User = /** @class */ (function () {
                 }
             });
         }); });
-        router.get('/users/get', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var user;
+        router.get('/users/:userID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var userID, user;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.Users.getUserByID(2)];
+                    case 0:
+                        userID = req.params.userID;
+                        return [4 /*yield*/, this.Users.getUserByID(userID)];
                     case 1:
                         user = _a.sent();
                         console.log('in get route:', user);
@@ -79,11 +81,13 @@ var User = /** @class */ (function () {
                 }
             });
         }); });
-        router.get('/users/del', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var user;
+        router["delete"]('/users/:userID', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var userID, user;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.Users.deleteUserByID(2)];
+                    case 0:
+                        userID = req.params.userID;
+                        return [4 /*yield*/, this.Users.deleteUserByID(userID)];
                     case 1:
                         user = _a.sent();
                         console.log('in delete route:', user);
@@ -92,7 +96,7 @@ var User = /** @class */ (function () {
                 }
             });
         }); });
-        router.get('/users/update', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+        router.post('/users', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             var user, successOrNot;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -101,13 +105,13 @@ var User = /** @class */ (function () {
                         return [4 /*yield*/, this.Users.updateUser(user)];
                     case 1:
                         successOrNot = _a.sent();
-                        console.log('in route:', successOrNot);
+                        console.log('in update route:', successOrNot);
                         res.status(200).send(successOrNot);
                         return [2 /*return*/];
                 }
             });
         }); });
-        router.get('/users/add', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+        router.put('/users', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             var user, successOrNot;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -117,6 +121,7 @@ var User = /** @class */ (function () {
                         return [4 /*yield*/, this.Users.createUser(user)];
                     case 1:
                         successOrNot = _a.sent();
+                        console.log('in create route:', successOrNot);
                         res.status(200).send(successOrNot);
                         return [2 /*return*/];
                 }

@@ -9,11 +9,9 @@ class App {
 
     // ref to Express instance
     public expressApp: express.Application;
-    public user: User;
 
     //Run configuration methods on the Express instance.
     constructor() {
-        this.user = new User();
         this.expressApp = express();
         this.middleware();
         this.routes();
@@ -30,12 +28,18 @@ class App {
     private routes(): void {
         let router = express.Router();
 
-        this.user.addRoutes(router);
+        // add user routes
+        this.addRoutes(router);
 
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname+'/app/json'));
         this.expressApp.use('/images', express.static(__dirname+'/img'));
         this.expressApp.use('/', express.static(__dirname+'/pages'));
+    }
+
+    private addRoutes(router: express.Router): void{
+        var user: User = new User();
+        user.registerRoutes(router);
     }
 
 }
