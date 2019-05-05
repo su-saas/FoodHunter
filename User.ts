@@ -9,37 +9,23 @@ import * as bodyParser from 'body-parser';
 
 //connect to the model 
 import {UserModel} from './model/UserModel'
-import {DataAccess} from './DataAccess';
-import {IUserModel } from './interfaces/IUserModel';
 
 // Creates and configures an ExpressJS web server.
 class User {
 
-    // ref to Express instance
-    public expressApp: express.Application;
-    //public idGenerator:number;
     public Users: UserModel;
 
     //Run configuration methods on the Express instance.
     constructor() {
-        this.expressApp = express();
-        this.middleware();
-        this.routes();
-        //this.idGenerator = 100;
         this.Users = new UserModel();
     }
 
-    // Configure Express middleware.
-    private middleware(): void {
-        this.expressApp.use(logger('dev'));
-        this.expressApp.use(bodyParser.json());
-        this.expressApp.use(bodyParser.urlencoded({ extended: false }));
+    public addRoutes(router: express.Router) {
+        this.routes(router);
     }
 
     // Configure API endpoints.
-    private routes(): void {
-        let router = express.Router();
-
+    private routes(router: express.Router): void {
         router.get('/users', async (req, res) => {
             console.log('get all users');
             var users = await this.Users.getAllUsers();
@@ -65,16 +51,8 @@ class User {
             var user = UserModel.constructorFromData(7, "user007", "user007Pwd", "user007@gmail.com", 1);
             var successOrNot = await this.Users.createUser(user);
             res.status(200).send(successOrNot);
-    });
-
-        this.expressApp.use('/', router);
-
-        this.expressApp.use('/app/json/', express.static(__dirname+'/app/json'));
-        this.expressApp.use('/images', express.static(__dirname+'/img'));
-        this.expressApp.use('/', express.static(__dirname+'/pages'));
-        
+        });
     }
-
 }
 
 export {User};

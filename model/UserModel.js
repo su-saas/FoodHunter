@@ -51,6 +51,7 @@ var UserModel = /** @class */ (function () {
             emailAddress: String,
             userType: Number
         }, { collection: 'user' });
+        this.schema.index({ userID: 1 }, { unique: true });
     };
     UserModel.prototype.createModel = function () {
         this.model = mongooseConnection.model("user", this.schema);

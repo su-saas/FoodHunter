@@ -35,9 +35,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var express = require("express");
-var logger = require("morgan");
-var bodyParser = require("body-parser");
 //var MongoClient = require('mongodb').MongoClient;
 //var Q = require('q');
 //connect to the model 
@@ -46,22 +43,14 @@ var UserModel_1 = require("./model/UserModel");
 var User = /** @class */ (function () {
     //Run configuration methods on the Express instance.
     function User() {
-        this.expressApp = express();
-        this.middleware();
-        this.routes();
-        //this.idGenerator = 100;
         this.Users = new UserModel_1.UserModel();
     }
-    // Configure Express middleware.
-    User.prototype.middleware = function () {
-        this.expressApp.use(logger('dev'));
-        this.expressApp.use(bodyParser.json());
-        this.expressApp.use(bodyParser.urlencoded({ extended: false }));
+    User.prototype.addRoutes = function (router) {
+        this.routes(router);
     };
     // Configure API endpoints.
-    User.prototype.routes = function () {
+    User.prototype.routes = function (router) {
         var _this = this;
-        var router = express.Router();
         router.get('/users', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             var users;
             return __generator(this, function (_a) {
@@ -120,10 +109,6 @@ var User = /** @class */ (function () {
                 }
             });
         }); });
-        this.expressApp.use('/', router);
-        this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
-        this.expressApp.use('/images', express.static(__dirname + '/img'));
-        this.expressApp.use('/', express.static(__dirname + '/pages'));
     };
     return User;
 }());

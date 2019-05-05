@@ -59,6 +59,7 @@ class UserModel {
                 userType: Number,
             }, {collection: 'user'}
         );
+        this.schema.index({userID: 1}, {unique: true});
     }
     public createModel(): void {
         this.model = mongooseConnection.model<IUserModel>("user", this.schema);

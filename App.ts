@@ -1,18 +1,19 @@
 import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
-import * as mongodb from 'mongodb';
-import * as url from 'url';
 import * as bodyParser from 'body-parser';
+import {User} from './User';
 
 // Creates and configures an ExpressJS web server.
 class App {
 
     // ref to Express instance
     public expressApp: express.Application;
+    public user: User;
 
     //Run configuration methods on the Express instance.
     constructor() {
+        this.user = new User();
         this.expressApp = express();
         this.middleware();
         this.routes();
@@ -28,12 +29,13 @@ class App {
     // Configure API endpoints.
     private routes(): void {
         let router = express.Router();
-        this.expressApp.use('/', router);
 
+        this.user.addRoutes(router);
+
+        this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname+'/app/json'));
         this.expressApp.use('/images', express.static(__dirname+'/img'));
         this.expressApp.use('/', express.static(__dirname+'/pages'));
-        
     }
 
 }
