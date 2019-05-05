@@ -14,10 +14,7 @@ userCollection.insert(
     userType: 1,
     password: "pwdOfErica",
     emailAddress: "erica@gmail.com",
-    reviewList: [{
-        reviewID: 1,
-        restaurantID: 1,
-    }],
+    reviewList: [1, 4],
 })
 
 userCollection.insert(
@@ -27,10 +24,7 @@ userCollection.insert(
     userType: 1,
     password: "pwdOfHelena",
     emailAddress: "helena@gmail.com",
-    reviewList: [{
-        reviewID: 2,
-        restaurantID: 2,
-    }],
+    reviewList: [2],
 })
 
 userCollection.insert(
@@ -40,8 +34,25 @@ userCollection.insert(
     userType: 1,
     password: "pwdOfDaniel",
     emailAddress: "daniel@gmail.com",
-    reviewList: [{
-        reviewID: 3,
-        restaurantID: 3,
-    }],
+    reviewList: [3],
+})
+
+// create one restaurant owner
+userCollection.insert(
+{
+        userID: 4,
+        userName: "Xing",
+        userType: 2,
+        password: "pwdOfXing",
+        emailAddress: "Xing@gmail.com",
+})
+
+// create one admin
+userCollection.insert(
+{
+        userID: 5,
+        userName: "Mike",
+        userType: 3,
+        password: "pwd",
+        emailAddress: "Mike@gmail.com",
 })
