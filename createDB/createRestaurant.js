@@ -12,9 +12,7 @@ restaurantCollection.insert(
         phoneNum: "206-0000-0000",
         introductionContent: "Italian Restaurant",
         hours: "M-F 11:30am - 1:00am",
-        disklist: [{
-            dishID: 1
-        }]
+        AveragePrice: 30
     }
 )
 
@@ -27,9 +25,7 @@ restaurantCollection.insert(
         phoneNum: "206-0000-0001",
         introductionContent: "Japanese Restaurant",
         hours: "M-F 11:30am - 9:00pm",
-        disklist: [{
-            dishID: 2
-        }]
+        AveragePrice: 25
     }
 )
 
@@ -42,8 +38,6 @@ restaurantCollection.insert(
         phoneNum: "206-0000-0002",
         introductionContent: "Thai Restaurant",
         hours: "M-F 11:00am - 8:00pm",
-        disklist: [{
-            dishID: 3
-        }]
+        AveragePrice: 15
     }
 )

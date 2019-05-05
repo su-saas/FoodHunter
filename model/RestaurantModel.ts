@@ -86,6 +86,7 @@ class RestaurantModel {
         });
     }*/
 
+    //combine getByRestaurantName and getBykeyWord 
     public getByKeyword(response:any, filter:Object) {
         this.model.find(filter, (err, restaurant) => {
             if(err){

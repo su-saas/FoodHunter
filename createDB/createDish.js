@@ -21,7 +21,7 @@ dishCollection.insert(
     {
         restaurantID: 2,
         dishes : {
-            dishID: 2,
+            dishID: 1,
             dishName: "sushi set a",
             dishDetails: "tuna salmon, yellowtail",
             dishPrice: 9
@@ -33,7 +33,7 @@ dishCollection.insert(
     {
         restaurantID: 3,
         dishes : {
-            dishID: 3,
+            dishID: 1,
             dishName: "Pad Thai",
             dishDetails: "Stir-fried Thai rice noodles",
             dishPrice: 9.95
