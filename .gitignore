@@ -11,4 +11,4 @@ AppServer.js
 DataAccess.js
 route/*.js
 model/*.js
-interface/*.js
+interfaces/*.js
