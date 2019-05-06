@@ -172,6 +172,34 @@ rtaglistCollection = db.getCollection("rtaglist")
 rtaglistCollection.remove({})
 rtaglistCollection.insert(
     {
+        restaurantID: 2,
+        rtaglist : [
+            {
+                tagID: 3
+            },
+            {
+                tagID: 5
+            }
+        ]
+    }
+)
+
+rtaglistCollection.insert(
+    {
+        restaurantID: 1,
+        rtaglist : [
+            {
+                tagID: 1
+            },
+            {
+                tagID: 2
+            }
+        ]
+    }
+)
+
+rtaglistCollection.insert(
+    {
         restaurantID: 3,
         rtaglist : [
             {
