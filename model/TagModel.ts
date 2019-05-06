@@ -27,36 +27,8 @@ class TagModel {
         this.model = mongooseConnection.model<ITagModel>("tag", this.schema);
     }
 
-    public createTag(response:any, tag: any): void {
-        var find: boolean = this.model.find(tag);
-        if (find) {
-            response.send("Tag has already existed!");
-        } else {
-            this.model.save(tag, (err: any, newTag: any) => {
-                if(err) {
-                    response.send(err);
-                }
-                response.json(newTag);
-            });
-        }
-    }
-
-    public getAllTags(response:any): any {
-        var query: any = this.model.find({});
-        query.exec( (err: any, tagList: any) => {
-            response.json(tagList);
-        });
-    }
-
-    public getTagByTagID(response:any, tagId: number): any {
-        var query: any = this.model.findOne(tagId);
-        query.exec( (err: any, tag: any) => {
-            response.json(tag);
-        });
-    }
-
-    public updateTagByTagID(response:any, tagId: number): any {
-        this.model.findOneAndUpdate(tagId, { new: true }, (err: any, newTag: any) => {
+    public createTag(response:any, tag: any): any {
+        this.model(tag).save((err: any, newTag: any) => {
             if(err) {
                 response.send(err);
             }
@@ -64,12 +36,41 @@ class TagModel {
         });
     }
 
-    public deleteTagByAdminByTagID(response:any, adminId: number, tagId: number): any {
-        this.model.remove(adminId, tagId, (err: any) => {
+    public getAllTags(response:any): any {
+        var query: any = this.model.find({});
+        query.exec( (err: any, tagList: any) => {
             if(err) {
                 response.send(err);
             }
-            response.json({ message: "Successfully deleted " + tagId + "'s tagList!"});
+            response.json(tagList);
+        });
+    }
+
+    public getTagByTagID(response:any, tagId: number): any {
+        var query: any = this.model.findOne({tagID: tagId});
+        query.exec( (err: any, tag: any) => {
+            if(err) {
+                response.send(err);
+            }
+            response.json(tag);
+        });
+    }
+
+    public updateTagByTagID(response:any, tagId: number, tagBody: any): any {
+        this.model.findOneAndUpdate({tagID: tagId}, tagBody, { new: true }, (err: any, newTag: any) => {
+            if(err) {
+                response.send(err);
+            }
+            response.json(newTag);
+        });
+    }
+
+    public deleteTagByTagID(response:any, tagId: number): any {
+        this.model.remove({tagID: tagId}, (err: any) => {
+            if(err) {
+                response.send(err);
+            }
+            response.json({ message: "Successfully deleted " + tagId});
         });
     }
 }

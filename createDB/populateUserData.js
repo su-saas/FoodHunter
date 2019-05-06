@@ -10,11 +10,13 @@ userCollection.remove({})
 userCollection.insert(
 {
     userID: 1,
-    userName: "Erica",
+    userName: "Guest",
     userType: 1,
-    password: "pwdOfErica",
-    emailAddress: "erica@gmail.com",
-    reviewList: [1, 4],
+    password: null,
+    emailAddress: null,
+    reviewList: null,
+    tagListID: null,
+    favoriteListID: null
 })
 
 userCollection.insert(
@@ -24,7 +26,9 @@ userCollection.insert(
     userType: 1,
     password: "pwdOfHelena",
     emailAddress: "helena@gmail.com",
-    reviewList: [2],
+    reviewList: [1,3],
+    tagListID: 1,
+    favoriteListID: 1
 })
 
 userCollection.insert(
@@ -34,25 +38,45 @@ userCollection.insert(
     userType: 1,
     password: "pwdOfDaniel",
     emailAddress: "daniel@gmail.com",
-    reviewList: [3],
+    reviewList: [2,4],
+    tagListID: 2,
+    favoriteListID: 2
 })
 
-// create one restaurant owner
+// create three restaurant owner
 userCollection.insert(
 {
         userID: 4,
-        userName: "Xing",
+        userName: "Erica",
         userType: 2,
-        password: "pwdOfXing",
-        emailAddress: "Xing@gmail.com",
+        password: "pwdOfErica",
+        emailAddress: "erica@gmail.com",
+})
+
+userCollection.insert(
+{
+        userID: 5,
+        userName: "Eric",
+        userType: 2,
+        password: "pwdOfEric",
+        emailAddress: "eric@gmail.com",
+})
+
+userCollection.insert(
+{
+        userID: 6,
+        userName: "Jack",
+        userType: 2,
+        password: "pwdOfJack",
+        emailAddress: "jack@gmail.com",
 })
 
 // create one admin
 userCollection.insert(
 {
-        userID: 5,
-        userName: "Mike",
+        userID: 7,
+        userName: "Xing",
         userType: 3,
         password: "pwd",
-        emailAddress: "Mike@gmail.com",
+        emailAddress: "Xing@gmail.com",
 })

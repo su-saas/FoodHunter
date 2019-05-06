@@ -5,6 +5,7 @@ import { IFoodieTagListModel } from "../interfaces/IFoodieTagListModel";
 let mongooseConnection: Mongoose.Connection = DataAccess.mongooseConnection;
 let mongooseObj: any = DataAccess.mongooseInstance;
 
+
 class FoodieTagListModel {
     public schema: any;
     public model: any;
@@ -17,11 +18,20 @@ class FoodieTagListModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                tagListID: Number,
-                userID: Number,
-                tagList: [{
-                tagID: Number,
-                }],
+                tagListID: {
+                    type: Number,
+                    required: true,
+                    unique : true,
+                },
+                userID: {
+                    type: Number,
+                    required: true,
+                    unique : true,
+                },
+                tagList: {
+                    type: [Number],
+                    required: true,
+                },
             }, {collection: "foodieTagList"}
         );
     }
@@ -30,29 +40,8 @@ class FoodieTagListModel {
         this.model = mongooseConnection.model<IFoodieTagListModel>("foodieTagList", this.schema);
     }
 
-    public createTagList(response:any, payload: any): any {
-        var find: boolean = this.model.find(payload.userID);
-        if (find) {
-            response.send("You have already have a tag list!");
-        } else {
-            this.model.save(payload, (err: any, newTagList: any) => {
-                if(err) {
-                    response.send(err);
-                }
-                response.json(newTagList);
-            });
-        }
-    }
-
-    public getTagListByFoodieID(response:any, userId: number): any {
-        var query: any = this.model.findOne(userId);
-        query.exec( (err: any, list: any) => {
-            response.json(list);
-        });
-    }
-
-    public updateTagListByFoodieID(response:any, userId: number, tagList: any): any {
-        this.model.findOneAndUpdate(userId, tagList, { new: true }, (err: any, newTagList: any) => {
+    public createTagList(response: any, tagList: any): any {
+        this.model(tagList).save((err: any, newTagList: any) => {
             if(err) {
                 response.send(err);
             }
@@ -60,12 +49,51 @@ class FoodieTagListModel {
         });
     }
 
-    public deleteTagListByAdminByFoodieID(response:any, adminId: number, foodieId: number): any {
-        this.model.remove(adminId, foodieId, (err: any) => {
+    public getAllTagLists(response:any): any {
+        var query: any = this.model.find({});
+        query.exec( (err: any, tagLists: any) => {
             if(err) {
                 response.send(err);
             }
-            response.json({ message: "Successfully deleted " + foodieId + "'s tagList!"});
+            response.json(tagLists);
+        });
+    }
+
+    public getTagListByFoodieID(response: any, userId: number): any {
+        var query: any = this.model.findOne({userID: userId});
+        query.exec( (err: any, tag: any) => {
+            if(err) {
+                response.send(err);
+            }
+            response.json(tag);
+        });
+    }
+
+    public getTagListByListID(response: any, listId: number): any {
+        var query: any = this.model.findOne({tagListID: listId});
+        query.exec( (err: any, list: any) => {
+            if(err) {
+                response.send(err);
+            }
+            response.json(list);
+        });
+    }
+
+    public updateTagListByFoodieID(response: any, userId: number, tagList: any): any {
+        this.model.findOneAndUpdate({userID: userId}, tagList, { new: true }, (err: any, newTagList: any) => {
+            if(err) {
+                response.send(err);
+            }
+            response.json(newTagList);
+        });
+    }
+
+    public deleteTagListByFoodieID(response: any, foodieId: number): any {
+        this.model.remove({userID: foodieId}, (err: any) => {
+            if(err) {
+                response.send(err);
+            }
+            response.json({ message: "Successfully deleted " + foodieId + "'s tagList"});
         });
     }
 }

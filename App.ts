@@ -2,19 +2,21 @@ import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import {User} from './route/User';
+
+
+import { Router } from "express-serve-static-core";
+import { FoodieRoute, RestaurantOwnerRoute, AdminRoute } from "./route/UserRoute";
+import { FoodieTagListRoute } from "./route/FoodieTagListRoute";
+import { TagRoute } from "./route/TagRoute";
 import { Review } from './route/Review';
 import { FavoriteList } from './route/FavoriteList';
-//var MongoClient = require('mongodb').MongoClient;
-//var Q = require('q');
-
-//connect to the model 
-import {DataAccess} from './DataAccess';
 import { Restaurant } from './route/Restaurant';
 import { Menu } from './route/Menu';
 import { RestaurantTagList } from './route/RestaurantTagList';
 
-// Creates and configures an ExpressJS web server.
+
+
+// creates and configures an ExpressJS web server.
 class App {
 
     // ref to Express instance
@@ -27,16 +29,16 @@ class App {
         this.routes();
     }
 
-    // Configure Express middleware.
+    // configure Express middleware.
     private middleware(): void {
-        this.expressApp.use(logger('dev'));
+        this.expressApp.use(logger("dev"));
         this.expressApp.use(bodyParser.json());
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
     }
 
-    // Configure API endpoints.
+    // configure API endpoints.
     private routes(): void {
-        let router = express.Router();
+        let router: Router = express.Router();
 
         // add user routes
         this.addRoutes(router);
@@ -48,8 +50,6 @@ class App {
     }
 
     private addRoutes(router: express.Router): void{
-        var user = new User();
-        user.registerRoutes(router);
         var review = new Review();
         review.registerRoutes(router);
         var favoriteList = new FavoriteList();
@@ -58,6 +58,9 @@ class App {
         this.addRestaurant(router);
         this.addMenu(router);  
         this.addrTags(router);
+
+        var rtaglist = new RestaurantTagList();
+      rtaglist.registerrTagListRoutes(router);
     }
 
     /******** Restaurant ********/
@@ -74,9 +77,10 @@ class App {
 
     /******** Restaurant Tags********/
     private addrTags(router: express.Router): void{
-      var rtaglist = new RestaurantTagList();
-      rtaglist.registerrTagListRoutes(router);
+      
     }
+
+  
 
 }
 
