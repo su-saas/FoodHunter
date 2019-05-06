@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 //connect to the model 
-var FavoriteListModel_1 = require("./model/FavoriteListModel");
+var FavoriteListModel_1 = require("../model/FavoriteListModel");
 // Creates and configures an ExpressJS web server.
 var FavoriteList = /** @class */ (function () {
     //Run configuration methods on the Express instance.

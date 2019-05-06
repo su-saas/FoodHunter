@@ -8,7 +8,7 @@ import * as bodyParser from 'body-parser';
 //var Q = require('q');
 
 //connect to the model 
-import {UserModel} from './model/UserModel'
+import {UserModel} from '../model/UserModel'
 
 // Creates and configures an ExpressJS web server.
 class User {

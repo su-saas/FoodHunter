@@ -2,9 +2,9 @@ import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import {User} from './User';
-import { Review } from './Review';
-import { FavoriteList } from './FavoriteList';
+import {User} from './route/User';
+import { Review } from './route/Review';
+import { FavoriteList } from './route/FavoriteList';
 
 // Creates and configures an ExpressJS web server.
 class App {

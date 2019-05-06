@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as express from 'express';
 
 //connect to the model 
-import {FavoriteListModel} from './model/FavoriteListModel'
+import {FavoriteListModel} from '../model/FavoriteListModel'
 
 // Creates and configures an ExpressJS web server.
 class FavoriteList {

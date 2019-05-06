@@ -38,7 +38,7 @@ exports.__esModule = true;
 //var MongoClient = require('mongodb').MongoClient;
 //var Q = require('q');
 //connect to the model 
-var UserModel_1 = require("./model/UserModel");
+var UserModel_1 = require("../model/UserModel");
 // Creates and configures an ExpressJS web server.
 var User = /** @class */ (function () {
     //Run configuration methods on the Express instance.
