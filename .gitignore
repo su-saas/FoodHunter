@@ -3,3 +3,7 @@ db/*
 .vscode/
 node_modules/*
 *.sh
+createDB/AdminUser.js
+createDB/createAll.js
+createDB/createUser.js
+

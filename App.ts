@@ -5,6 +5,14 @@ import * as bodyParser from 'body-parser';
 import {User} from './route/User';
 import { Review } from './route/Review';
 import { FavoriteList } from './route/FavoriteList';
+//var MongoClient = require('mongodb').MongoClient;
+//var Q = require('q');
+
+//connect to the model 
+import {DataAccess} from './DataAccess';
+import { Restaurant } from './route/Restaurant';
+import { Menu } from './route/Menu';
+import { RestaurantTagList } from './route/RestaurantTagList';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -46,6 +54,28 @@ class App {
         review.registerRoutes(router);
         var favoriteList = new FavoriteList();
         favoriteList.registerRoutes(router);
+        // erica
+        this.addRestaurant(router);
+        this.addMenu(router);  
+        this.addrTags(router);
+    }
+
+    /******** Restaurant ********/
+    private addRestaurant(router: express.Router): void{
+      var rest = new Restaurant();
+      rest.registerRestaurantRoutes(router);
+    }
+    
+    /******** Restaurant Dish********/
+    private addMenu(router: express.Router): void{
+      var menu = new Menu();
+      menu.registerDishRoutes(router);
+    }
+
+    /******** Restaurant Tags********/
+    private addrTags(router: express.Router): void{
+      var rtaglist = new RestaurantTagList();
+      rtaglist.registerrTagListRoutes(router);
     }
 
 }

@@ -3,9 +3,9 @@ exports.__esModule = true;
 var express = require("express");
 var logger = require("morgan");
 var bodyParser = require("body-parser");
-var User_1 = require("./route/User");
-var Review_1 = require("./route/Review");
-var FavoriteList_1 = require("./route/FavoriteList");
+var Restaurant_1 = require("./route/Restaurant");
+var Menu_1 = require("./route/Menu");
+var RestaurantTagList_1 = require("./route/RestaurantTagList");
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
@@ -23,20 +23,29 @@ var App = /** @class */ (function () {
     // Configure API endpoints.
     App.prototype.routes = function () {
         var router = express.Router();
-        // add user routes
-        this.addRoutes(router);
+        this.addRestaurant(router);
+        this.addMenu(router);
+        this.addrTags(router);
         this.expressApp.use('/', router);
+        //this.expressApp.use('/', express.static(__dirname+'/pages/search.html'));
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
         this.expressApp.use('/images', express.static(__dirname + '/img'));
         this.expressApp.use('/', express.static(__dirname + '/pages'));
     };
-    App.prototype.addRoutes = function (router) {
-        var user = new User_1.User();
-        user.registerRoutes(router);
-        var review = new Review_1.Review();
-        review.registerRoutes(router);
-        var favoriteList = new FavoriteList_1.FavoriteList();
-        favoriteList.registerRoutes(router);
+    /******** Restaurant ********/
+    App.prototype.addRestaurant = function (router) {
+        var rest = new Restaurant_1.Restaurant();
+        rest.registerRestaurantRoutes(router);
+    };
+    /******** Restaurant Dish********/
+    App.prototype.addMenu = function (router) {
+        var menu = new Menu_1.Menu();
+        menu.registerDishRoutes(router);
+    };
+    /******** Restaurant Tags********/
+    App.prototype.addrTags = function (router) {
+        var rtaglist = new RestaurantTagList_1.RestaurantTagList();
+        rtaglist.registerrTagListRoutes(router);
     };
     return App;
 }());
