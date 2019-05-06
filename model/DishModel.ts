@@ -17,9 +17,15 @@ class DishModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                restaurantID: Number,
+                restaurantID: {
+                    type: Number, 
+                    unique: true, 
+                },
                 dishes: [{
-                    dishID: Number,
+                    dishID: {
+                        type: Number, 
+                        unique: true, 
+                    },
                     dishName: String,
                     dishDetails: String,
                     dishPrice: Number

@@ -159,10 +159,11 @@ iframe {
 }
 
 .txt2 {
-  font-family: Montserrat-Regular;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.4;
   color: #4e4e4e;
+  display: block;
+  padding: 0px 0px 0px 200px;
 }
 
 
@@ -415,9 +416,7 @@ input.input100 {
   height: 50px;
   border-radius: 10px;
   background: #fa7900;
-
-  font-family: Montserrat-Bold;
-  font-size: 12px;
+  font-size: 25px;
   color: #fff;
   line-height: 1.2;
   text-transform: uppercase;

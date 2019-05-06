@@ -17,9 +17,15 @@ class RestaurantTagListModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                restaurantID: Number,
+                restaurantID: {
+                    type: Number, 
+                    unique: true, 
+                },
                 rtaglist : [{
-                    tagID: Number
+                    tagID: {
+                        type: Number, 
+                        unique: true, 
+                    },
                 }]
             }, {collection: 'rtaglist'}
         );

@@ -17,8 +17,14 @@ class RestaurantModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                userID: Number,
-                restaurantID: Number, 
+                userID: {
+                    type: Number, 
+                    unique: true, 
+                },
+                restaurantID: {
+                    type: Number, 
+                    unique: true, 
+                },
                 restaurantName: {
                     type: String,
                     required: true
