@@ -3,9 +3,9 @@ exports.__esModule = true;
 var express = require("express");
 var logger = require("morgan");
 var bodyParser = require("body-parser");
-var User_1 = require("./User");
-var Review_1 = require("./Review");
-var FavoriteList_1 = require("./FavoriteList");
+var User_1 = require("./route/User");
+var Review_1 = require("./route/Review");
+var FavoriteList_1 = require("./route/FavoriteList");
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
