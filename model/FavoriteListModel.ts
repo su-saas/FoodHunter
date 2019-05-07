@@ -3,7 +3,6 @@ import {DataAccess} from '../DataAccess';
 import { IFavoriteListModel } from "../interfaces/IFavoriteListModel";
 
 var mongooseConnection = DataAccess.mongooseConnection;
-var Q = require('q');
 
 class FavoriteListModel {
     public schema:any;
@@ -46,52 +45,45 @@ class FavoriteListModel {
     public createModel(): void {
         this.model = mongooseConnection.model<IFavoriteListModel>("favoriteList", this.schema);
     }
-    public createFavoriteList(favoriteList: any): boolean {
-        var deferred = Q.defer();
+    public createFavoriteList(favoriteList, response: any) {
         var res = false;
-        this.model(favoriteList).save(function (err){
+        this.model(favoriteList).save( (err) => {
             if(err){
                 console.error(err);
             }
             else{
                 res = true;
             }
-            deferred.resolve(res);
+            response.json(res);
         });
-        return deferred.promise;
     }
 
-    public deleteFavoriteListByID(favoriteListID: Number): boolean {
-        var deferred = Q.defer();
+    public deleteFavoriteListByID(favoriteListID: Number, response: any) {
         var res = false;
-        this.model.deleteOne({favoriteListID: favoriteListID}, function(err){
+        this.model.deleteOne({favoriteListID: favoriteListID}, (err) => {
             if(err){
                 console.error(err);
             }
             else{
                 res = true;
             }
-            deferred.resolve(res);
+            response.json(res);
         });
-        return deferred.promise;
     }
 
-    public updateFavoriteList(favoriteListID: Number, favoriteList: any): boolean {
-        var deferred = Q.defer();
+    public updateFavoriteList(favoriteListID: Number, favoriteList, response: any) {
         var res = false;
-        this.model.findOneAndUpdate({favoriteListID: favoriteListID}, favoriteList, { new: true } , function (err){
+        this.model.findOneAndUpdate({favoriteListID: favoriteListID}, favoriteList, { new: true } , (err) => {
             if(err){
                 console.error(err);
             }
             else{
                 res = true;
             }
-            deferred.resolve(res);
+            response.json(res);
         });
-        return deferred.promise;
     }
-    public getFavoriteListByID(favoriteListID: Number): any{
-        var deferred = Q.defer();
+    public getFavoriteListByID(favoriteListID: Number, response: any){
         var query = this.model.find({favoriteListID: favoriteListID});
         var favoriteList = null;
         query.exec((err, favoriteLists) => {
@@ -109,13 +101,11 @@ class FavoriteListModel {
             else{
                 console.log('no result');
             }
-            deferred.resolve(favoriteList);
+            response.json(favoriteList);
         });
-        return deferred.promise;
     }
 
-    public getAllFavoriteLists(): any {
-        var deferred = Q.defer();
+    public getAllFavoriteLists(response: any) {
         var query = this.model.find({});
         var favoriteLists = null;
         query.exec((err, res) => {
@@ -128,9 +118,8 @@ class FavoriteListModel {
             else{
                 console.log('no result');
             }
-            deferred.resolve(favoriteLists);
+            response.json(favoriteLists);
         });
-        return deferred.promise;
     }
 }
 export {FavoriteListModel};

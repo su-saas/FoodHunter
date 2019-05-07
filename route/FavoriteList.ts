@@ -1,4 +1,3 @@
-import * as path from 'path';
 import * as express from 'express';
 
 //connect to the model 
@@ -20,40 +19,29 @@ class FavoriteList {
 
     // Configure API endpoints.
     private routes(router: express.Router): void {
-        router.get('/favoriteList', async (req, res) => {
-            console.log('get all favoriteLists');
-            var favoriteLists = await this.FavoriteLists.getAllFavoriteLists();
-            console.log('get all favoriteLists finished');
-            res.status(200).send(favoriteLists);
+        router.get('/favoriteList', (req, res) => {
+            this.FavoriteLists.getAllFavoriteLists(res);
         });
 
-        router.get('/favoriteList/:favoriteListID',async (req, res) => {
+        router.get('/favoriteList/:favoriteListID',(req, res) => {
             var favoriteListID = req.params.favoriteListID;
-            var favoriteList = await this.FavoriteLists.getFavoriteListByID(favoriteListID);
-            console.log('in get route:', favoriteList);
-            res.status(200).send(favoriteList);
+            this.FavoriteLists.getFavoriteListByID(favoriteListID, res);
         });
 
-        router.delete('/favoriteList/:favoriteListID',async (req, res) => {
+        router.delete('/favoriteList/:favoriteListID',(req, res) => {
             var favoriteListID = req.params.favoriteListID;
-            var favoriteList = await this.FavoriteLists.deleteFavoriteListByID(favoriteListID);
-            console.log('in delete route:', favoriteList);
-            res.status(200).send(favoriteList);
+            this.FavoriteLists.deleteFavoriteListByID(favoriteListID, res);
         });
 
-        router.put('/favoriteList/:favoriteListID',async (req, res) => {
+        router.put('/favoriteList/:favoriteListID',(req, res) => {
             var favoriteListID = req.params.favoriteListID;
             var favoriteListBody = req.body;
-            var successOrNot = await this.FavoriteLists.updateFavoriteList(favoriteListID, favoriteListBody);
-            console.log('in update route:', successOrNot);
-            res.status(200).send(successOrNot);
+            this.FavoriteLists.updateFavoriteList(favoriteListID, favoriteListBody, res);
         });
 
-        router.post('/favoriteList', async (req, res) => {
+        router.post('/favoriteList', (req, res) => {
             var favoriteList = req.body;
-            var successOrNot = await this.FavoriteLists.createFavoriteList(favoriteList);
-            console.log('in create route:', successOrNot);
-            res.status(200).send(successOrNot);
+            this.FavoriteLists.createFavoriteList(favoriteList, res);
         });
     }
 }
