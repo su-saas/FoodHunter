@@ -3,8 +3,6 @@ import {DataAccess} from '../DataAccess';
 import {IUserModel} from '../interfaces/IUserModel';
 
 var mongooseConnection = DataAccess.mongooseConnection;
-//let mongooseObj = DataAccess.mongooseInstance;
-var Q = require('q');
 
 class UserModel {
     public schema:any;
@@ -57,52 +55,45 @@ class UserModel {
     public createModel(): void {
         this.model = mongooseConnection.model<IUserModel>("user", this.schema);
     }
-    public createUser(user: any): boolean {
-        var deferred = Q.defer();
+    public createUser(user, response: any) {
         var res = false;
-        this.model(user).save(function (err){
+        this.model(user).save( (err) => {
             if(err){
                 console.error(err);
             }
             else{
                 res = true;
             }
-            deferred.resolve(res);
+            response.json(res);
         });
-        return deferred.promise;
     }
 
-    public deleteUserByID(id: Number): boolean {
-        var deferred = Q.defer();
+    public deleteUserByID(id: Number, response: any) {
         var res = false;
-        this.model.deleteOne({userID: id}, function(err){
+        this.model.deleteOne({userID: id}, (err) => {
             if(err){
                 console.error(err);
             }
             else{
                 res = true;
             }
-            deferred.resolve(res);
+            response.json(res);
         });
-        return deferred.promise;
     }
 
-    public updateUser(userID: Number, user: any): boolean {
-        var deferred = Q.defer();
+    public updateUser(userID: Number, user, response: any) {
         var res = false;
-        this.model.findOneAndUpdate({userID: userID}, user, { new: true } , function (err){
+        this.model.findOneAndUpdate({userID: userID}, user, { new: true } , (err) => {
             if(err){
                 console.error(err);
             }
             else{
                 res = true;
             }
-            deferred.resolve(res);
-        });
-        return deferred.promise;
+            response.json(res);
+        });   
     }
-    public getUserByID(id: Number): any{
-        var deferred = Q.defer();
+    public getUserByID(id: Number, response: any) {
         var query = this.model.find({userID: id});
         var user = null;
         query.exec((err, users) => {
@@ -120,15 +111,13 @@ class UserModel {
             else{
                 console.log('no result');
             }
-            deferred.resolve(user);
+            response.json(user);
         });
-        return deferred.promise;
     }
 
-    public getAllUsers(): IUserModel[] {
-        var deferred = Q.defer();
+    public getAllUsers(response: any){
         var query = this.model.find({});
-        var users :IUserModel[];
+        var users = null;
         query.exec((err, res) => {
             if(err){
                 console.error(err);
@@ -139,9 +128,8 @@ class UserModel {
             else{
                 console.log('no result');
             }
-            deferred.resolve(users);
+            response.json(users);
         });
-        return deferred.promise;
     }
 }
 export {UserModel};
