@@ -64,7 +64,7 @@ class UserModel {
             else{
                 res = true;
             }
-            response.json(res);
+            response.json(user.userID);
         });
     }
 

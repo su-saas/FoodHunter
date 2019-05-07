@@ -7,9 +7,11 @@ import {FavoriteListModel} from '../model/FavoriteListModel'
 class FavoriteList {
 
     public FavoriteLists: FavoriteListModel;
+    private idGenerator: number;
 
     //Run configuration methods on the Express instance.
     constructor() {
+        this.idGenerator = 1000;
         this.FavoriteLists = new FavoriteListModel();
     }
 
@@ -41,6 +43,8 @@ class FavoriteList {
 
         router.post('/favoriteList', (req, res) => {
             var favoriteList = req.body;
+            favoriteList.favoriteListID = this.idGenerator;
+            this.idGenerator ++;
             this.FavoriteLists.createFavoriteList(favoriteList, res);
         });
     }

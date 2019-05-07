@@ -8,9 +8,11 @@ import {ReviewModel} from '../model/ReviewModel'
 class Review {
 
     public Reviews: ReviewModel;
+    private idGenerator: number;
 
     //Run configuration methods on the Express instance.
     constructor() {
+        this.idGenerator = 1000;
         this.Reviews = new ReviewModel();
     }
 
@@ -42,6 +44,8 @@ class Review {
 
         router.post('/review', (req, res) => {
             var review = req.body;
+            review.reviewID = this.idGenerator;
+            this.idGenerator ++;
             this.Reviews.createReview(review, res);
         });
     }
