@@ -3,7 +3,6 @@ import {DataAccess} from '../DataAccess';
 import { IReviewModel } from "../interfaces/IReviewModel";
 
 var mongooseConnection = DataAccess.mongooseConnection;
-var Q = require('q');
 
 class ReviewModel {
     public schema:any;
@@ -61,52 +60,45 @@ class ReviewModel {
     public createModel(): void {
         this.model = mongooseConnection.model<IReviewModel>("review", this.schema);
     }
-    public createReview(review: any): boolean {
-        var deferred = Q.defer();
+    public createReview(review, response: any) {
         var res = false;
-        this.model(review).save(function (err){
+        this.model(review).save( (err) => {
             if(err){
                 console.error(err);
             }
             else{
                 res = true;
             }
-            deferred.resolve(res);
+            response.json(res);
         });
-        return deferred.promise;
     }
 
-    public deleteReviewByID(reviewID: Number): boolean {
-        var deferred = Q.defer();
+    public deleteReviewByID(reviewID: Number, response: any) {
         var res = false;
-        this.model.deleteOne({reviewID: reviewID}, function(err){
+        this.model.deleteOne({reviewID: reviewID}, (err) => {
             if(err){
                 console.error(err);
             }
             else{
                 res = true;
             }
-            deferred.resolve(res);
+            response.json(res);
         });
-        return deferred.promise;
     }
 
-    public updateReview(reviewID: Number, review: any): boolean {
-        var deferred = Q.defer();
+    public updateReview(reviewID: Number, review, response: any) {
         var res = false;
-        this.model.findOneAndUpdate({reviewID: reviewID}, review, { new: true } , function (err){
+        this.model.findOneAndUpdate({reviewID: reviewID}, review, { new: true } ,  (err) => {
             if(err){
                 console.error(err);
             }
             else{
                 res = true;
             }
-            deferred.resolve(res);
+            response.json(res);
         });
-        return deferred.promise;
     }
-    public getReviewByID(reviewID: Number): any{
-        var deferred = Q.defer();
+    public getReviewByID(reviewID: Number, response: any){
         var query = this.model.find({reviewID: reviewID});
         var review = null;
         query.exec((err, reviews) => {
@@ -124,13 +116,11 @@ class ReviewModel {
             else{
                 console.log('no result');
             }
-            deferred.resolve(review);
+            response.json(review);
         });
-        return deferred.promise;
     }
 
-    public getAllReviews(): any {
-        var deferred = Q.defer();
+    public getAllReviews(response: any) {
         var query = this.model.find({});
         var reviews = null;
         query.exec((err, res) => {
@@ -143,9 +133,8 @@ class ReviewModel {
             else{
                 console.log('no result');
             }
-            deferred.resolve(reviews);
+            response.json(reviews);
         });
-        return deferred.promise;
     }
 }
 export {ReviewModel};

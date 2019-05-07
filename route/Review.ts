@@ -20,40 +20,29 @@ class Review {
 
     // Configure API endpoints.
     private routes(router: express.Router): void {
-        router.get('/review', async (req, res) => {
-            console.log('get all reviews');
-            var reviews = await this.Reviews.getAllReviews();
-            console.log('get all reviews finished');
-            res.status(200).send(reviews);
+        router.get('/review', (req, res) => {
+            this.Reviews.getAllReviews(res);
         });
 
-        router.get('/review/:reviewID',async (req, res) => {
+        router.get('/review/:reviewID',(req, res) => {
             var reviewID = req.params.reviewID;
-            var review = await this.Reviews.getReviewByID(reviewID);
-            console.log('in get route:', review);
-            res.status(200).send(review);
+            this.Reviews.getReviewByID(reviewID, res);
         });
 
-        router.delete('/review/:reviewID',async (req, res) => {
+        router.delete('/review/:reviewID',(req, res) => {
             var reviewID = req.params.reviewID;
-            var review = await this.Reviews.deleteReviewByID(reviewID);
-            console.log('in delete route:', review);
-            res.status(200).send(review);
+            this.Reviews.deleteReviewByID(reviewID, res);
         });
 
-        router.put('/review/:reviewID',async (req, res) => {
+        router.put('/review/:reviewID',(req, res) => {
             var reviewID = req.params.reviewID;
             var reviewBody = req.body;
-            var successOrNot = await this.Reviews.updateReview(reviewID, reviewBody);
-            console.log('in update route:', successOrNot);
-            res.status(200).send(successOrNot);
+            this.Reviews.updateReview(reviewID, reviewBody, res);
         });
 
-        router.post('/review', async (req, res) => {
+        router.post('/review', (req, res) => {
             var review = req.body;
-            var successOrNot = await this.Reviews.createReview(review);
-            console.log('in create route:', successOrNot);
-            res.status(200).send(successOrNot);
+            this.Reviews.createReview(review, res);
         });
     }
 }
