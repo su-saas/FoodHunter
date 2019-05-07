@@ -1,6 +1,7 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from './../DataAccess';
 import {IRestaurantModel} from '../interfaces/IRestaurantModel';
+import { Restaurant } from "../route/Restaurant";
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
 
@@ -60,6 +61,17 @@ class RestaurantModel {
         var query = this.model.findOne(filter);
         query.exec( (err, itemArray) => {
             response.json(itemArray);
+        });
+    }
+
+    public addNewRestaurant (response:any,filter:Object) {                
+        let newRestaurant = new Restaurant(filter);
+    
+        newRestaurant.save((err, contact) => {
+            if(err){
+                response.send(err);
+            }    
+            response.json(contact);
         });
     }
 
