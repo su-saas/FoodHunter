@@ -54,7 +54,7 @@ class FavoriteListModel {
             else{
                 res = true;
             }
-            response.json(res);
+            response.json(favoriteList.favoriteListID);
         });
     }
 

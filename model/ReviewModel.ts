@@ -69,7 +69,7 @@ class ReviewModel {
             else{
                 res = true;
             }
-            response.json(res);
+            response.json(review.reviewID);
         });
     }
 

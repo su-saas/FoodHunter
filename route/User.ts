@@ -7,9 +7,11 @@ import {UserModel} from '../model/UserModel'
 class User {
 
     public Users: UserModel;
+    private idGenerator: number;
 
     //Run configuration methods on the Express instance.
     constructor() {
+        this.idGenerator = 1000;
         this.Users = new UserModel();
     }
 
@@ -41,6 +43,8 @@ class User {
 
         router.post('/user', (req, res) => {
             var user = req.body;
+            user.userID = this.idGenerator;
+            this.idGenerator ++;
             this.Users.createUser(user, res);
         });
     }
