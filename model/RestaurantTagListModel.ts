@@ -1,7 +1,6 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from '../DataAccess';
 import {IRestaurantTagListModel} from '../interfaces/IRestaurantTagListModel';
-var Q = require('q');
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
 
@@ -35,89 +34,36 @@ class RestaurantTagListModel {
         this.model = mongooseConnection.model<IRestaurantTagListModel>("RestaurantTagList", this.schema);
     }
 
-    public createrTagList(rTagList: any): boolean {
-        var deferred = Q.defer();
-        var res = false;
-        this.model(rTagList).save(function (err){
-            if(err){
-                console.error(err);
-            }
-            else{
-                res = true;
-            }
-            deferred.resolve(res);
-        });
-        return deferred.promise;
-    }
-
-    public retrieveAll(): IRestaurantTagListModel[] {
-        var deferred = Q.defer();
+    public retrieveAll(response:any): any {
         var query = this.model.find({});
-        var rTagLists :IRestaurantTagListModel[];
-        query.exec((err, res) => {
-            if(err){
-                console.error(err);
-            }
-            else if(res.length > 0){
-                rTagLists = res;
-            }
-            else{
-                console.log('no result');
-            }
-            deferred.resolve(rTagLists);
+        query.exec( (err, itemArray) => {
+            response.json(itemArray) ;
         });
-        return deferred.promise;
     }
     
-    public retrieverTagListDetails(filter:Object): any {
-        var deferred = Q.defer();
-        var query = this.model.find(filter);
-        var rTagList = null;
-        query.exec((err, res) => {
-            if(err){
-                console.error(err);
-            }
-            else if(res.length == 1){
-                for (let r of res){
-                    rTagList = r;
-                }
-            }
-            else{
-                console.log('no result');
-            }
-            deferred.resolve(rTagList);
+    public retrieverTagListDetails(response:any, filter:Object) {
+        var query = this.model.findOne(filter);
+        query.exec( (err, itemArray) => {
+            response.json(itemArray);
         });
-        return deferred.promise;
     }
 
-    public updaterTagList(filter:Object, body: any): boolean { 
-        var deferred = Q.defer();
-        var res = false;
-        this.model.findOneAndUpdate(filter, body, { new: true } , function (err){
+    public updateTagList(response:any, filter:Object, body: any) {
+        this.model.findOneAndUpdate(filter, body, { new: true }, (err, tagList) => {
             if(err){
-                console.error(err);
+                response.send(err);
             }
-            else{
-                res = true;
-            }
-            deferred.resolve(res);
+            response.json(tagList);
         });
-        return deferred.promise;
     }
 
-    public deleterTagList(filter:Object): boolean {
-        var deferred = Q.defer();
-        var res = false;
-        this.model.remove(filter, function(err){
+    public deleteTagList(response:any, filter:Object) {
+        this.model.remove(filter, (err, tagList) => {
             if(err){
-                console.error(err);
+                response.send(err);
             }
-            else{
-                res = true;
-            }
-            deferred.resolve(res);
+            response.json({ message: 'Successfully deleted restaurant tagList!'});
         });
-        return deferred.promise;
     }
 }
 export {RestaurantTagListModel};

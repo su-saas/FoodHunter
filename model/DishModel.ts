@@ -1,7 +1,6 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from './../DataAccess';
 import {IDishModel} from '../interfaces/IDishModel';
-var Q = require('q');
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
 
@@ -39,89 +38,36 @@ class DishModel {
         this.model = mongooseConnection.model<IDishModel>("Dish", this.schema);
     }
 
-    public createDish(dish: any): boolean {
-        var deferred = Q.defer();
-        var res = false;
-        this.model(dish).save(function (err){
-            if(err){
-                console.error(err);
-            }
-            else{
-                res = true;
-            }
-            deferred.resolve(res);
-        });
-        return deferred.promise;
-    }
-
-    public retrieveAll(): IDishModel[] {
-        var deferred = Q.defer();
+    public retrieveAll(response:any): any {
         var query = this.model.find({});
-        var dishs :IDishModel[];
-        query.exec((err, res) => {
-            if(err){
-                console.error(err);
-            }
-            else if(res.length > 0){
-                dishs = res;
-            }
-            else{
-                console.log('no result');
-            }
-            deferred.resolve(dishs);
+        query.exec( (err, itemArray) => {
+            response.json(itemArray) ;
         });
-        return deferred.promise;
     }
     
-    public retrieveDishDetails(filter:Object): any {
-        var deferred = Q.defer();
-        var query = this.model.find(filter);
-        var dish = null;
-        query.exec((err, res) => {
-            if(err){
-                console.error(err);
-            }
-            else if(res.length == 1){
-                for (let r of res){
-                    dish = r;
-                }
-            }
-            else{
-                console.log('no result');
-            }
-            deferred.resolve(dish);
+    public retrieveDishDetails(response:any, filter:Object) {
+        var query = this.model.findOne(filter);
+        query.exec( (err, itemArray) => {
+            response.json(itemArray);
         });
-        return deferred.promise;
     }
 
-    public updateDish(filter:Object, body: any): boolean { 
-        var deferred = Q.defer();
-        var res = false;
-        this.model.findOneAndUpdate(filter, body, { new: true } , function (err){
+    public updateDish(response:any, filter:Object, body: any) {
+        this.model.findOneAndUpdate(filter, body, { new: true }, (err, dish) => {
             if(err){
-                console.error(err);
+                response.send(err);
             }
-            else{
-                res = true;
-            }
-            deferred.resolve(res);
+            response.json(dish);
         });
-        return deferred.promise;
     }
 
-    public deleteDish(filter:Object): boolean {
-        var deferred = Q.defer();
-        var res = false;
-        this.model.remove(filter, function(err){
+    public deleteDish(response:any, filter:Object) {
+        this.model.remove(filter, (err, dish) => {
             if(err){
-                console.error(err);
+                response.send(err);
             }
-            else{
-                res = true;
-            }
-            deferred.resolve(res);
+            response.json({ message: 'Successfully deleted Dish!'});
         });
-        return deferred.promise;
     }
 }
 export {DishModel};
