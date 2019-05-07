@@ -1,7 +1,6 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from './../DataAccess';
 import {IRestaurantModel} from '../interfaces/IRestaurantModel';
-var Q = require('q');
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
 
@@ -50,114 +49,47 @@ class RestaurantModel {
         this.model = mongooseConnection.model<IRestaurantModel>("Restaurant", this.schema);
     }
 
-    public createRestaurant(restaurant: any): boolean {
-        var deferred = Q.defer();
-        var res = false;
-        this.model(restaurant).save(function (err){
-            if(err){
-                console.error(err);
-            }
-            else{
-                res = true;
-            }
-            deferred.resolve(res);
-        });
-        return deferred.promise;
-    }
-
-    public retrieveAll(): IRestaurantModel[] {
-        var deferred = Q.defer();
+    public retrieveAll(response:any): any {
         var query = this.model.find({});
-        var restaurants :IRestaurantModel[];
-        query.exec((err, res) => {
-            if(err){
-                console.error(err);
-            }
-            else if(res.length > 0){
-                restaurants = res;
-            }
-            else{
-                console.log('no result');
-            }
-            deferred.resolve(restaurants);
+        query.exec( (err, itemArray) => {
+            response.json(itemArray) ;
         });
-        return deferred.promise;
     }
     
-    public retrieveRestaurantDetails(filter:Object): any {
-        var deferred = Q.defer();
-        var query = this.model.find(filter);
-        var restaurant = null;
-        query.exec((err, res) => {
-            if(err){
-                console.error(err);
-            }
-            else if(res.length == 1){
-                for (let r of res){
-                    restaurant = r;
-                }
-            }
-            else{
-                console.log('no result');
-            }
-            deferred.resolve(restaurant);
+    public retrieveRestaurantDetails(response:any, filter:Object) {
+        var query = this.model.findOne(filter);
+        query.exec( (err, itemArray) => {
+            response.json(itemArray);
         });
-        return deferred.promise;
     }
 
-    public updateRestaurant(filter:Object, body: any): boolean { 
-        var deferred = Q.defer();
-        var res = false;
-        this.model.findOneAndUpdate(filter, body, { new: true } , function (err){
+
+    public updateRestaurant(response:any, filter:Object, body: any) {
+        this.model.findOneAndUpdate(filter, body, { new: true }, (err, restaurant) => {
             if(err){
-                console.error(err);
+                response.send(err);
             }
-            else{
-                res = true;
-            }
-            deferred.resolve(res);
+            response.json(restaurant);
         });
-        return deferred.promise;
     }
 
-    public deleteRestaurant(filter:Object): boolean {
-        var deferred = Q.defer();
-        var res = false;
-        this.model.remove(filter, function(err){
+    public deleteRestaurant(response:any, filter:Object) {
+        this.model.remove(filter, (err, restaurant) => {
             if(err){
-                console.error(err);
+                response.send(err);
             }
-            else{
-                res = true;
-            }
-            deferred.resolve(res);
+            response.json({ message: 'Successfully deleted restaurant!'});
         });
-        return deferred.promise;
     }
 
     //combine getByRestaurantName and getBykeyWord 
-    public getByKeyword(filter:Object): any{
-        var deferred = Q.defer();
-        var query = this.model.find(filter);
-        var restaurant = null;
-        query.exec((err, restaurants) => {
+    public getByKeyword(response:any, filter:Object) {
+        this.model.find(filter, (err, restaurant) => {
             if(err){
-                console.error(err);
+                response.send(err);
             }
-            else if(restaurants.length > 1){
-                console.error('error in find restaurant');
-            }
-            else if(restaurants.length == 1){
-                for (let r of restaurants){
-                    restaurant = r;
-                }
-            }
-            else{
-                console.log('no result');
-            }
-            deferred.resolve(restaurant);
+            response.json(restaurant);
         });
-        return deferred.promise;
     }
 
     /*public rankByPrice(response:any) {}*/
