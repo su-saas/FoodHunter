@@ -37,7 +37,7 @@ nav{
     border: 2px hidden;
     border-radius: 20px;
 }
- #show h1{
+#show h1{
     margin-top: 60px;
     color: black;
     font-size:2em;
@@ -49,9 +49,9 @@ nav{
 .fa-star{
     color: gold !important;
 }
-#show .btn{
-    color: blue;
-    background-color:darkorange;
+
+.submitOrCancelBtn{
+    float: right;
 }
 
 /*Panels*/
