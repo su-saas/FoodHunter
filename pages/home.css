@@ -1,59 +1,28 @@
-   h1 {
-    font-size: 72px;
-    color: #fff;
-    font-weight: 300; }
-    @media (max-width: 1200px) {
-      h1 {
-        font-size: 52px; } }
-    @media (max-width: 992px) {
-      h1 {
-        font-size: 40px; } }
-  
-  h2 {
-    font-size: 47px; }
-    @media (max-width: 768px) {
-      h2 {
-        font-size: 34px; } }
-  
-  h3 {
-    font-size: 35px; }
-    @media (max-width: 992px) {
-      h3 {
-        font-size: 30px; } }
-  
-  h4 {
-    font-size: 30px; }
-  
-  h5 {
-    font-size: 28px; }
-    @media (max-width: 768px) {
-      h5 {
-        font-size: 22px; } }
-  
-  h6 {
-    font-size: 21px;
-    font-weight: 400; }
-  
-  p {
-    font-size: 15px; }
-  
-  .main-block {
-    padding: 90px 0; }
-    @media (max-width: 768px) {
-      .main-block {
-        padding: 45px 0; } }
-  
-  .light-bg {
-    background: #f3f4f7; }
-  
-  .dark-bg {
-    background: white; }
-  
+h1 {
+  font-size: 72px;
+  color: #fff;
+  font-weight: 300; }
+  @media (max-width: 1200px) {
+    h1 {
+      font-size: 52px; } }
+  @media (max-width: 992px) {
+    h1 {
+      font-size: 40px; } }
 
-  .slider {
+h3 {
+  font-size: 35px; }
+  @media (max-width: 992px) {
+    h3 {
+      font-size: 30px; } }
+
+.fontsize {
+  font-size: 60px; 
+}
+
+.slider {
   background: url(slider.jpg) no-repeat;
   background-size: cover;
-  min-height: 800px; }
+  min-height: 650px; }
   @media (max-width: 992px) {
     .slider {
       min-height: 700px; } }
@@ -80,10 +49,9 @@
 
 .slider-content_wrap {
   color: white;
-  font-weight: 400;
-  font-size: 28px; 
-  margin: 100px 0;
-  padding: 50px 0px 0px 30px;}
+  font-weight: 300;
+  margin: 50px 0;
+  padding: 100px 0px 0px 0px;}
   @media (max-width: 768px) {
     h5 {
       font-size: 22px; } }
@@ -105,27 +73,13 @@
 
 .btn-group1 {
   padding: 24px;
-  width: 40%;
+  width: 35%;
+  height: 8%;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   border: none; }
   @media (max-width: 576px) {
     .btn-group1 {
-      width: 100%;
-      border-radius: 3px;
-      margin: 0 0 10px;
-      padding: 17px; } }
-
-.btn-group2 {
-  position: relative;
-  padding: 24px;
-  width: 33%;
-  border-top: none;
-  border-right: none;
-  border-bottom: none;
-  border-left: 1px solid #ccc; }
-  @media (max-width: 576px) {
-    .btn-group2 {
       width: 100%;
       border-radius: 3px;
       margin: 0 0 10px;
@@ -153,23 +107,85 @@
   font-size: 15px;
   padding-right: 10px; }
 
-.slider-link {
-  color: white;
-  margin: 45px 0 0;
-  font-size: 19px; }
-  @media (max-width: 480px) {
-    .slider-link {
-      margin: 18px 0 0; }
-      .slider-link a,
-      .slider-link span {
-        display: block; } }
-  .slider-link a {
-    color: white;
-    text-decoration: underline;
-    -webkit-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s; }
-    .slider-link a:hover {
-      color: #fff; }
-  .slider-link span {
-    padding: 0 18px; }
+.selectOne {
+  width: 35%;
+  height: 8%;
+}
+
+/****** filter *******/
+.text{
+  color: black;
+}
+
+.redColor {background: #ff3a6d;}
+
+/****** main area *******/
+.main-block {
+  padding: 90px 0; }
+  @media (max-width: 768px) {
+    .main-block {
+      padding: 45px 0; } }
+
+.styled-heading {
+  text-align: center;
+  margin: 0 0 50px; }
+  @media (max-width: 768px) {
+    .styled-heading {
+      margin: 0 0 30px; } }
+  .styled-heading h3 {
+    position: relative;
+    padding: 0 0 23px; }
+    .styled-heading h3:after {
+      position: absolute;
+      content: "";
+      width: 60px;
+      height: 3px;
+      background: #ff3a6d;
+      bottom: 0;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%); 
+}
+
+/******  filter  *****/
+.dropdown.dropdown-lg .dropdown-menu {
+    margin-top: -1px;
+    padding: 6px 20px;
+}
+.input-group-btn .btn-group {
+    display: flex !important;
+}
+.btn-group .btn {
+    border-radius: 0;
+    margin-left: -1px;
+}
+.btn-group .btn:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.btn-group .form-horizontal .btn[type="submit"] {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.form-horizontal .form-group {
+    margin-left: 0;
+    margin-right: 0;
+}
+.form-group .form-control:last-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+@media screen and (min-width: 768px) {
+    #adv-search {
+        width: 500px;
+        margin: 0 auto;
+    }
+    .dropdown.dropdown-lg {
+        position: static !important;
+    }
+    .dropdown.dropdown-lg .dropdown-menu {
+        min-width: 500px;
+    }
+}
