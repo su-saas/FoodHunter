@@ -13,6 +13,7 @@ import { FavoriteList } from './route/FavoriteList';
 import { Restaurant } from './route/Restaurant';
 import { Dish } from './route/Dish';
 import { RestaurantTagList } from './route/RestaurantTagList';
+import { ApplicationFormRoute } from './route/ApplicationFormRoute';
 
 
 
@@ -70,6 +71,9 @@ class App {
         tag.registerRoutes(router);
         var foodieTagList = new FoodieTagList();
         foodieTagList.registerRoutes(router);
+        // Daniel
+        var appForm = new ApplicationFormRoute();
+        appForm.registerRoutes(router);
     }
 
     /******** Restaurant ********/
