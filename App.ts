@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
+<<<<<<< HEAD
 import { ApplicationFormRoute } from './routes/ApplicationFormRoute';
 import { RecommendationListRoute } from './routes/RecommendationListRoute';
 
@@ -9,18 +10,23 @@ import { RecommendationListRoute } from './routes/RecommendationListRoute';
 import { RecommendationListModel } from './model/RecommendationListModel'
 import { ApplicationFormModel } from './model/ApplicationFormModel'
 import {User} from './route/User';
+=======
+
+
+import { Router } from "express-serve-static-core";
+import { Foodie, RestaurantOwner, Admin } from "./route/User";
+import { FoodieTagList } from "./route/FoodieTagList";
+import { Tag } from "./route/Tag";
+>>>>>>> 1a8e7c4dc1a81f1efeb527d16fb5184e11c632f6
 import { Review } from './route/Review';
 import { FavoriteList } from './route/FavoriteList';
-//var MongoClient = require('mongodb').MongoClient;
-//var Q = require('q');
-
-//connect to the model 
-import {DataAccess} from './DataAccess';
 import { Restaurant } from './route/Restaurant';
 import { Menu } from './route/Menu';
 import { RestaurantTagList } from './route/RestaurantTagList';
 
-// Creates and configures an ExpressJS web server.
+
+
+// creates and configures an ExpressJS web server.
 class App {
 
     // ref to Express instance
@@ -33,16 +39,16 @@ class App {
         this.routes();
     }
 
-    // Configure Express middleware.
+    // configure Express middleware.
     private middleware(): void {
-        this.expressApp.use(logger('dev'));
+        this.expressApp.use(logger("dev"));
         this.expressApp.use(bodyParser.json());
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
     }
 
-    // Configure API endpoints.
+    // configure API endpoints.
     private routes(): void {
-        let router = express.Router();
+        let router: Router = express.Router();
 
         // add user routes
         this.addRoutes(router);
@@ -53,8 +59,7 @@ class App {
         this.expressApp.use('/', express.static(__dirname+'/pages'));
   }    
     private addRoutes(router: express.Router): void{
-        var user = new User();
-        user.registerRoutes(router);
+        // xing
         var review = new Review();
         review.registerRoutes(router);
         var favoriteList = new FavoriteList();
@@ -67,6 +72,17 @@ class App {
         this.addRestaurant(router);
         this.addMenu(router);  
         this.addrTags(router);
+        // helena
+        var foodie = new Foodie();
+        foodie.registerRoutes(router);
+        var admin = new Admin();
+        admin.registerRoutes(router);
+        var restaurantOwner = new RestaurantOwner();
+        restaurantOwner.registerRoutes(router);
+        var tag = new Tag();
+        tag.registerRoutes(router);
+        var foodieTagList = new FoodieTagList();
+        foodieTagList.registerRoutes(router);
     }
 
     /******** Restaurant ********/
@@ -87,6 +103,10 @@ class App {
       rtaglist.registerrTagListRoutes(router);
     }
 
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 1a8e7c4dc1a81f1efeb527d16fb5184e11c632f6
 
 }
 
