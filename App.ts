@@ -11,7 +11,7 @@ import { Tag } from "./route/Tag";
 import { Review } from './route/Review';
 import { FavoriteList } from './route/FavoriteList';
 import { Restaurant } from './route/Restaurant';
-import { Menu } from './route/Menu';
+import { Dish } from './route/Dish';
 import { RestaurantTagList } from './route/RestaurantTagList';
 
 
@@ -80,8 +80,8 @@ class App {
     
     /******** Restaurant Dish********/
     private addMenu(router: express.Router): void{
-      var menu = new Menu();
-      menu.registerDishRoutes(router);
+      var dish = new Dish();
+      dish.registerDishRoutes(router);
     }
 
     /******** Restaurant Tags********/
