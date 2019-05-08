@@ -165,7 +165,8 @@ class Admin {
             this.Admin.getUserByID(res, userId);
         });
 
-        // get all restaurantOwners
+        // get all users by userType:
+        // userType can be: restaurantOwners, admin, foodie ,user(all types)
         router.get("/admin/users/:userType", (req, res) => {
             var userType: any = req.params.userType;
             if(userType === "restaurantOwners"){
