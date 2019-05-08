@@ -15,24 +15,33 @@ var ApplicationFormRoute = /** @class */ (function () {
         var _this = this;
         //get by id
         router.get('/applicationForm/:applicationFormID', function (req, res) {
-            console.log('try to get applicationFormID:', applicationFormID);
             var applicationFormID = req.params.applicationFormID;
+            console.log('try to get applicationFormID:', applicationFormID);
             _this.applicationForm.getApplicationFormByID(res, applicationFormID);
         });
-        router["delete"]('/applicationForm/:applicationFormID', function (req, res) {
-            console.log('try to delete applicationFormID:', applicationFormID);
+        //get all
+        router.get('/applicationForm', function (req, res) {
             var applicationFormID = req.params.applicationFormID;
+            console.log('try to get all applicationForm');
+            _this.applicationForm.getAllApplicationForm(res);
+        });
+        //delete
+        router["delete"]('/applicationForm/:applicationFormID', function (req, res) {
+            var applicationFormID = req.params.applicationFormID;
+            console.log('try to delete applicationFormID:', applicationFormID);
             _this.applicationForm.deleteApplicationForm(res, applicationFormID);
         });
+        //update
         router.put('/applicationForm/:applicationFormID', function (req, res) {
-            console.log('try to update applicationFormID:', applicationFormID);
             var applicationFormID = req.params.applicationFormID;
+            console.log('try to update applicationFormID:', applicationFormID);
             var newapplicationForm = req.body;
             _this.applicationForm.updateApplicationForm(res, applicationFormID, newapplicationForm);
         });
+        //create
         router.post('/applicationForm', function (req, res) {
-            console.log('try to create:', newapplicationForm);
             var newapplicationForm = req.body;
+            console.log('try to create:', newapplicationForm);
             _this.applicationForm.createApplicationForm(res, newapplicationForm);
         });
     };

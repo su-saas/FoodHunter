@@ -26,29 +26,29 @@ class RecommendationListRoute {
     private routes(router: express.Router): void {
         //get by id
         router.get('/recommendationlist/:recommendationlistID', (req, res) => {
-            console.log('try to get listID:', recommendationlistID);
             var recommendationlistID = req.params.recommendationlistID;
+            console.log('try to get listID:', recommendationlistID);
             this.recommendationList.getrecommendationListByID(res, recommendationlistID);
             
 
         });
 
-        router.delete('/recommendationlist/:recommendationlistID', (req, res) => {
-            console.log('try to delete listID:', recommendationlistID);
+        router.delete('/recommendationlist/:recommendationlistID', (req, res) => {         
             var recommendationlistID = req.params.recommendationlistID;
+            console.log('try to delete listID:', recommendationlistID);
             this.recommendationList.deleteRecommendationList(res, recommendationlistID);
         });
 
-        router.put('/recommendationlist/:recommendationlistID', (req, res) => {
-            console.log('try to update:', recommendationlistID);
+        router.put('/recommendationlist/:recommendationlistID', (req, res) => {            
             var recommendationlistID = req.params.recommendationlistID;
+            console.log('try to update:', recommendationlistID);
             var newrecommendationList = req.body;
             this.recommendationList.updateRecommendationList(res, recommendationlistID, newrecommendationList);
         });
 
-        router.post('/recommendationlist', (req, res) => {
-            console.log('try to create:', req.params.recommendationlistID);
+        router.post('/recommendationlist', (req, res) => {          
             var newrecommendationList = req.body;
+            console.log('try to create:', req.params.recommendationlistID);
             this.recommendationList.createRecommendationList(res, newrecommendationList);
         });
     }

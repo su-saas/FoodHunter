@@ -1,5 +1,5 @@
 // create foodhunter db for FoodHunter Porject
-db = db.getSiblingDB("foodhunter")
+db = db.getSiblingDB("admin")
 db.createCollection("user")
 db.createUser(
     {

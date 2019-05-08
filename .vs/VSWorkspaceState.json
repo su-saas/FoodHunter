@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\createDB",
+    "\\interfaces",
     "\\model",
     "\\routes"
   ],
+  "SelectedNode": "\\tsconfig.json",
   "PreviewInSolutionExplorer": false
 }

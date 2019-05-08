@@ -26,27 +26,37 @@ class ApplicationFormRoute {
     private routes(router: express.Router): void {
         //get by id
         router.get('/applicationForm/:applicationFormID', (req, res) => {
-            console.log('try to get applicationFormID:', applicationFormID);
             var applicationFormID = req.params.applicationFormID;
+            console.log('try to get applicationFormID:', applicationFormID);
             this.applicationForm.getApplicationFormByID(res, applicationFormID);
         });
 
-        router.delete('/applicationForm/:applicationFormID', (req, res) => {
-            console.log('try to delete applicationFormID:', applicationFormID);
+        //get all
+        router.get('/applicationForm', (req, res) => {
             var applicationFormID = req.params.applicationFormID;
+            console.log('try to get all applicationForm');
+            this.applicationForm.getAllApplicationForm(res);
+        });
+
+        //delete
+        router.delete('/applicationForm/:applicationFormID', (req, res) => {
+            var applicationFormID = req.params.applicationFormID;
+            console.log('try to delete applicationFormID:', applicationFormID);
             this.applicationForm.deleteApplicationForm(res, applicationFormID);
         });
 
+        //update
         router.put('/applicationForm/:applicationFormID', (req, res) => {
-            console.log('try to update applicationFormID:', applicationFormID);
             var applicationFormID = req.params.applicationFormID;
+            console.log('try to update applicationFormID:', applicationFormID);
             var newapplicationForm = req.body;
             this.applicationForm.updateApplicationForm(res, applicationFormID, newapplicationForm);
         });
 
+        //create
         router.post('/applicationForm', (req, res) => {
-            console.log('try to create:', newapplicationForm);
             var newapplicationForm = req.body;
+            console.log('try to create:', newapplicationForm);
             this.applicationForm.createApplicationForm(res, newapplicationForm);
         });
     }

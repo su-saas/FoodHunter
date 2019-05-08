@@ -17,7 +17,7 @@ class ApplicationFormModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                formId: {
+                formID: {
                     type: Number,
                     required: true,
                     unique: true
@@ -52,21 +52,23 @@ class ApplicationFormModel {
     //create applicationform
     //param: response, applicationform
     public createApplicationForm(response: any, applicationform: any){
-        this.model(applicationform).save(function (err) {
+        this.model(applicationform).save((err: any) => {
             if (err) {
-                console.error(err);
                 response.send(err);
-            } else {
-                response.json({ message: 'Successfully created application form!' });
-            }
+            } 
+            response.json({ message: 'Successfully created application form!' });
+            
         });
     }
 
     //get applicationform by id
     //param: response, formID
-    public getApplicationFormByID(response:any, formId: Number) {
-        var query = this.model.findOne({ formId: formId });
+    public getApplicationFormByID(response:any, formId: number) {
+        var query = this.model.findOne({ formID: formId });
         query.exec((err, form) => {
+            if (err) {
+                response.send(err);
+            }
             response.json(form);
         });
     }
@@ -76,33 +78,32 @@ class ApplicationFormModel {
     public getAllApplicationForm(response:any): any {
         var query = this.model.find({});
         query.exec((err, formArray) => {
+            if (err) {
+                response.send(err);
+            }
             response.json(formArray);
         });
     }
 
     //update applicationform
     //param: response, formID, applicationForm
-    public updateApplicationForm(response:any, formId: Number, applicationform: any){
-        this.model.findOneAndUpdate({ formId: formId }, applicationform, { new: true }, function (err, form) {
+    public updateApplicationForm(response:any, formId: number, applicationform: any){
+        this.model.findOneAndUpdate({ formID: formId }, applicationform, { new: true }, (err, form) => {
             if (err) {
-                console.error(err);
                 response.send(err);
-            } else {
-                response.json(form)
-            }
+            } 
+            response.json(form)            
         });
     }
 
     //delete applicationform
     //param: response, formID
-    public deleteApplicationForm(response: any, formId: Number) {
-        this.model.deleteOne({ formId: formId }, function (err, form) {
+    public deleteApplicationForm(response: any, formId: number) {
+        this.model.deleteOne({ formID: formId }, (err, form) => {
             if (err) {
-                console.error(err);
                 response.send(err);
-            } else {
-                response.json({ message: 'Successfully deleted application form!' });
-            }
+            } 
+            response.json({ message: 'Successfully deleted application form!' });
         });
     }
 }

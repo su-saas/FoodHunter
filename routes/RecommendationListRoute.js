@@ -15,24 +15,24 @@ var RecommendationListRoute = /** @class */ (function () {
         var _this = this;
         //get by id
         router.get('/recommendationlist/:recommendationlistID', function (req, res) {
-            console.log('try to get listID:', recommendationlistID);
             var recommendationlistID = req.params.recommendationlistID;
+            console.log('try to get listID:', recommendationlistID);
             _this.recommendationList.getrecommendationListByID(res, recommendationlistID);
         });
         router["delete"]('/recommendationlist/:recommendationlistID', function (req, res) {
-            console.log('try to delete listID:', recommendationlistID);
             var recommendationlistID = req.params.recommendationlistID;
+            console.log('try to delete listID:', recommendationlistID);
             _this.recommendationList.deleteRecommendationList(res, recommendationlistID);
         });
         router.put('/recommendationlist/:recommendationlistID', function (req, res) {
-            console.log('try to update:', recommendationlistID);
             var recommendationlistID = req.params.recommendationlistID;
+            console.log('try to update:', recommendationlistID);
             var newrecommendationList = req.body;
             _this.recommendationList.updateRecommendationList(res, recommendationlistID, newrecommendationList);
         });
         router.post('/recommendationlist', function (req, res) {
-            console.log('try to create:', req.params.recommendationlistID);
             var newrecommendationList = req.body;
+            console.log('try to create:', req.params.recommendationlistID);
             _this.recommendationList.createRecommendationList(res, newrecommendationList);
         });
     };

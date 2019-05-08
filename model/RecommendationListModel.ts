@@ -17,9 +17,19 @@ class RecommendationListModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                recommendationlistId: Number,
-                foodietaglistId: Number,
-                restaurantList: [{ restaurantID: Number }],
+                recommendationlistID: {
+                    type: Number,
+                    required: true,
+                    unique: true
+                },
+                foodietaglistID: {
+                    type: Number,
+                    required: true,
+                },
+                restaurantList: {
+                    type: [Number],
+                    required: true,
+                }
             }, { collection: 'recommendationList' }
         );
     }
@@ -31,48 +41,48 @@ class RecommendationListModel {
     //create recommendationList
     //param: response, recommendationList
     public createRecommendationList(response: any, recommendationList: any) {
-        this.model(recommendationList).save(function (err) {
+        this.model(recommendationList).save((err: any) => {
             if (err) {
-                console.error(err);
                 response.send(err);
-            } else {
-                response.json({ message: 'Successfully created recommendation list!' });
-            }
+            } 
+            response.json({ message: 'Successfully created recommendation list!' });
+            
         });
     }
 
     //get recommendationlist by id
     //param: response, recommendationlistId
-    public getrecommendationListByID(response: any, recommendationlistId: Number): any {
-        var query = this.model.find({ recommendationlistId: recommendationlistId });
+    public getrecommendationListByID(response: any, recommendationlistId: number) {
+        var query = this.model.findOne({ recommendationlistID: recommendationlistId });
         query.exec((err, recommendationlist) => {
+            if (err) {
+                response.send(err);
+            }
             response.json(recommendationlist);
         });
     }
 
     //update recommendationlist
     //param: response, recommendationlistID, recommendationlist
-    public updateRecommendationList(response: any, recommendationlistID: Number, recommendationlist: any){
-        this.model.findOneAndUpdate({ recommendationlistID: recommendationlistID }, recommendationlist, { new: true }, function (err, updatedlist) {
+    public updateRecommendationList(response: any, recommendationlistID: number, recommendationlist: any){
+        this.model.findOneAndUpdate({ recommendationlistID: recommendationlistID }, recommendationlist, { new: true },(err, updatedlist) => {
             if (err) {
-                console.error(err);
                 response.send(err);
-            } else {
-                response.json(updatedlist)
             }
+            response.json(updatedlist);
+
         });
     }
 
     //delete recommendationlist
     //param: recommendationlistID
-    public deleteRecommendationList(response: any, recommendationlistID: Number){
-        this.model.deleteOne({ recommendationlistID: recommendationlistID }, function (err) {
+    public deleteRecommendationList(response: any, recommendationlistID: number) {
+        this.model.deleteOne({ recommendationlistID: recommendationlistID }, (err)=> {
             if (err) {
-                console.error(err);
                 response.send(err);
-            } else {
-                response.json({ message: 'Successfully deleted application form!' });
-            }
+            } 
+            response.json({ message: 'Successfully deleted application form!' });
+            
         });
     }
 

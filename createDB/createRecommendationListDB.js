@@ -7,22 +7,22 @@ recommendationListCollection = db.getCollection("recommendationList")
 recommendationListCollection.remove({})
 recommendationListCollection.insert(
     {
-        recommendationlistId: "1",
-        foodietaglistId: "1",
-        restaurantList: [{ restaurantId: 1 }, { restaurantId: 2}]
+        recommendationlistID: 1,
+        foodietaglistID: 1,
+        restaurantList: [1,2]
     }
 )
 recommendationListCollection.insert(
     {
-        recommendationlistId: "2",
-        foodietaglistId: "2",
-        restaurantList: [{ restaurantId: 1 }, { restaurantId: 3 }]
+        recommendationlistID: 2,
+        foodietaglistID: 2,
+        restaurantList: [1,3]
     }
 )
 recommendationListCollection.insert(
     {
-        recommendationlistId: "3",
-        foodietaglistId: "3",
-        restaurantList: [{ restaurantId: 2 }, { restaurantId: 3 }]
+        recommendationlistID: 3,
+        foodietaglistID: 3,
+        restaurantList: [1,2,3]
     }
 )

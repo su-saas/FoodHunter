@@ -11,7 +11,7 @@ var ApplicationFormModel = /** @class */ (function () {
     }
     ApplicationFormModel.prototype.createSchema = function () {
         this.schema = new Mongoose.Schema({
-            formId: {
+            formID: {
                 type: Number,
                 required: true,
                 unique: true
@@ -44,19 +44,19 @@ var ApplicationFormModel = /** @class */ (function () {
     ApplicationFormModel.prototype.createApplicationForm = function (response, applicationform) {
         this.model(applicationform).save(function (err) {
             if (err) {
-                console.error(err);
                 response.send(err);
             }
-            else {
-                response.json({ message: 'Successfully created application form!' });
-            }
+            response.json({ message: 'Successfully created application form!' });
         });
     };
     //get applicationform by id
     //param: response, formID
     ApplicationFormModel.prototype.getApplicationFormByID = function (response, formId) {
-        var query = this.model.findOne({ formId: formId });
+        var query = this.model.findOne({ formID: formId });
         query.exec(function (err, form) {
+            if (err) {
+                response.send(err);
+            }
             response.json(form);
         });
     };
@@ -65,33 +65,30 @@ var ApplicationFormModel = /** @class */ (function () {
     ApplicationFormModel.prototype.getAllApplicationForm = function (response) {
         var query = this.model.find({});
         query.exec(function (err, formArray) {
+            if (err) {
+                response.send(err);
+            }
             response.json(formArray);
         });
     };
     //update applicationform
     //param: response, formID, applicationForm
     ApplicationFormModel.prototype.updateApplicationForm = function (response, formId, applicationform) {
-        this.model.findOneAndUpdate({ formId: formId }, applicationform, { "new": true }, function (err, form) {
+        this.model.findOneAndUpdate({ formID: formId }, applicationform, { "new": true }, function (err, form) {
             if (err) {
-                console.error(err);
                 response.send(err);
             }
-            else {
-                response.json(form);
-            }
+            response.json(form);
         });
     };
     //delete applicationform
     //param: response, formID
     ApplicationFormModel.prototype.deleteApplicationForm = function (response, formId) {
-        this.model.deleteOne({ formId: formId }, function (err, form) {
+        this.model.deleteOne({ formID: formId }, function (err, form) {
             if (err) {
-                console.error(err);
                 response.send(err);
             }
-            else {
-                response.json({ message: 'Successfully deleted application form!' });
-            }
+            response.json({ message: 'Successfully deleted application form!' });
         });
     };
     return ApplicationFormModel;
