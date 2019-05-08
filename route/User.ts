@@ -4,15 +4,16 @@ import { Router } from "express-serve-static-core";
 import { IUserModel } from "../interfaces/IUserModel";
 import { IFoodieModel } from "../interfaces/IFoodieModel";
 
-
 // creates and configures an ExpressJS web server.
 class Foodie {
 
     public Foodie: FoodieModel;
+    private idGenerator: number;
 
     // run configuration methods on the Express instance.
     constructor() {
         this.Foodie = new FoodieModel();
+        this.idGenerator = 10;
     }
 
     public registerRoutes(router: express.Router): void {
@@ -25,6 +26,8 @@ class Foodie {
         router.post("/foodie", (req, res) => {
             console.log(req.body);
             var user: any = req.body;
+            user.userID = this.idGenerator;
+            this.idGenerator ++;
             this.Foodie.createUser(res, user);
         });
 
@@ -65,9 +68,12 @@ export {Foodie};
 class RestaurantOwner {
 
     public Owner: RestaurantOwnerModel;
+    private idGenerator: number;
+
     // run configuration methods on the Express instance.
     constructor() {
         this.Owner = new RestaurantOwnerModel();
+        this.idGenerator = 1000;
     }
 
     public registerRoutes(router: express.Router): void {
@@ -80,6 +86,8 @@ class RestaurantOwner {
         router.post("/restaurantOwner", (req, res) => {
             console.log(req.body);
             var user: any = req.body;
+            user.userID = this.idGenerator;
+            this.idGenerator ++;
             this.Owner.createUser(res, user);
         });
 
@@ -119,10 +127,12 @@ export {RestaurantOwner};
 class Admin {
 
     public Admin: AdminModel;
+    private idGenerator: number;
 
     // run configuration methods on the Express instance.
     constructor() {
         this.Admin = new AdminModel();
+        this.idGenerator = 2000;
     }
 
     public registerRoutes(router: express.Router): void {
@@ -135,6 +145,8 @@ class Admin {
         router.post("/admin", (req, res) => {
             console.log(req.body);
             var user: any = req.body;
+            user.userID = this.idGenerator;
+            this.idGenerator ++;
             this.Admin.createUser(res, user);
         });
 

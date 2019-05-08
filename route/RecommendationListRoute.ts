@@ -12,10 +12,12 @@ import { RecommendationListModel } from '../model/RecommendationListModel';
 class RecommendationListRoute {
 
     public recommendationList: RecommendationListModel;
+    private idGenerator: number;
 
     //Run configuration methods on the Express instance.
     constructor() {
         this.recommendationList = new RecommendationListModel();
+        this.idGenerator = 10;
     }
 
     public registerRoutes(router: express.Router) {
@@ -29,8 +31,6 @@ class RecommendationListRoute {
             var recommendationlistID = req.params.recommendationlistID;
             console.log('try to get listID:', recommendationlistID);
             this.recommendationList.getrecommendationListByID(res, recommendationlistID);
-            
-
         });
 
         router.delete('/recommendationlist/:recommendationlistID', (req, res) => {         
@@ -48,6 +48,8 @@ class RecommendationListRoute {
 
         router.post('/recommendationlist', (req, res) => {          
             var newrecommendationList = req.body;
+            newrecommendationList.tagListID = this.idGenerator;
+            this.idGenerator ++;
             console.log('try to create:', req.params.recommendationlistID);
             this.recommendationList.createRecommendationList(res, newrecommendationList);
         });

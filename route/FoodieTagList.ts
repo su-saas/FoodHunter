@@ -7,10 +7,12 @@ import { FoodieTagListModel } from "../model/FoodieTagListModel";
 class FoodieTagList {
 
     public TagList: FoodieTagListModel;
+    private idGenerator: number;
 
     // run configuration methods on the Express instance.
     constructor() {
         this.TagList = new FoodieTagListModel();
+        this.idGenerator = 10;
     }
 
     public registerRoutes(router: express.Router): void {
@@ -22,6 +24,8 @@ class FoodieTagList {
         // create TagList
         router.post("/tagList", (req, res) => {
             var list: any = req.body;
+            list.tagListID = this.idGenerator;
+            this.idGenerator ++;
             console.log(list);
             this.TagList.createTagList(res, list);
         });
@@ -38,14 +42,7 @@ class FoodieTagList {
             console.log("get foodieTagList by userId:", userId);
             this.TagList.getTagListByFoodieID(res, userId);
         });
-
-        // get list by listId
-        router.get("/tagList/:listId", (req, res) => {
-            var listId: number = req.params.tagListID;
-            console.log("get foodieTagList by listId:", listId);
-            this.TagList.getTagListByListID(res, listId);
-        });
-
+        
         // update list by userId
         router.put("/tagList/:userID",  (req, res) => {
             var userId: number = req.params.userID;

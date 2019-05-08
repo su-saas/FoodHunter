@@ -373,7 +373,7 @@ formCollection = db.getCollection("applicationform")
 formCollection.remove({})
 formCollection.insert(
     {
-        formID: 777,
+        formID: 1,
         restaurantID: 1,
         userID: 1,
         status: "Pending",
@@ -382,7 +382,7 @@ formCollection.insert(
 )
 formCollection.insert(
     {
-        formID: 778,
+        formID: 2,
         restaurantID: 2,
         userID: 2,
         status: "Approved",
@@ -391,7 +391,7 @@ formCollection.insert(
 )
 formCollection.insert(
     {
-        formID: 779,
+        formID: 3,
         restaurantID: 3,
         userID: 3,
         status: "Declined",
