@@ -1,4 +1,4 @@
-db = db.getSiblingDB("dishes")
+db = db.getSiblingDB("foodhunter")
 db.createCollection("dish")
 dishCollection = db.getCollection("dish")
 dishCollection.remove({})

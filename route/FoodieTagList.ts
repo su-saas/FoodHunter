@@ -4,7 +4,7 @@ import { FoodieTagListModel } from "../model/FoodieTagListModel";
 
 
 // creates and configures an ExpressJS web server.
-class FoodieTagListRoute {
+class FoodieTagList {
 
     public TagList: FoodieTagListModel;
 
@@ -62,4 +62,4 @@ class FoodieTagListRoute {
         });
     }
 }
-export {FoodieTagListRoute};
+export {FoodieTagList};

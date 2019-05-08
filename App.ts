@@ -5,9 +5,9 @@ import * as bodyParser from 'body-parser';
 
 
 import { Router } from "express-serve-static-core";
-import { FoodieRoute, RestaurantOwnerRoute, AdminRoute } from "./route/UserRoute";
-import { FoodieTagListRoute } from "./route/FoodieTagListRoute";
-import { TagRoute } from "./route/TagRoute";
+import { Foodie, RestaurantOwner, Admin } from "./route/User";
+import { FoodieTagList } from "./route/FoodieTagList";
+import { Tag } from "./route/Tag";
 import { Review } from './route/Review';
 import { FavoriteList } from './route/FavoriteList';
 import { Restaurant } from './route/Restaurant';
@@ -60,15 +60,15 @@ class App {
         this.addMenu(router);  
         this.addrTags(router);
         // helena
-        var foodie = new FoodieRoute();
+        var foodie = new Foodie();
         foodie.registerRoutes(router);
-        var admin = new AdminRoute();
+        var admin = new Admin();
         admin.registerRoutes(router);
-        var restaurantOwner = new RestaurantOwnerRoute();
+        var restaurantOwner = new RestaurantOwner();
         restaurantOwner.registerRoutes(router);
-        var tag = new TagRoute();
+        var tag = new Tag();
         tag.registerRoutes(router);
-        var foodieTagList = new FoodieTagListRoute();
+        var foodieTagList = new FoodieTagList();
         foodieTagList.registerRoutes(router);
     }
 
