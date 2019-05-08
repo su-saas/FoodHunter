@@ -19,17 +19,25 @@ class DishModel {
                 restaurantID: {
                     type: Number, 
                     unique: true, 
+                    required: true
                 },
-                dishes: [{
-                    dishID: {
-                        type: Number, 
-                        unique: true, 
-                    },
-                    dishName: String,
-                    dishDetails: String,
-                    dishPrice: Number
-                }]
+                dishID: {
+                    type: Number, 
+                    unique: true, 
+                    required: true
+                },
+                dishName: {
+                    type: String, 
+                    required: true
+                },
+                dishDetails: {
+                    type: String,
 
+                },
+                dishPrice: {
+                    type: Number,
+                    required: true
+                }
             }, {collection: 'dish'}
         );
     }
@@ -38,8 +46,8 @@ class DishModel {
         this.model = mongooseConnection.model<IDishModel>("Dish", this.schema);
     }
 
-    public addNewDish (response:any, body: any) {                
-        this.model.save(body, (err, dish) => {
+    public addNewDish(response:any, body: any) {                
+        this.model(body).save((err, dish) => {
             if(err){
                 response.send(err);
             }    
@@ -47,8 +55,8 @@ class DishModel {
         });
     }
 
-    public retrieveAll(response:any): any {
-        var query = this.model.find({});
+    public retrieveAllForOneRestaurant(response:any, filter:Object): any {
+        var query = this.model.find(filter);
         query.exec( (err, itemArray) => {
             response.json(itemArray) ;
         });
@@ -75,7 +83,7 @@ class DishModel {
             if(err){
                 response.send(err);
             }
-            response.json({ message: 'Successfully deleted Dish!'});
+            response.json(dish);
         });
     }
 }

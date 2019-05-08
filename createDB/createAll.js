@@ -27,7 +27,7 @@ restaurantCollection.remove({})
 
 restaurantCollection.insert(
     {
-        userID: 1,
+        userID: 4,
         restaurantID: 1,
         restaurantName: "The Pink Door",
         address:"Downtown",
@@ -40,7 +40,7 @@ restaurantCollection.insert(
 
 restaurantCollection.insert(
     {
-        userID: 2,
+        userID: 5,
         restaurantID: 2,
         restaurantName: "Momiji",
         address:"Downtown",
@@ -53,7 +53,7 @@ restaurantCollection.insert(
 
 restaurantCollection.insert(
     {
-        userID: 3,
+        userID: 6,
         restaurantID: 3,
         restaurantName: "Panwa Thai",
         address:"Downtown",
@@ -71,44 +71,32 @@ dishCollection.remove({})
 dishCollection.insert(
     {
         restaurantID: 1,
-        dishes : [
-            {
-                dishID: 1,
-                dishName: "Fall Risotto",
-                dishDetails: "butternut squash",
-                dishPrice: 19
-            }
-        ]
-
+        dishID: 1,
+        dishName: "Fall Risotto",
+        dishDetails: "butternut squash",
+        dishPrice: 19
     }
 )
 
 dishCollection.insert(
     {
         restaurantID: 2,
-        dishes : {
-            dishID: 1,
-            dishName: "sushi set a",
-            dishDetails: "tuna salmon, yellowtail",
-            dishPrice: 9
-        }
+        dishID: 2,
+        dishName: "sushi set a",
+        dishDetails: "tuna salmon, yellowtail",
+        dishPrice: 9
     }
 )
 
 dishCollection.insert(
     {
-        restaurantID: 3,
-        dishes : {
-            dishID: 1,
-            dishName: "Pad Thai",
-            dishDetails: "Stir-fried Thai rice noodles",
-            dishPrice: 9.95
-        }
+        restaurantID: 2,
+        dishID: 3,
+        dishName: "curry",
+        dishDetails: "Stir-fried Thai rice noodles",
+        dishPrice: 9.95
     }
 )
-
-/************ Tag **********/
-
 
 /************ Restaurant Tag List **********/
 db.createCollection("rtaglist")
@@ -116,42 +104,24 @@ rtaglistCollection = db.getCollection("rtaglist")
 rtaglistCollection.remove({})
 rtaglistCollection.insert(
     {
-        restaurantID: 2,
-        rtaglist : [
-            {
-                tagID: 3
-            },
-            {
-                tagID: 5
-            }
-        ]
+        restaurantID: 1,
+        rtaglistID: 1,
+        rtagList : [3,5]
     }
 )
 
 rtaglistCollection.insert(
     {
-        restaurantID: 1,
-        rtaglist : [
-            {
-                tagID: 1
-            },
-            {
-                tagID: 2
-            }
-        ]
+        restaurantID: 2,
+        rtaglistID: 2,
+        rtagList : [1,2]
     }
 )
 
 rtaglistCollection.insert(
     {
         restaurantID: 3,
-        rtaglist : [
-            {
-                tagID: 2
-            },
-            {
-                tagID: 4
-            }
-        ]
+        rtaglistID: 3,
+        rtagList : [4,6]
     }
 )

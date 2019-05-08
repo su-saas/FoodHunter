@@ -5,7 +5,7 @@ restaurantCollection.remove({})
 
 restaurantCollection.insert(
     {
-        userID: 1,
+        userID: 4,
         restaurantID: 1,
         restaurantName: "The Pink Door",
         address:"Downtown",
@@ -18,7 +18,7 @@ restaurantCollection.insert(
 
 restaurantCollection.insert(
     {
-        userID: 2,
+        userID: 5,
         restaurantID: 2,
         restaurantName: "Momiji",
         address:"Downtown",
@@ -31,7 +31,7 @@ restaurantCollection.insert(
 
 restaurantCollection.insert(
     {
-        userID: 3,
+        userID: 6,
         restaurantID: 3,
         restaurantName: "Panwa Thai",
         address:"Downtown",

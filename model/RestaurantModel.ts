@@ -64,8 +64,8 @@ class RestaurantModel {
         });
     }
 
-    public addNewRestaurant (response:any, body: any) {                
-        this.model.save(body, (err, restaurant) => {
+    public addNewRestaurant (response:any, restaurant: any) {                
+        this.model(restaurant).save((err, restaurant) => {
             if(err){
                 response.send(err);
             }    
@@ -87,7 +87,7 @@ class RestaurantModel {
             if(err){
                 response.send(err);
             }
-            response.json({ message: 'Successfully deleted restaurant!'});
+            response.json(restaurant);
         });
     }
 

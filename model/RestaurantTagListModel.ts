@@ -20,12 +20,14 @@ class RestaurantTagListModel {
                     type: Number, 
                     unique: true, 
                 },
-                rtaglist : [{
-                    tagID: {
-                        type: Number, 
-                        unique: true, 
-                    },
-                }]
+                rtaglistID: {
+                    type: Number, 
+                    unique: true, 
+                },
+                rtagList: {
+                    type: [Number],
+                    required: true,
+                },
             }, {collection: 'rtaglist'}
         );
     }
@@ -34,8 +36,8 @@ class RestaurantTagListModel {
         this.model = mongooseConnection.model<IRestaurantTagListModel>("RestaurantTagList", this.schema);
     }
 
-    public addNewrTagList (response:any, body: any) {                
-        this.model.save(body, (err, tag) => {
+    public addNewrTagList (response:any, tag: any) {                
+        this.model(tag).save((err, tag) => {
             if(err){
                 response.send(err);
             }    
@@ -71,7 +73,7 @@ class RestaurantTagListModel {
             if(err){
                 response.send(err);
             }
-            response.json({ message: 'Successfully deleted restaurant tagList!'});
+            response.json(tagList);
         });
     }
 }

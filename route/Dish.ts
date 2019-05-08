@@ -6,7 +6,7 @@ import * as url from 'url';
 import * as bodyParser from 'body-parser';
 import {DishModel} from '../model/DishModel';
 
-class Menu {
+class Dish {
     public Dish:DishModel;
     constructor() {
         this.Dish = new DishModel();
@@ -18,25 +18,32 @@ class Menu {
       router.get('/menu/:restaurantID', (req, res) => {
         var id = req.params.restaurantID;
         console.log('restaurant id:' + id);
-        this.Dish.retrieveDishDetails(res, {restaurantID: id}); 
+        this.Dish.retrieveAllForOneRestaurant(res, {restaurantID: id}); 
       });
 
-      router.post('/menu', (req, res) => {
+      router.get('/menu/dish/:dishID', (req, res) => {
+        var id = req.params.dishID;
+        console.log('restaurant id:' + id);
+        this.Dish.retrieveDishDetails(res, {dishID: id}); 
+      });
+
+      router.post('/menu/dish', (req, res) => {
         var body = req.body;
+        console.log('successfully create a dish'); 
         this.Dish.addNewDish(res, body); 
       });
   
-      router.put('/menu/:restaurantID', (req, res) => {
-        var id = req.params.restaurantID;
+      router.put('/menu/dish/:dishID', (req, res) => {
+        var id = req.params.dishID;
         console.log('restaurant id:' + id);
-        this.Dish.updateDish(res, {restaurantID: id}, req.body);
+        this.Dish.updateDish(res, {dishID: id}, req.body);
       });
   
-      router.delete('/menu/:restaurantID', (req, res) => {
-        var id = req.params.restaurantID;
+      router.delete('/menu/dish/:dishID', (req, res) => {
+        var id = req.params.dishID;
         console.log('restaurant id:' + id);
-        this.Dish.deleteDish(res, {restaurantID: id}); 
+        this.Dish.deleteDish(res, {dishID: id}); 
       });
     }
 }
-export {Menu};
+export {Dish};

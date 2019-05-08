@@ -19,24 +19,24 @@ class RestaurantTagList {
     }
     
     private routes(router: express.Router): void {
-      router.get('/tags/:restaurantID', (req, res) => {
+      router.get('/rtags/:restaurantID', (req, res) => {
         var id = req.params.restaurantID;
         console.log('restaurant id:' + id);
         this.rTagList.retrieverTagListDetails(res, {restaurantID: id}); 
       });
 
-      router.post('/tags', (req, res) => {
+      router.post('/rtags', (req, res) => {
         var body = req.body;
         this.rTagList.addNewrTagList(res, body); 
       });
   
-      router.put('/tags/:restaurantID', (req, res) => {
+      router.put('/rtags/:restaurantID', (req, res) => {
         var id = req.params.restaurantID;
         console.log('restaurant id:' + id);
         this.rTagList.updateTagList(res, {restaurantID: id}, req.body);
       });
   
-      router.delete('/tags/:restaurantID', (req, res) => {
+      router.delete('/rtags/:restaurantID', (req, res) => {
         var id = req.params.restaurantID;
         console.log('restaurant id:' + id);
         this.rTagList.deleteTagList(res, {restaurantID: id}); 
