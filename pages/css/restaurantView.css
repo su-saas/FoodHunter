@@ -15,6 +15,10 @@ nav{
     height: 70vh;
 }
 
+.taglist{
+    pointer-events: none;
+}
+
 
 @media(max-width: 768px){
     .rowht{
