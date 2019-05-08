@@ -141,7 +141,7 @@ h1 {
         height: 3px;
         background: #ff3a6d;
         bottom: 0;
-        left: 20%;
+        left: 50%;
         -webkit-transform: translateX(-50%);
         -ms-transform: translateX(-50%);
         transform: translateX(-50%); 
