@@ -184,7 +184,7 @@ h1 {
       }
       .dropdown.dropdown-lg {
           position: static !important;
-      }
+      } 
       .dropdown.dropdown-lg .dropdown-menu {
           min-width: 500px;
       }
@@ -196,4 +196,8 @@ body{
 nav{
   font-family: 'Rancho';
   font-size: 1.2em;
+}
+
+.panelSize{
+  width: 310%;
 }
