@@ -8,8 +8,10 @@ import {DishModel} from '../model/DishModel';
 
 class Dish {
     public Dish:DishModel;
+    private idGenerator: number;
     constructor() {
         this.Dish = new DishModel();
+        this.idGenerator = 10;
     }
     public registerDishRoutes(router: express.Router) {
       this.routes(router);
@@ -29,6 +31,8 @@ class Dish {
 
       router.post('/menu/dish', (req, res) => {
         var body = req.body;
+        body.dishID = this.idGenerator;
+        this.idGenerator ++;
         console.log('successfully create a dish'); 
         this.Dish.addNewDish(res, body); 
       });

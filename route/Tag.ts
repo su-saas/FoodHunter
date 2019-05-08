@@ -6,10 +6,12 @@ import { TagModel } from "../model/TagModel";
 class Tag {
 
     public Tag: TagModel;
+    private idGenerator: number;
 
     // run configuration methods on the Express instance.
     constructor() {
         this.Tag = new TagModel();
+        this.idGenerator = 10;
     }
 
     public registerRoutes(router: express.Router): void {
@@ -22,6 +24,8 @@ class Tag {
         router.post("/tag", (req, res) => {
             console.log(req.body);
             var tag: any = req.body;
+            tag.tagID = this.idGenerator;
+            this.idGenerator ++;
             this.Tag.createTag(res, tag);
         });
 

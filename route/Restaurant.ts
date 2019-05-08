@@ -9,9 +9,11 @@ import {RestaurantModel} from '../model/RestaurantModel';
 class Restaurant {
     
     public Restaurant:RestaurantModel;
+    private idGenerator: number;
     
     constructor() {
         this.Restaurant = new RestaurantModel(); 
+        this.idGenerator = 10;
     }
 
     public registerRestaurantRoutes(router: express.Router) {
@@ -32,6 +34,8 @@ class Restaurant {
 
       router.post('/restaurant', (req, res) => {
         var body = req.body;
+        body.restaurantID = this.idGenerator;
+        this.idGenerator ++;
         this.Restaurant.addNewRestaurant(res, body); 
       });
   

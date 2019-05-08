@@ -20,7 +20,7 @@ class ApplicationFormModel {
                 formID: {
                     type: Number,
                     required: true,
-                    unique: true
+                    unique: true,
                 },
                 restaurantID: {
                     type: Number,
