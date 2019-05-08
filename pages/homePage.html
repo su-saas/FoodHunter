@@ -1,202 +1,134 @@
 <html>
-    <head>
-        <!-- css -->     
-        <link rel="stylesheet" type="text/css" href="home.css">
-         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="css/homePage.css">
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <!-- jQuery -->
-        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-    </head>
-    <body>
-            <!-- Static navbar -->
+<head>
+    <meta charset="utf-8">
+    <title>FoodHunter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="img/icon.png" type="image/x-icon">
+    <!-- css -->
+    <link rel="stylesheet" href="css/homePage.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
     <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">FoodHunter</a>
-              </div>
-              <div id="navbar" class="navbar-collapse collapse">
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                  <li><a href="./">Log In</a></li>
-                  <li><a href="../navbar-fixed-top/">Register</a></li>
+                    <li><a href="#">Log In</a></li>
+                    <li><a href="#">Sign Up</a></li>
                 </ul>
-              </div><!--/.nav-collapse -->
             </div>
-          </nav>
-        <section class="slider align-items-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="slider-title_box">
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <section class="slider align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="slider-title_box">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="slider-content_wrap">
+                                    <h1 class="fontsize">Discover great places in Seattle</h1>
+                                    <h3>Let's uncover the best places to eat or drink.</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex">
+                            <div class="col-md-12">
+                                <form class="form-wrap mt-6">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <input type="text" placeholder="What are you looking for?" class="btn-group1">
+
+                                        <select id="inputState" class="selectOne">
+                                            <option selected>... Select ...</option>
+                                            <option>Restaurant Name</option>
+                                            <option>Restaurant Address</option>
+                                        </select>
+                                        <button type="submit" class="btn-form">Search</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="container">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="slider-content_wrap">
-                                        <h1 class = "fontsize">Discover great places in Seattle</h1>
-                                        <h3>Let's uncover the best places to eat or drink.</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row d-flex">
-                                <div class="col-md-12">
-                                    <form class="form-wrap mt-6">
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <input type="text" placeholder="What are you looking for?" class="btn-group1">
-                                            
-                                            <select id="inputState" class="selectOne">
-                                                    <option selected>... Select ...</option>
-                                                    <option>Restaurant Name</option>
-                                                    <option>Address</option>
-                                            </select>
-                                            <button type="submit" class="btn-form"><span class="icon-magnifier search-icon"></span>SEARCH<i class="pe-7s-angle-right"></i></button>
+                                <div class="col-md-4">
+                                    <div class="panel panel-warning">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Recommendation</h3>
+                                            <span class="pull-right clickable"><i
+                                                    class="glyphicon glyphicon-chevron-up"></i></span>
                                         </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="panel panel-warning">
-                                            <div class="panel-heading">                                    
-                                                <h3 class="panel-title">Recommendation</h3>
-                                                <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <h6 class="text">Great Service</h6>
+                                                <select class="form-control" id="conditionsselect1">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
                                             </div>
-                                            <div class="panel-body">
-                                                    <div class="form-group">
-                                                        <h6 class = "text">Great Service</h6>
-                                                        <select class="form-control" id="conditionsselect1">
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <h6 class = "text">Great Service</h6>
-                                                        <select class="form-control" id="conditionsselect2">
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
-                                                        </select>
-                                                        </div>
-                                                    <div class="form-group">
-                                                        <h6 class = "text">Easy to park</h6>
-                                                        <select class="form-control" id="make1">
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
-                                                        </select>
-                                                        </div>
-                                                    <div class="form-group">
-                                                        <h6 class = "text">Tasty</h6>
-                                                        <select class="form-control" id="make1">
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <h6 class = "text">Price under 30</h6>
-                                                        <select class="form-control" id="make1">
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
-                                                        </select>
-                                                    </div>
-                                                    <hr>
-                                                    <button type="btn" class="btn btn-primary">Find Now</button>
-                                                    <button type="btn" class="btn btn-primary">Reset All</button>
-                                                </div>
+                                            <div class="form-group">
+                                                <h6 class="text">Great Service</h6>
+                                                <select class="form-control" id="conditionsselect2">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
                                             </div>
+                                            <div class="form-group">
+                                                <h6 class="text">Easy to park</h6>
+                                                <select class="form-control" id="make1">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <h6 class="text">Tasty</h6>
+                                                <select class="form-control" id="make1">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <h6 class="text">Price under 30</h6>
+                                                <select class="form-control" id="make1">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+                                            </div>
+                                            <hr>
+                                            <button type="btn" class="btn btn-primary">Find Now</button>
+                                            <button type="btn" class="btn btn-primary">Reset All</button>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-        <!--// SLIDER -->
-        <section class="main-block">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <div class="styled-heading">
-                            <h3>Restaurant Recommendation</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Content Area -->
-            <div>
-                <div class="container">
-
-                    <div class="row">                        
-                        <div class="col-12 col-md-8">
-                            <div>
-                                <img src="img/restaurant3.jpg"alt=""height="300" width="600">
-                            </div>                       
-                        </div>
-
-                        <div class="col-12 col-md-4">
-                            <div class="restaurant-ratings text-right my-5">
-                            <div class="restaurant-headline my-5">                           
-                                <h2><a href="restaurantDetail.html" style="color:#ff3a6d">Restaurant 1</a></h2>
-                                <div class="restaurant-duration">
-                                    <h6>Location: Seattle</h6>
-                                    <h6>Average Price: $30 and below</h6>
-                                    <h6>Phone: (206)000-0000 </h6>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </br>
-
-            <div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 col-md-8">
-                            <div>
-                                <img src="img/restaurant4.png"alt="" height="300" width="600">
-                            </div>
-                        </div>
-        
-                        <div class="col-12 col-md-4">
-                            <div class="restaurant-ratings text-right my-5">
-                                <div class="restaurant-headline my-5">
-                                    <h2><a href="restaurantDetail.html" style="color:#ff3a6d">Restaurant 2</a></h2>
-                                    <div class="restaurant-duration">
-                                        <h6>Location: Seattle</h6>
-                                        <h6>Average Price: $31 to $50</h6>
-                                        <h6>Phone: (206)000-0001 </h6>
                                     </div>
                                 </div>
                             </div>
@@ -205,12 +137,84 @@
                 </div>
             </div>
         </div>
-        </section>
-    </body>
-    <script>
-        $(document).on('click', '.panel-heading span.clickable', function(e){
+        </div>
+
+    </section>
+    <!--// SLIDER -->
+    <section class="main-block">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="styled-heading">
+                        <h3>Restaurant Recommendation</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div>
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <div>
+                            <img src="img/restaurant3.jpg" alt="" height="300" width="600">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="restaurant-ratings text-right my-5">
+                            <div class="restaurant-headline my-5">
+                                <h2><a href="restaurantDetail.html" style="color:#ff3a6d">Restaurant 1</a></h2>
+                                <div class="restaurant-duration">
+                                    <h6>Location: Seattle</h6>
+                                    <h6>Average Price: $30 and below</h6>
+                                    <h6>Phone: (206)000-0000 </h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </br>
+
+        <div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <div>
+                            <img src="img/restaurant4.png" alt="" height="300" width="600">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="restaurant-ratings text-right my-5">
+                            <div class="restaurant-headline my-5">
+                                <h2><a href="restaurantDetail.html" style="color:#ff3a6d">Restaurant 2</a></h2>
+                                <div class="restaurant-duration">
+                                    <h6>Location: Seattle</h6>
+                                    <h6>Average Price: $31 to $50</h6>
+                                    <h6>Phone: (206)000-0001 </h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+</body>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $(document).on('click', '.panel-heading span.clickable', function (e) {
         var $this = $(this);
-        if(!$this.hasClass('panel-collapsed')) {
+        if (!$this.hasClass('panel-collapsed')) {
             $this.parents('.panel').find('.panel-body').slideUp();
             $this.addClass('panel-collapsed');
             $this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
@@ -219,10 +223,11 @@
             $this.removeClass('panel-collapsed');
             $this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
         }
-        })
-        $(document).ready(function() {
-            $('.panel-body').hide();
-        });
-    </script>
+    })
+    $(document).ready(function () {
+        $('.panel-heading span.clickable').trigger('click');
+    });
+</script>
+
 
 </html>

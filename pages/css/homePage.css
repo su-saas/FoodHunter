@@ -189,3 +189,11 @@ h1 {
           min-width: 500px;
       }
   }
+
+body{
+    background-color: transparent; 
+}
+nav{
+  font-family: 'Rancho';
+  font-size: 1.2em;
+}
