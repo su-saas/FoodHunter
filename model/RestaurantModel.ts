@@ -19,15 +19,16 @@ class RestaurantModel {
             {
                 userID: {
                     type: Number, 
-                    unique: true, 
+                    required: true
                 },
                 restaurantID: {
                     type: Number, 
-                    unique: true, 
+                    unique: true 
                 },
                 restaurantName: {
                     type: String,
-                    required: true
+                    required: true,
+                    unique: true
                 },
                 address:{
                     type: String,
@@ -41,7 +42,11 @@ class RestaurantModel {
                 hours: {
                     type: String,
                     required: true
-                }
+                },
+                averagePrice: {
+                    type: Number, 
+                    required: true
+                },
             }, {collection: 'restaurant'}
         );
     }

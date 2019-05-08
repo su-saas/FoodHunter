@@ -1,24 +1,170 @@
 // create foodhunter db for FoodHunter Porject
 db = db.getSiblingDB("foodhunter")
+var dbname = 'foodhunter'
+
 
 /************ Users **********/
 db.createCollection('user')
-var userCollection = db.getCollection(collectionName)
+var userCollection = db.getCollection('user')
 userCollection.remove({})
 
 // generate 3 foodie
-var usersList = ['user01', 'user02', 'user03']
-for (i = 0, len = usersList.length; i < len; i ++){
-    userCollection.insert(
-        {
-            userID: i + 1,
-            userName: usersList[i],
-            userType: 1,
-            password: "pwdOf" + usersList[i],
-            emailAddress: usersList[i]+"@gmail.com",
-        }
-    )
-}
+userCollection.insert(
+{
+    userID: 1,
+    userName: "Guest",
+    userType: 1,
+    password: null,
+    emailAddress: null,
+    reviewList: null,
+    tagListID: null,
+    favoriteListID: null
+})
+
+userCollection.insert(
+{
+    userID: 2,
+    userName: "Helena",
+    userType: 1,
+    password: "pwdOfHelena",
+    emailAddress: "helena@gmail.com",
+    reviewList: [1,3],
+    tagListID: 1,
+    favoriteListID: 1
+})
+
+userCollection.insert(
+{
+    userID: 3,
+    userName: "Daniel",
+    userType: 1,
+    password: "pwdOfDaniel",
+    emailAddress: "daniel@gmail.com",
+    reviewList: [2,4],
+    tagListID: 2,
+    favoriteListID: 2
+})
+
+// create three restaurant owner
+userCollection.insert(
+{
+        userID: 4,
+        userName: "Erica",
+        userType: 2,
+        password: "pwdOfErica",
+        emailAddress: "erica@gmail.com",
+})
+
+userCollection.insert(
+{
+        userID: 5,
+        userName: "Eric",
+        userType: 2,
+        password: "pwdOfEric",
+        emailAddress: "eric@gmail.com",
+})
+
+userCollection.insert(
+{
+        userID: 6,
+        userName: "Jack",
+        userType: 2,
+        password: "pwdOfJack",
+        emailAddress: "jack@gmail.com",
+})
+
+// create one admin
+userCollection.insert(
+{
+        userID: 7,
+        userName: "Xing",
+        userType: 3,
+        password: "pwd",
+        emailAddress: "Xing@gmail.com",
+})
+
+
+/************ Tags **********/
+db.createCollection('tag')
+var tagCollection = db.getCollection('tag')
+tagCollection.remove({})
+
+tagCollection.insert(
+{
+    tagID: 1,
+	tagName: "Tasty",
+})
+
+tagCollection.insert(
+{
+    tagID: 2,
+    tagName: "Great Service",
+})
+
+tagCollection.insert(
+{
+    tagID: 3,
+    tagName: "Good Environment",
+})
+
+tagCollection.insert(
+{
+    tagID: 4,
+    tagName: "Scenic View",
+})
+
+tagCollection.insert(
+{
+    tagID: 5,
+    tagName: "Easy to park",
+})
+
+tagCollection.insert(
+{
+    tagID: 6,
+    tagName: "Price under 30",
+})
+
+tagCollection.insert(
+{
+    tagID: 7,
+    tagName: "Price between 30 and 60",
+})
+
+tagCollection.insert(
+{
+    tagID: 8,
+    tagName: "Price over 60",
+})
+
+/************ Foodie Tag List **********/
+db.createCollection('foodieTagList')
+var foodieTagListCollection = db.getCollection('foodieTagList')
+foodieTagListCollection.remove({})
+
+foodieTagListCollection.insert(
+{
+    tagListID: 1,
+    userID: 1,
+    tagList: [3],
+})
+
+foodieTagListCollection.insert(
+{
+    tagListID: 2,
+    userID: 2,
+    tagList: [1, 3, 4, 7],       
+})
+
+foodieTagListCollection.insert(
+{
+    tagListID: 3,
+    userID: 3,
+    tagList: [8, 7, 2, 4, 6, 3, 1, 5],     
+})
+
+
+
 
 /************ Restaurants **********/
 db.createCollection("restaurant")
@@ -34,7 +180,7 @@ restaurantCollection.insert(
         phoneNum: "206-0000-0000",
         introductionContent: "Italian Restaurant",
         hours: "M-F 11:30am - 1:00am",
-        AveragePrice: 30
+        averagePrice: 30
     }
 )
 
@@ -47,7 +193,7 @@ restaurantCollection.insert(
         phoneNum: "206-0000-0001",
         introductionContent: "Japanese Restaurant",
         hours: "M-F 11:30am - 9:00pm",
-        AveragePrice: 25
+        averagePrice: 25
     }
 )
 
@@ -60,7 +206,7 @@ restaurantCollection.insert(
         phoneNum: "206-0000-0002",
         introductionContent: "Thai Restaurant",
         hours: "M-F 11:00am - 8:00pm",
-        AveragePrice: 15
+        averagePrice: 15
     }
 )
 
@@ -125,3 +271,131 @@ rtaglistCollection.insert(
         rtagList : [4,6]
     }
 )
+
+/************ Review **********/
+db.createCollection('review')
+var reviewCollection = db.getCollection('review')
+reviewCollection.remove({})
+
+reviewCollection.insert(
+{
+    reviewID: 1,
+    userID: 1,
+    restaurantID: 1,
+    title: "user_1_review_title",
+    content: "user_1_review_content",
+    date: "2019-01-01T01:00:00",
+})
+
+reviewCollection.insert(
+{
+    reviewID: 2,
+    userID: 2,
+    restaurantID: 2,
+    title: "user_2_review_title",
+    content: "user_2_review_content",
+    date: "2019-01-02T01:00:00",
+})
+
+reviewCollection.insert(
+{
+    reviewID: 3,
+    userID: 3,
+    restaurantID: 3,
+    title: "user_3_review_title",
+    content: "user_3_review_content",
+    date: "2019-01-03T01:00:00",
+})
+
+reviewCollection.insert(
+{
+    reviewID: 4,
+    userID: 1,
+    restaurantID: 1,
+    title: "user_1_review_title",
+    content: "user_1_review_content",
+    date: "2019-02-01T01:00:00",
+})
+
+/************ recommendationList **********/
+db.createCollection("recommendationList")
+recommendationListCollection = db.getCollection("recommendationList")
+recommendationListCollection.remove({})
+recommendationListCollection.insert(
+    {
+        recommendationlistID: 1,
+        foodietaglistID: 1,
+        restaurantList: [1,2]
+    }
+)
+recommendationListCollection.insert(
+    {
+        recommendationlistID: 2,
+        foodietaglistID: 2,
+        restaurantList: [1,3]
+    }
+)
+recommendationListCollection.insert(
+    {
+        recommendationlistID: 3,
+        foodietaglistID: 3,
+        restaurantList: [1,2,3]
+    }
+)
+
+/************ Favorite List **********/
+db.createCollection('favoriteList')
+var favoriteListCollection = db.getCollection('favoriteList')
+favoriteListCollection.remove({})
+
+favoriteListCollection.insert(
+{
+    favoriteListID: 1,
+    userID: 1,
+    restaurantIDList: [1],
+})
+favoriteListCollection.insert(
+{
+    favoriteListID: 2,
+    userID: 2,
+    restaurantIDList: [1,2],
+})
+favoriteListCollection.insert(
+    {
+        favoriteListID: 3,
+        userID: 3,
+        restaurantIDList: [],
+    })
+
+/************ application form **********/
+db.createCollection("applicationform")
+formCollection = db.getCollection("applicationform")
+formCollection.remove({})
+formCollection.insert(
+    {
+        formID: 777,
+        restaurantID: 1,
+        userID: 1,
+        status: "Pending",
+        date: "December 17, 1995 03:24:00"
+    }
+)
+formCollection.insert(
+    {
+        formID: 778,
+        restaurantID: 2,
+        userID: 2,
+        status: "Approved",
+        date: "December 18, 1995 05:24:00"
+    }
+)
+formCollection.insert(
+    {
+        formID: 779,
+        restaurantID: 3,
+        userID: 3,
+        status: "Declined",
+        date: "December 18, 1999 03:24:00"
+    }
+)
+
