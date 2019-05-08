@@ -2,16 +2,7 @@ import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import { ApplicationFormRoute } from './routes/ApplicationFormRoute';
-import { RecommendationListRoute } from './routes/RecommendationListRoute';
 
-//connect to the model 
-import { RecommendationListModel } from './model/RecommendationListModel'
-import { ApplicationFormModel } from './model/ApplicationFormModel'
-import {User} from './route/User';
-
-
-import { Router } from "express-serve-static-core";
 import { Foodie, RestaurantOwner, Admin } from "./route/User";
 import { FoodieTagList } from "./route/FoodieTagList";
 import { Tag } from "./route/Tag";
@@ -23,6 +14,7 @@ import { RestaurantTagList } from './route/RestaurantTagList';
 import { ApplicationFormRoute } from './route/ApplicationFormRoute';
 import { RecommendationListRoute } from './route/RecommendationListRoute';
 
+import { Router } from "express-serve-static-core";
 
 
 // creates and configures an ExpressJS web server.
@@ -49,12 +41,10 @@ class App {
     private routes(): void {
         let router: Router = express.Router();
 
-        // add user routes
+        // add routes
         this.addRoutes(router);
 
         this.expressApp.use('/', router);
-        this.expressApp.use('/app/json/', express.static(__dirname+'/app/json'));
-        this.expressApp.use('/images', express.static(__dirname+'/img'));
         this.expressApp.use('/', express.static(__dirname+'/pages'));
   }    
     private addRoutes(router: express.Router): void{
@@ -64,9 +54,12 @@ class App {
         var favoriteList = new FavoriteList();
         favoriteList.registerRoutes(router);
         // erica
-        this.addRestaurant(router);
-        this.addMenu(router);  
-        this.addrTags(router);
+        var rest = new Restaurant();
+        rest.registerRestaurantRoutes(router);
+        var dish = new Dish();
+        dish.registerDishRoutes(router);
+        var rtaglist = new RestaurantTagList();
+        rtaglist.registerrTagListRoutes(router);
         // helena
         var foodie = new Foodie();
         foodie.registerRoutes(router);
@@ -84,26 +77,6 @@ class App {
         var recm = new RecommendationListRoute();
         recm.registerRoutes(router);
     }
-
-    /******** Restaurant ********/
-    private addRestaurant(router: express.Router): void{
-      var rest = new Restaurant();
-      rest.registerRestaurantRoutes(router);
-    }
-    
-    /******** Restaurant Dish********/
-    private addMenu(router: express.Router): void{
-      var dish = new Dish();
-      dish.registerDishRoutes(router);
-    }
-
-    /******** Restaurant Tags********/
-    private addrTags(router: express.Router): void{
-      var rtaglist = new RestaurantTagList();
-      rtaglist.registerrTagListRoutes(router);
-    }
-
-  
 
 }
 
