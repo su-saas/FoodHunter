@@ -3,7 +3,7 @@ import { Router } from "express-serve-static-core";
 import { TagModel } from "../model/TagModel";
 
 // creates and configures an ExpressJS web server.
-class TagRoute {
+class Tag {
 
     public Tag: TagModel;
 
@@ -54,4 +54,4 @@ class TagRoute {
         });
     }
 }
-export {TagRoute};
+export {Tag};
