@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import Mongoose = require("mongoose");
 
 interface IApplicationFormModel extends Mongoose.Document {
