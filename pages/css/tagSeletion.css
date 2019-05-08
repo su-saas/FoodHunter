@@ -20,8 +20,6 @@ h1 {
   }
   
   .slider {
-    background: url('../img/tagBackground2.jpg') no-repeat;
-    background-size: cover;
     min-height: 650px; }
     @media (max-width: 992px) {
       .slider {
@@ -115,7 +113,7 @@ h1 {
   
   /****** filter *******/
   .text{
-    color: whitesmoke;
+    color:black;
   }
   
   .redColor {background: #ff3a6d;}
