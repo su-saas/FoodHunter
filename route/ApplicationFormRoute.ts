@@ -12,9 +12,11 @@ import { ApplicationFormModel } from '../model/ApplicationFormModel';
 class ApplicationFormRoute {
 
     public applicationForm: ApplicationFormModel;
+    private idGenerator: number;
 
     //Run configuration methods on the Express instance.
     constructor() {
+        this.idGenerator = 10;
         this.applicationForm = new ApplicationFormModel();
     }
 
@@ -56,6 +58,8 @@ class ApplicationFormRoute {
         //create
         router.post('/applicationForm', (req, res) => {
             var newapplicationForm = req.body;
+            newapplicationForm.formID = this.idGenerator;
+            this.idGenerator ++; 
             console.log('try to create:', newapplicationForm);
             this.applicationForm.createApplicationForm(res, newapplicationForm);
         });
