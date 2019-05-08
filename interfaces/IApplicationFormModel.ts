@@ -5,6 +5,4 @@ interface IApplicationFormModel extends Mongoose.Document {
     restaurantID: number,
     userID: number,
     status: String,
-    date: Date,
-}
-export { IApplicationFormModel }
+ }

@@ -2,6 +2,13 @@ import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
+import { ApplicationFormRoute } from './routes/ApplicationFormRoute';
+import { RecommendationListRoute } from './routes/RecommendationListRoute';
+
+//connect to the model 
+import { RecommendationListModel } from './model/RecommendationListModel'
+import { ApplicationFormModel } from './model/ApplicationFormModel'
+import {User} from './route/User';
 
 
 import { Router } from "express-serve-static-core";
@@ -49,8 +56,7 @@ class App {
         this.expressApp.use('/app/json/', express.static(__dirname+'/app/json'));
         this.expressApp.use('/images', express.static(__dirname+'/img'));
         this.expressApp.use('/', express.static(__dirname+'/pages'));
-    }
-
+  }    
     private addRoutes(router: express.Router): void{
         // xing
         var review = new Review();
