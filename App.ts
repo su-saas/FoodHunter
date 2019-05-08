@@ -2,14 +2,12 @@ import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-<<<<<<< HEAD
 import { ApplicationFormRoute } from './routes/ApplicationFormRoute';
 import { RecommendationListRoute } from './routes/RecommendationListRoute';
 
 //connect to the model 
 import { RecommendationListModel } from './model/RecommendationListModel'
 import { ApplicationFormModel } from './model/ApplicationFormModel'
-=======
 import {User} from './route/User';
 import { Review } from './route/Review';
 import { FavoriteList } from './route/FavoriteList';
@@ -17,7 +15,6 @@ import { FavoriteList } from './route/FavoriteList';
 //var Q = require('q');
 
 //connect to the model 
->>>>>>> 3075a35de700a3473fbe4b8ee43b46c78b3b0f29
 import {DataAccess} from './DataAccess';
 import { Restaurant } from './route/Restaurant';
 import { Menu } from './route/Menu';
@@ -26,47 +23,6 @@ import { RestaurantTagList } from './route/RestaurantTagList';
 // Creates and configures an ExpressJS web server.
 class App {
 
-<<<<<<< HEAD
-  // ref to Express instance
-  public expressApp: express.Application;
-
-  //Run configuration methods on the Express instance.
-  constructor() {
-    this.expressApp = express();
-    this.middleware();
-    this.routes();
-  }
-
-  // Configure Express middleware.
-  private middleware(): void {
-    this.expressApp.use(logger('dev'));
-    this.expressApp.use(bodyParser.json());
-    this.expressApp.use(bodyParser.urlencoded({ extended: false }));
-  }
-
-  // Configure API endpoints.
-  private routes(): void {
-    let router = express.Router();
-
-    // add user routes
-    this.addRoutes(router);
-
-    this.expressApp.use('/', router);
-
-    this.expressApp.use('/app/json/', express.static(__dirname+'/app/json'));
-    this.expressApp.use('/images', express.static(__dirname+'/img'));
-    this.expressApp.use('/', express.static(__dirname+'/pages'));
-    
-    }
-
-    private addRoutes(router: express.Router): void {
-        var recommendationList = new RecommendationListRoute();
-        recommendationList.registerRoutes(router);
-        var applicationForm = new ApplicationFormRoute();
-        applicationForm.registerRoutes(router);
-    }
-
-=======
     // ref to Express instance
     public expressApp: express.Application;
 
@@ -95,8 +51,7 @@ class App {
         this.expressApp.use('/app/json/', express.static(__dirname+'/app/json'));
         this.expressApp.use('/images', express.static(__dirname+'/img'));
         this.expressApp.use('/', express.static(__dirname+'/pages'));
-    }
-
+  }    
     private addRoutes(router: express.Router): void{
         var user = new User();
         user.registerRoutes(router);
@@ -104,6 +59,10 @@ class App {
         review.registerRoutes(router);
         var favoriteList = new FavoriteList();
         favoriteList.registerRoutes(router);
+        var recommendationList = new RecommendationListRoute();
+        recommendationList.registerRoutes(router);
+        var applicationForm = new ApplicationFormRoute();
+        applicationForm.registerRoutes(router);
         // erica
         this.addRestaurant(router);
         this.addMenu(router);  
@@ -127,7 +86,7 @@ class App {
       var rtaglist = new RestaurantTagList();
       rtaglist.registerrTagListRoutes(router);
     }
->>>>>>> 3075a35de700a3473fbe4b8ee43b46c78b3b0f29
+
 
 }
 
