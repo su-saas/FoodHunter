@@ -10,7 +10,8 @@
         font-size: 40px; } } */
   
   h3 {
-    font-size: 35px; }
+    font-size: 35px;
+    color: whitesmoke; }
     @media (max-width: 992px) {
       h3 {
         font-size: 30px; } }
@@ -20,7 +21,7 @@
   }
   
   .slider {
-    background: url('../img/background.jpg') no-repeat;
+    background: url('../img/tagBackground2.jpg') no-repeat;
     background-size: cover;
     min-height: 650px; }
     @media (max-width: 992px) {
@@ -124,7 +125,7 @@
     padding: 90px 0; }
     @media (max-width: 768px) {
       .main-block {
-        padding: 45px 0; } }
+        padding: 20px 0; } }
   
   .styled-heading {
     text-align: center;
