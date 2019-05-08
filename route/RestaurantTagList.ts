@@ -19,6 +19,12 @@ class RestaurantTagList {
     }
     
     private routes(router: express.Router): void {
+      router.get('/rtags', (req, res) => {
+        var id = req.params.restaurantID;
+        console.log('restaurant id:' + id);
+        this.rTagList.retrieveAll(res); 
+      });
+
       router.get('/rtags/:restaurantID', (req, res) => {
         var id = req.params.restaurantID;
         console.log('restaurant id:' + id);
