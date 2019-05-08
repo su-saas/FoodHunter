@@ -25,6 +25,7 @@ abstract class UserModel {
             userType: typ,
         }
         return newObj;
+    }
     // the abstract method which should be implemented in derived classes
     abstract createSchema(): void;
     abstract createModel(): void;
