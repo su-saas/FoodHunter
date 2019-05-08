@@ -28,13 +28,13 @@ class Foodie {
             this.Foodie.createUser(res, user);
         });
 
-        // get login page
-        router.get("/login", (req, res) => {
-            var userPayload: any = req;
-            console.log("login with userID: ", userPayload.userID);
-            console.log("login with userPassword: ", userPayload.password);
-            this.Foodie.logInByIDAndPassword(res, userPayload);
-        });
+        // // get login page
+        // router.get("/login", (req, res) => {
+        //     var userPayload: any = req;
+        //     console.log("login with userID: ", userPayload.userID);
+        //     console.log("login with userPassword: ", userPayload.password);
+        //     this.Foodie.logInByIDAndPassword(res, userPayload);
+        // });
 
 
         // get foodie by id
@@ -65,7 +65,6 @@ export {Foodie};
 class RestaurantOwner {
 
     public Owner: RestaurantOwnerModel;
-
     // run configuration methods on the Express instance.
     constructor() {
         this.Owner = new RestaurantOwnerModel();
@@ -84,13 +83,13 @@ class RestaurantOwner {
             this.Owner.createUser(res, user);
         });
 
-        // get login page
-        router.get("/login", (req, res) => {
-            var userPayload: any = req;
-            console.log("login with userID: ", userPayload.userID);
-            console.log("login with userPassword: ", userPayload.password);
-            this.Owner.logInByIDAndPassword(res, userPayload);
-        });
+        // // get login page
+        // router.get("/login", (req, res) => {
+        //     var userPayload: any = req;
+        //     console.log("login with userID: ", userPayload.userID);
+        //     console.log("login with userPassword: ", userPayload.password);
+        //     this.Owner.logInByIDAndPassword(res, userPayload);
+        // });
 
         // get restaurantOwner by id
         router.get("/restaurantOwner/:userID", (req, res) => {
@@ -139,26 +138,13 @@ class Admin {
             this.Admin.createUser(res, user);
         });
 
-        // get login page
-        router.get("/login", (req, res) => {
-            var userPayload: any = req;
-            console.log("login with userID: ", userPayload.userID);
-            console.log("login with userPassword: ", userPayload.password);
-            this.Admin.logInByIDAndPassword(res, userPayload);
-        });
-
-        // get all users
-        router.get("/admin/users", (req, res) => {
-            console.log("get all users");
-            this.Admin.getAllUsers(res);
-        });
-
-        // get all foodies
-        router.get("/admin/foodies", (req, res) => {
-            var userType: any = req.params.userType;
-            console.log("Get all foodies: ", userType);
-            this.Admin.getAllFoodies(res, userType);
-        });
+        // // get login page
+        // router.get("/login", (req, res) => {
+        //     var userPayload: any = req;
+        //     console.log("login with userID: ", userPayload.userID);
+        //     console.log("login with userPassword: ", userPayload.password);
+        //     this.Admin.logInByIDAndPassword(res, userPayload);
+        // });
 
         // get foodie by id
         router.get("/admin/foodies/:userID", (req, res) => {
@@ -168,10 +154,28 @@ class Admin {
         });
 
         // get all restaurantOwners
-        router.get("/admin/restaurantOwners", (req, res) => {
+        router.get("/admin/users/:userType", (req, res) => {
             var userType: any = req.params.userType;
-            console.log("Get all restaurantOwners: ", userType);
-            this.Admin.getAllRestaurantOwners(res, userType);
+            if(userType === "restaurantOwners"){
+                console.log("Get all restaurantOwners: ", userType);
+                this.Admin.getAllRestaurantOwners(res);
+            }
+            else if(userType === "admin"){
+                console.log("Get all admins: ", userType);
+                this.Admin.getAllAdmins(res);
+            }
+            else if(userType === "foodie"){
+                console.log("Get all foodies: ", userType);
+                this.Admin.getAllFoodies(res, userType);
+            }
+            else if(userType === "user"){
+                console.log("get all users");
+                this.Admin.getAllUsers(res);
+            }
+            else{
+                console.log("unknown user type");
+                res.json("unkown user type");
+            }
         });
 
         // get restaurantOwner by id
@@ -179,13 +183,6 @@ class Admin {
             var userId: any = req.params.userID;
             console.log("Query single restaurantOwner with id: ", userId);
             this.Admin.getUserByID(res, userId);
-        });
-
-        // get all admins
-        router.get("/admin/admins", (req, res) => {
-            var userType: any = req.params.userType;
-            console.log("Get all admins: ", userType);
-            this.Admin.getAllAdmins(res, userType);
         });
 
         // get admin by id
