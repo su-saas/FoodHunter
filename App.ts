@@ -4,11 +4,12 @@ import * as logger from 'morgan';
 import * as mongodb from 'mongodb';
 import * as url from 'url';
 import * as bodyParser from 'body-parser';
-//var MongoClient = require('mongodb').MongoClient;
-//var Q = require('q');
+import { ApplicationFormRoute } from './routes/ApplicationFormRoute';
+import { RecommendationListRoute } from './routes/RecommendationListRoute';
 
 //connect to the model 
-import {UserModel} from './model/UserModel'
+import { RecommendationListModel } from './model/RecommendationListModel'
+import { ApplicationFormModel } from './model/ApplicationFormModel'
 import {DataAccess} from './DataAccess';
 
 // Creates and configures an ExpressJS web server.
@@ -16,16 +17,12 @@ class App {
 
   // ref to Express instance
   public expressApp: express.Application;
-  public idGenerator:number;
-  public Users: UserModel;
 
   //Run configuration methods on the Express instance.
   constructor() {
     this.expressApp = express();
     this.middleware();
     this.routes();
-    this.idGenerator = 100;
-    this.Users = new UserModel();
   }
 
   // Configure Express middleware.
@@ -39,10 +36,8 @@ class App {
   private routes(): void {
     let router = express.Router();
 
-    router.get('/users', (req, res) => {
-        console.log('Query All list');
-        this.Users.retrieveAllUsers(res);
-    });
+    // add user routes
+    this.addRoutes(router);
 
     this.expressApp.use('/', router);
 
@@ -50,7 +45,15 @@ class App {
     this.expressApp.use('/images', express.static(__dirname+'/img'));
     this.expressApp.use('/', express.static(__dirname+'/pages'));
     
-  }
+    }
+
+    private addRoutes(router: express.Router): void {
+        var recommendationList = new RecommendationListRoute();
+        recommendationList.registerRoutes(router);
+        var applicationForm = new ApplicationFormRoute();
+        applicationForm.registerRoutes(router);
+    }
+
 
 }
 
