@@ -92,7 +92,7 @@ class ApplicationFormModel {
             if (err) {
                 response.send(err);
             } 
-            response.json(form)            
+            response.json(form);           
         });
     }
 
