@@ -38,6 +38,15 @@ class DishModel {
         this.model = mongooseConnection.model<IDishModel>("Dish", this.schema);
     }
 
+    public addNewDish (response:any, body: any) {                
+        this.model.save(body, (err, dish) => {
+            if(err){
+                response.send(err);
+            }    
+            response.json(dish);
+        });
+    }
+
     public retrieveAll(response:any): any {
         var query = this.model.find({});
         query.exec( (err, itemArray) => {

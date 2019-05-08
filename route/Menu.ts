@@ -15,29 +15,28 @@ class Menu {
       this.routes(router);
   }
     private routes(router: express.Router): void {
-      router.get('/menu/:restaurantID', async (req, res) => {
-          var id = req.params.restaurantID;
-          console.log('restaurant id:' + id);
-          var dish = await this.Dish.retrieveDishDetails({restaurantID: id}); 
-          console.log('Dish: ' + dish);
-          res.status(200).send(dish);
-        });
-    
-        router.put('/menu/:restaurantID', async (req, res) => {
-          var id = req.params.restaurantID;
-          console.log('restaurant id:' + id);
-          var success = await this.Dish.updateDish({restaurantID: id}, req.body);
-          console.log('update dish: ' + success);
-          res.status(200).send(success);
-        });
-    
-        router.delete('/menu/:restaurantID', async (req, res) => {
-          var id = req.params.restaurantID;
-          console.log('restaurant id:' + id);
-          var success = await this.Dish.deleteDish({restaurantID: id}); 
-          console.log('delete dish: ' + success);
-          res.status(200).send(success);
-        });
+      router.get('/menu/:restaurantID', (req, res) => {
+        var id = req.params.restaurantID;
+        console.log('restaurant id:' + id);
+        this.Dish.retrieveDishDetails(res, {restaurantID: id}); 
+      });
+
+      router.post('/menu', (req, res) => {
+        var body = req.body;
+        this.Dish.addNewDish(res, body); 
+      });
+  
+      router.put('/menu/:restaurantID', (req, res) => {
+        var id = req.params.restaurantID;
+        console.log('restaurant id:' + id);
+        this.Dish.updateDish(res, {restaurantID: id}, req.body);
+      });
+  
+      router.delete('/menu/:restaurantID', (req, res) => {
+        var id = req.params.restaurantID;
+        console.log('restaurant id:' + id);
+        this.Dish.deleteDish(res, {restaurantID: id}); 
+      });
     }
 }
 export {Menu};

@@ -34,6 +34,15 @@ class RestaurantTagListModel {
         this.model = mongooseConnection.model<IRestaurantTagListModel>("RestaurantTagList", this.schema);
     }
 
+    public addNewrTagList (response:any, body: any) {                
+        this.model.save(body, (err, tag) => {
+            if(err){
+                response.send(err);
+            }    
+            response.json(tag);
+        });
+    }
+
     public retrieveAll(response:any): any {
         var query = this.model.find({});
         query.exec( (err, itemArray) => {

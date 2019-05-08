@@ -64,17 +64,14 @@ class RestaurantModel {
         });
     }
 
-    public addNewRestaurant (response:any,filter:Object) {                
-        let newRestaurant = new Restaurant(filter);
-    
-        newRestaurant.save((err, contact) => {
+    public addNewRestaurant (response:any, body: any) {                
+        this.model.save(body, (err, restaurant) => {
             if(err){
                 response.send(err);
             }    
-            response.json(contact);
+            response.json(restaurant);
         });
     }
-
 
     public updateRestaurant(response:any, filter:Object, body: any) {
         this.model.findOneAndUpdate(filter, body, { new: true }, (err, restaurant) => {

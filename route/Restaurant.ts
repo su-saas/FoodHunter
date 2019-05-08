@@ -19,48 +19,41 @@ class Restaurant {
   }
 
     private routes(router: express.Router): void {
-        router.get('/restaurant', async (req, res) => {
-            console.log('All restaurants');
-            var restaurants = await this.Restaurant.retrieveAll(); 
-            console.log(restaurants);
-            res.status(200).send(restaurants);
-          });
-          
-          router.get('/restaurant/:restaurantID', async (req, res) => {
-            var id = req.params.restaurantID;
-            console.log('restaurant id:' + id);
-            var restaurant = await this.Restaurant.retrieveRestaurantDetails({restaurantID: id}); 
-            console.log(restaurant);
-            res.status(200).send(restaurant);
-          });
+      router.get('/restaurant', (req, res) => {
+        console.log('All restaurants');
+        this.Restaurant.retrieveAll(res); 
+      });
       
-          router.put('/restaurant/:restaurantID', async (req, res) => {
-            console.log('update restaurant');
-            var id = req.params.restaurantID;
-            console.log('restaurant id:' + id);
-            var success = await this.Restaurant.updateRestaurant({restaurantID: id}, req.body);
-            console.log('update restaurant: ' + success);
-            res.status(200).send(success);
-          });
-      
-          router.delete('/restaurant/:restaurantID', async (req, res) => {
-            console.log('delete restaurant');
-            var id = req.params.restaurantID;
-            console.log('restaurant id:' + id);
-            var success = await this.Restaurant.deleteRestaurant({restaurantID: id}); 
-            console.log('delete restaurant: ' + success);
-            res.status(200).send(success);
-          });
-      
-          router.get('/search', async (req, res) => {
-            var urlParts = url.parse(req.url, true);
-            var query = urlParts.query;
-            var msg = 'search for ' + query.var1;
-            console.log(msg);
-            var result = await this.Restaurant.getByKeyword(query);
-            console.log('search restaurant: ' + result);
-            res.status(200).send(result);
-          });
+      router.get('/restaurant/:restaurantID', (req, res) => {
+        var id = req.params.restaurantID;
+        console.log('restaurant id:' + id);
+        this.Restaurant.retrieveRestaurantDetails(res, {restaurantID: id}); 
+      });
+
+      router.post('/restaurant', (req, res) => {
+        var body = req.body;
+        this.Restaurant.addNewRestaurant(res, body); 
+      });
+  
+      router.put('/restaurant/:restaurantID', (req, res) => {
+        var id = req.params.restaurantID;
+        console.log('restaurant id:' + id);
+        this.Restaurant.updateRestaurant(res, {restaurantID: id}, req.body);
+      });
+  
+      router.delete('/restaurant/:restaurantID', (req, res) => {
+        var id = req.params.restaurantID;
+        console.log('restaurant id:' + id);
+        this.Restaurant.deleteRestaurant(res, {restaurantID: id}); 
+      });
+
+      router.get('/search', (req, res) => {
+        var urlParts = url.parse(req.url, true);
+        var query = urlParts.query;
+        var msg = 'search for ' + query.var1;
+        console.log(msg);
+        this.Restaurant.getByKeyword(res, query);
+      });
     }
 
 }
