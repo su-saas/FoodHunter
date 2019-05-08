@@ -7,15 +7,76 @@ var userCollection = db.getCollection(collectionName)
 userCollection.remove({})
 
 // generate 3 foodie
-var usersList = ['user01', 'user02', 'user03']
-for (i = 0, len = usersList.length; i < len; i ++){
-    userCollection.insert(
-        {
-            userID: i + 1,
-            userName: usersList[i],
-            userType: 1,
-            password: "pwdOf" + usersList[i],
-            emailAddress: usersList[i]+"@gmail.com",
-        }
-    )
-}
+userCollection.insert(
+{
+    userID: 1,
+    userName: "Guest",
+    userType: 1,
+    password: null,
+    emailAddress: null,
+    reviewList: null,
+    tagListID: null,
+    favoriteListID: null
+})
+
+userCollection.insert(
+{
+    userID: 2,
+    userName: "Helena",
+    userType: 1,
+    password: "pwdOfHelena",
+    emailAddress: "helena@gmail.com",
+    reviewList: [1,3],
+    tagListID: 1,
+    favoriteListID: 1
+})
+
+userCollection.insert(
+{
+    userID: 3,
+    userName: "Daniel",
+    userType: 1,
+    password: "pwdOfDaniel",
+    emailAddress: "daniel@gmail.com",
+    reviewList: [2,4],
+    tagListID: 2,
+    favoriteListID: 2
+})
+
+// create three restaurant owner
+userCollection.insert(
+{
+        userID: 4,
+        userName: "Erica",
+        userType: 2,
+        password: "pwdOfErica",
+        emailAddress: "erica@gmail.com",
+})
+
+userCollection.insert(
+{
+        userID: 5,
+        userName: "Eric",
+        userType: 2,
+        password: "pwdOfEric",
+        emailAddress: "eric@gmail.com",
+})
+
+userCollection.insert(
+{
+        userID: 6,
+        userName: "Jack",
+        userType: 2,
+        password: "pwdOfJack",
+        emailAddress: "jack@gmail.com",
+})
+
+// create one admin
+userCollection.insert(
+{
+        userID: 7,
+        userName: "Xing",
+        userType: 3,
+        password: "pwd",
+        emailAddress: "Xing@gmail.com",
+})
