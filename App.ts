@@ -2,7 +2,6 @@ import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-<<<<<<< HEAD
 import { ApplicationFormRoute } from './routes/ApplicationFormRoute';
 import { RecommendationListRoute } from './routes/RecommendationListRoute';
 
@@ -10,14 +9,12 @@ import { RecommendationListRoute } from './routes/RecommendationListRoute';
 import { RecommendationListModel } from './model/RecommendationListModel'
 import { ApplicationFormModel } from './model/ApplicationFormModel'
 import {User} from './route/User';
-=======
 
 
 import { Router } from "express-serve-static-core";
 import { Foodie, RestaurantOwner, Admin } from "./route/User";
 import { FoodieTagList } from "./route/FoodieTagList";
 import { Tag } from "./route/Tag";
->>>>>>> 1a8e7c4dc1a81f1efeb527d16fb5184e11c632f6
 import { Review } from './route/Review';
 import { FavoriteList } from './route/FavoriteList';
 import { Restaurant } from './route/Restaurant';
@@ -103,10 +100,7 @@ class App {
       rtaglist.registerrTagListRoutes(router);
     }
 
-<<<<<<< HEAD
-=======
   
->>>>>>> 1a8e7c4dc1a81f1efeb527d16fb5184e11c632f6
 
 }
 
