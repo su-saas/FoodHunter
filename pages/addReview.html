@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>FoodHunter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="img/icon.png" type="image/x-icon">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/restaurantView.css">
+    
+    <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-info fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#Homepage"><img src="img/icon.png" height="40px"> FoodHunter</a>
+            <div class="collapse navbar-collapse" id="navbarresponse">
+                <ul class="navbar-nav ml-auto">
+                    <a class="btn btn-primary" href="./login.html" >Log in</a>
+                    &nbsp;
+                    <a class="btn btn-light" href="./register.html">Sign Up</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+	<div class="row"></div>
+
+    <section id="show">
+            <form role = "form">
+                <div class="form-group">
+                    <label for="review">Review:</label>
+                    <textarea class="form-control" rows="5" id="review" placeholder="Input..."></textarea>
+                </div>
+            </form>
+            <div class="submitOrCancelBtn">
+                <button id="submit" name="submit" class="btn btn-primary" value="1">Save</button>
+                <button type="button" class="btn btn-light">Cancel</button>
+            </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
