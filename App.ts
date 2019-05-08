@@ -63,10 +63,6 @@ class App {
         review.registerRoutes(router);
         var favoriteList = new FavoriteList();
         favoriteList.registerRoutes(router);
-        var recommendationList = new RecommendationListRoute();
-        recommendationList.registerRoutes(router);
-        var applicationForm = new ApplicationFormRoute();
-        applicationForm.registerRoutes(router);
         // erica
         this.addRestaurant(router);
         this.addMenu(router);  
