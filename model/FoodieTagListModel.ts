@@ -45,7 +45,9 @@ class FoodieTagListModel {
             if(err) {
                 response.send(err);
             }
-            response.json(newTagList);
+            else{
+                response.json(newTagList);
+            }
         });
     }
 
@@ -55,7 +57,9 @@ class FoodieTagListModel {
             if(err) {
                 response.send(err);
             }
-            response.json(tagLists);
+            else{
+                response.json(tagLists);
+            }
         });
     }
 
@@ -65,7 +69,9 @@ class FoodieTagListModel {
             if(err) {
                 response.send(err);
             }
-            response.json(tag);
+            else{
+                response.json(tag);
+            }
         });
     }
 
@@ -75,7 +81,9 @@ class FoodieTagListModel {
             if(err) {
                 response.send(err);
             }
-            response.json(list);
+            else{
+                response.json(list);
+            }
         });
     }
 
@@ -84,7 +92,9 @@ class FoodieTagListModel {
             if(err) {
                 response.send(err);
             }
-            response.json(newTagList);
+            else{
+                response.json(newTagList);
+            }
         });
     }
 
@@ -93,7 +103,9 @@ class FoodieTagListModel {
             if(err) {
                 response.send(err);
             }
-            response.json({ message: "Successfully deleted " + foodieId + "'s tagList"});
+            else{
+                response.json({ message: "Successfully deleted " + foodieId + "'s tagList"});
+            }
         });
     }
 }

@@ -27,7 +27,7 @@ class FoodieTagList {
         });
 
         // get all list
-        router.get("/tagList", (res) => {
+        router.get("/tagList", (req, res) => {
             console.log("get all tags");
             this.TagList.getAllTagLists(res);
         });
