@@ -5,14 +5,16 @@ import * as bodyParser from 'body-parser';
 
 
 import { Router } from "express-serve-static-core";
-import { FoodieRoute, RestaurantOwnerRoute, AdminRoute } from "./route/UserRoute";
-import { FoodieTagListRoute } from "./route/FoodieTagListRoute";
-import { TagRoute } from "./route/TagRoute";
+import { Foodie, RestaurantOwner, Admin } from "./route/User";
+import { FoodieTagList } from "./route/FoodieTagList";
+import { Tag } from "./route/Tag";
 import { Review } from './route/Review';
 import { FavoriteList } from './route/FavoriteList';
 import { Restaurant } from './route/Restaurant';
-import { Menu } from './route/Menu';
+import { Dish } from './route/Dish';
 import { RestaurantTagList } from './route/RestaurantTagList';
+import { ApplicationFormRoute } from './route/ApplicationFormRoute';
+import { RecommendationListRoute } from './route/RecommendationListRoute';
 
 
 
@@ -50,6 +52,7 @@ class App {
     }
 
     private addRoutes(router: express.Router): void{
+        // xing
         var review = new Review();
         review.registerRoutes(router);
         var favoriteList = new FavoriteList();
@@ -58,9 +61,22 @@ class App {
         this.addRestaurant(router);
         this.addMenu(router);  
         this.addrTags(router);
-
-        var rtaglist = new RestaurantTagList();
-      rtaglist.registerrTagListRoutes(router);
+        // helena
+        var foodie = new Foodie();
+        foodie.registerRoutes(router);
+        var admin = new Admin();
+        admin.registerRoutes(router);
+        var restaurantOwner = new RestaurantOwner();
+        restaurantOwner.registerRoutes(router);
+        var tag = new Tag();
+        tag.registerRoutes(router);
+        var foodieTagList = new FoodieTagList();
+        foodieTagList.registerRoutes(router);
+        // Daniel
+        var appForm = new ApplicationFormRoute();
+        appForm.registerRoutes(router);
+        var recm = new RecommendationListRoute();
+        recm.registerRoutes(router);
     }
 
     /******** Restaurant ********/
@@ -71,13 +87,14 @@ class App {
     
     /******** Restaurant Dish********/
     private addMenu(router: express.Router): void{
-      var menu = new Menu();
-      menu.registerDishRoutes(router);
+      var dish = new Dish();
+      dish.registerDishRoutes(router);
     }
 
     /******** Restaurant Tags********/
     private addrTags(router: express.Router): void{
-      
+      var rtaglist = new RestaurantTagList();
+      rtaglist.registerrTagListRoutes(router);
     }
 
   

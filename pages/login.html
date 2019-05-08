@@ -1,7 +1,7 @@
 <html>
     <head>
         <!-- css -->     
-        <link rel="stylesheet" type="text/css" href="main.css">
+        <link rel="stylesheet" type="text/css" href="login.css">
          <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <!-- Optional theme -->
@@ -17,30 +17,31 @@
         <div class="limiter">
             <div class="container-login100">
                 <div class="wrap-login100">
-                    <form class="login100-form validate-form">                        
+                    <form class="login100-form validate-form" action="/user/:userID">    
+                        <h3>Foodie Log In</h3>                      
                         <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                            <input class="input100" type="text" name="email">
+                            <input class="input100" type="text" name="emailAddress" id="emailAddress">
                             <span class="focus-input100"></span>
                             <span class="label-input100">Email</span>
                         </div>
                         
                         <div class="wrap-input100 validate-input" data-validate="Password is required">
-                            <input class="input100" type="password" name="pass">
+                            <input class="input100" type="password" name="password" id="password">
                             <span class="focus-input100"></span>
                             <span class="label-input100">Password</span>
                         </div>
 
                         <div class="container-login100-form-btn">
                             <button class="login100-form-btn">
-                                Login
+                                Log In
                             </button>
                         </div>
                         
-                        <div class="text-center">
+                        <a href="register.html#signup">
                             <span class="txt2">
                                 sign up 
                             </span>
-                        </div>
+                        </a>
                     </form>
     
                     <div class="login100-more" style="background-image: url('login01.jpg');">

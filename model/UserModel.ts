@@ -25,6 +25,7 @@ abstract class UserModel {
             userType: typ,
         }
         return newObj;
+    }
     // the abstract method which should be implemented in derived classes
     abstract createSchema(): void;
     abstract createModel(): void;
@@ -235,35 +236,23 @@ class AdminModel extends UserModel{
     }
 
     public getAllFoodies(response:any, foodieType: number): any {
-        if (foodieType !== 1) {
-            console.error("Wrong user type");
-        } else {
-            var query: any = this.model.find({userType: foodieType});
-            query.exec( (err: any, foodieList: IFoodieModel[]) => {
-                response.json(foodieList);
-            });
-        }
+        var query: any = this.model.find({userType: 1});
+        query.exec( (err: any, foodieList: IFoodieModel[]) => {
+            response.json(foodieList);
+        });
     }
 
-    public getAllRestaurantOwners(response:any, ownerType: number): any {
-        if (ownerType !== 2) {
-            console.error("Wrong user type");
-        } else {
-            var query: any = this.model.find({userType: ownerType});
+    public getAllRestaurantOwners(response:any): any {
+       var query: any = this.model.find({userType: 2});
             query.exec( (err: any, ownerList: IUserModel[]) => {
                 response.json(ownerList);
-            });
-        }
+        });
     }
-    public getAllAdmins(response:any, adminType: number): any {
-        if (adminType !== 2) {
-            console.error("Wrong user type");
-        } else {
-            var query: any = this.model.find({userType: adminType});
-            query.exec( (err: any, adminList: IUserModel[]) => {
-                response.json(adminList);
-            });
-        }
+    public getAllAdmins(response:any): any {
+        var query: any = this.model.find({userType: 3});
+        query.exec( (err: any, adminList: IUserModel[]) => {
+            response.json(adminList);
+        });
     }
 }
 export {AdminModel};

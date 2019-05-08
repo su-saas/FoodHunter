@@ -19,29 +19,34 @@ class RestaurantTagList {
     }
     
     private routes(router: express.Router): void {
-        router.get('/tags/:restaurantID', async (req, res) => {
-            var id = req.params.restaurantID;
-            console.log('restaurant id:' + id);
-            var rtaglist = await this.rTagList.retrieverTagListDetails({restaurantID: id}); 
-            console.log('restaurant tags: ' + rtaglist);
-            res.status(200).send(rtaglist);
-          });
-      
-          router.put('/tags/:restaurantID', async (req, res) => {
-            var id = req.params.restaurantID;
-            console.log('restaurant id:' + id);
-            var success = await this.rTagList.updaterTagList({restaurantID: id}, req.body);
-            console.log('update dish: ' + success);
-            res.status(200).send(success);
-          });
-      
-          router.delete('/tags/:restaurantID', async (req, res) => {
-            var id = req.params.restaurantID;
-            console.log('restaurant id:' + id);
-            var success = await this.rTagList.deleterTagList({restaurantID: id}); 
-            console.log('delete dish: ' + success);
-            res.status(200).send(success);
-          });
+      router.get('/rtags', (req, res) => {
+        var id = req.params.restaurantID;
+        console.log('restaurant id:' + id);
+        this.rTagList.retrieveAll(res); 
+      });
+
+      router.get('/rtags/:restaurantID', (req, res) => {
+        var id = req.params.restaurantID;
+        console.log('restaurant id:' + id);
+        this.rTagList.retrieverTagListDetails(res, {restaurantID: id}); 
+      });
+
+      router.post('/rtags', (req, res) => {
+        var body = req.body;
+        this.rTagList.addNewrTagList(res, body); 
+      });
+  
+      router.put('/rtags/:restaurantID', (req, res) => {
+        var id = req.params.restaurantID;
+        console.log('restaurant id:' + id);
+        this.rTagList.updateTagList(res, {restaurantID: id}, req.body);
+      });
+  
+      router.delete('/rtags/:restaurantID', (req, res) => {
+        var id = req.params.restaurantID;
+        console.log('restaurant id:' + id);
+        this.rTagList.deleteTagList(res, {restaurantID: id}); 
+      });
     }
 }
 export {RestaurantTagList};
