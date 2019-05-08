@@ -50,6 +50,7 @@ class App {
     }
 
     private addRoutes(router: express.Router): void{
+        // xing
         var review = new Review();
         review.registerRoutes(router);
         var favoriteList = new FavoriteList();
@@ -58,9 +59,17 @@ class App {
         this.addRestaurant(router);
         this.addMenu(router);  
         this.addrTags(router);
-
-        var rtaglist = new RestaurantTagList();
-      rtaglist.registerrTagListRoutes(router);
+        // helena
+        var foodie = new FoodieRoute();
+        foodie.registerRoutes(router);
+        var admin = new AdminRoute();
+        admin.registerRoutes(router);
+        var restaurantOwner = new RestaurantOwnerRoute();
+        restaurantOwner.registerRoutes(router);
+        var tag = new TagRoute();
+        tag.registerRoutes(router);
+        var foodieTagList = new FoodieTagListRoute();
+        foodieTagList.registerRoutes(router);
     }
 
     /******** Restaurant ********/
@@ -77,7 +86,8 @@ class App {
 
     /******** Restaurant Tags********/
     private addrTags(router: express.Router): void{
-      
+      var rtaglist = new RestaurantTagList();
+      rtaglist.registerrTagListRoutes(router);
     }
 
   
