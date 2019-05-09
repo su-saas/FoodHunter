@@ -48,7 +48,7 @@ class RecommendationListRoute {
 
         router.post('/recommendationlist', (req, res) => {          
             var newrecommendationList = req.body;
-            newrecommendationList.tagListID = this.idGenerator;
+            newrecommendationList.recommendationlistID = this.idGenerator;
             this.idGenerator ++;
             console.log('try to create:', req.params.recommendationlistID);
             this.recommendationList.createRecommendationList(res, newrecommendationList);
