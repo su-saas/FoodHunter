@@ -9,7 +9,7 @@ import * as bodyParser from 'body-parser';
 import { RecommendationListModel } from '../model/RecommendationListModel';
 
 // Creates and configures an ExpressJS web server.
-class RecommendationListRoute {
+class RecommendationList {
 
     public recommendationList: RecommendationListModel;
     private idGenerator: number;
@@ -56,5 +56,5 @@ class RecommendationListRoute {
     }
 }
 
-export { RecommendationListRoute };
+export { RecommendationList };
 

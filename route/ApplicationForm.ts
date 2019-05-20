@@ -9,7 +9,7 @@ import * as bodyParser from 'body-parser';
 import { ApplicationFormModel } from '../model/ApplicationFormModel';
 
 // Creates and configures an ExpressJS web server.
-class ApplicationFormRoute {
+class ApplicationForm {
 
     public applicationForm: ApplicationFormModel;
     private idGenerator: number;
@@ -65,5 +65,5 @@ class ApplicationFormRoute {
         });
     }
 }
-export { ApplicationFormRoute };
+export { ApplicationForm };
 

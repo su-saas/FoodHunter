@@ -11,8 +11,8 @@ import { FavoriteList } from './route/FavoriteList';
 import { Restaurant } from './route/Restaurant';
 import { Dish } from './route/Dish';
 import { RestaurantTagList } from './route/RestaurantTagList';
-import { ApplicationFormRoute } from './route/ApplicationFormRoute';
-import { RecommendationListRoute } from './route/RecommendationListRoute';
+import { ApplicationForm } from './route/ApplicationForm';
+import { RecommendationList } from './route/RecommendationList';
 
 import { Router } from "express-serve-static-core";
 
@@ -72,9 +72,9 @@ class App {
         var foodieTagList = new FoodieTagList();
         foodieTagList.registerRoutes(router);
         // Daniel
-        var appForm = new ApplicationFormRoute();
+        var appForm = new ApplicationForm();
         appForm.registerRoutes(router);
-        var recm = new RecommendationListRoute();
+        var recm = new RecommendationList();
         recm.registerRoutes(router);
     }
 
