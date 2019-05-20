@@ -98,25 +98,13 @@ class ReviewModel {
             response.json(res);
         });
     }
-    public getReviewByID(reviewID: Number, response: any){
-        var query = this.model.find({reviewID: reviewID});
-        var review = null;
+    public getReviewByID(userID: Number, response: any){
+        var query = this.model.find({userID: userID});
         query.exec((err, reviews) => {
             if(err){
                 console.error(err);
             }
-            else if(reviews.length > 1){
-                console.error('Duplicate error in Review');
-            }
-            else if(reviews.length == 1){
-                for (let u of reviews){
-                    review = u;
-                }
-            }
-            else{
-                console.log('no result');
-            }
-            response.json(review);
+            response.json(reviews);
         });
     }
 
