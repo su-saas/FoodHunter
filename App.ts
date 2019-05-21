@@ -45,7 +45,7 @@ class App {
         this.addRoutes(router);
 
         this.expressApp.use('/', router);
-        this.expressApp.use('/', express.static(__dirname+'/pages'));
+        this.expressApp.use('/', express.static(__dirname+'/pages', {index: 'login.html'}));
   }    
     private addRoutes(router: express.Router): void{
         // xing
