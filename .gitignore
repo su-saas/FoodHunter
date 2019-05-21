@@ -1,9 +1,13 @@
 .DS_Store
+<<<<<<< HEAD
 db/*
+=======
+>>>>>>> init
 .vs/*
 .vscode/
 node_modules/*
 *.sh
+<<<<<<< HEAD
 createDB/AdminUser.js
 createDB/createUser.js
 App.js
@@ -12,3 +16,5 @@ DataAccess.js
 route/*.js
 model/*.js
 interfaces/*.js
+=======
+>>>>>>> init
