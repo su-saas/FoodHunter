@@ -22,7 +22,7 @@ var DataAccess = /** @class */ (function () {
     };
     // local connect
     //static DB_CONNECTION_STRING:string = "mongodb://dbAdmin:test@localhost:3000/foodhunter?authSource=admin";
-    DataAccess.DB_CONNECTION_STRING = "mongodb+srv://dbAdmin:test@cluster0-hmc1e.mongodb.net/foodhunter?retryWrites=true";
+    DataAccess.DB_CONNECTION_STRING = "mongodb+srv://dbAdmin:test@cluster0-hmc1e.azure.mongodb.net/test?retryWrites=true";
     return DataAccess;
 }());
 exports.DataAccess = DataAccess;
