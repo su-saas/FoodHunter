@@ -1,14 +1,6 @@
 .DS_Store
 db/*
 .vs/*
-.vscode/
+.vscode/*
 node_modules/*
 *.sh
-createDB/AdminUser.js
-createDB/createUser.js
-App.js
-AppServer.js
-DataAccess.js
-route/*.js
-model/*.js
-interfaces/*.js
