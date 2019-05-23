@@ -16,7 +16,7 @@ var DataAccess = /** @class */ (function () {
             this.mongooseInstance = Mongoose.connect(this.DB_CONNECTION_STRING);
         }
         catch (error) {
-            console.log(error);
+            console.log("connect error: ", error);
         }
         return this.mongooseInstance;
     };
