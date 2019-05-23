@@ -15,6 +15,7 @@ var DataAccess = /** @class */ (function () {
         this.mongooseInstance = Mongoose.connect(this.DB_CONNECTION_STRING);
         return this.mongooseInstance;
     };
+    // local
     //static DB_CONNECTION_STRING:string = "mongodb://dbAdmin:test@localhost:3000/foodhunter?authSource=admin";
     DataAccess.DB_CONNECTION_STRING = "mongodb+srv://dbAdmin:test@cluster0-hmc1e.mongodb.net/foodhunter?retryWrites=true";
     return DataAccess;
