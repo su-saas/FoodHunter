@@ -2,10 +2,10 @@
   "name": "foodhunter",
   "version": "1.0.0",
   "description": "",
-  "main": "./AppServer.js",
+  "main": "AppServer.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./AppServer.js"
+    "start": "node AppServer.js"
   },
   "author": "pandaman",
   "license": "ISC",

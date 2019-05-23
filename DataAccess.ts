@@ -20,7 +20,7 @@ class DataAccess {
         });
 
         try{
-            this.mongooseInstance = Mongoose.connect(this.DB_CONNECTION_STRING);
+            this.mongooseInstance = Mongoose.connect(this.DB_CONNECTION_STRING, { useNewUrlParser: true });
         }
         catch(error){
             console.log("connect error: ", error);
