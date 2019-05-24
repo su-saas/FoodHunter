@@ -4,3 +4,9 @@ db/*
 .vscode/*
 node_modules/*
 *.sh
+
+*.js
+route/*.js
+model/*.js
+interfaces/*.js
+
