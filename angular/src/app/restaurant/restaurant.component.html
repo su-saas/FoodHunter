@@ -1,3 +1,54 @@
-<p>
-  restaurant works!
-</p>
+<!-- <div class="panel panel-default" *ngFor="let list of lists; let i = index">
+  <h4 class="panel-heading">{{i}}.{{list.restaurantName}}</h4>
+  <div class="panel-body">
+    <p>{{list.address}}</p>
+  </div>
+</div>  -->
+<!-- 
+	<p>{{detail.restaurantName}}</p>
+ -->
+
+<div *ngIf="detail">
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 bg2">
+					<h1 class="text-center">{{detail.restaurantName}}&nbsp;&nbsp; 
+						<a href="#"><span class="fa fa-star"></span></a>
+					</h1>
+					<hr style="background: lightgray ; width: 65%">
+					<p class="card-text">Address: {{detail.address}}</p>
+					<p class="card-text">Intro: {{detail.introductionContent}}</p>
+					<p class="card-text">Hours: {{detail.hours}}</p>
+					<a><span class="fa fa-phone"></span>&nbsp;&nbsp;{{detail.phoneNum}}</a>
+					<br><br>
+					<button type="button" class="btn btn-warning">Greate View</button>
+					<button type="button" class="btn btn-info">Good Taste</button>
+					<button type="button" class="btn btn-dark">Good Service</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- <hr style="background: lightgray ; width: 90%">
+	<section id="location">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="review">
+						<h3 class="display-3">Reviews &nbsp;&nbsp;<a href="#" class='addReview text-info'><i
+									class="fa fa-plus" aria-hidden="true"></i></a></h3>
+						<div class="panel panel-default">
+							<div class="panel-heading">Xing &nbsp;</div>
+							<div class="panel-body">Good resturant.</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">Chen &nbsp;</div>
+							<div class="panel-body">Food is good.</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section> -->
+</div>
