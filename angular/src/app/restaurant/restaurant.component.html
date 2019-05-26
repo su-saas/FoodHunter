@@ -1,23 +1,20 @@
 <div *ngIf="detail">
-	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 bg2">
-					<h1 class="text-center">{{detail.restaurantName}}&nbsp;&nbsp; 
-						<a href="#"><span class="fa fa-star"></span></a>
-					</h1>
-					<hr style="background: lightgray ; width: 65%">
-					<p class="card-text">Address: {{detail.address}}</p>
-					<p class="card-text">Intro: {{detail.introductionContent}}</p>
-					<p class="card-text">Hours: {{detail.hours}}</p>
-					<a><span class="fa fa-phone"></span>&nbsp;&nbsp;{{detail.phoneNum}}</a>
-					<br><br>
-					<button type="button" class="btn btn-warning">Greate View</button>
-				</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 bg2">
+				<h1 class="text-center">{{detail.restaurantName}}&nbsp;&nbsp;
+					<a href="#"><span class="fa fa-star"></span></a>
+				</h1>
+				<hr style="background: lightgray ; width: 65%">
+				<p class="card-text">Address: {{detail.address}}</p>
+				<p class="card-text">Intro: {{detail.introductionContent}}</p>
+				<p class="card-text">Hours: {{detail.hours}}</p>
+				<a><span class="fa fa-phone"></span>&nbsp;&nbsp;{{detail.phoneNum}}</a>
+				<br><br>
+				<span class="btn btn-success">tag example</span>
 			</div>
 		</div>
-	</section>
+	</div>
 
 	<app-review></app-review>
 </div>
-

@@ -28,4 +28,8 @@ export class ReviewService {
 				})
 			);
 	}
+
+	add(body: any): Observable<number>{
+		return this.http.post<number>(this.url, body);
+	}
 }

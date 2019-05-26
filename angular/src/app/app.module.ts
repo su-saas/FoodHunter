@@ -10,13 +10,15 @@ import { RestaurantService } from './restaurant.service';
 import { CollectionService } from './collection.service';
 import { ReviewComponent } from './review/review.component';
 import { ReviewService } from './review.service';
+import { AddReviewComponent } from './review/addReview/addReview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CollectionComponent,
     RestaurantComponent,
-    ReviewComponent
+    ReviewComponent,
+    AddReviewComponent
   ],
   imports: [
     BrowserModule,
