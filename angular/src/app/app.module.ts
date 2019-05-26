@@ -9,6 +9,7 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
 import { RestaurantService } from './restaurant.service';
 import { CollectionService } from './collection.service';
 import { ReviewComponent } from './review/review.component';
+import { ReviewService } from './review.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { ReviewComponent } from './review/review.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [RestaurantService, CollectionService],
+  providers: [RestaurantService, CollectionService, ReviewService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
