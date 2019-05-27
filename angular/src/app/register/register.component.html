@@ -9,6 +9,11 @@
         <div class="card-body">
           <h1 style="padding-top: 300px">Register</h1>
           <form #myform="ngForm" (ngSubmit)="tryRegister(myform)" class="form form-register">
+              <label for="userType">UserType</label>
+              <p>
+                  <input type="number" class="form-control" id="userType" placeholder="1" name = "userType" required ngModel>
+              </p>
+
               <label for="userName">userName</label>
               <p>
                   <input type="text" class="form-control" id="userName" placeholder="userName" name = "userName" required ngModel>
@@ -23,7 +28,7 @@
               <p>
                   <input type="password" class="form-control" id="password" placeholder="Password" name = "password" required ngModel>
               </p>
-              <button type="submit" class="btn btn-primary" value="register" (click)="tryRegister(myform)">Register</button>
+              <button type="submit" class="btn btn-primary" value="register">Register</button>
           </form>
         </div>
       </div>
