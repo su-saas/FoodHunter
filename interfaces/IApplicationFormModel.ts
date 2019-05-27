@@ -6,5 +6,5 @@ interface IApplicationFormModel extends Mongoose.Document {
     userID: number,
     status: String,
     date: Date,
-}
-export { IApplicationFormModel }
+ }
+ export {IApplicationFormModel};

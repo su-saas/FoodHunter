@@ -1,4 +1,5 @@
 import {App} from "./App";
 
 let server: any = new App().expressApp;
-server.listen(8080);
+let port = process.env.PORT || 8080;
+server.listen(port);

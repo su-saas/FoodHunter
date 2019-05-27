@@ -9,9 +9,11 @@ import {RestaurantTagListModel} from '../model/RestaurantTagListModel';
 class RestaurantTagList {
     
     public rTagList:RestaurantTagListModel;
+    private idGenerator: number;
     
     constructor() {
         this.rTagList = new RestaurantTagListModel();
+        this.idGenerator = 10;
     }
 
     public registerrTagListRoutes(router: express.Router) {
@@ -33,6 +35,8 @@ class RestaurantTagList {
 
       router.post('/rtags', (req, res) => {
         var body = req.body;
+        body.rtaglistID = this.idGenerator;
+        this.idGenerator ++;
         this.rTagList.addNewrTagList(res, body); 
       });
   

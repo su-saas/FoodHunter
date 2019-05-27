@@ -15,6 +15,10 @@ nav{
     height: 70vh;
 }
 
+.taglist{
+    pointer-events: none;
+}
+
 
 @media(max-width: 768px){
     .rowht{
@@ -30,6 +34,8 @@ nav{
     width: 100%;
     border: 2px ridge lightgray;
     border-radius: 10px;
+    margin-top: 10px;
+    margin-left: 80px;
 }
 .bg2{
     padding-bottom: 20px;
@@ -78,6 +84,11 @@ nav{
     padding: 5px 10px;
     background-color: rgb(175, 170, 170);
 }
+
+.addReview{
+    font-size: 40px;
+}
+
 
 
 

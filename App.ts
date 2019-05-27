@@ -3,8 +3,6 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 
-
-import { Router } from "express-serve-static-core";
 import { Foodie, RestaurantOwner, Admin } from "./route/User";
 import { FoodieTagList } from "./route/FoodieTagList";
 import { Tag } from "./route/Tag";
@@ -13,10 +11,17 @@ import { FavoriteList } from './route/FavoriteList';
 import { Restaurant } from './route/Restaurant';
 import { Dish } from './route/Dish';
 import { RestaurantTagList } from './route/RestaurantTagList';
-import { ApplicationFormRoute } from './route/ApplicationFormRoute';
-import { RecommendationListRoute } from './route/RecommendationListRoute';
+import { ApplicationForm } from './route/ApplicationForm';
+import { RecommendationList } from './route/RecommendationList';
 
+import { Router } from "express-serve-static-core";
 
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+}
 
 // creates and configures an ExpressJS web server.
 class App {
@@ -36,21 +41,23 @@ class App {
         this.expressApp.use(logger("dev"));
         this.expressApp.use(bodyParser.json());
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
+        this.expressApp.use(function(req, res, next) {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            next();
+        });
     }
 
     // configure API endpoints.
     private routes(): void {
         let router: Router = express.Router();
 
-        // add user routes
+        // add routes
         this.addRoutes(router);
-
+        this.expressApp.use(allowCrossDomain);
         this.expressApp.use('/', router);
-        this.expressApp.use('/app/json/', express.static(__dirname+'/app/json'));
-        this.expressApp.use('/images', express.static(__dirname+'/img'));
-        this.expressApp.use('/', express.static(__dirname+'/pages'));
-    }
-
+        this.expressApp.use('/', express.static(__dirname+'/pages', {index: 'login.html'}));
+  }    
     private addRoutes(router: express.Router): void{
         // xing
         var review = new Review();
@@ -58,9 +65,12 @@ class App {
         var favoriteList = new FavoriteList();
         favoriteList.registerRoutes(router);
         // erica
-        this.addRestaurant(router);
-        this.addMenu(router);  
-        this.addrTags(router);
+        var rest = new Restaurant();
+        rest.registerRestaurantRoutes(router);
+        var dish = new Dish();
+        dish.registerDishRoutes(router);
+        var rtaglist = new RestaurantTagList();
+        rtaglist.registerrTagListRoutes(router);
         // helena
         var foodie = new Foodie();
         foodie.registerRoutes(router);
@@ -73,31 +83,11 @@ class App {
         var foodieTagList = new FoodieTagList();
         foodieTagList.registerRoutes(router);
         // Daniel
-        var appForm = new ApplicationFormRoute();
+        var appForm = new ApplicationForm();
         appForm.registerRoutes(router);
-        var recm = new RecommendationListRoute();
+        var recm = new RecommendationList();
         recm.registerRoutes(router);
     }
-
-    /******** Restaurant ********/
-    private addRestaurant(router: express.Router): void{
-      var rest = new Restaurant();
-      rest.registerRestaurantRoutes(router);
-    }
-    
-    /******** Restaurant Dish********/
-    private addMenu(router: express.Router): void{
-      var dish = new Dish();
-      dish.registerDishRoutes(router);
-    }
-
-    /******** Restaurant Tags********/
-    private addrTags(router: express.Router): void{
-      var rtaglist = new RestaurantTagList();
-      rtaglist.registerrTagListRoutes(router);
-    }
-
-  
 
 }
 

@@ -75,18 +75,6 @@ class FoodieTagListModel {
         });
     }
 
-    public getTagListByListID(response: any, listId: number): any {
-        var query: any = this.model.findOne({tagListID: listId});
-        query.exec( (err: any, list: any) => {
-            if(err) {
-                response.send(err);
-            }
-            else{
-                response.json(list);
-            }
-        });
-    }
-
     public updateTagListByFoodieID(response: any, userId: number, tagList: any): any {
         this.model.findOneAndUpdate({userID: userId}, tagList, { new: true }, (err: any, newTagList: any) => {
             if(err) {

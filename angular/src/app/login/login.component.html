@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-sm-12 col-md-6">
+      <div class="thumbnail">
+        <img src="assets/img/restaurant.jpg" alt="...">
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <div class="card mt-5" style="margin:auto;width: 600px;padding-bottom: 50px">
+          <div class="card-body">
+            <h1 style="padding-top: 300px">LOG IN</h1>
+            <form #myform="ngForm" (ngSubmit)="tryLogin(myform)" class="form form-login">
+                <label for="userID">userID</label>
+                <p>
+                    <input type="text" class="form-control" id="userID" placeholder="userID" name = "userID" required ngModel>
+                </p>
+
+                <label for="emailAddress">Email</label>
+                <p>
+                    <input type="text" class="form-control" id="emailAddress" placeholder="Email Address" name = "emailAddress" required ngModel>
+                </p>
+
+                <label for="email">Password</label>
+                <p>
+                    <input type="password" class="form-control" id="password" placeholder="Password" name = "password" required ngModel>
+                </p>
+                <button type="submit" class="btn btn-primary" value="Log in">Log In</button>
+            </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
