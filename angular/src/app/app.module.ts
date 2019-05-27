@@ -9,12 +9,23 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
+import { CollectionComponent } from './collection/collection.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { RestaurantService } from './restaurant.service';
+import { CollectionService } from './collection.service';
+import { ReviewComponent } from './review/review.component';
+import { ReviewService } from './review.service';
+import { AddReviewComponent } from './review/addReview/addReview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CollectionComponent,
+    RestaurantComponent,
+    ReviewComponent,
+    AddReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +34,7 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     CommonModule
   ],
-  providers: [],
+  providers: [RestaurantService, CollectionService, ReviewService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
