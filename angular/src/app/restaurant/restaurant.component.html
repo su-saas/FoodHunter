@@ -1,3 +1,20 @@
-<p>
-  restaurant works!
-</p>
+<div *ngIf="detail">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+				<h1 class="text-center">{{detail.restaurantName}}&nbsp;&nbsp;
+					<a href="#"><span class="fa fa-star"></span></a>
+				</h1>
+				<hr style="background: lightgray ; width: 65%">
+				<p class="card-text">Address: {{detail.address}}</p>
+				<p class="card-text">Intro: {{detail.introductionContent}}</p>
+				<p class="card-text">Hours: {{detail.hours}}</p>
+				<a><span class="fa fa-phone"></span>&nbsp;&nbsp;{{detail.phoneNum}}</a>
+				<br><br>
+				<span class="btn btn-success disabled">tag example</span>
+			</div>
+		</div>
+	</div>
+
+	<app-review [restaurant]="detail"></app-review>
+</div>
