@@ -9,6 +9,7 @@ import { IReviewModel } from './interfaces/IReviewModel';
 	providedIn: 'root'
 })
 export class ReviewService {
+	//private url: string = 'http://localhost:8080/review';
 
 	private url: string = 'https://foodhunter.azurewebsites.net/review';
 	constructor(private http: HttpClient) { }
@@ -29,7 +30,11 @@ export class ReviewService {
 			);
 	}
 
-	add(body: any): Observable<number>{
-		return this.http.post<number>(this.url, body);
+	add(body: any){
+		let headers = new HttpHeaders();
+    	headers = headers.set("Content-Type", "application/json");
+		return this.http.post(this.url, JSON.stringify(body), {
+			headers: headers,
+		});
 	}
 }

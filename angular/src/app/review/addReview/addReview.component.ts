@@ -17,12 +17,29 @@ export class AddReviewComponent implements OnInit{
 		private reviewService: ReviewService
 	){}
 	ngOnInit(){
-		this.uID = this.route.snapshot.queryParams["uID"];
-		this.rID = this.route.snapshot.queryParams["rID"];
+		this.uID = Number(this.route.snapshot.queryParams["uID"]);
+		this.rID = Number(this.route.snapshot.queryParams["rID"]);
 	}
 
-	addNewReview(){
-
+	addNewReview(content: string){
+		let body = {
+			'userID': this.uID,
+			'restaurantID': this.rID,
+			'title': 'title',
+			'content': content,
+			'date': new Date().toLocaleString()
+		}
+		this.reviewService.add(body).subscribe(
+			(val) => {
+				//console.log("POST call successful value returned:", val, typeof(val));
+				if(val > 0){
+					this.goBackToRestaurant();
+				}
+				else{
+					console.log("fail to create");
+				}
+			}
+		);
 	}
 	goBackToRestaurant(){
 		this.router.navigateByUrl('/restaurants/'+this.rID);
