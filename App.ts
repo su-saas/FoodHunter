@@ -16,6 +16,12 @@ import { RecommendationList } from './route/RecommendationList';
 
 import { Router } from "express-serve-static-core";
 
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+}
 
 // creates and configures an ExpressJS web server.
 class App {
@@ -48,7 +54,7 @@ class App {
 
         // add routes
         this.addRoutes(router);
-
+        this.expressApp.use(allowCrossDomain);
         this.expressApp.use('/', router);
         this.expressApp.use('/', express.static(__dirname+'/pages', {index: 'login.html'}));
   }    

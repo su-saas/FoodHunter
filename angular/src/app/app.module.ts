@@ -1,9 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'; 
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+
 import { CollectionComponent } from './collection/collection.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { RestaurantService } from './restaurant.service';
@@ -16,6 +21,8 @@ import { ProfileComponent } from './profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
+    RegisterComponent,
     CollectionComponent,
     RestaurantComponent,
     ReviewComponent,
@@ -25,7 +32,9 @@ import { ProfileComponent } from './profile/profile.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    CommonModule
   ],
   providers: [RestaurantService, CollectionService, ReviewService],
   bootstrap: [AppComponent]
