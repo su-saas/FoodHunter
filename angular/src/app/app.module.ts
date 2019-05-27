@@ -11,6 +11,7 @@ import { CollectionService } from './collection.service';
 import { ReviewComponent } from './review/review.component';
 import { ReviewService } from './review.service';
 import { AddReviewComponent } from './review/addReview/addReview.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AddReviewComponent } from './review/addReview/addReview.component';
     CollectionComponent,
     RestaurantComponent,
     ReviewComponent,
-    AddReviewComponent
+    AddReviewComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
