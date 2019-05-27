@@ -9,9 +9,9 @@ import { IReviewModel } from './interfaces/IReviewModel';
 	providedIn: 'root'
 })
 export class ReviewService {
-	//private url: string = 'http://localhost:8080/review';
+	private url: string = 'http://localhost:8080/review';
 
-	private url: string = 'https://foodhunter.azurewebsites.net/review';
+	//private url: string = 'https://foodhunter.azurewebsites.net/review';
 	constructor(private http: HttpClient) { }
 
 	getByRestaurantID(rID: number): Observable<IReviewModel[]> {

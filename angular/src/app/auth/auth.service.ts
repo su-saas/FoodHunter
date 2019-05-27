@@ -12,11 +12,13 @@ import { Observable, BehaviorSubject } from  'rxjs';
 })
 export class AuthService {
   AUTH_SERVER:string = "http://localhost:8080";
+  //AUTH_SERVER:string = "https://foodhunter.azurewebsites.net"
   authSubject  =  new  BehaviorSubject(false);
 
   constructor(private httpClient: HttpClient) { }
 
   register(user : User): Observable<JwtResponse> {
+    user.userType = 1;
     return this.httpClient.post<JwtResponse>(this.AUTH_SERVER + '/foodie/', user).pipe(
       tap((res: JwtResponse ) => {
         if(res.user) {

@@ -11,8 +11,8 @@ import { IRestaurantModel } from './interfaces/IRestaurantModel';
 
 export class RestaurantService {
 
-    private url: string = 'https://foodhunter.azurewebsites.net/restaurant';
-    //private url: string = 'http://localhost:8080/restaurant';
+    //private url: string = 'https://foodhunter.azurewebsites.net/restaurant';
+    private url: string = 'http://localhost:8080/restaurant';
     constructor(private http: HttpClient) {}
     getAll():Observable<IRestaurantModel[]>{
     	return this.http.get<IRestaurantModel[]>(this.url);
