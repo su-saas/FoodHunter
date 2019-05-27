@@ -3,12 +3,14 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="review">
-				<h3 class="display-3">Reviews &nbsp;&nbsp;<a routerLink="/addreview" class='text-info'><i
-							class="fa fa-plus" aria-hidden="true"></i></a>
+				<h3 class="display-3">Reviews &nbsp;&nbsp;
+					<a [routerLink]="['/addreview']" [queryParams]='{uID: restaurant.userID, rID: restaurant.restaurantID}'>
+						<i class="fa fa-plus" aria-hidden="true"></i>
+					</a>
 				</h3>
-				<div class="panel panel-default" *ngFor="let list of lists; let i = index">	
-					<div class="panel-heading">{{i+1}}. {{list.title}} &nbsp;</div>	
-					<div class="panel-body">{{list.content}}</div>	
+				<div class="panel panel-default" *ngFor="let list of lists; let i = index">
+					<div class="panel-heading">{{i+1}}. {{list.title}} &nbsp;</div>
+					<div class="panel-body">{{list.content}}</div>
 				</div>
 			</div>
 		</div>
