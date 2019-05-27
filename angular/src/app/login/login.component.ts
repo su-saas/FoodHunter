@@ -9,7 +9,10 @@ import { AuthService } from '../auth/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService, 
+    private router: Router)
+     { }
 
   ngOnInit() {
   }
@@ -18,8 +21,8 @@ export class LoginComponent implements OnInit {
     console.log(form.value);
     this.authService.signIn(form.value).subscribe((res)=>{
       console.log("Logged in!");
-      this.router.navigateByUrl('register');
-    });    
+    });
+    this.router.navigateByUrl('/restaurants/1');
   }
 
 }
