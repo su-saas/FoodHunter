@@ -29,8 +29,8 @@ userCollection.insert(
     password: "pwdOfHelena",
     emailAddress: "helena@gmail.com",
     reviewList: [1,3],
-    tagListID: 1,
-    favoriteListID: 1
+    tagListID: 2,
+    favoriteListID: 2
 })
 
 userCollection.insert(
@@ -41,9 +41,21 @@ userCollection.insert(
     password: "pwdOfDaniel",
     emailAddress: "daniel@gmail.com",
     reviewList: [2,4],
-    tagListID: 2,
-    favoriteListID: 2
+    tagListID: 3,
+    favoriteListID: 3
 })
+
+userCollection.insert(
+    {
+        userID: 8,
+        userName: "Amy Hanks",
+        userType: 1,
+        password: "pwdOfDaniel",
+        emailAddress: "amyhanks@gmail.com",
+        reviewList: [1,3],
+        tagListID: 8,
+        favoriteListID: 8
+    })
 
 // create three restaurant owner
 userCollection.insert(
@@ -144,22 +156,22 @@ foodieTagListCollection.remove({})
 
 foodieTagListCollection.insert(
 {
-    tagListID: 1,
-    userID: 1,
-    tagList: [3],
-})
-
-foodieTagListCollection.insert(
-{
     tagListID: 2,
     userID: 2,
-    tagList: [1, 3, 4, 7],       
+    tagList: [3],
 })
 
 foodieTagListCollection.insert(
 {
     tagListID: 3,
     userID: 3,
+    tagList: [1, 3, 4, 7],       
+})
+
+foodieTagListCollection.insert(
+{
+    tagListID: 8,
+    userID: 8,
     tagList: [8, 7, 2, 4, 6, 3, 1, 5],     
 })
 
@@ -350,21 +362,21 @@ favoriteListCollection.remove({})
 
 favoriteListCollection.insert(
 {
-    favoriteListID: 1,
-    userID: 1,
+    favoriteListID: 2,
+    userID: 2,
     restaurantIDList: [1],
 })
 favoriteListCollection.insert(
 {
-    favoriteListID: 2,
-    userID: 2,
+    favoriteListID: 3,
+    userID: 3,
     restaurantIDList: [1,2],
 })
 favoriteListCollection.insert(
     {
-        favoriteListID: 3,
-        userID: 3,
-        restaurantIDList: [],
+        favoriteListID: 8,
+        userID: 8,
+        restaurantIDList: [1,2,3],
     })
 
 /************ application form **********/

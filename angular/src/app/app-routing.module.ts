@@ -4,12 +4,19 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { AddReviewComponent } from './review/addReview/addReview.component';
+import { ProfileComponent } from './profile/profile.component';
+import { CollectionComponent } from './collection/collection.component';
+import { ReviewComponent } from './review/review.component';
+
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {path: 'restaurants/:rID', component: RestaurantComponent},
-  {path: 'addreview', component: AddReviewComponent}
+  {path: 'addreview', component: AddReviewComponent},
+  {path: 'profile', component: ProfileComponent},
+  {path: 'collection', component: CollectionComponent},
+  {path: 'review', component: ReviewComponent},
 ];
 
 @NgModule({
