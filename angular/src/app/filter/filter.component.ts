@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FilterService } from '../filter.service';
 
 @Component({
   selector: 'app-filter',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
-
-  constructor() { }
+  list: any;
+  constructor(private filterService: FilterService) { }
 
   ngOnInit() {
+    this.filterService.getTags().subscribe(
+      res => this.list = res
+    );
   }
 
 }

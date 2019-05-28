@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { LoginComponent } from './login/login.component';
@@ -20,7 +20,7 @@ import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
 import { TagComponent } from './tag/tag.component';
 import { RecommendationListComponent } from './recommendation-list/recommendation-list.component';
-import { AlgorithmComponent } from './algorithm/algorithm.component';
+
 
 @NgModule({
   declarations: [
@@ -35,14 +35,14 @@ import { AlgorithmComponent } from './algorithm/algorithm.component';
     FilterComponent,
     TagComponent,
     RecommendationListComponent,
-    AlgorithmComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   providers: [RestaurantService, CollectionService, ReviewService],
   bootstrap: [AppComponent]

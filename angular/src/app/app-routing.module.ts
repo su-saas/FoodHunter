@@ -8,7 +8,7 @@ import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
 import { TagComponent } from './tag/tag.component';
 import { RecommendationListComponent } from './recommendation-list/recommendation-list.component';
-import { AlgorithmComponent } from './algorithm/algorithm.component';
+
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -18,8 +18,7 @@ const routes: Routes = [
   {path: 'search', component: SearchComponent},
   {path: 'filter', component: FilterComponent},
   {path: 'tag', component: TagComponent},
-  {path: 'recommendation-list', component: RecommendationListComponent},
-  {path: 'algorithm', component: AlgorithmComponent}
+  {path: 'recommendationList', component: RecommendationListComponent},
 ];
 
 @NgModule({
