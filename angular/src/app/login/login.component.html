@@ -11,7 +11,7 @@
             <form #myform="ngForm" (ngSubmit)="tryLogin(myform)" class="form form-login">
                 <label for="userID">userID</label>
                 <p>
-                    <input type="text" class="form-control" id="userID" placeholder="userID" name = "userID" required ngModel>
+                    <input type="text" class="form-control" id="userID" placeholder="userID" name = "userID" [(ngModel)] = 'userID'>
                 </p>
 
                 <label for="emailAddress">Email</label>

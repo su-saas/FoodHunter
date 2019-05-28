@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ProfileService } from '../profile.service';
 import { Router  , ActivatedRoute } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
+import { NumberValueAccessor } from '@angular/forms/src/directives';
 
 @Component({
   selector: 'app-profile',
@@ -9,16 +11,26 @@ import { Router  , ActivatedRoute } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   users: Object;
+  id: Number; 
 
-  constructor(private data: ProfileService, private route: ActivatedRoute) { }
+  constructor(private data: ProfileService, private route: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit() {
-      // this.data.getProfileByFoodieID(this.route.snapshot.params['ID']).subscribe(data => {
-      this.data.getProfileByFoodieID("2").subscribe(data => {
+      this.id = parseInt(this.userID);
+      this.data.getProfileByFoodieID(this.id).subscribe(data => {
+        console.log(this.userID);
+        console.log(this.id);
         this.users = data;
         console.log(this.users);
       }
     );
   }
 
+  get userID():string {
+    return this.authService.userID;
+  }
+
+  set userID(value: string) {
+    this.authService.userID = value; 
+  }
 }
