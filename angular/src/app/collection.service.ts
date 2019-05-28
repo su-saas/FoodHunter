@@ -10,7 +10,7 @@ export class CollectionService {
   private url: string = 'http://localhost:8080/restaurant';
   constructor(private http: HttpClient) { }
 
-  getCollectionByUserID(userID: string):{
+  getCollectionByUserID(userID: string){
     
   }
 

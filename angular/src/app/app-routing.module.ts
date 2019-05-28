@@ -7,16 +7,18 @@ import { AddReviewComponent } from './review/addReview/addReview.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CollectionComponent } from './collection/collection.component';
 import { ReviewComponent } from './review/review.component';
-
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  {path: 'restaurants/:rID', component: RestaurantComponent},
-  {path: 'addreview', component: AddReviewComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'collection', component: CollectionComponent},
-  {path: 'review', component: ReviewComponent},
+  { path: 'restaurants/:rID', component: RestaurantComponent },
+  { path: 'addreview', component: AddReviewComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'collection', component: CollectionComponent },
+  { path: 'review', component: ReviewComponent },
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({

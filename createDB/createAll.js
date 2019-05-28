@@ -329,6 +329,7 @@ reviewCollection.insert(
     date: "2019-02-01T01:00:00",
 })
 
+
 /************ recommendationList **********/
 db.createCollection("recommendationList")
 recommendationListCollection = db.getCollection("recommendationList")

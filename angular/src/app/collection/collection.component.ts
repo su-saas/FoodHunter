@@ -10,11 +10,11 @@ export class CollectionComponent implements OnInit {
   constructor(private data: CollectionService) { }
 
   ngOnInit() {
-    this.data.getCollectionByUserID().subscribe(data => {
-      this.user = data;
-      console.log(this.user);
-    }
-  );
+    // this.data.getCollectionByUserID().subscribe(data => {
+    //   this.user = data;
+    //   console.log(this.user);
+    // }
+  // );
   }
 
 }
