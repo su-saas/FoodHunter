@@ -1,9 +1,9 @@
 <div class="container">
     <div class="row">            
-        <div class="col-lg-3">           
+        <div class="col-lg-3">         
             <h1 class="my-4">Hi {{ users.userName }}</h1>
             <div class="list-group">
-            <a href="profile" class="list-group-item">Profile</a>
+            <a [routerLink]="['/profile']" class="list-group-item" [queryParams]='{userID: id}'>Profile</a>
             <a href="review" class="list-group-item">Reviews</a>
             <a href="collection" class="list-group-item">Collections</a>
         </div>            

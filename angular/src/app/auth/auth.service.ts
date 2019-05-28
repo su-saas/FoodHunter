@@ -11,6 +11,7 @@ import { Observable, BehaviorSubject } from  'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+  userID : string; 
   AUTH_SERVER:string = "http://localhost:8080";
   //AUTH_SERVER:string = "https://foodhunter.azurewebsites.net"
   authSubject  =  new  BehaviorSubject(false);
