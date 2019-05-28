@@ -10,21 +10,23 @@ export class CollectionService {
   private url: string = 'http://localhost:8080/restaurant';
   constructor(private http: HttpClient) { }
 
-  getCollectionByID()
-
-  getCollectionByUserID(rID: number): Observable<IRestaurantModel[]> {
-		  rID = Number(rID);
-		  return this.http.get<IRestaurantModel[]>(this.url)
-			  .pipe(
-				  map(response => {
-					  let updatedResponse = []
-					  for(var i = 0; i < response.length; i ++){
-						  if(response[i].restaurantID === rID){
-							  updatedResponse.push(response[i]);
-						}
-					}
-					return updatedResponse;
-				})
-			);
+  getCollectionByUserID(userID: string):{
+    
   }
+
+  // getCollectionByUserID(rID: number): Observable<IRestaurantModel[]> {
+	// 	  rID = Number(rID);
+	// 	  return this.http.get<IRestaurantModel[]>(this.url)
+	// 		  .pipe(
+	// 			  map(response => {
+	// 				  let updatedResponse = []
+	// 				  for(var i = 0; i < response.length; i ++){
+	// 					  if(response[i].restaurantID === rID){
+	// 						  updatedResponse.push(response[i]);
+	// 					}
+	// 				}
+	// 				return updatedResponse;
+	// 			})
+	// 		);
+  // }
 }
