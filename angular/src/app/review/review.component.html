@@ -9,7 +9,7 @@
 					</a>
 				</h3>
 				<div class="panel panel-default" *ngFor="let list of lists; let i = index">
-					<div class="panel-heading">{{i+1}}. {{list.title}} &nbsp;</div>
+					<div class="panel-heading">{{users[i]?.userName}}: {{list.title}} &nbsp;</div>
 					<div class="panel-body">{{list.content}}</div>
 				</div>
 			</div>
