@@ -16,6 +16,11 @@ import { CollectionService } from './collection.service';
 import { ReviewComponent } from './review/review.component';
 import { ReviewService } from './review.service';
 import { AddReviewComponent } from './review/addReview/addReview.component';
+import { SearchComponent } from './search/search.component';
+import { FilterComponent } from './filter/filter.component';
+import { TagComponent } from './tag/tag.component';
+import { RecommendationListComponent } from './recommendation-list/recommendation-list.component';
+import { AlgorithmComponent } from './algorithm/algorithm.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,12 @@ import { AddReviewComponent } from './review/addReview/addReview.component';
     CollectionComponent,
     RestaurantComponent,
     ReviewComponent,
-    AddReviewComponent
+    AddReviewComponent,
+    SearchComponent,
+    FilterComponent,
+    TagComponent,
+    RecommendationListComponent,
+    AlgorithmComponent
   ],
   imports: [
     BrowserModule,
