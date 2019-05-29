@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">            
         <div class="col-lg-3">           
-            <h1 class="my-4">Hi {{ user.userName }}</h1>
+            <h1 class="my-4">Hi</h1>
             <div class="list-group">
             <a href="profile" class="list-group-item">Profile</a>
             <a href="review" class="list-group-item">Reviews</a>
@@ -9,24 +9,7 @@
         </div>            
     </div>
 
-    <ul *ngIf="users">
-        <p>{{ user.userName }}</p>
-        <li *ngFor="let restaurant of users.data">
-          <p>{{ user.userName }}</p>
-          <div class="col-md-3 mb-4">
-            <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="/assets/img/login.jpg" alt=""height="400" width="250"></a>
-            <div class="card-body">
-                <h4 class="card-title">
-                <a href="#">Fries King</a>
-                </h4>
-                <h5>1740 N 61th, Seattle,98103 </h5>
-                <p class="card-text">French fries</p>
-            </div>
-            </div>
-        </div> 
-        </li>
-      </ul>
+
     <!-- /.col-lg-3 -->
     <div class="col">    
         <div class="col-md-3 mb-4">
