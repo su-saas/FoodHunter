@@ -5,22 +5,23 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
+
 export class TagSelectionService {
-  private url = 'http://localhost:8080/tag';
+  private tagUrl = 'http://localhost:8080/tag';
+  private listUrl = 'http://localhost:8080/tagList';
 
   constructor(private http: HttpClient) { }
 
-  getNumberOfTags() {
-    const result: any = this.http.get(this.url);
-    return result.length();
-  }
-
   getAllTags() {
-    return this.http.get(this.url);
+    return this.http.get(this.tagUrl);
   }
 
-  createTagPriorityList() {
-    
+  createTagPriorityList(id, list) {
+    const obj = {
+      userID: id,
+      tagList: list,
+    };
+    console.log(obj);
+    return this.http.post(`${this.listUrl}`, obj).subscribe(res => console.log('Done'));
   }
-
 }

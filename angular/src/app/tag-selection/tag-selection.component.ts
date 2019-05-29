@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TagSelectionService } from '../tag-selection.service';
 import { Router } from '@angular/router';
 
@@ -11,6 +10,7 @@ import { Router } from '@angular/router';
 export class TagSelectionComponent implements OnInit {
   private searchUrl = 'search';
   tagList: any;
+  newList = [];
 
   constructor(private tagSelectionService: TagSelectionService,
               private router: Router) {
@@ -28,9 +28,13 @@ export class TagSelectionComponent implements OnInit {
 
   onSubmit(f) {
     console.log(f.value);
-    // this.tagSelectionService.createTagPriorityList().subscribe(
-    //   res => 
-    // );
+    for (let key in f.value) {
+      var value = f.value[key];
+      var num = +value;
+      this.newList.push(num);
+    }
+    console.log(this.newList);
+    this.tagSelectionService.createTagPriorityList(10, this.newList);
     this.router.navigateByUrl(this.searchUrl);
   }
 }
