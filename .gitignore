@@ -12,5 +12,5 @@ interfaces/*.js
 package-lock.json
 
 !test/TestRestaurant.js
-!test/TestReview.js!
+!test/TestTag.js
 !createDB/createAll.js
