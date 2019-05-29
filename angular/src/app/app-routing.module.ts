@@ -6,8 +6,8 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
 import { AddReviewComponent } from './review/addReview/addReview.component';
 import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
-import { TagComponent } from './tag/tag.component';
 import { RecommendationListComponent } from './recommendation-list/recommendation-list.component';
+import { TagSelectionComponent } from './tag-selection/tag-selection.component';
 
 
 const routes: Routes = [
@@ -17,8 +17,8 @@ const routes: Routes = [
   {path: 'addreview', component: AddReviewComponent},
   {path: 'search', component: SearchComponent},
   {path: 'filter', component: FilterComponent},
-  {path: 'tag', component: TagComponent},
-  {path: 'recommendationList', component: RecommendationListComponent},
+  {path: 'tagSelection', component: TagSelectionComponent},
+  {path: 'recommendationList/:name', component: RecommendationListComponent},
 ];
 
 @NgModule({

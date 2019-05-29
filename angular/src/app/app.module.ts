@@ -18,8 +18,8 @@ import { ReviewService } from './review.service';
 import { AddReviewComponent } from './review/addReview/addReview.component';
 import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
-import { TagComponent } from './tag/tag.component';
 import { RecommendationListComponent } from './recommendation-list/recommendation-list.component';
+import { TagSelectionComponent } from './tag-selection/tag-selection.component';
 
 
 @NgModule({
@@ -33,8 +33,8 @@ import { RecommendationListComponent } from './recommendation-list/recommendatio
     AddReviewComponent,
     SearchComponent,
     FilterComponent,
-    TagComponent,
     RecommendationListComponent,
+    TagSelectionComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +42,7 @@ import { RecommendationListComponent } from './recommendation-list/recommendatio
     AppRoutingModule,
     FormsModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [RestaurantService, CollectionService, ReviewService],
   bootstrap: [AppComponent]

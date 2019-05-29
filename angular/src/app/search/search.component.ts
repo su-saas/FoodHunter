@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-search',
@@ -9,6 +7,8 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+  private recommendationUrl = 'recommendationList/';
+  private nextStationUrl: string;
 
   options = [
     {description: 'Restaurant Name'},
@@ -25,6 +25,8 @@ export class SearchComponent implements OnInit {
   onSubmit(f) {
     this.submitted = true;
     console.log(f.value);
-    this.router.navigateByUrl('/recommendationList');
+    this.nextStationUrl = this.recommendationUrl +  f.value.restaurantName;
+    console.log(this.nextStationUrl);
+    this.router.navigateByUrl(this.nextStationUrl);
   }
 }
