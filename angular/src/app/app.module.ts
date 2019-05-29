@@ -16,6 +16,9 @@ import { CollectionService } from './collection.service';
 import { ReviewComponent } from './review/review.component';
 import { ReviewService } from './review.service';
 import { AddReviewComponent } from './review/addReview/addReview.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileService } from './profile.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
 import { RecommendationListComponent } from './recommendation-list/recommendation-list.component';
@@ -25,12 +28,14 @@ import { TagSelectionComponent } from './tag-selection/tag-selection.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    CollectionComponent,
-    RestaurantComponent,
-    ReviewComponent,
-    AddReviewComponent,
+		LoginComponent,
+		RegisterComponent,
+		CollectionComponent,
+		RestaurantComponent,
+		ReviewComponent,
+		AddReviewComponent,
+		ProfileComponent,
+		NotFoundComponent,
     SearchComponent,
     FilterComponent,
     RecommendationListComponent,

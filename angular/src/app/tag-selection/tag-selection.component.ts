@@ -28,6 +28,9 @@ export class TagSelectionComponent implements OnInit {
 
   onSubmit(f) {
     console.log(f.value);
+    // this.tagSelectionService.createTagPriorityList().subscribe(
+    //   res => 
+    // );
     this.router.navigateByUrl(this.searchUrl);
   }
 }
