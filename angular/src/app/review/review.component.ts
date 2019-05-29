@@ -29,7 +29,7 @@ export class ReviewComponent implements OnInit {
 			.subscribe(reviews => {
 				for (var i = 0; i < reviews.length; i++) {
 					this.lists[i] = reviews[i];
-					this.profileService.getProfileByFoodieID(String(reviews[i].userID))
+					this.profileService.getProfileByFoodieID(reviews[i].userID)
 						.subscribe(user => {
 							this.users.push(user);
 						});

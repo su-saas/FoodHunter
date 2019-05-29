@@ -12,7 +12,8 @@ import { NumberValueAccessor } from '@angular/forms/src/directives';
 export class ProfileComponent implements OnInit {
   users: Object;
   id: Number; 
-
+  private userName: string;
+  private email: string;
   constructor(private data: ProfileService, private route: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit() {
@@ -21,6 +22,8 @@ export class ProfileComponent implements OnInit {
         console.log(this.userID);
         console.log(this.id);
         this.users = data;
+        this.userName = data.userName;
+        this.email = data.emailAddress;
         console.log(this.users);
       }
     );

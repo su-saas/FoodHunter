@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">            
         <div class="col-lg-3">         
-            <h1 class="my-4">Hi {{ users.userName }}</h1>
+            <h1 class="my-4">Hi {{ userName }}</h1>
             <div class="list-group">
             <a [routerLink]="['/profile']" class="list-group-item" [queryParams]='{userID: id}'>Profile</a>
             <a href="review" class="list-group-item">Reviews</a>
@@ -15,9 +15,9 @@
     <div class="col">     
         <div class="col-sm-4 col-md-4" style='padding: 10px; margin: 30px'></div>
         <blockquote>
-            <p>{{ users.userName }}</p>
+            <p>{{ userName }}</p>
         </blockquote>
-        <p> <i class="glyphicon glyphicon-envelope"></i> {{ users.emailAddress }}
+        <p> <i class="glyphicon glyphicon-envelope"></i> {{ email }}
         </p>
         <button type="button" class="btn btn-warning" style="float:center">Edit</button>
     </div>
