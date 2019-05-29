@@ -49,7 +49,7 @@ import { TagSelectionComponent } from './tag-selection/tag-selection.component';
     CommonModule,
     ReactiveFormsModule,
   ],
-  providers: [RestaurantService, CollectionService, ReviewService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
