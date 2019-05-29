@@ -1,3 +1,70 @@
-<p>
-  collection works!
-</p>
+<div class="container">
+    <div class="row">            
+        <div class="col-lg-3">           
+            <h1 class="my-4">Hi {{ user.userName }}</h1>
+            <div class="list-group">
+            <a href="profile" class="list-group-item">Profile</a>
+            <a href="review" class="list-group-item">Reviews</a>
+            <a href="collection" class="list-group-item">Collections</a>
+        </div>            
+    </div>
+
+    <ul *ngIf="users">
+        <p>{{ user.userName }}</p>
+        <li *ngFor="let restaurant of users.data">
+          <p>{{ user.userName }}</p>
+          <div class="col-md-3 mb-4">
+            <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="/assets/img/login.jpg" alt=""height="400" width="250"></a>
+            <div class="card-body">
+                <h4 class="card-title">
+                <a href="#">Fries King</a>
+                </h4>
+                <h5>1740 N 61th, Seattle,98103 </h5>
+                <p class="card-text">French fries</p>
+            </div>
+            </div>
+        </div> 
+        </li>
+      </ul>
+    <!-- /.col-lg-3 -->
+    <div class="col">    
+        <div class="col-md-3 mb-4">
+            <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="/assets/img/login.jpg" alt=""height="400" width="250"></a>
+            <div class="card-body">
+                <h4 class="card-title">
+                <a href="#">Fries King</a>
+                </h4>
+                <h5>1740 N 61th, Seattle,98103 </h5>
+                <p class="card-text">French fries</p>
+            </div>
+            </div>
+        </div>        
+        <div class="col-md-3 col-md-6 mb-4">
+            <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="/assets/img/login01.jpg" alt=""height="400" width="250"></a>
+            <div class="card-body">
+                <h4 class="card-title">
+                <a href="#">Super Burger</a>
+                </h4>
+                <h5>1140 N 45th, Seattle,98103</h5>
+                <p class="card-text">Burgers</p>
+            </div>
+            </div>
+        </div>        
+        <div class="col-md-3 col-md-6 mb-4">
+            <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="/assets/img/register01.jpg" alt=""height="400" width="250"></a>
+            <div class="card-body">
+                <h4 class="card-title">
+                <a href="#">Coffee</a>
+                </h4>
+                <h5>111 N 25th, Seattle,98103</h5>
+                <p class="card-text">coffee!</p>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>

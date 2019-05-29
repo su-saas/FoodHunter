@@ -22,5 +22,4 @@ export class RestaurantComponent implements OnInit {
             res => this.detail = res
         );
     }
-
 }

@@ -14,11 +14,19 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  get userID():string {
+    return this.authService.userID;
+  }
+
+  set userID(value: string) {
+    this.authService.userID = value; 
+  }
+
   tryRegister(form){
     console.log(form.value);
     this.authService.register(form.value).subscribe((res) => {
       console.log("register!");
-      this.router.navigateByUrl('login');
+      this.router.navigateByUrl('/profile');
     });
   }
 
