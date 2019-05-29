@@ -51,7 +51,7 @@ class Restaurant {
         this.Restaurant.deleteRestaurant(res, {restaurantID: id}); 
       });
 
-      router.get('/search', (req, res) => {
+      router.get('/search', (req, res) => {       
         var urlParts = url.parse(req.url, true);
         var query = urlParts.query;
         var msg = 'search for ' + query.var1;

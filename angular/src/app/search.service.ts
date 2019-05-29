@@ -1,12 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { IRestaurantModel } from './interfaces/IRestaurantModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
+  private searchKeyWordUrl = 'http://localhost:8080/search';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
+  getRestaurantByName(restaurantName): Observable<IRestaurantModel[]> {
+    let keyword = restaurantName;
+    //console.log(keyword);
+    return this.http.get<IRestaurantModel[]>(this.searchKeyWordUrl+"?restaurantName="+keyword);
+  }
 
 }
