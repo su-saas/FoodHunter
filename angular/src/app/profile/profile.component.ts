@@ -15,7 +15,6 @@ import { IFavoriteListModel } from '../interfaces/IFavoriteListModel';
 })
 export class ProfileComponent implements OnInit {
   users: Object;
-<<<<<<< HEAD
   id: Number;
   userName: string;
   email: string;
@@ -25,7 +24,15 @@ export class ProfileComponent implements OnInit {
   constructor(private data: ProfileService, private route: ActivatedRoute,
               private authService: AuthService, private collectionservice: CollectionService) { }
   ngOnInit() {
-
+    if(this.route.snapshot.queryParams['userID']){
+      console.log(this.route.snapshot.queryParams['userID'])
+      this.userID = this.route.snapshot.queryParams['userID'];
+      this.data.getProfileByFoodieID(parseInt(this.userID)).subscribe(data => {
+        this.users = data;
+        this.userName = data.userName;
+        this.email = data.emailAddress;
+      });
+    }else{
       // tslint:disable-next-line:radix
       this.id = parseInt(this.userID);
       // this.data.getProfileByFoodieID(this.id).subscribe(data => {
@@ -48,34 +55,6 @@ export class ProfileComponent implements OnInit {
           });
         });
       });
-=======
-  id: Number; 
-  private userName: string;
-  private email: string;
-  constructor(private data: ProfileService, private route: ActivatedRoute, private authService: AuthService) {}
-
-  ngOnInit() {
-      if(this.route.snapshot.queryParams['userID']){
-        console.log(this.route.snapshot.queryParams['userID'])
-        this.userID = this.route.snapshot.queryParams['userID'];
-        this.data.getProfileByFoodieID(parseInt(this.userID)).subscribe(data => {
-          this.users = data;
-          this.userName = data.userName;
-          this.email = data.emailAddress;
-        });
-      }else{
-        this.id = parseInt(this.userID);
-        this.data.getProfileByFoodieID(this.id).subscribe(data => {
-          console.log(this.userID);
-          console.log(this.id);
-          this.users = data;
-          this.userName = data.userName;
-          this.email = data.emailAddress;
-          console.log(this.users);
-        }
-      );
-    }
->>>>>>> 09ac0bd5679ac6e4356f4821a701fbbe06a9f3af
   }
 
   get userID(): string {

@@ -16,22 +16,15 @@ export class ReviewComponent implements OnInit {
 	//@Input() restaurant: IRestaurantModel;
 	lists: IReviewModel[] = [];
 	users: IFoodieModel[] = [];
-<<<<<<< HEAD
-	@Input('rID') rID: number = 0;
-	@Input('uID') uID: number = 0;
-=======
 
 	@Input('rID') rID: number = 0;
 	@Input('uID') uID: number = 0;
 
->>>>>>> 09ac0bd5679ac6e4356f4821a701fbbe06a9f3af
 	constructor(
 		private reviewService: ReviewService,
 		private profileService: ProfileService,
 		private route: ActivatedRoute
 	) { }
-<<<<<<< HEAD
-=======
 	ngOnInit() {
 		if (this.rID > 0 && this.uID > 0) {
 			this.reviewService.getByRestaurantID(this.rID)
@@ -65,6 +58,5 @@ export class ReviewComponent implements OnInit {
 			);
 		}
 	}
->>>>>>> 09ac0bd5679ac6e4356f4821a701fbbe06a9f3af
 
 }
