@@ -11,12 +11,12 @@
           <form #myform="ngForm" (ngSubmit)="tryRegister(myform)" class="form form-register">
               <label for="userType">UserType</label>
               <p>
-                  <input type="number" class="form-control" id="userType" placeholder="1" name = "userType" required ngModel>
+                  <input type="text" class="form-control" id="userType" placeholder="1" name = "userType" required ngModel>
               </p>
 
               <label for="userName">userName</label>
               <p>
-                  <input type="text" class="form-control" id="userName" placeholder="userName" name = "userName" [(ngModel)] = 'userID'>
+                  <input type="text" class="form-control" id="userName" placeholder="userName" name = "userName" required ngModel>
               </p>
 
               <label for="emailAddress">Email</label>
