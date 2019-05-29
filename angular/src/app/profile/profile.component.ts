@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
               private authService: AuthService, private collectionservice: CollectionService) { }
   ngOnInit() {
     if(this.route.snapshot.queryParams['userID']){
-      console.log(this.route.snapshot.queryParams['userID'])
+      console.log(this.route.snapshot.queryParams['userID']);
       this.userID = this.route.snapshot.queryParams['userID'];
       this.data.getProfileByFoodieID(parseInt(this.userID)).subscribe(data => {
         this.users = data;
