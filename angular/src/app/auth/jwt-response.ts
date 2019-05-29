@@ -1,6 +1,6 @@
 export interface JwtResponse {
     user: {
-        id: number,
+        userID: number,
         userName: string;
         emailAddress: string;
         access_token: string,
