@@ -4,7 +4,7 @@
             <h1 class="my-4">Hi {{ userName }}</h1>
             <div class="list-group">
             <a [routerLink]="['/profile']" class="list-group-item" [queryParams]='{userID: id}'>Profile</a>
-            <a href="review" class="list-group-item">Reviews</a>
+            <a [routerLink]="['/review']" [queryParams]='{uID: id}' class="list-group-item">Reviews</a>
             <a [routerLink]="['/collection']"class="list-group-item" [queryParams]='{userID: id}'>Collections</a>
         </div>            
     </div>
@@ -22,5 +22,6 @@
         <button type="button" class="btn btn-warning" style="float:center">Edit</button>
     </div>
 </div>
+
 <router-outlet></router-outlet>
 
