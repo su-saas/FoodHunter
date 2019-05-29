@@ -5,8 +5,12 @@
             <div class="list-group">
             <a [routerLink]="['/profile']" class="list-group-item" [queryParams]='{userID: id}'>Profile</a>
             <a [routerLink]="['/review']" [queryParams]='{uID: id}' class="list-group-item">Reviews</a>
+<<<<<<< HEAD
             <a href="collection" class="list-group-item">Collections</a>
 
+=======
+            <a [routerLink]="['/collection']"class="list-group-item" [queryParams]='{userID: id}'>Collections</a>
+>>>>>>> 09ac0bd5679ac6e4356f4821a701fbbe06a9f3af
         </div>            
     </div>
     <!-- /.col-lg-3 -->
@@ -23,5 +27,6 @@
         <button type="button" class="btn btn-warning" style="float:center">Edit</button>
     </div>
 </div>
+
 <router-outlet></router-outlet>
 

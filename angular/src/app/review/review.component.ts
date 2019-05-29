@@ -13,15 +13,58 @@ import { ProfileService } from '../profile.service';
 	styleUrls: ['./review.component.css']
 })
 export class ReviewComponent implements OnInit {
-	@Input() restaurant: IRestaurantModel;
+	//@Input() restaurant: IRestaurantModel;
 	lists: IReviewModel[] = [];
 	users: IFoodieModel[] = [];
+<<<<<<< HEAD
 	@Input('rID') rID: number = 0;
 	@Input('uID') uID: number = 0;
+=======
+
+	@Input('rID') rID: number = 0;
+	@Input('uID') uID: number = 0;
+
+>>>>>>> 09ac0bd5679ac6e4356f4821a701fbbe06a9f3af
 	constructor(
 		private reviewService: ReviewService,
 		private profileService: ProfileService,
 		private route: ActivatedRoute
 	) { }
+<<<<<<< HEAD
+=======
+	ngOnInit() {
+		if (this.rID > 0 && this.uID > 0) {
+			this.reviewService.getByRestaurantID(this.rID)
+				.subscribe(reviews => {
+					for (var i = 0; i < reviews.length; i++) {
+						this.lists[i] = reviews[i];
+						this.profileService.getProfileByFoodieID(reviews[i].userID)
+							.subscribe(user => {
+								this.users.push(user);
+							});
+					}
+				});
+		}
+		else {
+			this.route.queryParams.subscribe(
+				params => {
+					//console.log(params['uID']);
+					this.uID = Number(params['uID']);
+					this.reviewService.getByUserID(this.uID)
+					.subscribe(
+						reviews => {
+							for (var i = 0; i < reviews.length; i++) {
+								this.lists[i] = reviews[i];
+								this.profileService.getProfileByFoodieID(reviews[i].userID)
+									.subscribe(user => {
+										this.users.push(user);
+									});
+							}
+						});
+				}
+			);
+		}
+	}
+>>>>>>> 09ac0bd5679ac6e4356f4821a701fbbe06a9f3af
 
 }
