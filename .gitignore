@@ -9,7 +9,8 @@ node_modules/*
 route/*.js
 model/*.js
 interfaces/*.js
-!test/TestRestaurant.js
-!test/TestReview.js
 package-lock.json
+
+!test/TestRestaurant.js
+!test/TestReview.js!
 !createDB/createAll.js

@@ -18,17 +18,19 @@ import { ReviewService } from './review.service';
 import { AddReviewComponent } from './review/addReview/addReview.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileService } from './profile.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    CollectionComponent,
-    RestaurantComponent,
-    ReviewComponent,
-    AddReviewComponent,
-    ProfileComponent
+	declarations: [
+		AppComponent,
+		LoginComponent,
+		RegisterComponent,
+		CollectionComponent,
+		RestaurantComponent,
+		ReviewComponent,
+		AddReviewComponent,
+		ProfileComponent,
+		NotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -13,10 +13,11 @@ export class ProfileService {
 //private url: string = 'https://foodhunter.azurewebsites.net/foodie/';
   constructor(private http: HttpClient) { }
 
-  getProfileByFoodieID(index: string): Observable<IFoodieModel> {
-    console.log(index);
-    return this.http.get<IFoodieModel>(this.url +  index);
+  getProfileByFoodieID(userID: Number): Observable<IFoodieModel> {
+    console.log(userID);
+    return this.http.get<IFoodieModel>(this.url + userID);
   }
 
 
 }
+ 

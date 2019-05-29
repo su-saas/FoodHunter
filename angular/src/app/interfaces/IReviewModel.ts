@@ -1,6 +1,4 @@
-import * as Mongoose from "mongoose";
-
-interface IReviewModel extends Mongoose.Document {
+interface IReviewModel {
     reviewID: number;
     userID: number;
     restaurantID: number;
