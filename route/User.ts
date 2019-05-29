@@ -44,7 +44,12 @@ class Foodie {
         router.get("/foodie/:userID", (req, res) => {
             var userId: any = req.params.userID;
             console.log("Query single user with id: ", userId);
-            this.Foodie.getUserByID(res, userId);
+            if(isNaN(userId)){
+                console.log("it is a NaN");
+            }
+            else{
+                this.Foodie.getUserByID(res, userId);
+            }
         });
 
         // update foodie by id
