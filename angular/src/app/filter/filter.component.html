@@ -1,31 +1,31 @@
-<form class="container">
-    <div class="row">
-      <div class="col-md-5">
-        <div class="panel panel-warning">
-          <div class="panel-heading">
-            <h3 class="panel-title">Recommendation</h3>
-            <span class="pull-right clickable"><i class="glyphicon glyphicon-minus"></i></span>
-          </div>
-          <div class="panel-body" *ngIf="tags">
-            <div class="form-group" *ngFor="let tag of tags.data">
-              <h6 class="text">{{tag.tagName}}</h6>
-              <select class="form-control" id="conditionsselect1">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-              </select>
-            </div>
-            <div class="btn-group form-group" role="group" aria-label="Basic example">
-              <button type="btn" class="btn btn-warning btn-md btn-secondary" >Find Now</button>
-              <button type="btn" class="btn btn-warning btn-md btn-secondary">Reset All</button>
-            </div>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h3 class="panel-title">Recommendation</h3>
+        <span class="pull-right clickable"><i class="glyphicon glyphicon-minus"></i></span>
+      </div>
+      <form class="panel-body" #f="ngForm" novalidate>
+        <div class="col-md" *ngIf="tagList" >                     
+          <div class="form-group" *ngFor="let tag of tagList" >                           
+            <h4 class = "text">{{tag.tagName}}</h4>
+            <select class="form-control" id="conditionsselect1" name="{{tag.tagName}}" ngModel required>
+              <option *ngFor="let tag of tagList; let i = index; let each = tag">
+                  {{i+1}}
+              </option>
+            </select>
           </div>
         </div>
-      </div>
+        <div class="btn-group form-group" role="group" aria-label="Basic example">
+          <button type="submit" class="btn btn-warning btn-md btn-secondary" (submit)="onSubmit(f)" [disabled]="f.invalid">Find Now</button>
+          <button type="submit" class="btn btn-warning btn-md btn-secondary" (submit)="onReset(f)">Reset All</button>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
+</div>
+
   
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
   <!-- jQuery -->

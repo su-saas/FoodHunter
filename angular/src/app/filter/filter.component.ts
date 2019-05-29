@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterService } from '../filter.service';
+import { TagSelectionService } from '../tag-selection.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-filter',
@@ -7,13 +9,38 @@ import { FilterService } from '../filter.service';
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
-  list: any;
-  constructor(private filterService: FilterService) { }
+  private searchUrl = 'search';
+  private url = 'filter';
+  tagList: any;
+  newList = [];
 
-  ngOnInit() {
-    this.filterService.getTags().subscribe(
-      res => this.list = res
-    );
+  constructor(private tagSelectionService: TagSelectionService,
+              private router: Router) {
   }
 
+  ngOnInit() {
+      this.tagSelectionService.getAllTags().subscribe(
+        res => this.tagList = res
+      );
+  }
+
+  indexMatchValidator() {
+    // TODO
+  }
+
+  onSubmit(f) {
+    console.log(f.value);
+    for (let key in f.value) {
+      var value = f.value[key];
+      var num = +value;
+      this.newList.push(num);
+    }
+    console.log(this.newList);
+    //Algorithm service TODO
+    this.router.navigateByUrl(this.searchUrl);
+  }
+
+  onReset(f) {
+    f.form.reset('');
+  }
 }
