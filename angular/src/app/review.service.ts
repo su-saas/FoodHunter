@@ -30,6 +30,22 @@ export class ReviewService {
 			);
 	}
 
+	getByUserID(uID: number): Observable<IReviewModel[]> {
+		uID = Number(uID);
+		return this.http.get<IReviewModel[]>(this.url)
+			.pipe(
+				map(response => {
+					let updatedResponse = []
+					for(var i = 0; i < response.length; i ++){
+						if(response[i].userID === uID){
+							updatedResponse.push(response[i]);
+						}
+					}
+					return updatedResponse;
+				})
+			);
+	}
+
 	add(body: any){
 		let headers = new HttpHeaders();
     	headers = headers.set("Content-Type", "application/json");
