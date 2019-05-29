@@ -23,6 +23,7 @@ export class AuthService {
     return this.httpClient.post<JwtResponse>(this.AUTH_SERVER + '/foodie/', user).pipe(
       tap((res: JwtResponse ) => {
         if(res.user) {
+          localStorage.set("UserID", res.user.userID);
           localStorage.set("ACCESS_TOKEN", res.user.access_token);
           localStorage.set("EXPIRES_IN", res.user.expires_in);
           this.authSubject.next(true);
@@ -35,6 +36,7 @@ export class AuthService {
     return this.httpClient.get<JwtResponse>(this.AUTH_SERVER + '/foodie/'+user.userID).pipe(
       tap(async(res: JwtResponse ) => {
         if(res.user) {
+          localStorage.set("UserID", res.user.userID);
           localStorage.set("ACCESS_TOKEN", res.user.access_token);
           localStorage.set("EXPIRES_IN", res.user.expires_in);
           this.authSubject.next(true);
