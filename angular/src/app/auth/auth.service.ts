@@ -48,7 +48,9 @@ export class AuthService {
   register(user : User): Observable<User> {
     let headers = new HttpHeaders();
     headers = headers.set("Content-Type", "application/json");
-    return this.httpClient.post<User>(this.AUTH_SERVER + '/foodie', user);
+    return this.httpClient.post<User>(this.AUTH_SERVER + '/foodie', JSON.stringify(user), {
+			headers: headers,
+		});
   }
 
   signIn(user : User): Observable<User> {
