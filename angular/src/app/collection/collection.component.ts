@@ -1,63 +1,29 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { CollectionService } from '../collection.service';
 import { Subscription } from 'rxjs';
-import { MessageService } from '../message.service';
+// import { MessageService } from '../message.service';
+import { AuthService } from '../auth/auth.service';
+import { Router  , ActivatedRoute } from '@angular/router';
+import { ProfileService } from '../profile.service';
+import { RestaurantService } from '../restaurant.service';
+import { ProfileComponent } from '../profile/profile.component';
 @Component({
   selector: 'app-collection',
   templateUrl: './collection.component.html',
   styleUrls: ['./collection.component.css']
 })
-export class CollectionComponent implements OnInit, OnDestroy {
-  messages: any[] = [];
-  subscription: Subscription;
 
-  constructor(private messageService: MessageService) {
-    this.subscription = this.messageService.getMessage().subscribe(message => {
-      console.log("inside the subscription!");
-      if (message) {
-        this.messages.push(message);
-        console.log(message);
-      } else {
-        // clear messages when empty message received
-        this.messages = [];
-        console.log("no message");
-      }
-    });
-  // subscribe to profile component messages
-    // this.subscription = this.messageService.getMessage().subscribe(message => {
-    //   if (message) {
-    //     this.messages.push(message);
-    //     console.log(message);
-    //   } else {
-    //     // clear messages when empty message received
-    //     this.messages = [];
-    //   }
-    // });
-  }
+export class CollectionComponent implements OnInit {
+  // name = this.userName;
+  // emailAddress = this.email;
+  message: string;
+  profile: ProfileComponent;
+  constructor() { }
 
   ngOnInit() {
-      // subscribe to profile component messages
-      console.log('jump to collection page');
-      this.subscription = this.messageService.getMessage().subscribe(message => {
-        console.log("inside the subscription!");
-        if (message) {
-          this.messages.push(message);
-          console.log(message);
-        } else {
-          // clear messages when empty message received
-          this.messages = [];
-          console.log("no message");
-        }
-      });
-    // this.data.getCollectionByUserID().subscribe(data => {
-    //   this.user = data;
-    //   console.log(this.user);
-    // }
-  // );
+    console.log('inside the init')
+    console.log(this.profile);
+    // this.data.currentMessage.subscribe(message => this.message = message);
+    // console.log(this.message);
   }
-  ngOnDestroy() {
-    // unsubscribe to ensure no memory leaks
-    this.subscription.unsubscribe();
-  }
-
 }

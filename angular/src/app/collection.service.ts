@@ -3,16 +3,18 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { IRestaurantModel } from './interfaces/IRestaurantModel';
+import { IFavoriteListModel } from './interfaces/IFavoriteListModel';
 @Injectable({
   providedIn: 'root'
 })
 export class CollectionService {
-  private url: string = 'http://localhost:8080/restaurant';
+  private favoriateListUrl: string = 'http://localhost:8080/favoriteList/';
   constructor(private http: HttpClient) { }
 
-  /*getCollectionByUserID(userID: string):{
-    
-  }*/
+  getCollectionByID(favoriateListID): Observable<IFavoriteListModel> {
+    let fId: number = favoriateListID;
+    return this.http.get<IFavoriteListModel>(this.favoriateListUrl + favoriateListID);
+  }
 
   // getCollectionByUserID(rID: number): Observable<IRestaurantModel[]> {
 	// 	  rID = Number(rID);
