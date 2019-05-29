@@ -187,7 +187,7 @@ restaurantCollection.insert(
     {
         userID: 4,
         restaurantID: 1,
-        restaurantName: "The Pink Door",
+        restaurantName: "the pink door",
         address:"Downtown",
         phoneNum: "206-0000-0000",
         introductionContent: "Italian Restaurant",
@@ -200,7 +200,7 @@ restaurantCollection.insert(
     {
         userID: 5,
         restaurantID: 2,
-        restaurantName: "Momiji",
+        restaurantName: "momiji",
         address:"Downtown",
         phoneNum: "206-0000-0001",
         introductionContent: "Japanese Restaurant",
@@ -213,7 +213,7 @@ restaurantCollection.insert(
     {
         userID: 6,
         restaurantID: 3,
-        restaurantName: "Panwa Thai",
+        restaurantName: "panwa thai",
         address:"Downtown",
         phoneNum: "206-0000-0002",
         introductionContent: "Thai Restaurant",
