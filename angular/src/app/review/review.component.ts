@@ -6,9 +6,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { RestaurantComponent } from '../restaurant/restaurant.component';
 import { IRestaurantModel } from '../interfaces/IRestaurantModel';
 import { ProfileService } from '../profile.service';
-import { tap, flatMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { registerContentQuery } from '@angular/core/src/render3';
 
 @Component({
 	selector: 'app-review',
@@ -19,23 +16,12 @@ export class ReviewComponent implements OnInit {
 	@Input() restaurant: IRestaurantModel;
 	lists: IReviewModel[] = [];
 	users: IFoodieModel[] = [];
+	@Input('rID') rID: number = 0;
+	@Input('uID') uID: number = 0;
 	constructor(
 		private reviewService: ReviewService,
 		private profileService: ProfileService,
 		private route: ActivatedRoute
 	) { }
-	ngOnInit() {
-		this.reviewService.getByRestaurantID(this.route.snapshot.params['rID'])
-			.subscribe(reviews => {
-				for (var i = 0; i < reviews.length; i++) {
-					this.lists[i] = reviews[i];
-					this.profileService.getProfileByFoodieID(reviews[i].userID)
-						.subscribe(user => {
-							this.users.push(user);
-						});
-				}
-			});
-
-	}
 
 }
