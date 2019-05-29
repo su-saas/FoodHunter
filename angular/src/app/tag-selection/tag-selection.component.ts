@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TagSelectionService } from '../tag-selection.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tag-selection',
@@ -8,18 +8,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./tag-selection.component.css']
 })
 export class TagSelectionComponent implements OnInit {
+  private userID: number;
   private searchUrl = 'search';
   tagList: any;
   newList = [];
 
   constructor(private tagSelectionService: TagSelectionService,
-              private router: Router) {
+              private router: Router,
+              private route: ActivatedRoute,) {
   }
 
   ngOnInit() {
-      this.tagSelectionService.getAllTags().subscribe(
-        res => this.tagList = res
-      );
+    this.tagSelectionService.getAllTags().subscribe(
+      res => this.tagList = res
+    );
+    
   }
 
   indexMatchValidator() {
@@ -34,7 +37,12 @@ export class TagSelectionComponent implements OnInit {
       this.newList.push(num);
     }
     console.log(this.newList);
-    this.tagSelectionService.createTagPriorityList(10, this.newList);
+    if (this.route.snapshot.queryParams['uID']){
+      console.log(this.route.snapshot.queryParams['uID']);
+      this.userID = this.route.snapshot.queryParams['uID'];
+      console.log(this.userID);
+      this.tagSelectionService.createTagPriorityList(this.userID, this.newList);
+    }    
     this.router.navigateByUrl(this.searchUrl);
   }
 }
