@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from  './user';
 import { JwtResponse } from  './jwt-response';
 import { tap } from  'rxjs/operators';
 import { Observable, BehaviorSubject } from  'rxjs';
-
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -18,7 +18,7 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) { }
 
-  register(user : User): Observable<JwtResponse> {
+  /*register(user : User): Observable<JwtResponse> {
     user.userType = 1;
     return this.httpClient.post<JwtResponse>(this.AUTH_SERVER + '/foodie/', user).pipe(
       tap((res: JwtResponse ) => {
@@ -43,7 +43,28 @@ export class AuthService {
         }
       })
     )
-  };
+  };*/
+
+  register(user : User): Observable<User> {
+    let headers = new HttpHeaders();
+    headers = headers.set("Content-Type", "application/json");
+    return this.httpClient.post<User>(this.AUTH_SERVER + '/foodie', user);
+  }
+
+  signIn(user : User): Observable<User> {
+    return this.httpClient.get<User[]>(this.AUTH_SERVER + '/foodie/'+ user.userID)
+      .pipe(
+        map(response => {
+          let updatedResponse = null
+          for(var i = 0; i < response.length; i ++){
+            if(response[i].password === user.password){
+              updatedResponse = response[i];
+            }
+          }
+          return updatedResponse;
+        })
+      );
+    }
 
   signOut(){
     localStorage.removeItem("ACCESS_TOKEN");
