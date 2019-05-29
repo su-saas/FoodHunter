@@ -19,7 +19,6 @@ import { AddReviewComponent } from './review/addReview/addReview.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileService } from './profile.service';
 import { NotFoundComponent } from './not-found/not-found.component';
-<<<<<<< HEAD
 import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
 import { RecommendationListComponent } from './recommendation-list/recommendation-list.component';
@@ -29,12 +28,6 @@ import { TagSelectionComponent } from './tag-selection/tag-selection.component';
 @NgModule({
   declarations: [
     AppComponent,
-=======
-
-@NgModule({
-	declarations: [
-		AppComponent,
->>>>>>> master
 		LoginComponent,
 		RegisterComponent,
 		CollectionComponent,
@@ -42,15 +35,11 @@ import { TagSelectionComponent } from './tag-selection/tag-selection.component';
 		ReviewComponent,
 		AddReviewComponent,
 		ProfileComponent,
-<<<<<<< HEAD
 		NotFoundComponent,
     SearchComponent,
     FilterComponent,
     RecommendationListComponent,
     TagSelectionComponent,
-=======
-		NotFoundComponent
->>>>>>> master
   ],
   imports: [
     BrowserModule,
