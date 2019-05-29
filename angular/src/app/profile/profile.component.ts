@@ -14,16 +14,13 @@ import { IFavoriteListModel } from '../interfaces/IFavoriteListModel';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  // tslint:disable-next-line:ban-types
   users: Object;
-  // tslint:disable-next-line:ban-types
   id: Number;
   userName: string;
   email: string;
   favoriteListID: number;
   favoriateList: IFavoriteListModel;
   restaurantIDList: number[];
-  
   constructor(private data: ProfileService, private route: ActivatedRoute,
               private authService: AuthService, private collectionservice: CollectionService) { }
   ngOnInit() {
@@ -48,19 +45,10 @@ export class ProfileComponent implements OnInit {
           this.restaurantIDList.forEach(element => {
             console.log(element);
           });
-          // this.restaurantList = data.restaurantIDList;
-          // console.log(this.restaurantList);
         });
       });
   }
 
-  public getName(): string {
-    return this.userName;
-  }
-
-  public getEmail(): string {
-    return this.email;
-  }
   get userID(): string {
     return this.authService.userID;
   }
@@ -68,15 +56,4 @@ export class ProfileComponent implements OnInit {
   set userID(value: string) {
     this.authService.userID = value;
   }
-
-  // sendMessage(): void {
-  //   // send message to subscribers via observable subject
-  //   this.messageService.sendMessage('Message from Home Component to App Component!');
-  //   console.log('Message from Home Component to App Component!');
-  // }
-
-  // clearMessages(): void {
-  //     // clear messages
-  //     this.messageService.clearMessages();
-  // }
 }
