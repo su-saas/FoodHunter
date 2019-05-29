@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchService } from '../search.service';
 import { IRestaurantModel } from '../interfaces/IRestaurantModel';
-import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-search',
