@@ -16,12 +16,12 @@ export class TagSelectionService {
     return this.http.get(this.tagUrl);
   }
 
-  createTagPriorityList(id, list) {
+  updateTagPriorityList(id, list) {
     const obj = {
-      userID: id,
       tagList: list,
     };
+    let url = this.listUrl + '/' + id;
     console.log(obj);
-    return this.http.post(`${this.listUrl}`, obj).subscribe(res => console.log('Done'));
+    return this.http.put(`${url}`, obj).subscribe(res => console.log('Done'));
   }
 }
