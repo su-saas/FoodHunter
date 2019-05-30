@@ -40,20 +40,6 @@ export class ProfileComponent implements OnInit {
         this.users = data;
         this.userName = data.userName;
         this.email = data.emailAddress;
-        console.log(this.users);
-        console.log(this.userName);
-        this.favoriteListID = data.favoriteListID;
-        console.log("favoriateListID: " + this.favoriteListID);
-        console.log("type of id: " + this.favoriteListID);
-        this.collectionservice.getCollectionByID(this.favoriteListID).subscribe(data => {
-          this.favoriateList = data;
-          console.log("this collection is: ", this.favoriateList);
-          this.restaurantIDList = this.favoriateList[0].restaurantIDList;
-          console.log("restaurantList: ", this.restaurantIDList);
-          this.restaurantIDList.forEach(element => {
-            console.log(element);
-          });
-        });
       });
     }
   }
