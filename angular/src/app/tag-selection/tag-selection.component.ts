@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TagSelectionService } from '../tag-selection.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-tag-selection',
@@ -9,13 +10,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class TagSelectionComponent implements OnInit {
   private userID: number;
+  private tagListID: number;
   private searchUrl = 'search';
   tagList: any;
   newList = [];
 
   constructor(private tagSelectionService: TagSelectionService,
               private router: Router,
-              private route: ActivatedRoute,) {
+              private route: ActivatedRoute,
+              private data: ProfileService) {
   }
 
   ngOnInit() {
@@ -41,7 +44,15 @@ export class TagSelectionComponent implements OnInit {
       console.log(this.route.snapshot.queryParams['uID']);
       this.userID = this.route.snapshot.queryParams['uID'];
       console.log(this.userID);
-      this.tagSelectionService.createTagPriorityList(this.userID, this.newList);
+      this.data.getProfileByFoodieID(this.userID).subscribe(data => {
+        this.tagListID = data.tagListID;
+        if (this.tagListID !== null) {
+          this.tagSelectionService.updateTagPriorityList(this.userID, this.newList);
+        } else {
+          console.log("Already exists");
+        }
+      });
+      
     }    
     this.router.navigateByUrl(this.searchUrl);
   }
