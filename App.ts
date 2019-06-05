@@ -3,16 +3,16 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 
-import { Foodie, RestaurantOwner, Admin } from "./route/User";
-import { FoodieTagList } from "./route/FoodieTagList";
-import { Tag } from "./route/Tag";
-import { Review } from './route/Review';
-import { FavoriteList } from './route/FavoriteList';
-import { Restaurant } from './route/Restaurant';
-import { Dish } from './route/Dish';
-import { RestaurantTagList } from './route/RestaurantTagList';
-import { ApplicationForm } from './route/ApplicationForm';
-import { RecommendationList } from './route/RecommendationList';
+import { Foodie, RestaurantOwner, Admin } from "./route/UserRoute";
+import { FoodieTagList } from "./route/FoodieTagListRoute";
+import { Tag } from "./route/TagRoute";
+import { Review } from './route/ReviewRoute';
+import { FavoriteList } from './route/FavoriteListRoute';
+import { Restaurant } from './route/RestaurantRoute';
+import { Dish } from './route/DishRoute';
+import { RestaurantTagList } from './route/RestaurantTagListRoute';
+import { ApplicationForm } from './route/ApplicationFormRoute';
+import { RecommendationList } from './route/RecommendationListRoute';
 
 import { Router } from "express-serve-static-core";
 

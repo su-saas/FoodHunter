@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IReviewModel } from '../interfaces/IReviewModel';
 import { IFoodieModel } from '../interfaces/IFoodieModel';
-import { ReviewService } from '../review.service';
+import { ReviewService } from '../services/review.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RestaurantComponent } from '../restaurant/restaurant.component';
 import { IRestaurantModel } from '../interfaces/IRestaurantModel';

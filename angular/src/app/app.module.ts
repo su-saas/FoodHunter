@@ -11,10 +11,10 @@ import { RegisterComponent } from './register/register.component';
 
 import { CollectionComponent } from './collection/collection.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
-import { RestaurantService } from './restaurant.service';
+import { RestaurantService } from './services/restaurant.service';
 import { CollectionService } from './collection.service';
 import { ReviewComponent } from './review/review.component';
-import { ReviewService } from './review.service';
+import { ReviewService } from './services/review.service';
 import { AddReviewComponent } from './review/addReview/addReview.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileService } from './profile.service';
