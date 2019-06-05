@@ -16,13 +16,6 @@ import { RecommendationList } from './route/RecommendationListRoute';
 
 import { Router } from "express-serve-static-core";
 
-var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', "*");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-}
-
 // creates and configures an ExpressJS web server.
 class App {
 
@@ -54,24 +47,20 @@ class App {
 
         // add routes
         this.addRoutes(router);
-        this.expressApp.use(allowCrossDomain);
         this.expressApp.use('/', router);
         this.expressApp.use('/', express.static(__dirname+'/pages', {index: 'login.html'}));
   }    
     private addRoutes(router: express.Router): void{
-        // xing
         var review = new Review();
         review.registerRoutes(router);
         var favoriteList = new FavoriteList();
         favoriteList.registerRoutes(router);
-        // erica
         var rest = new Restaurant();
         rest.registerRestaurantRoutes(router);
         var dish = new Dish();
         dish.registerDishRoutes(router);
         var rtaglist = new RestaurantTagList();
         rtaglist.registerrTagListRoutes(router);
-        // helena
         var foodie = new Foodie();
         foodie.registerRoutes(router);
         var admin = new Admin();
@@ -82,7 +71,6 @@ class App {
         tag.registerRoutes(router);
         var foodieTagList = new FoodieTagList();
         foodieTagList.registerRoutes(router);
-        // Daniel
         var appForm = new ApplicationForm();
         appForm.registerRoutes(router);
         var recm = new RecommendationList();
