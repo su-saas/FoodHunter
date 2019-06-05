@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FilterService } from '../filter.service';
-import { TagSelectionService } from '../tag-selection.service';
+import { FilterService } from '../services/filter.service';
+import { TagSelectionService } from '../services/tag-selection.service';
 import { Router } from '@angular/router';
 
 @Component({
