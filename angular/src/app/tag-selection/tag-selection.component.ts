@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TagSelectionService } from '../tag-selection.service';
+import { TagSelectionService } from '../services/tag-selection.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../profile.service';
 
