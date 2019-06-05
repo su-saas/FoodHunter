@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map } from 'rxjs/operators';
 //import {Observable,of, from } from 'rxjs';
 import { Observable } from 'rxjs';
-import { IReviewModel } from './interfaces/IReviewModel';
+import { IReviewModel } from '../interfaces/IReviewModel';
 
 @Injectable({
 	providedIn: 'root'

@@ -13,7 +13,6 @@ export class SearchService {
 
   getRestaurantByName(restaurantName): Observable<IRestaurantModel[]> {
     let keyword = restaurantName;
-    //console.log(keyword);
     return this.http.get<IRestaurantModel[]>(this.searchKeyWordUrl+"?restaurantName="+keyword);
   }
 

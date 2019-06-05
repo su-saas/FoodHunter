@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ReviewComponent } from '../review.component';
 import { ActivatedRoute, Params, Router} from '@angular/router';
-import { ReviewService } from 'src/app/review.service';
+import { ReviewService } from '../../services/review.service';
 
 @Component({
 	selector: 'app-addreview',

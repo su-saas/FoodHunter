@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { Router  , ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../profile.service';
-import { RestaurantService } from '../restaurant.service';
+import { RestaurantService } from '../services/restaurant.service';
 import { ProfileComponent } from '../profile/profile.component';
 @Component({
   selector: 'app-collection',
