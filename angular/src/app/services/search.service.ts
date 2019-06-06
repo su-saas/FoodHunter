@@ -12,8 +12,7 @@ export class SearchService {
   constructor(private http: HttpClient) { }
 
   getRestaurantByName(restaurantName): Observable<IRestaurantModel[]> {
-    const keyword = restaurantName;
-    return this.http.get<IRestaurantModel[]>(this.searchKeyWordUrl + '?restaurantName=' + keyword);
+    return this.http.get<IRestaurantModel[]>(this.searchKeyWordUrl + "?restaurantName=" + restaurantName);
   }
 
 }
