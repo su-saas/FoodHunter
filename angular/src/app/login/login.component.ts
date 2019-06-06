@@ -9,25 +9,24 @@ import { AuthService } from '../auth/auth.service';
 })
 export class LoginComponent implements OnInit {
   constructor(
-    private authService: AuthService, 
-    private router: Router)
-     { }
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
   }
 
-  get userID():string {
+  get userID(): string {
     return this.authService.userID;
   }
 
   set userID(value: string) {
-    this.authService.userID = value; 
+    this.authService.userID = value;
   }
 
-  tryLogin(form){
+  tryLogin(form) {
     console.log(form.value);
-    this.authService.signIn(form.value).subscribe((res)=>{
-      console.log("Logged in!");
+    this.authService.signIn(form.value).subscribe((res) => {
+      console.log('Logged in!');
       this.router.navigateByUrl('/profile');
     });
   }

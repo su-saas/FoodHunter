@@ -16,7 +16,7 @@ import { ProfileComponent } from '../profile/profile.component';
 export class CollectionComponent implements OnInit {
   user: Object;
   constructor(private data: CollectionService,
-    private authService: AuthService) { }
+              private authService: AuthService) { }
 
   ngOnInit() {
     // this.data.getCollectionByUserID().subscribe(data => {
@@ -26,7 +26,7 @@ export class CollectionComponent implements OnInit {
   // );
     console.log(this.userID);
   }
-  get userID():string {
+  get userID(): string {
     return this.authService.userID;
   }
 }

@@ -1,4 +1,4 @@
-import * as Mongoose from "mongoose";
+import * as Mongoose from 'mongoose';
 
 interface IFavoriteListModel extends Mongoose.Document {
     favoriteListID: number;

@@ -30,13 +30,13 @@ export class FilterComponent implements OnInit {
 
   onSubmit(f) {
     console.log(f.value);
-    for (let key in f.value) {
-      var value = f.value[key];
-      var num = +value;
+    for (const key in f.value) {
+      const value = f.value[key];
+      const num = +value;
       this.newList.push(num);
     }
     console.log(this.newList);
-    //Algorithm service TODO
+    // Algorithm service TODO
     this.router.navigateByUrl(this.searchUrl);
   }
 

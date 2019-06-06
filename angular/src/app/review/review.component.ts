@@ -13,12 +13,12 @@ import { ProfileService } from '../profile.service';
 	styleUrls: ['./review.component.css']
 })
 export class ReviewComponent implements OnInit {
-	//@Input() restaurant: IRestaurantModel;
+	// @Input() restaurant: IRestaurantModel;
 	lists: IReviewModel[] = [];
 	users: IFoodieModel[] = [];
 
-	@Input('rID') rID: number = 0;
-	@Input('uID') uID: number = 0;
+	@Input('rID') rID = 0;
+	@Input('uID') uID = 0;
 
 	constructor(
 		private reviewService: ReviewService,
@@ -29,7 +29,7 @@ export class ReviewComponent implements OnInit {
 		if (this.rID > 0 && this.uID > 0) {
 			this.reviewService.getByRestaurantID(this.rID)
 				.subscribe(reviews => {
-					for (var i = 0; i < reviews.length; i++) {
+					for (let i = 0; i < reviews.length; i++) {
 						this.lists[i] = reviews[i];
 						this.profileService.getProfileByFoodieID(reviews[i].userID)
 							.subscribe(user => {
@@ -37,16 +37,15 @@ export class ReviewComponent implements OnInit {
 							});
 					}
 				});
-		}
-		else {
+		} else {
 			this.route.queryParams.subscribe(
 				params => {
-					console.log(params['uID']);
-					this.uID = Number(params['uID']);
+					console.log(params.uID);
+					this.uID = Number(params.uID);
 					this.reviewService.getByUserID(this.uID)
 					.subscribe(
 						reviews => {
-							for (var i = 0; i < reviews.length; i++) {
+							for (let i = 0; i < reviews.length; i++) {
 								this.lists[i] = reviews[i];
 								this.profileService.getProfileByFoodieID(reviews[i].userID)
 									.subscribe(user => {

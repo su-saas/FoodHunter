@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
 	];
 
 	constructor(private router: Router,
-		private searchService: SearchService) { }
+		           private searchService: SearchService) { }
 
 	ngOnInit() {
 		this.notFind = true;

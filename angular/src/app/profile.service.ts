@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { IUserModel } from './interfaces/IUserModel';
@@ -10,8 +10,8 @@ import { IFavoriteListModel } from './interfaces/IFavoriteListModel';
   providedIn: 'root'
 })
 export class ProfileService {
-  private foodieurl: string = 'http://localhost:8080/foodie/';
-//private url: string = 'https://foodhunter.azurewebsites.net/foodie/';
+  private foodieurl = 'http://localhost:8080/foodie/';
+// private url: string = 'https://foodhunter.azurewebsites.net/foodie/';
   constructor(private http: HttpClient) { }
 
   getProfileByFoodieID(userID: Number): Observable<IFoodieModel> {
@@ -19,4 +19,4 @@ export class ProfileService {
     return this.http.get<IFoodieModel>(this.foodieurl + userID);
   }
 }
- 
+

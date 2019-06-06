@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { map } from 'rxjs/operators';
-//import {Observable,of, from } from 'rxjs';
+// import {Observable,of, from } from 'rxjs';
 import {Observable} from 'rxjs';
 import { IRestaurantModel } from '../interfaces/IRestaurantModel';
 
@@ -11,14 +11,14 @@ import { IRestaurantModel } from '../interfaces/IRestaurantModel';
 
 export class RestaurantService {
 
-    //private url: string = 'https://foodhunter.azurewebsites.net/restaurant';
-    private url: string = 'http://localhost:8080/restaurant';
+    // private url: string = 'https://foodhunter.azurewebsites.net/restaurant';
+    private url = 'http://localhost:8080/restaurant';
     constructor(private http: HttpClient) {}
-    getAll():Observable<IRestaurantModel[]>{
+    getAll(): Observable<IRestaurantModel[]> {
     	return this.http.get<IRestaurantModel[]>(this.url);
     }
 
-    getByID(rID:number):Observable<IRestaurantModel>{
-        return this.http.get<IRestaurantModel>(this.url+"/"+rID);
+    getByID(rID: number): Observable<IRestaurantModel> {
+        return this.http.get<IRestaurantModel>(this.url + '/' + rID);
     }
 }
