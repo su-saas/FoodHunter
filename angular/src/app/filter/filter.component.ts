@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class FilterComponent implements OnInit {
   private searchUrl = 'search';
   private url = 'filter';
+  private isCollapse: boolean;
+  private clickCount: number;
   tagList: any;
   newList = [];
 
@@ -20,12 +22,24 @@ export class FilterComponent implements OnInit {
 
   ngOnInit() {
       this.tagSelectionService.getAllTags().subscribe(
-        res => this.tagList = res
-      );
+        res => {
+          this.tagList = res;
+          this.isCollapse = false;
+          this.clickCount = 0;
+        });
   }
 
   indexMatchValidator() {
     // TODO
+  }
+
+  onClick() {
+    this.clickCount++;
+    if (this.clickCount % 2 !== 0) {
+      this.isCollapse = true;
+    } else {
+      this.isCollapse = false;
+    }
   }
 
   onSubmit(f) {
