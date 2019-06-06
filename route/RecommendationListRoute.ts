@@ -33,6 +33,13 @@ class RecommendationList {
             this.recommendationList.getrecommendationListByID(res, recommendationlistID);
         });
 
+        //get by tagListid
+        router.get('/recommendationlist/tagList/:tagListID', (req, res) => {
+            var taglistID = req.params.tagListID;
+            console.log('try to get taglistID:', taglistID);
+            this.recommendationList.getrecommendationListByTagListID(res, taglistID);
+        });
+
         router.delete('/recommendationlist/:recommendationlistID', (req, res) => {         
             var recommendationlistID = req.params.recommendationlistID;
             console.log('try to delete listID:', recommendationlistID);
