@@ -14,11 +14,11 @@ export class RestaurantComponent implements OnInit {
     constructor(
         private restaurantService: RestaurantService,
         private route: ActivatedRoute
-    ) { 
+    ) {
     }
 
     ngOnInit() {
-        this.restaurantService.getByID(this.route.snapshot.params['rID']).subscribe(
+        this.restaurantService.getByID(this.route.snapshot.params.rID).subscribe(
             res => this.detail = res
         );
     }

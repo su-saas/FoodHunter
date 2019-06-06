@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { SearchService } from '../search.service';
+import { SearchService } from '../services/search.service';
 import { IRestaurantModel } from '../interfaces/IRestaurantModel';
 
 @Component({
@@ -19,14 +19,14 @@ export class SearchComponent implements OnInit {
 	];
 
 	constructor(private router: Router,
-		private searchService: SearchService) { }
+		           private searchService: SearchService) { }
 
 	ngOnInit() {
 
 	}
 
 	onSubmit(f) {
-		var name = String(f.value.restaurantName);
+		const name = String(f.value.restaurantName);
 		this.searchService.getRestaurantByName(name.toLowerCase())
 			.subscribe(res => {
 				this.restaurant = res[0];

@@ -20,7 +20,7 @@ export class TagSelectionService {
     const obj = {
       tagList: list,
     };
-    let url = this.listUrl + '/' + id;
+    const url = this.listUrl + '/' + id;
     console.log(obj);
     return this.http.put(`${url}`, obj).subscribe(res => console.log('Done'));
   }

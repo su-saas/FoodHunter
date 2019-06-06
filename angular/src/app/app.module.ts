@@ -8,16 +8,11 @@ import { CommonModule } from '@angular/common';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-
 import { CollectionComponent } from './collection/collection.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
-import { RestaurantService } from './services/restaurant.service';
-import { CollectionService } from './collection.service';
 import { ReviewComponent } from './review/review.component';
-import { ReviewService } from './services/review.service';
 import { AddReviewComponent } from './review/addReview/addReview.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ProfileService } from './profile.service';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
@@ -26,8 +21,8 @@ import { TagSelectionComponent } from './tag-selection/tag-selection.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
+	declarations: [
+		AppComponent,
 		LoginComponent,
 		RegisterComponent,
 		CollectionComponent,
@@ -35,21 +30,21 @@ import { TagSelectionComponent } from './tag-selection/tag-selection.component';
 		ReviewComponent,
 		AddReviewComponent,
 		ProfileComponent,
+		SearchComponent,
+		FilterComponent,
+		RecommendationListComponent,
+		TagSelectionComponent,
 		NotFoundComponent,
-    SearchComponent,
-    FilterComponent,
-    RecommendationListComponent,
-    TagSelectionComponent,
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    FormsModule,
-    CommonModule,
-    ReactiveFormsModule,
-  ],
-  providers: [RestaurantService,ReviewService,ProfileService],
-  bootstrap: [AppComponent]
+	],
+	imports: [
+		BrowserModule,
+		HttpClientModule,
+		AppRoutingModule,
+		FormsModule,
+		CommonModule,
+		ReactiveFormsModule,
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -24,15 +24,15 @@ export class ProfileComponent implements OnInit {
   constructor(private data: ProfileService, private route: ActivatedRoute,
               private authService: AuthService, private collectionservice: CollectionService) { }
   ngOnInit() {
-    if(this.route.snapshot.queryParams['userID']){
-      console.log(this.route.snapshot.queryParams['userID']);
-      this.userID = this.route.snapshot.queryParams['userID'];
+    if (this.route.snapshot.queryParams.userID) {
+      console.log(this.route.snapshot.queryParams.userID);
+      this.userID = this.route.snapshot.queryParams.userID;
       this.data.getProfileByFoodieID(parseInt(this.userID)).subscribe(data => {
         this.users = data;
         this.userName = data.userName;
         this.email = data.emailAddress;
       });
-    }else{
+    } else {
       // tslint:disable-next-line:radix
       this.id = parseInt(this.userID);
       // this.data.getProfileByFoodieID(this.id).subscribe(data => {

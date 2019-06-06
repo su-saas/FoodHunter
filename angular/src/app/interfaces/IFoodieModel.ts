@@ -1,4 +1,4 @@
-import { IUserModel } from "./IUserModel";
+import { IUserModel } from './IUserModel';
 
 interface IFoodieModel extends IUserModel {
     reviewList: number[];
