@@ -62,6 +62,18 @@ class RecommendationListModel {
         });
     }
 
+    //get recommendationlist by taglistid
+    //param: response, taglistId
+    public getrecommendationListByTagListID(response: any, taglistId: number) {
+        var query = this.model.findOne({ foodietaglistID: taglistId });
+        query.exec((err, recommendationlist) => {
+            if (err) {
+                response.send(err);
+            }
+            response.json(recommendationlist);
+        });
+    }
+
     //update recommendationlist
     //param: response, recommendationlistID, recommendationlist
     public updateRecommendationList(response: any, recommendationlistID: number, recommendationlist: any){

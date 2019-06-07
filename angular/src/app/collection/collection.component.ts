@@ -5,18 +5,18 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { Router  , ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../profile.service';
-import { RestaurantService } from '../restaurant.service';
+import { RestaurantService } from '../services/restaurant.service';
 import { ProfileComponent } from '../profile/profile.component';
 @Component({
   selector: 'app-collection',
   templateUrl: './collection.component.html',
-  styleUrls: ['./collection.component.css']
+  styleUrls: ['./collection.component.scss']
 })
 
 export class CollectionComponent implements OnInit {
   user: Object;
   constructor(private data: CollectionService,
-    private authService: AuthService) { }
+              private authService: AuthService) { }
 
   ngOnInit() {
     // this.data.getCollectionByUserID().subscribe(data => {
@@ -26,7 +26,7 @@ export class CollectionComponent implements OnInit {
   // );
     console.log(this.userID);
   }
-  get userID():string {
+  get userID(): string {
     return this.authService.userID;
   }
 }

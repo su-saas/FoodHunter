@@ -15,7 +15,7 @@ import { TagSelectionComponent } from './tag-selection/tag-selection.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/search', pathMatch:'full' },
+  { path: '', redirectTo: '/search', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'restaurants/:rID', component: RestaurantComponent },
@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent},
   { path: 'filter', component: FilterComponent},
   { path: 'tagSelection', component: TagSelectionComponent},
-  { path: 'recommendationList/:list', component: RecommendationListComponent},
+  { path: 'recommendationList', component: RecommendationListComponent},
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '/404' },
 ];

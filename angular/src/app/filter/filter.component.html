@@ -1,25 +1,26 @@
 
 <div class="row">
   <div class="col-md-4">
-    <div class="panel panel-warning">
+    <div class="panel">
       <div class="panel-heading">
-        <h3 class="panel-title">Recommendation</h3>
-        <span class="pull-right clickable"><i class="glyphicon glyphicon-minus"></i></span>
+        <h3 class="panel-title" (click)="onClick()">Recommendation</h3>
       </div>
-      <form class="panel-body" #f="ngForm" novalidate>
+      <form class="panel-body" *ngIf="isCollapse" #f="ngForm" novalidate>
+        <div style="padding: 5px 0px 10px 0px">
+          <h5>Please set these tags in different priority, or you won't get an accurate recommendation</h5>
+        </div>       
         <div class="col-md" *ngIf="tagList" >                     
           <div class="form-group" *ngFor="let tag of tagList" >                           
-            <h4 class = "text">{{tag.tagName}}</h4>
-            <select class="form-control" id="conditionsselect1" name="{{tag.tagName}}" ngModel required>
-              <option *ngFor="let tag of tagList; let i = index; let each = tag">
+            <h4 class = "text" style="font-weight: bold">{{tag.tagName}}</h4>
+            <select class="form-control" style="font-size: 15px" id="conditionsselect1" name="{{tag.tagName}}" ngModel required>
+              <option *ngFor="let tag of tagList; let i = index">
                   {{i+1}}
               </option>
             </select>
           </div>
         </div>
         <div class="btn-group form-group" role="group" aria-label="Basic example">
-          <button type="submit" class="btn btn-warning btn-md btn-secondary" (submit)="onSubmit(f)" [disabled]="f.invalid">Find Now</button>
-          <button type="submit" class="btn btn-warning btn-md btn-secondary" (submit)="onReset(f)">Reset All</button>
+          <button type="submit" class="btn btn-warning" (submit)="onSubmit(f)" [disabled]="f.invalid">Find Now</button>
         </div>
       </form>
     </div>
@@ -27,37 +28,4 @@
 </div>
 
   
-  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-  <!-- jQuery -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script>
-    $(document).on('click', '.panel-heading span.clickable', function (e) {
-    var $this = $(this);
-    if (!$this.hasClass('panel-collapsed')) {
-        $this.parents('.panel').find('.panel-body').slideUp();
-        $this.addClass('panel-collapsed');
-        $this.find('i').removeClass('glyphicon-minus').addClass('glyphicon-plus');
-    } else {
-        $this.parents('.panel').find('.panel-body').slideDown();
-        $this.removeClass('panel-collapsed');
-        $this.find('i').removeClass('glyphicon-plus').addClass('glyphicon-minus');
-    }
-  });
-  $(document).on('click', '.panel div.clickable', function (e) {
-    var $this = $(this);
-    if (!$this.hasClass('panel-collapsed')) {
-        $this.parents('.panel').find('.panel-body').slideUp();
-        $this.addClass('panel-collapsed');
-        $this.find('i').removeClass('glyphicon-minus').addClass('glyphicon-plus');
-    } else {
-        $this.parents('.panel').find('.panel-body').slideDown();
-        $this.removeClass('panel-collapsed');
-        $this.find('i').removeClass('glyphicon-plus').addClass('glyphicon-minus');
-    }
-  });
-  $(document).ready(function () {
-    $('.panel-heading span.clickable').click();
-    $('.panel div.clickable').click();
-  });
-  </script> -->
   

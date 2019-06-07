@@ -31,7 +31,7 @@ describe('Test restaurant list', function () {
 		expect(response).to.have.headers;
     });
 
-	it('The elements in the array have the expecte properties', function(){
+	it('The elements in the array have the expected properties', function(){
 		expect(response.body).to.satisfy(
 			function (body) {
 				for (var i = 0; i < body.length; i++) {
