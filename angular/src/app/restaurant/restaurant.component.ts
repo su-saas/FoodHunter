@@ -6,7 +6,7 @@ import { Router  , ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-restaurant',
     templateUrl: './restaurant.component.html',
-    styleUrls: ['./restaurant.component.css']
+    styleUrls: ['./restaurant.component.scss']
 })
 export class RestaurantComponent implements OnInit {
 

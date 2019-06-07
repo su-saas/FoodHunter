@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -17,11 +17,7 @@ export class TagSelectionService {
   }
 
   updateTagPriorityList(id, list) {
-    const obj = {
-      tagList: list,
-    };
     const url = this.listUrl + '/' + id;
-    console.log(obj);
-    return this.http.put(`${url}`, obj).subscribe(res => console.log('Done'));
+    return this.http.put(url, list).subscribe(res => console.log('Done'));
   }
 }

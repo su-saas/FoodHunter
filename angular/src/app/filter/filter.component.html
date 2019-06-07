@@ -6,11 +6,14 @@
         <h3 class="panel-title" (click)="onClick()">Recommendation</h3>
       </div>
       <form class="panel-body" *ngIf="isCollapse" #f="ngForm" novalidate>
+        <div>
+          <h5>Please set these tags in different priority, or you won't get an accurate recommendation</h5>
+        </div>       
         <div class="col-md" *ngIf="tagList" >                     
           <div class="form-group" *ngFor="let tag of tagList" >                           
             <h4 class = "text">{{tag.tagName}}</h4>
             <select class="form-control" id="conditionsselect1" name="{{tag.tagName}}" ngModel required>
-              <option *ngFor="let tag of tagList; let i = index; let each = tag">
+              <option *ngFor="let tag of tagList; let i = index">
                   {{i+1}}
               </option>
             </select>
@@ -18,7 +21,6 @@
         </div>
         <div class="btn-group form-group" role="group" aria-label="Basic example">
           <button type="submit" class="btn btn-warning btn-md btn-secondary" (submit)="onSubmit(f)" [disabled]="f.invalid">Find Now</button>
-          <button type="submit" class="btn btn-warning btn-md btn-secondary" (submit)="onReset(f)">Reset All</button>
         </div>
       </form>
     </div>

@@ -10,7 +10,7 @@ import { ProfileComponent } from '../profile/profile.component';
 @Component({
   selector: 'app-collection',
   templateUrl: './collection.component.html',
-  styleUrls: ['./collection.component.css']
+  styleUrls: ['./collection.component.scss']
 })
 
 export class CollectionComponent implements OnInit {

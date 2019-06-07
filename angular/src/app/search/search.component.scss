@@ -1,8 +1,7 @@
 h1 {
     font-size: 72px;
     color: #fff;
-    font-weight: 300; 
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold; 
     text-shadow: 1px 1px gray;}
     @media (max-width: 1200px) {
       h1 {
@@ -21,8 +20,8 @@ h1 {
   
   .message {
     font-size: 25px; 
+    color: white;
     font-weight: bold;
-    color: orange;
     text-shadow: 1px 1px black;
     text-align: left;
   }
@@ -82,6 +81,13 @@ h1 {
 .btn {
     font-weight: bold; 
     font-size: 20px;
+    color: white;
+    height: 50px;
+}
+
+.form-control {
+  height: 50px;
+  font-size: 20px;
 }
 
 

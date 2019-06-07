@@ -13,24 +13,24 @@
 					</div>
 					<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
 						<div class="form-row">
-							<div class="form-group col-md-3">
-								<input type="text" class="form-control input-lg" placeholder="What are you looking for?" name="restaurantName"
+							<div class="form-group col-md-5">
+								<input type="text" class="form-control" placeholder="What are you looking for?" name="restaurantName"
 									ngModel required>
 							</div>
-							<div class="form-group col-md-3">
-								<select class="form-control input-lg" style="font-size:20px" name="options" ngModel required>
+							<div class="form-group col-md-5">
+								<select class="form-control" name="options" ngModel required>
 									<option value="" disabled>Choose...</option>
 									<option *ngFor="let option of options" [ngValue]="option.description">
 										{{ option.description }}
 									</option>
 								</select>
 							</div>
-							<button class="btn btn-warning btn-lg" type="submit" [disabled]="f.invalid">Search</button>
+							<button class="btn btn-amber" type="submit" [disabled]="f.invalid">Search</button>
 						</div>		
 					</form>
 					<div class="row">
 						<div class="col-md-12">
-							<div *ngIf="submitted && notFind" class="row message">Oops! No restaurantName found! Please try another one!</div>
+							<div class="p-3 mb-2 bg-gradient-warning message" role="alert" *ngIf="submitted && notFind">Oops! No restaurantName found! Please try another one!</div>
 						</div>
 					</div>					
 				</div>

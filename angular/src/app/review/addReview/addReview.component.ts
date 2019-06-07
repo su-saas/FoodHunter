@@ -6,7 +6,7 @@ import { ReviewService } from '../../services/review.service';
 @Component({
 	selector: 'app-addreview',
 	templateUrl: './addReview.component.html',
-	styleUrls: ['./addReview.component.css']
+	styleUrls: ['./addReview.component.scss']
 })
 export class AddReviewComponent implements OnInit {
 	private rID: number;
