@@ -34,7 +34,6 @@ export class RecommendationListComponent implements OnInit {
             }
           });
       });
-    
   }
 
 }
