@@ -1,17 +1,39 @@
-<div class="row">
+<!-- <div class="row">
     <div class="col-sm-12 col-md-6">
       <div class="thumbnail">
-        <img src="assets/img/restaurant.jpg" alt="...">
+        <img src="assets/img/restaurant.jpg" alt="..." style="height:1000px">
       </div>
     </div>
     <div class="col-sm-12 col-md-6">
-      <div class="card mt-5" style="margin:auto;width: 600px;padding-bottom: 50px">
+        <form class="text-center border border-light p-5" #myform="ngForm" (ngSubmit)="tryLogin(myform)" style="margin:auto;width: 600px;padding-bottom: 50px">
+            <p class="h4 mb-4">Sign in</p>
+            <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="userID" name = "userID" [(ngModel)] = 'userID'>
+            <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" name = "password" required ngModel>
+            <div class="d-flex justify-content-around">
+                <div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                        <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                    </div>
+                </div>
+                <div>
+                    <a href="">Forgot password?</a>
+                </div>
+            </div>
+            <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+            <p>or sign in with:</p>
+
+            <a type="button" class="light-blue-text mx-2">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </form> -->
+      <!-- <div class="card mt-5" style="margin:auto;width: 600px;padding-bottom: 50px">
           <div class="card-body">
             <h1 style="padding-top: 300px">LOG IN</h1>
             <form #myform="ngForm" (ngSubmit)="tryLogin(myform)" class="form form-login">
                 <label for="userID">userID</label>
                 <p>
-                    <input type="text" class="form-control" id="userID" placeholder="userID" name = "userID" [(ngModel)] = 'userID'>
+                    <input type="text" class="form-control" id="userID" placeholder="userID" #myform="ngForm" (ngSubmit)="tryLogin(myform)">
                 </p>
 
                 <label for="email">Password</label>
@@ -21,9 +43,74 @@
                 <button type="submit" class="btn btn-primary" value="Log in">Log In</button>
             </form>
           </div>
+      </div> -->
+  <!-- </div>
+</div> -->
+<section class="slider align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="slider-title_box">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="slider-content_wrap">
+                  <h1 class="fontsize">Welcome to FoodieHunter</h1>
+                  <h3>Please login before you using it.</h3>
+                </div>
+              </div>					
+            </div>
+            <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog cascading-modal" role="document">
+                  <div class="modal-content">
+                    <div class="modal-c-tabs">
+                      <ul class="nav nav-tabs md-tabs tabs-2 orange darken-3" role="tablist">
+                        <li class="nav-item">
+                          <h4 class="nav-link active" data-toggle="tab" role="tab" style="font-weight: bold">
+                            <i class="fas fa-user mr-1 text-center"></i>Login</h4>
+                        </li>
+                        
+                      </ul>
+                      <form class="tab-content" #myform="ngForm" (ngSubmit)="tryLogin(myform)">
+                        <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+                          <div class="modal-body mb-1">
+                            <div class="md-form form-sm mb-5">
+                              <i class="fas fa-envelope prefix"></i>
+                              <input type="email" id="modalLRInput10" class="form-control form-control-sm validate" placeholder="User ID"
+                               name = "userID" style="font-size: 15px" [(ngModel)] = 'userID'>
+                              <!-- <label data-error="wrong" data-success="right" for="modalLRInput10" style="font-size: 15px">Your email</label> -->
+                            </div>
+              
+                            <div class="md-form form-sm mb-4">
+                              <i class="fas fa-lock prefix"></i>
+                              <input type="password" id="modalLRInput11" class="form-control form-control-sm validate" placeholder="Password not required" 
+                              name = "password" style="font-size: 15px" required ngModel>
+                              <!-- <label data-error="wrong" data-success="right" for="modalLRInput11" style="font-size: 15px">Your password</label> -->
+                            </div>
+                            <div class="text-center mt-2">
+                              <button class="btn_1 peach-gradient">Log in</button>
+                            </div>
+                          </div>
+                          <!--Footer-->
+                          <div class="modal-footer">
+                            <div class="options text-center text-md-right mt-1">
+                              <p>Login with?  <a href="#" class="blue-text">Google</a></p>
+                            </div>
+                            <button type="button" class="btn_1 btn-outline-deep-orange waves-effect ml-auto" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="" class="btn peach-gradient my-3" data-toggle="modal" data-target="#modalLRForm">Login</a>
+            </div>
+          </div>
+        </div>
       </div>
-  </div>
-</div>
+    </div>
+</section>
 
 
 
