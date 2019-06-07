@@ -1,137 +1,52 @@
-<!-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="styled-heading">
-                <h3>Restaurant Recommendation</h3>
-            </div>
+<section class="container text-center my-5">  
+    <h1 class="h1-responsive font-weight-bold my-5">Restaurant Recommendation</h1>
+    <div class="container" *ngIf="recommendationList" >
+      <div  *ngFor="let recommend of recommendationList">
+        <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
+          <div class="card card-cascade wider">
+              <div class="view view-cascade overlay">
+                <img  class="card-img-top" src='../../assets/img/restaurant3.jpg' alt="Card image cap">
+                <a href="#!">
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div> 
+              <div class="card-body card-body-cascade text-center">  
+                <h4 class="card-title"><strong style="font-size:20px">{{recommend.restaurantName}}</strong></h4>
+                <h5 class="blue-text pb-2"><strong>Address: {{recommend.address}}</strong></h5>
+                <p class="card-text" style="font-size:13px">{{recommend.introductionContent}}</p>  
+                <a class="px-2 fa-lg li-ic"><i class="fab fa-linkedin-in"></i></a> 
+              </div> 
+          </div>
         </div>
-    </div>
-</div> -->
-
-<!-- <div class="container" *ngIf="recommendationList" >
-  <div  *ngFor="let recommend of recommendationList">
-    <div class="card card-cascade wider">
-        <div class="view view-cascade overlay">
-          <img  class="card-img-top" src='../../assets/img/restaurant3.jpg' alt="Card image cap">
-          <a href="#!">
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div> 
-        <div class="card-body card-body-cascade text-center">  
-          <h4 class="card-title"><strong>{{recommend.restaurantName}}</strong></h4>
-          <h5 class="blue-text pb-2"><strong>{{recommend.address}}</strong></h5>
-          <p class="card-text">{{recommend.introductionContent}}</p>  
-          <a class="px-2 fa-lg li-ic"><i class="fab fa-linkedin-in"></i></a>
-
-          <a class="px-2 fa-lg tw-ic"><i class="fab fa-twitter"></i></a>
-
-          <a class="px-2 fa-lg fb-ic"><i class="fab fa-facebook-f"></i></a>  
-        </div> 
       </div>
     </div>
-  </div>  -->
+</section>
+
 
   <!-- Section: Blog v.1 -->
-<section class="container text-center my-5">
+<!-- <section class="container text-center my-5">  
+  <h2 class="h1-responsive font-weight-bold my-5">Restaurant Recommendation</h2>
+  <div class="row" *ngIf="recommendationList">
+    <div  *ngFor="let recommend of recommendationList">
+      <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
+        <div class="view overlay rounded z-depth-2 mb-4 waves-light" mdbWavesEffect>
+          <img class="img-fluid" src='../../assets/img/restaurant3.jpg' alt="Sample image">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+        <a href="#!" class="pink-text">
+        <h6 class="font-weight-bold mb-3"><i class="far fa-map pr-2"></i>Adventure</h6>
+        </a>
+        <h4 class="font-weight-bold mb-3"><strong>{{recommend.restaurantName}}</strong></h4>
+        <p>{{recommend.address}}</p>
+        <p class="dark-grey-text">{{recommend.introductionContent}}</p>
 
-<!-- Section heading -->
-<h2 class="h1-responsive font-weight-bold my-5">Recent posts</h2>
-<!-- Section description -->
-<p class="dark-grey-text w-responsive mx-auto mb-5">Duis aute irure dolor in reprehenderit in voluptate velit
-  esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-  qui officia deserunt mollit anim id est laborum.</p>
-
-<!-- Grid row -->
-<div class="row">
-
-  <!-- Grid column -->
-  <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
-
-    <!-- Featured image -->
-    <div class="view overlay rounded z-depth-2 mb-4 waves-light" mdbWavesEffect>
-      <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/81.jpg" alt="Sample image">
-      <a>
-        <div class="mask rgba-white-slight"></div>
-      </a>
+        <a mdbBtn color="pink" rounded="true" mdbWavesEffect>View detail</a>
+      </div>
     </div>
-
-    <!-- Category -->
-    <a href="#!" class="pink-text">
-      <h6 class="font-weight-bold mb-3"><i class="far fa-map pr-2"></i>Adventure</h6>
-    </a>
-    <!-- Post title -->
-    <h4 class="font-weight-bold mb-3"><strong>Title of the news</strong></h4>
-    <!-- Post data -->
-    <p>by <a class="font-weight-bold">Billy Forester</a>, 15/07/2018</p>
-    <!-- Excerpt -->
-    <p class="dark-grey-text">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit
-      quo minus id quod maxime placeat facere possimus voluptas.</p>
-    <!-- Read more button -->
-    <a mdbBtn color="pink" rounded="true" mdbWavesEffect>Read more</a>
-
   </div>
-  <!-- Grid column -->
+</section> -->
 
-  <!-- Grid column -->
-  <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
-
-    <!-- Featured image -->
-    <div class="view overlay rounded z-depth-2 mb-4 waves-light" mdbWavesEffect>
-      <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Sample image">
-      <a>
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-
-    <!-- Category -->
-    <a href="#!" class="deep-orange-text">
-      <h6 class="font-weight-bold mb-3"><i class="fas fa-graduation-cap pr-2"></i>Education</h6>
-    </a>
-    <!-- Post title -->
-    <h4 class="font-weight-bold mb-3"><strong>Title of the news</strong></h4>
-    <!-- Post data -->
-    <p>by <a class="font-weight-bold">Billy Forester</a>, 13/07/2018</p>
-    <!-- Excerpt -->
-    <p class="dark-grey-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-      voluptatum deleniti atque corrupti quos dolores.</p>
-    <!-- Read more button -->
-    <a mdbBtn color="deep-orange" rounded="true" mdbWavesEffect>Read more</a>
-
-  </div>
-  <!-- Grid column -->
-
-  <!-- Grid column -->
-  <div class="col-lg-4 col-md-6 mb-0">
-
-    <!-- Featured image -->
-    <div class="view overlay rounded z-depth-2 mb-4 waves-light" mdbWavesEffect>
-      <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/13.jpg" alt="Sample image">
-      <a>
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-
-    <!-- Category -->
-    <a href="#!" class="blue-text">
-      <h6 class="font-weight-bold mb-3"><i class="fas fa-fire pr-2"></i>Culture</h6>
-    </a>
-    <!-- Post title -->
-    <h4 class="font-weight-bold mb-3"><strong>Title of the news</strong></h4>
-    <!-- Post data -->
-    <p>by <a class="font-weight-bold">Billy Forester</a>, 11/07/2018</p>
-    <!-- Excerpt -->
-    <p class="dark-grey-text">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed
-      quia consequuntur magni dolores eos qui ratione.</p>
-    <!-- Read more button -->
-    <a mdbBtn color="info" rounded="true" mdbWavesEffect>Read more</a>
-
-  </div>
-  <!-- Grid column -->
-
-</div>
-<!-- Grid row -->
-  
-  </section>
-  <!-- Section: Blog v.1 -->
   
   
