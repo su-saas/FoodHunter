@@ -1,28 +1,23 @@
-<section class="main-block">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <div class="styled-heading">
-                    <h3>Restaurant Recommendation</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Content Area -->
-    <div class="card mb-3" style="max-width: 540px;">
-      <div class="row no-gutters">
-        <div class="col-md-4">
-          <img src="..." class="card-img" alt="...">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title"><a herf="">title</a></h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+<section class="container text-center">  
+    <h1 class="h1-responsive font-weight-bold title">Restaurant Recommendation</h1>
+    <div class="container" *ngIf="recommendationList" >
+      <div  *ngFor="let recommend of recommendationList">
+        <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
+          <div class="card card-cascade wider">
+              <div class="view view-cascade overlay">
+                <img  class="card-img-top" src='../../assets/img/restaurant3.jpg' alt="Card image cap">
+                <a href="#!">
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div> 
+              <div class="card-body card-body-cascade text-center">  
+                <h4 class="card-title"><strong style="font-size:20px">{{recommend.restaurantName}}</strong></h4>
+                <h5 class="blue-text pb-2"><strong>Address: {{recommend.address}}</strong></h5>
+                <p class="card-text" style="font-size:13px">{{recommend.introductionContent}}</p>  
+                <a class="px-2 fa-lg li-ic"><i class="fab fa-linkedin-in"></i></a> 
+              </div> 
           </div>
         </div>
       </div>
     </div>
 </section>
-

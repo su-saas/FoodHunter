@@ -5,12 +5,12 @@ import { ReviewService } from '../services/review.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RestaurantComponent } from '../restaurant/restaurant.component';
 import { IRestaurantModel } from '../interfaces/IRestaurantModel';
-import { ProfileService } from '../profile.service';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
 	selector: 'app-review',
 	templateUrl: './review.component.html',
-	styleUrls: ['./review.component.css']
+	styleUrls: ['./review.component.scss']
 })
 export class ReviewComponent implements OnInit {
 	// @Input() restaurant: IRestaurantModel;

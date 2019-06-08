@@ -6,7 +6,7 @@ import { SearchService } from '../services/search.service';
 @Component({
 	selector: 'app-search',
 	templateUrl: './search.component.html',
-	styleUrls: ['./search.component.css']
+	styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
 	private restaurantDetailUrl = 'restaurants/';
@@ -33,6 +33,7 @@ export class SearchComponent implements OnInit {
 		console.log(name);
 		this.searchService.getRestaurantByName(name)
 			.subscribe(res => {
+				this.submitted = true;
 				if (res.length > 0) {
 					this.notFind = false;
 					this.restaurant = res[0];

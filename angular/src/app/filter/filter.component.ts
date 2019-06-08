@@ -6,11 +6,11 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.css']
+  styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
-  private searchUrl = 'search';
-  private url = 'filter';
+  // private searchUrl = 'search';
+  // private url = 'filter';
   private isCollapse: boolean;
   private clickCount: number;
   tagList: any;
@@ -29,10 +29,6 @@ export class FilterComponent implements OnInit {
         });
   }
 
-  indexMatchValidator() {
-    // TODO
-  }
-
   onClick() {
     this.clickCount++;
     if (this.clickCount % 2 !== 0) {
@@ -44,6 +40,7 @@ export class FilterComponent implements OnInit {
 
   onSubmit(f) {
     console.log(f.value);
+    // tslint:disable-next-line:forin
     for (const key in f.value) {
       const value = f.value[key];
       const num = +value;
@@ -51,10 +48,6 @@ export class FilterComponent implements OnInit {
     }
     console.log(this.newList);
     // Algorithm service TODO
-    this.router.navigateByUrl(this.searchUrl);
-  }
-
-  onReset(f) {
-    f.form.reset('');
+    // this.router.navigateByUrl(this.searchUrl);
   }
 }

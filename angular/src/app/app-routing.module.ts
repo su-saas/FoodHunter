@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent},
   { path: 'filter', component: FilterComponent},
   { path: 'tagSelection', component: TagSelectionComponent},
-  { path: 'recommendationList/:list', component: RecommendationListComponent},
+  { path: 'recommendationList', component: RecommendationListComponent},
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '/404' },
 ];

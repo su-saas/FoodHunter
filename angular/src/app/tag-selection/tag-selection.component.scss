@@ -1,0 +1,49 @@
+h1 {
+    font-size: 50px;
+    font-weight: bold; 
+    color: white;
+    text-shadow: 1px 1px gray;}
+    @media (max-width: 1200px) {
+      h1 {
+        font-size: 52px; } }
+    @media (max-width: 992px) {
+      h1 {
+        font-size: 40px; } }
+  
+  h3 {
+    font-size: 20px; 
+    font-weight: bold;
+    color: white;}
+    @media (max-width: 992px) {
+      h3 {
+        font-size: 30px; } }
+
+.form-group {
+    width: 300px;
+    height: 200px;
+}
+
+.slider {
+    background: url('../../assets/img/tagSelection.png') no-repeat;
+    background-size: cover;
+    min-height: 650px;}
+    @media (max-width: 992px) {
+        .slider {
+          min-height: 700px; } }
+
+.container {
+    padding: 50px 0px 0px 0px;
+}
+
+.tagStyle {
+    color: rgb(109, 97, 97); 
+    font-size:20px; 
+    font-weight: bold;
+}
+
+.btn {
+    font-weight: bold; 
+    font-size: 20px;
+    color: white;
+    height: 50px;
+}

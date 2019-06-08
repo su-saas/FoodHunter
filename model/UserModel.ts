@@ -126,9 +126,6 @@ class FoodieModel extends UserModel {
                     type: Number,
                     required: true,
                 },
-                reviewList: {
-                    type: [Number],
-                },
                 tagListID: {
                     type: Number,
                 },
@@ -138,7 +135,7 @@ class FoodieModel extends UserModel {
             }, {collection: "user"}
         );
         this.schema.index({userID: 1}, {password: null}, {emailAddress: null},
-             {reviewList: null}, {unique: true});
+             {unique: true});
     }
 
     public createModel(): void {

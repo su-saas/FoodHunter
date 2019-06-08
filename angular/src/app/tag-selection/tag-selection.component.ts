@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { TagSelectionService } from '../services/tag-selection.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ProfileService } from '../profile.service';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-tag-selection',
   templateUrl: './tag-selection.component.html',
-  styleUrls: ['./tag-selection.component.css']
+  styleUrls: ['./tag-selection.component.scss']
 })
 export class TagSelectionComponent implements OnInit {
-  private userID: number;
+  private userID: number = 2;
   private tagListID: number;
   private searchUrl = 'search';
   tagList: any;
@@ -40,10 +40,10 @@ export class TagSelectionComponent implements OnInit {
       this.newList.push(num);
     }
     console.log(this.newList);
-    if (this.route.snapshot.queryParams.uID) {
-      console.log(this.route.snapshot.queryParams.uID);
-      this.userID = this.route.snapshot.queryParams.uID;
-      console.log(this.userID);
+    // if (this.route.snapshot.queryParams.uID) {
+    //   console.log(this.route.snapshot.queryParams.uID);
+    //   this.userID = this.route.snapshot.queryParams.uID;
+    //   console.log(this.userID);
       this.data.getProfileByFoodieID(this.userID).subscribe(data => {
         this.tagListID = data.tagListID;
         if (this.tagListID !== null) {
@@ -53,7 +53,7 @@ export class TagSelectionComponent implements OnInit {
         }
       });
 
-    }
+    //}
     this.router.navigateByUrl(this.searchUrl);
-  }
+    }
 }
