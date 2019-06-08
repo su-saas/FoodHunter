@@ -16,7 +16,6 @@ userCollection.insert(
     userType: 1,
     password: null,
     emailAddress: null,
-    reviewList: null,
     tagListID: null,
     favoriteListID: null
 })
@@ -28,7 +27,6 @@ userCollection.insert(
     userType: 1,
     password: "pwdOfHelena",
     emailAddress: "helena@gmail.com",
-    reviewList: [1,3],
     tagListID: 2,
     favoriteListID: 2
 })
@@ -40,7 +38,6 @@ userCollection.insert(
     userType: 1,
     password: "pwdOfDaniel",
     emailAddress: "daniel@gmail.com",
-    reviewList: [2,4],
     tagListID: 3,
     favoriteListID: 3
 })
@@ -52,7 +49,6 @@ userCollection.insert(
         userType: 1,
         password: "pwdOfDaniel",
         emailAddress: "amyhanks@gmail.com",
-        reviewList: [1,3],
         tagListID: 8,
         favoriteListID: 8
     })

@@ -4,12 +4,14 @@ var chaiHttp = require('chai-http')
 var expect = chai.expect;
 chai.use(chaiHttp);
 
-describe('Test Review Result', function(){
+var addr = "http://foodhunter.azurewebsites.net";
+
+describe('Test tag list', function(){
     var response;
     var responseBody;
 		 
     before(function (done) {
-        chai.request("http://localhost:8080")
+        chai.request(addr)
 			.get("/tag/1")
 			.end(function (err, res) {
                 response = res;

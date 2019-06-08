@@ -8,13 +8,15 @@ var expect = chai.expect;
 var http = require('http');
 chai.use(chaiHttp);
 
+var addr = "http://foodhunter.azurewebsites.net";
+
 describe('Test restaurant list', function () {
 
 	var requestResult;
 	var response;
 		 
     before(function (done) {
-        chai.request("http://localhost:8080")
+        chai.request(addr)
 			.get("/restaurant")
 			.end(function (err, res) {
 				requestResult = res.body;
