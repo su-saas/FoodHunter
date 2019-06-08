@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     if (this.route.snapshot.queryParams.userID) {
       console.log(this.route.snapshot.queryParams.userID);
-      this.userID = this.route.snapshot.queryParams.userID;
+      //this.userID = this.route.snapshot.queryParams.userID;
       // this.data.getProfileByFoodieID(parseInt(this.userID)).subscribe(data => {
       this.data.getProfileByFoodieID(3).subscribe(data => {
         this.users = data;
