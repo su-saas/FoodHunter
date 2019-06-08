@@ -1,15 +1,18 @@
-<div class="container">
-	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<div class="form-group">
-				<label>Review:</label>
-				<textarea class="form-control rounded-0" rows="10" #content></textarea>
-			</div>
-			
-			<div>
-				<button class="btn btn-primary" (click)="addNewReview(content.value)">Save</button>&nbsp;
-				<button type="button" class="btn btn-warning" (click)="goBackToRestaurant()">Cancel</button>
-			</div>
-		</div>
-	</div>
-</div>
+<body class="profile-page">        
+		<div class="page-header" data-parallax="true" style="background: url('../../assets/img/review.jpg') no-repeat; height: 50vh;
+		background-size: cover; margin: 0; padding: 0; border: 0; display: flex; align-items: center;"></div>
+			<div class="main main-raised">
+				<div class="profile-content">
+					<div class="container">
+						<div class="form-group">
+							<h3 class="title">Review</h3>>
+							<textarea class="form-control rounded-0" style="font-size: 20px" rows="5" #content></textarea>
+						</div>
+						<div class="btn_2">
+							<button class="btn peach-gradient btn_1" (click)="addNewReview(content.value)">Save</button>&nbsp;
+							<button type="button" class="btn purple-gradient btn_1" (click)="goBackToRestaurant()">Cancel</button>
+						</div>
+					</div>                  
+				</div>  
+			</div>                 
+	</body> 
