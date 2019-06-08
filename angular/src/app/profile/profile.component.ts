@@ -68,12 +68,15 @@ export class ProfileComponent implements OnInit {
                 }
                 console.log(this.tagPriList);
             });
-          });
+        });
       });
+    }
+  }
+
 
 
     // }
-  }
+}
 
   // get userID(): string {
   //   return this.authService.userID;
@@ -82,4 +85,4 @@ export class ProfileComponent implements OnInit {
   // set userID(value: string) {
   //   this.authService.userID = value;
   // }
-}
+
