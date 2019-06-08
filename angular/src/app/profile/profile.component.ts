@@ -27,7 +27,8 @@ export class ProfileComponent implements OnInit {
     if (this.route.snapshot.queryParams.userID) {
       console.log(this.route.snapshot.queryParams.userID);
       this.userID = this.route.snapshot.queryParams.userID;
-      this.data.getProfileByFoodieID(parseInt(this.userID)).subscribe(data => {
+      // this.data.getProfileByFoodieID(parseInt(this.userID)).subscribe(data => {
+      this.data.getProfileByFoodieID(2).subscribe(data => {
         this.users = data;
         this.userName = data.userName;
         this.email = data.emailAddress;
@@ -36,7 +37,8 @@ export class ProfileComponent implements OnInit {
       // tslint:disable-next-line:radix
       this.id = parseInt(this.userID);
       // this.data.getProfileByFoodieID(this.id).subscribe(data => {
-      this.data.getProfileByFoodieID(this.id).subscribe(data => {
+      // this.data.getProfileByFoodieID(this.id).subscribe(data => {
+      this.data.getProfileByFoodieID(2).subscribe(data => {
         this.users = data;
         this.userName = data.userName;
         this.email = data.emailAddress;
