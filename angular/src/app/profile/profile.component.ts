@@ -1,11 +1,11 @@
 import { Component, OnInit, Input} from '@angular/core';
-import { ProfileService } from '../profile.service';
+import { ProfileService } from '../services/profile.service';
 import { Router  , ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { NumberValueAccessor } from '@angular/forms/src/directives';
 // import { MessageService } from '../message.service';
 import { Observable } from 'rxjs';
-import { CollectionService } from '../collection.service';
+import { CollectionService } from '../services/collection.service';
 import { type } from 'os';
 import { IFavoriteListModel } from '../interfaces/IFavoriteListModel';
 import { RecommendationListService } from '../services/recommendation-list.service';

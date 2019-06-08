@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TagSelectionService } from '../services/tag-selection.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ProfileService } from '../profile.service';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-tag-selection',
@@ -54,6 +54,6 @@ export class TagSelectionComponent implements OnInit {
       });
 
     //}
-    this.router.navigateByUrl(this.searchUrl);
+    //this.router.navigateByUrl(this.searchUrl);
     }
 }

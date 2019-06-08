@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { IRestaurantModel } from './interfaces/IRestaurantModel';
-import { IFavoriteListModel } from './interfaces/IFavoriteListModel';
+import { IRestaurantModel } from '../interfaces/IRestaurantModel';
+import { IFavoriteListModel } from '../interfaces/IFavoriteListModel';
 @Injectable({
   providedIn: 'root'
 })

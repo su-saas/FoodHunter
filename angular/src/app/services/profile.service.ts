@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { IUserModel } from './interfaces/IUserModel';
-import { IFoodieModel } from './interfaces/IFoodieModel';
-import { IFavoriteListModel } from './interfaces/IFavoriteListModel';
-import { IFoodieTagListModel } from './interfaces/IFoodieTagListModel';
+import { IUserModel } from '../interfaces/IUserModel';
+import { IFoodieModel } from '../interfaces/IFoodieModel';
+import { IFavoriteListModel } from '../interfaces/IFavoriteListModel';
+import { IFoodieTagListModel } from '../interfaces/IFoodieTagListModel';
 
 @Injectable({
   providedIn: 'root'

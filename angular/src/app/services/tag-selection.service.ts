@@ -17,7 +17,10 @@ export class TagSelectionService {
   }
 
   updateTagPriorityList(id, list) {
+    const obj = {
+      tagList: list,
+    };
     const url = this.listUrl + '/' + id;
-    return this.http.put(url, list).subscribe(res => console.log('Done'));
+    return this.http.put(`${url}`, obj).subscribe(res => console.log('Done'));
   }
 }

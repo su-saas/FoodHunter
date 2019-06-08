@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { CollectionService } from '../collection.service';
+import { CollectionService } from '../services/collection.service';
 import { Subscription } from 'rxjs';
 // import { MessageService } from '../message.service';
 import { AuthService } from '../auth/auth.service';
 import { Router  , ActivatedRoute } from '@angular/router';
-import { ProfileService } from '../profile.service';
+import { ProfileService } from '../services/profile.service';
 import { RestaurantService } from '../services/restaurant.service';
 import { ProfileComponent } from '../profile/profile.component';
 @Component({

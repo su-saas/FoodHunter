@@ -14,13 +14,11 @@ import { IRecommendationListModel } from '../interfaces/IRecommendationListModel
 class RecommendationList {
 
     public recommendationList: RecommendationListModel;
-    public restaurantTagList: RestaurantTagListModel;
     private idGenerator: number;
 
     //Run configuration methods on the Express instance.
     constructor() {
         this.recommendationList = new RecommendationListModel();
-        this.restaurantTagList = new RestaurantTagListModel();
         this.idGenerator = 10;
     }
 
