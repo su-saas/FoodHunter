@@ -4,7 +4,7 @@ db/*
 .vscode/*
 node_modules/*
 *.sh
-
+angular/node_modules/*
 *.js
 route/*.js
 model/*.js
