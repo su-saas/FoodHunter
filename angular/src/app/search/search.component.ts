@@ -28,7 +28,12 @@ export class SearchComponent implements OnInit {
 	}
 
 	onSubmit(f) {
+<<<<<<< HEAD
 		var name = String(f.value.restaurantName);
+=======
+		this.submitted = true;
+		var name = String(f.value.restaurantName).toLowerCase();
+>>>>>>> a701cf5c41540172148fc95606676132d2a666ba
 		console.log(name);
 		this.searchService.getRestaurantByName(name)
 			.subscribe(res => {
