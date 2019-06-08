@@ -1,31 +1,3 @@
-<!-- <div class="container">
-    <div class="row">            
-        <div class="col-lg-3">         
-            <h1 class="my-4">Hi {{ userName }}</h1>
-            <div class="list-group">
-            <a [routerLink]="['/profile']" class="list-group-item" [queryParams]='{userID: id}'>Profile</a>
-            <a [routerLink]="['/review']" [queryParams]='{uID: id}' class="list-group-item">Reviews</a>
-            <a [routerLink]="['/tagSelection']" [queryParams]='{uID: id}'class="list-group-item">Tag Selection </a> -->
-            <!-- <a [routerLink]="['/collection']"class="list-group-item" [queryParams]='{userID: id}'>Collections</a> -->
-        <!-- </div>            
-    </div> -->
-    <!-- /.col-lg-3 -->
-    <!-- <div class="col-sm-4 col-md-4">    
-            <img src="assets/img/profile.png"alt=""height="300" width="350" style='padding: 20px; margin:20px;'>
-    </div>
-    <div class="col">     
-        <div class="col-sm-4 col-md-4" style='padding: 10px; margin: 30px'></div>
-        <blockquote>
-            <p>{{ userName }}</p>
-        </blockquote>
-        <p> <i class="glyphicon glyphicon-envelope"></i> {{ email }}
-        </p>
-        <button type="button" class="btn peach-gradient" style="float:center">Edit</button>
-    </div>
-</div> -->
-
-<router-outlet></router-outlet>
-
 <body class="profile-page">        
     <div class="page-header" data-parallax="true"></div>
         <div class="main main-raised">
@@ -85,5 +57,7 @@
                 </div>                  
             </div>                   
     </div>
-</body>    
+</body> 
+
+<router-outlet></router-outlet>
 
