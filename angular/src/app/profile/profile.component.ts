@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 import { CollectionService } from '../collection.service';
 import { type } from 'os';
 import { IFavoriteListModel } from '../interfaces/IFavoriteListModel';
+import { RecommendationListService } from '../services/recommendation-list.service';
+import { TagSelectionService } from '../services/tag-selection.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -20,35 +22,62 @@ export class ProfileComponent implements OnInit {
   email: string;
   favoriteListID: number;
   favoriateList: IFavoriteListModel;
-  restaurantIDList: number[];
-  constructor(private data: ProfileService, private route: ActivatedRoute,
-              private authService: AuthService, private collectionservice: CollectionService) { }
+  restaurantIDList: number[] = [];
+  level: number = 0;
+  tagList: any;
+  priorityList: number[] = [];
+  tagPriList: string[] = [];
+  
+  constructor(private data: ProfileService,
+              private route: ActivatedRoute,
+              private authService: AuthService,
+              private collectionservice: CollectionService,
+              private recommendationListService: RecommendationListService,
+              private tagSelectionService: TagSelectionService) { }
+
   ngOnInit() {
-    if (this.route.snapshot.queryParams.userID) {
-      console.log(this.route.snapshot.queryParams.userID);
-      this.userID = this.route.snapshot.queryParams.userID;
-      this.data.getProfileByFoodieID(parseInt(this.userID)).subscribe(data => {
-        this.users = data;
-        this.userName = data.userName;
-        this.email = data.emailAddress;
-      });
-    } else {
+    // if (this.route.snapshot.queryParams.userID) {
+      // console.log(this.route.snapshot.queryParams.userID);
+      //this.userID = this.route.snapshot.queryParams.userID;
+      // this.data.getProfileByFoodieID(2).subscribe(data => {
+      //   this.users = data;
+      //   this.userName = data.userName;
+      //   this.email = data.emailAddress;
+      // });
+    // } else {
       // tslint:disable-next-line:radix
-      this.id = parseInt(this.userID);
+      //this.id = parseInt(this.userID);
       // this.data.getProfileByFoodieID(this.id).subscribe(data => {
-      this.data.getProfileByFoodieID(this.id).subscribe(data => {
+      this.data.getProfileByFoodieID(8).subscribe(data => {
         this.users = data;
         this.userName = data.userName;
         this.email = data.emailAddress;
+        this.level = data.reviewList.length / 2;
+        this.tagSelectionService.getAllTags().subscribe(
+          res => {
+            this.tagList = res;
+            this.data.getFoodieTagListByFoodieID(8).subscribe(
+              response => {
+                this.priorityList = response.tagList;
+                for (let i = 0; i < this.tagList.length; i++) {
+                  let message: string = this.tagList[i]['tagName'] + ": " + this.priorityList[i].toString();
+                  console.log(message);
+                  this.tagPriList.push(message);
+                }
+                console.log(this.tagPriList);
+            });
+          });
       });
-    }
+
+
+    // }
   }
 
-  get userID(): string {
-    return this.authService.userID;
-  }
+  // get userID(): string {
+  //   return this.authService.userID;
+  // }
 
-  set userID(value: string) {
-    this.authService.userID = value;
-  }
+  // set userID(value: string) {
+  //   this.authService.userID = value;
+  // }
 }

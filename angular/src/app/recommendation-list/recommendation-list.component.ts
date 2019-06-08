@@ -11,7 +11,7 @@ import { RestaurantService } from '../services/restaurant.service';
 export class RecommendationListComponent implements OnInit {
   private restaurantIdList: number[];
   private recommendationList: IRestaurantModel[] = [];
-  private userId: number = 2;
+  private userId: number = 3;
   constructor(private recommendationListService: RecommendationListService,
               private restaurantService: RestaurantService) { }
 
