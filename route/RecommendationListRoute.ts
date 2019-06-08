@@ -7,6 +7,8 @@ import * as url from 'url';
 import * as bodyParser from 'body-parser';
 
 import { RecommendationListModel } from '../model/RecommendationListModel';
+import { RestaurantTagListModel } from '../model/RestaurantTagListModel';
+import { IRecommendationListModel } from '../interfaces/IRecommendationListModel';
 
 // Creates and configures an ExpressJS web server.
 class RecommendationList {
@@ -39,6 +41,8 @@ class RecommendationList {
             console.log('try to get taglistID:', taglistID);
             this.recommendationList.getrecommendationListByTagListID(res, taglistID);
         });
+
+        // get by 
 
         router.delete('/recommendationlist/:recommendationlistID', (req, res) => {         
             var recommendationlistID = req.params.recommendationlistID;

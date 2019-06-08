@@ -54,6 +54,6 @@ export class TagSelectionComponent implements OnInit {
       });
 
     //}
-    this.router.navigateByUrl(this.searchUrl);
+    //this.router.navigateByUrl(this.searchUrl);
     }
 }

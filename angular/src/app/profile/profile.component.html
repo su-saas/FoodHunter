@@ -1,28 +1,63 @@
-<div class="container">
-    <div class="row">            
-        <div class="col-lg-3">         
-            <h1 class="my-4">Hi {{ userName }}</h1>
-            <div class="list-group">
-            <a [routerLink]="['/profile']" class="list-group-item" [queryParams]='{userID: id}'>Profile</a>
-            <a [routerLink]="['/review']" [queryParams]='{uID: 3}' class="list-group-item">Reviews</a>
-            <a [routerLink]="['/tagSelection']" [queryParams]='{uID: 3}'class="list-group-item">Tag Selection </a>
-            <a [routerLink]="['/collection']"class="list-group-item" [queryParams]='{userID: id}'>Collections</a>
-        </div>            
+<body class="profile-page">        
+    <div class="page-header" data-parallax="true"></div>
+        <div class="main main-raised">
+            <div class="profile-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 ml-auto mr-auto">
+                           <div class="profile">
+                                <div class="avatar">
+                                    <img src='../../assets/img/profile.png' alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                                </div>
+                                <div class="name">
+                                    <h3 class="title">{{ userName }}</h3>
+                                    <h6>Foodie Level: {{ level }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 ml-auto mr-auto">
+                            <div class="profile-tabs">
+                              <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" [routerLink]="['/profile']" [queryParams]='{uID: id}' role="tab" data-toggle="tab">
+                                        Profile
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" [routerLink]="['/review']" role="tab" data-toggle="tab">
+                                        Review
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" [routerLink]="['/collection']" role="tab" data-toggle="tab">
+                                        Collection
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" [routerLink]="['/tagSelection']" role="tab" data-toggle="tab">
+                                        TagSelection
+                                    </a>
+                                </li>
+                              </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row badge_style_1" *ngIf= "tagPriList">
+                        <div class="col-md-3 ml-auto mr-auto">
+                           <h6>current priority of tags: </h6>     
+                        </div>
+                        <div class="col-md-9 ml-auto mr-auto">
+                            <div class="col-md-3 ml-auto badge_style_2  justify-content-left" *ngFor="let tag of tagPriList">
+                                <span class="badge badge-pill purple-gradient">{{ tag }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>                  
+            </div>                   
     </div>
-    <!-- /.col-lg-3 -->
-    <div class="col-sm-4 col-md-4">    
-            <img src="assets/img/profile.png"alt=""height="300" width="350" style='padding: 20px; margin:20px;'>
-    </div>
-    <div class="col">     
-        <div class="col-sm-4 col-md-4" style='padding: 10px; margin: 30px'></div>
-        <blockquote>
-            <p>{{ userName }}</p>
-        </blockquote>
-        <p> <i class="glyphicon glyphicon-envelope"></i> {{ email }}
-        </p>
-        <button type="button" class="btn btn-warning" style="float:center">Edit</button>
-    </div>
-</div>
+</body> 
 
 <router-outlet></router-outlet>
 
