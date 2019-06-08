@@ -9,7 +9,7 @@ import { IFavoriteListModel } from '../interfaces/IFavoriteListModel';
 })
 export class CollectionService {
   private favoriateListUrl = '/favoriteList/';
-  private fListByUserIdUrl = 'http://localhost:8080/favoriteList/'
+  private fListByUserIdUrl = 'http://localhost:8080/favoriteList/';
   constructor(private http: HttpClient) { }
 
 	// get collection by favoriteListID
