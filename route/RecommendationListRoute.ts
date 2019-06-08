@@ -59,47 +59,12 @@ class RecommendationList {
             this.recommendationList.updateRecommendationList(res, recommendationlistID, newrecommendationList);
         });
 
-        router.post('/recommendationlist/:tagList', (req, res) => {          
-            // var ftagList = req.params.tagList;
-            // var tagListID = ftagList.tagListID;
-            // var tagList = ftagList.tagList;
-            // var priorityList: number[] = [];
-            // var recommendList: number[] = [];
-            // var newrecommendationList: IRecommendationListModel;
-            // var rTagList = this.restaurantTagList.retrieveAll(res);
-            // var sorted = false;
-            // var count = 0;
-            // for (let i = 0; i < tagList.length; i++) {
-            //     priorityList[tagList[i]] = i;
-
-            // }
-            // while (!sorted) {
-            //     var maxVoteValue: number = 0;
-            //     var maxRID: number = 0;
-            //     for (let j = 0; j < rTagList.length; j++) {
-            //         if (maxVoteValue < rTagList[j].rTagList[priorityList[count]]) {
-            //             maxVoteValue = rTagList[j].rTagList[priorityList[count]];
-            //             maxRID = rTagList[j]['restaurantID']
-            //         } else if (maxVoteValue === rTagList[j].rTagList[priorityList[count]]) {
-            //             recommendList.push(maxRID);
-            //             maxVoteValue = rTagList[j].rTagList[priorityList[count]];
-            //         }
-            //     }
-            //     count++;
-            //     if (recommendList.length > 1 && !sorted) {
-                    
-            //     } else {
-            //         sorted = true;
-            //     }
-            // }            
-            // newrecommendationList = {
-            //     recommendationlistID: this.idGenerator,
-            //     foodietaglistID: tagListID,
-            //     restaurantList: recommendList,
-            // }
-            // this.idGenerator ++;
-            // console.log('try to create:', newrecommendationList['recommendationlistID']);
-            // this.recommendationList.createRecommendationList(res, newrecommendationList);
+        router.post('/recommendationlist', (req, res) => {          
+            var newrecommendationList = req.body;
+            newrecommendationList.recommendationlistID = this.idGenerator;
+            this.idGenerator ++;
+            console.log('try to create:', req.params.recommendationlistID);
+            this.recommendationList.createRecommendationList(res, newrecommendationList);
         });
     }
 }
