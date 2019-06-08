@@ -65,11 +65,11 @@ class ReviewModel {
         this.model(review).save( (err) => {
             if(err){
                 console.error(err);
+                response.json(err);
             }
             else{
-                res = true;
+                response.json(review.reviewID);
             }
-            response.json(review.reviewID);
         });
     }
 
@@ -78,11 +78,11 @@ class ReviewModel {
         this.model.deleteOne({reviewID: reviewID}, (err) => {
             if(err){
                 console.error(err);
+                response.json(err);
             }
             else{
-                res = true;
+                response.json(res);
             }
-            response.json(res);
         });
     }
 
@@ -91,20 +91,23 @@ class ReviewModel {
         this.model.findOneAndUpdate({reviewID: reviewID}, review, { new: true } ,  (err) => {
             if(err){
                 console.error(err);
+                response.json(err);
             }
             else{
-                res = true;
+                response.json(res);
             }
-            response.json(res);
         });
     }
     public getReviewByID(userID: Number, response: any){
         var query = this.model.find({userID: userID});
         query.exec((err, reviews) => {
             if(err){
+                response.json(err);
                 console.error(err);
             }
-            response.json(reviews);
+            else{
+                response.json(reviews);
+            }
         });
     }
 
@@ -114,14 +117,16 @@ class ReviewModel {
         query.exec((err, res) => {
             if(err){
                 console.error(err);
+                response.json(err);
             }
             else if(res.length > 0){
                 reviews = res;
+                response.json(reviews);
             }
             else{
+                response.json(reviews);
                 console.log('no result');
             }
-            response.json(reviews);
         });
     }
 }
