@@ -9,10 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
-  // private searchUrl = 'search';
-  // private url = 'filter';
+  private searchUrl = 'search';
+  private url = 'filter';
   private isCollapse: boolean;
-  private clickCount: number;
+  clickCount: number;
+  isSubmit: boolean = false;
   tagList: any;
   newList = [];
 
@@ -39,6 +40,7 @@ export class FilterComponent implements OnInit {
   }
 
   onSubmit(f) {
+    this.isSubmit = true;
     console.log(f.value);
     // tslint:disable-next-line:forin
     for (const key in f.value) {
@@ -48,6 +50,6 @@ export class FilterComponent implements OnInit {
     }
     console.log(this.newList);
     // Algorithm service TODO
-    // this.router.navigateByUrl(this.searchUrl);
+    this.router.navigateByUrl(this.searchUrl);
   }
 }

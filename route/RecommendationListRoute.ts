@@ -7,16 +7,20 @@ import * as url from 'url';
 import * as bodyParser from 'body-parser';
 
 import { RecommendationListModel } from '../model/RecommendationListModel';
+import { RestaurantTagListModel } from '../model/RestaurantTagListModel';
+import { IRecommendationListModel } from '../interfaces/IRecommendationListModel';
 
 // Creates and configures an ExpressJS web server.
 class RecommendationList {
 
     public recommendationList: RecommendationListModel;
+    public restaurantTagList: RestaurantTagListModel;
     private idGenerator: number;
 
     //Run configuration methods on the Express instance.
     constructor() {
         this.recommendationList = new RecommendationListModel();
+        this.restaurantTagList = new RestaurantTagListModel();
         this.idGenerator = 10;
     }
 
@@ -40,6 +44,8 @@ class RecommendationList {
             this.recommendationList.getrecommendationListByTagListID(res, taglistID);
         });
 
+        // get by 
+
         router.delete('/recommendationlist/:recommendationlistID', (req, res) => {         
             var recommendationlistID = req.params.recommendationlistID;
             console.log('try to delete listID:', recommendationlistID);
@@ -53,12 +59,47 @@ class RecommendationList {
             this.recommendationList.updateRecommendationList(res, recommendationlistID, newrecommendationList);
         });
 
-        router.post('/recommendationlist', (req, res) => {          
-            var newrecommendationList = req.body;
-            newrecommendationList.recommendationlistID = this.idGenerator;
-            this.idGenerator ++;
-            console.log('try to create:', req.params.recommendationlistID);
-            this.recommendationList.createRecommendationList(res, newrecommendationList);
+        router.post('/recommendationlist/:tagList', (req, res) => {          
+            // var ftagList = req.params.tagList;
+            // var tagListID = ftagList.tagListID;
+            // var tagList = ftagList.tagList;
+            // var priorityList: number[] = [];
+            // var recommendList: number[] = [];
+            // var newrecommendationList: IRecommendationListModel;
+            // var rTagList = this.restaurantTagList.retrieveAll(res);
+            // var sorted = false;
+            // var count = 0;
+            // for (let i = 0; i < tagList.length; i++) {
+            //     priorityList[tagList[i]] = i;
+
+            // }
+            // while (!sorted) {
+            //     var maxVoteValue: number = 0;
+            //     var maxRID: number = 0;
+            //     for (let j = 0; j < rTagList.length; j++) {
+            //         if (maxVoteValue < rTagList[j].rTagList[priorityList[count]]) {
+            //             maxVoteValue = rTagList[j].rTagList[priorityList[count]];
+            //             maxRID = rTagList[j]['restaurantID']
+            //         } else if (maxVoteValue === rTagList[j].rTagList[priorityList[count]]) {
+            //             recommendList.push(maxRID);
+            //             maxVoteValue = rTagList[j].rTagList[priorityList[count]];
+            //         }
+            //     }
+            //     count++;
+            //     if (recommendList.length > 1 && !sorted) {
+                    
+            //     } else {
+            //         sorted = true;
+            //     }
+            // }            
+            // newrecommendationList = {
+            //     recommendationlistID: this.idGenerator,
+            //     foodietaglistID: tagListID,
+            //     restaurantList: recommendList,
+            // }
+            // this.idGenerator ++;
+            // console.log('try to create:', newrecommendationList['recommendationlistID']);
+            // this.recommendationList.createRecommendationList(res, newrecommendationList);
         });
     }
 }
