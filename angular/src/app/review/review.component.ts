@@ -5,7 +5,7 @@ import { ReviewService } from '../services/review.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RestaurantComponent } from '../restaurant/restaurant.component';
 import { IRestaurantModel } from '../interfaces/IRestaurantModel';
-import { ProfileService } from '../profile.service';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
 	selector: 'app-review',
