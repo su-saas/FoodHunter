@@ -5,10 +5,6 @@ db/*
 node_modules/*
 *.sh
 angular/node_modules/*
-*.js
-route/*.js
-model/*.js
-interfaces/*.js
 package-lock.json
 
 !test/TestRestaurant.js
