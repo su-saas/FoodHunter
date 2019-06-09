@@ -26,7 +26,9 @@ export class RestaurantComponent implements OnInit {
         this.addCollectionClicked = false;
         this.addCollectionSuccessOrNot = false;
         this.restaurantService.getByID(this.route.snapshot.params.rID).subscribe(
-            res => this.detail = res
+            res => {
+                this.detail = res;
+                console.log(this.detail);}
         );
     }
     

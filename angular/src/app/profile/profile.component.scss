@@ -119,6 +119,13 @@ img.rounded {
     box-shadow: 0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(156,39,176,.6);
 }
 
+// .nav-pills .nav-item .nav-link.a:active {
+//     color: #fff;
+//     font-size: 15px;
+//     background-color: #9c27b0;
+//     box-shadow: 0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(156,39,176,.6);
+// }
+
 .nav-pills .nav-item .nav-link {
     line-height: 24px;
     font-size: 15px;
@@ -132,7 +139,8 @@ img.rounded {
 }
 
 .nav-pills .nav-item .nav-link:not(.active):hover {
-    background-color: rgba(200,200,200,.2);
+    background-color: #9c27b0;
+    color: white;
 }
 
 
@@ -142,8 +150,12 @@ img.rounded {
     padding: 15px 0;
 }
 
-.tab-space {
+.tab {
     padding: 20px 0 50px;
+}
+
+.tab-content {
+    padding: 0px 0px 50px 0px;
 }
 
 .badge {
@@ -158,6 +170,7 @@ img.rounded {
 .badge_style_2 {
     padding: 10px 30px 10px 120px;
 }
+
 
 
 

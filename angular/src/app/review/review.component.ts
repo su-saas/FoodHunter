@@ -38,10 +38,10 @@ export class ReviewComponent implements OnInit {
 					}
 				});
 		} else {
-			this.route.queryParams.subscribe(
-				params => {
-					console.log(params.uID);
-					this.uID = Number(params.uID);
+			// this.route.queryParams.subscribe(
+			// 	params => {
+			// 		console.log(params.uID);
+			// 		this.uID = Number(params.uID);
 					this.reviewService.getByUserID(this.uID)
 					.subscribe(
 						reviews => {
@@ -53,8 +53,8 @@ export class ReviewComponent implements OnInit {
 									});
 							}
 						});
-				}
-			);
+			// 	}
+			// );
 		}
 	}
 

@@ -42,7 +42,45 @@ export class ProfileComponent implements OnInit {
               }
 
   ngOnInit() {
-    
+    if (this.route.snapshot.queryParams.userID) {
+      console.log(this.route.snapshot.queryParams.userID);
+      //this.userID = this.route.snapshot.queryParams.userID;
+      // this.data.getProfileByFoodieID(parseInt(this.userID)).subscribe(data => {
+      this.data.getProfileByFoodieID(this.userIdtemp).subscribe(data => {
+        this.users = data;
+        this.userName = data.userName;
+        this.email = data.emailAddress;
+      });
+    } else {
+      // tslint:disable-next-line:radix
+      //this.id = parseInt(this.userID);
+      // this.data.getProfileByFoodieID(this.id).subscribe(data => {
+      // this.data.getProfileByFoodieID(this.id).subscribe(data => {
+      this.data.getProfileByFoodieID(this.userIdtemp).subscribe(data => {
+        this.users = data;
+        this.userName = data.userName;
+        this.email = data.emailAddress;
+        this.tagSelectionService.getAllTags().subscribe(
+          res => {
+            this.tagList = res;
+            this.data.getFoodieTagListByFoodieID(8).subscribe(
+              response => {
+                this.priorityList = response.tagList;
+                for (let i = 0; i < this.tagList.length; i++) {
+                  let message: string = this.tagList[i]['tagName'] + ": " + this.priorityList[i].toString();
+                  console.log(message);
+                  this.tagPriList.push(message);
+                }
+                console.log(this.tagPriList);
+            });
+        });
+      });
+    }
   }
+
+
+
+
+    // }
 }
 
