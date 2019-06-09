@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { IRestaurantModel } from '../interfaces/IRestaurantModel';
 import { IFavoriteListModel } from '../interfaces/IFavoriteListModel';
 @Injectable({
@@ -24,9 +24,10 @@ export class CollectionService {
 	}
 
 	// add restaurant to the collection of the user
-	addCollection(userID: number, restaurantID: number) {
+	addCollection(userID: number, restaurantID: number): Observable<boolean> {
+		let successOrNot = new Subject<boolean>();
 		const url = this.favoriateListUrl + 'user/' + userID;
-		return this.http.get<IFavoriteListModel[]>(url)
+		this.http.get<IFavoriteListModel[]>(url)
 			.subscribe(favoriteList => {
 				let exist = false;
 				if (favoriteList.length > 0) {
@@ -47,7 +48,8 @@ export class CollectionService {
 						};
 						this.http.post(this.favoriateListUrl, body)
 							.subscribe(res => {
-								console.log(res);
+								console.log("create result:" + res);
+								successOrNot.next(true);
 							});
 					}
 					else {
@@ -58,15 +60,18 @@ export class CollectionService {
 						};
 						this.http.put(this.favoriateListUrl, body)
 							.subscribe(res => {
-								console.log(res);
+								console.log("create result:" + res);
+								successOrNot.next(true);
 							});
 					}
 				}
-				else{
+				else {
 					console.log('already exist');
+					successOrNot.next(false);
 				}
 			})
 			;
+		return successOrNot.asObservable();
 	}
 
 }

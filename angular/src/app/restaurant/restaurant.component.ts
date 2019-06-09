@@ -12,6 +12,9 @@ import { CollectionService } from '../services/collection.service';
 export class RestaurantComponent implements OnInit {
 
     detail: IRestaurantModel;
+
+    addCollectionClicked: boolean;
+    addCollectionSuccessOrNot: boolean;
     constructor(
         private restaurantService: RestaurantService,
         private collectionService: CollectionService,
@@ -20,12 +23,21 @@ export class RestaurantComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.addCollectionClicked = false;
+        this.addCollectionSuccessOrNot = false;
         this.restaurantService.getByID(this.route.snapshot.params.rID).subscribe(
             res => this.detail = res
         );
     }
     
     addToCollection(){
-        this.collectionService.addCollection(this.detail.userID, this.detail.restaurantID);
+        this.collectionService.addCollection(this.detail.userID, this.detail.restaurantID)
+        .subscribe(
+            res => {
+                this.addCollectionClicked = true;
+                this.addCollectionSuccessOrNot = res;
+                console.log("create success or not:"+this.addCollectionSuccessOrNot);
+            }
+        );
     }
 }
