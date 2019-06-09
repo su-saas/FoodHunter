@@ -73,13 +73,28 @@ var FavoriteListModel = /** @class */ (function () {
             response.json(res);
         });
     };
-    FavoriteListModel.prototype.getFavoriteListByID = function (userID, response) {
+    FavoriteListModel.prototype.getFavoriteListByID = function (favoriteListID, response) {
+        var query = this.model.find({ favoriteListID: favoriteListID });
+        query.exec(function (err, favoriteLists) {
+            if (err) {
+                console.error(err);
+                response.json(favoriteLists);
+            }
+            else {
+                response.json(favoriteLists);
+            }
+        });
+    };
+    FavoriteListModel.prototype.getFavoriteListByUserID = function (userID, response) {
         var query = this.model.find({ userID: userID });
         query.exec(function (err, favoriteLists) {
             if (err) {
                 console.error(err);
+                response.json(favoriteLists);
             }
-            response.json(favoriteLists);
+            else {
+                response.json(favoriteLists);
+            }
         });
     };
     FavoriteListModel.prototype.getAllFavoriteLists = function (response) {

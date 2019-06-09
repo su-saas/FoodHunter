@@ -22,6 +22,10 @@ var FavoriteList = /** @class */ (function () {
             var favoriteListID = req.params.favoriteListID;
             _this.FavoriteLists.getFavoriteListByID(favoriteListID, res);
         });
+        router.get('/favoriteList/user/:userID', function (req, res) {
+            var userID = req.params.userID;
+            _this.FavoriteLists.getFavoriteListByUserID(userID, res);
+        });
         router["delete"]('/favoriteList/:favoriteListID', function (req, res) {
             var favoriteListID = req.params.favoriteListID;
             _this.FavoriteLists.deleteFavoriteListByID(favoriteListID, res);

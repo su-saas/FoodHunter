@@ -22,13 +22,11 @@ var Foodie = /** @class */ (function () {
             _this.idGenerator++;
             _this.Foodie.createUser(res, user);
         });
-        // // get login page
-        // router.get("/login", (req, res) => {
-        //     var userPayload: any = req;
-        //     console.log("login with userID: ", userPayload.userID);
-        //     console.log("login with userPassword: ", userPayload.password);
-        //     this.Foodie.logInByIDAndPassword(res, userPayload);
-        // });
+        // get foodie by email
+        router.get("/login/:emailAddress", function (req, res) {
+            var emailAddress = req.params.emailAddress;
+            _this.Foodie.getUserByemailAddress(res, emailAddress);
+        });
         // get foodie by id
         router.get("/foodie/:userID", function (req, res) {
             var userId = req.params.userID;

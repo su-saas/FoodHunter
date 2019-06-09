@@ -72,6 +72,15 @@ var UserModel = /** @class */ (function () {
             response.json(tag);
         });
     };
+    UserModel.prototype.getUserByemailAddress = function (response, emailAddress) {
+        var query = this.model.findOne({ emailAddress: emailAddress });
+        query.exec(function (err, tag) {
+            if (err) {
+                response.send(err);
+            }
+            response.json(tag);
+        });
+    };
     // for each user they need to provide their userID and the updated body to UPDATE themselves
     UserModel.prototype.updateUserByID = function (response, userId, body) {
         this.model.findOneAndUpdate({ userID: userId }, body, { "new": true }, function (err, newUser) {
