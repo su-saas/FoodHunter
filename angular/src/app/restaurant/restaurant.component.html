@@ -1,23 +1,33 @@
-<section class="magazine-section my-5">
+<section class="magazine-section my-5" *ngIf="detail">
 	<h2 class="h1-responsive font-weight-bold text-left my-5">{{ detail.restaurantName }}&nbsp;&nbsp;
-			<a [routerLink]="['/collection']"><span class="fa fa-star"></span></a></h2>
+		<a (click)="addToCollection()"><span class="fa fa-star"></span>
+			<span class="font-weight-bold" *ngIf="addCollectionClicked && addCollectionSuccessOrNot">
+				success
+			</span>
+			<span class="font-weight-bold" *ngIf="addCollectionClicked && addCollectionSuccessOrNot===false">
+				already exist
+			</span>
+		</a>
+
+	</h2>
 	<div class="row">
 		<div class="col-lg-6 col-md-12">
 			<div class="single-news mb-lg-0 mb-4">
-			  <div class="view overlay rounded z-depth-1-half mb-4">
-				<img class="img-fluid" src='../../assets/img/restaurant4.png' alt="Sample image">
-				<a>
-				  <div class="mask rgba-white-slight"></div>
-				</a>
-			  </div>
-			  <h3 class="font-weight-bold dark-grey-text mb-3"><a>Address: {{detail.address}}</a></h3>
-			  <h4 class="font-weight-bold dark-grey-text mb-3"><a>Open Hours: {{detail.hours}}</a></h4>
-			  <h4 class="font-weight-bold dark-grey-text mb-3"><a>Phone Number: {{detail.phoneNum}}</a></h4>
-			  <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4" style="font-size: 15px">{{detail.introductionContent}}</p>	  
-			</div>	  
+				<div class="view overlay rounded z-depth-1-half mb-4">
+					<img class="img-fluid" src='../../assets/img/restaurant4.png' alt="Sample image">
+					<a>
+						<div class="mask rgba-white-slight"></div>
+					</a>
+				</div>
+				<h3 class="font-weight-bold dark-grey-text mb-3"><a>Address: {{detail.address}}</a></h3>
+				<h4 class="font-weight-bold dark-grey-text mb-3"><a>Open Hours: {{detail.hours}}</a></h4>
+				<h4 class="font-weight-bold dark-grey-text mb-3"><a>Phone Number: {{detail.phoneNum}}</a></h4>
+				<p class="dark-grey-text mb-lg-0 mb-md-5 mb-4" style="font-size: 15px">{{detail.introductionContent}}
+				</p>
+			</div>
 		</div>
 		<div class="col-lg-6 col-md-12">
-			<app-review [rID]="detail.restaurantID" [uID]="detail.userID"></app-review>	  
+			<app-review [rID]="detail.restaurantID" [uID]="detail.userID"></app-review>
 		</div>
 	</div>
 </section>
