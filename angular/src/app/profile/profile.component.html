@@ -11,7 +11,7 @@
                                 </div>
                                 <div class="name">
                                     <h3 class="title">{{ userName }}</h3>
-                                    <h6>Email: {{ email }}</h6>
+                                    <h6>Email: {{ emailAddress }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -21,7 +21,7 @@
                             <div class="profile-tabs">
                               <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" [routerLink]="['/profile']" [queryParams]='{uID: id}' role="tab" data-toggle="tab">
+                                    <a class="nav-link active" [routerLink]="['/profile']" role="tab" data-toggle="tab">
                                         Profile
                                     </a>
                                 </li>

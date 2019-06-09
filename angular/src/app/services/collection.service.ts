@@ -8,7 +8,7 @@ import { IFavoriteListModel } from '../interfaces/IFavoriteListModel';
   providedIn: 'root'
 })
 export class CollectionService {
-  private favoriateListUrl = 'http://localhost:8080/favoriteList/';
+  private favoriateListUrl = '/favoriteList/';
   constructor(private http: HttpClient) { }
 
 // get collection by favoriteListID

@@ -31,8 +31,14 @@ const routes: Routes = [
   { path: '**', redirectTo: '/404' },
 ];
 
-@NgModule({
+/////////////////////////////////////
+/*********** FOR DEPLOY ************/
+export const routing = RouterModule.forRoot(routes, {useHash:true});
+
+////////////////////////////////
+/*********** LOCAL ************/
+/*@NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { }*/

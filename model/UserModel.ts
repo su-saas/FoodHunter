@@ -1,4 +1,4 @@
-import Mongoose = require("mongoose");
+import * as Mongoose  from "mongoose";
 import {DataAccess} from "../DataAccess";
 import {IUserModel} from "../interfaces/IUserModel";
 import { IFoodieModel } from "../interfaces/IFoodieModel";
@@ -64,6 +64,16 @@ abstract class UserModel {
     // for admin he needs to provide user's userID to GET user
     public getUserByID(response:any, userId: number): any {
         var query: any = this.model.findOne({userID: userId});
+        query.exec( (err: any, tag: any) => {
+            if(err) {
+                response.send(err);
+            }
+            response.json(tag);
+        });
+    }
+
+    public getUserByemailAddress(response:any, emailAddress: string): any {
+        var query: any = this.model.findOne({emailAddress: emailAddress});
         query.exec( (err: any, tag: any) => {
             if(err) {
                 response.send(err);
