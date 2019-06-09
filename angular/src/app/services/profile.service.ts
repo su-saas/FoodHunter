@@ -11,9 +11,9 @@ import { IFoodieTagListModel } from '../interfaces/IFoodieTagListModel';
   providedIn: 'root'
 })
 export class ProfileService {
-  private foodieurl = '/foodie/';
+  private foodieurl = 'http://localhost:8080/foodie/';
 // private url: string = 'https://foodhunter.azurewebsites.net/foodie/';
-  private tagListUrl = '/tagList/';
+  private tagListUrl = 'http://localhost:8080/tagList/';
   constructor(private http: HttpClient) { }
 
   getProfileByFoodieID(userID: number): Observable<IFoodieModel> {

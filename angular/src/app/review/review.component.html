@@ -5,21 +5,33 @@
 </h2>	  
 <div class="single-news mb-4" *ngFor="let list of lists; let i = index">
 	<div class="row">
-		<div class="col-md-3">	
-			<div class="view overlay rounded z-depth-1 mb-4">
-			<img class="img-fluid" src='../../assets/img/profile.png' alt="Sample image">
-			<a>
-				<div class="mask rgba-white-slight"></div>
-			</a>
+		<div *ngIf ="!isUser">
+			<div class="col-md-3" >	
+				<div class="view overlay rounded z-depth-1 mb-4">
+				<img class="img-fluid" src='../../assets/img/profile.png' alt="Sample image">
+				<a>
+					<div class="mask rgba-white-slight"></div>
+				</a>
+				</div>
 			</div>
-		</div>
-		<div class="col-md-9">
-			<p class="font-weight-bold dark-grey-text" style="font-size: 20px">{{users[i]?.userName}}: {{list.title}} &nbsp;</p>
-			<div class="d-flex justify-content-between">
-				<div class="col-11 pl-0 mb-3">
-					<p class="dark-grey-text" style="font-size: 15px">{{list.content}}</p>
+			<div class="col-md-9">
+				<p class="font-weight-bold dark-grey-text" style="font-size: 18px">{{users[i]?.userName}}: {{list.title}} &nbsp;</p>
+				<div class="d-flex justify-content-between">
+					<div class="col-11 pl-0 mb-3">
+						<p class="dark-grey-text" style="font-size: 15px">{{list.content}}</p>
+					</div>
 				</div>
 			</div>
 		</div>
+		<div *ngIf ="isUser">
+			<div class="col-md-9" *ngIf="rNameList">
+				<p class="font-weight-bold dark-grey-text" style="font-size: 18px">{{i+1}}. {{rNameList[i]}}:  {{list.title}}&nbsp;</p>
+				<div class="d-flex justify-content-between">
+					<div class="col-11 pl-0 mb-3">
+						<p class="dark-grey-text" style="font-size: 15px">{{list.content}}</p>
+					</div>
+				</div>
+			</div>
+		</div>		
 	</div>
 </div>

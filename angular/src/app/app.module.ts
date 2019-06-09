@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-//import { AppRoutingModule } from './app-routing.module'; //for local 
-import { routing } from './app-routing.module';		//for deploy
+import { AppRoutingModule } from './app-routing.module'; //for local 
+//import { routing } from './app-routing.module';		//for deploy
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -42,8 +42,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 	imports: [
 		BrowserModule,
 		HttpClientModule,
-		//AppRoutingModule,
-		routing,		//for deploy
+		AppRoutingModule,
+		//routing,		//for deploy
 		FormsModule,
 		CommonModule,
 		ReactiveFormsModule,

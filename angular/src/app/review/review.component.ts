@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { RestaurantComponent } from '../restaurant/restaurant.component';
 import { IRestaurantModel } from '../interfaces/IRestaurantModel';
 import { ProfileService } from '../services/profile.service';
+import { RestaurantService } from '../services/restaurant.service';
 
 @Component({
 	selector: 'app-review',
@@ -16,6 +17,9 @@ export class ReviewComponent implements OnInit {
 	// @Input() restaurant: IRestaurantModel;
 	lists: IReviewModel[] = [];
 	users: IFoodieModel[] = [];
+	isUser: boolean = false;
+	rIdList: number[] = [];
+	rNameList: string[] = [];
 
 	@Input('rID') rID = 0;
 	@Input('uID') uID = 0;
@@ -23,7 +27,8 @@ export class ReviewComponent implements OnInit {
 	constructor(
 		private reviewService: ReviewService,
 		private profileService: ProfileService,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private restaurantService: RestaurantService
 	) { }
 	ngOnInit() {
 		if (this.rID > 0 && this.uID > 0) {
@@ -38,21 +43,18 @@ export class ReviewComponent implements OnInit {
 					}
 				});
 		} else {
-			// this.route.queryParams.subscribe(
-			// 	params => {
-			// 		console.log(params.uID);
-			// 		this.uID = Number(params.uID);
-					this.reviewService.getByUserID(this.uID)
-					.subscribe(
-						reviews => {
-							for (let i = 0; i < reviews.length; i++) {
-								this.lists[i] = reviews[i];
-								this.profileService.getProfileByFoodieID(reviews[i].userID)
-									.subscribe(user => {
-										this.users.push(user);
-									});
-							}
-						});
+			this.isUser = true;			
+			this.reviewService.getByUserID(this.uID)
+			.subscribe(
+				reviews => {
+					for (let i = 0; i < reviews.length; i++) {
+						this.lists[i] = reviews[i];
+						this.rIdList[i] = reviews[i].restaurantID;
+						this.restaurantService.getByID(this.lists[i].restaurantID)
+						.subscribe(restaurant => this.rNameList[i] = restaurant.restaurantName
+						)
+					}
+				});
 			// 	}
 			// );
 		}

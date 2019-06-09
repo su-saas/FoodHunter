@@ -27,10 +27,10 @@ export class CollectionComponent implements OnInit {
   constructor(private collectionData: CollectionService,
               private restaurantData: RestaurantService,
               private auth: AuthService) { 
-                this.auth.getSession().subscribe(data => {
-                  this.userID = data.userID;
-                  console.log("profile: " + JSON.stringify(data)); 
-                })
+                // this.auth.getSession().subscribe(data => {
+                //   this.userID = data.userID;
+                //   console.log("profile: " + JSON.stringify(data)); 
+                // })
               }
 
   ngOnInit() {
