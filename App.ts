@@ -106,6 +106,7 @@ class App {
     router.get('/auth/user', this.validateAuth, (req, res) => {
         var email = this.googlePassportObj.email;
         newReq.get(req.protocol+"://"+req.get('host') + "/login/" + email,{},(err, resp, body)=>{
+            console.log('/auth/user: ' + body);
             res.send(body);
         });
     });
