@@ -3,7 +3,7 @@ import { CollectionService } from '../services/collection.service';
 import { RestaurantService } from '../services/restaurant.service';
 import { Subscription } from 'rxjs';
 // import { MessageService } from '../message.service';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Router  , ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
 import { ProfileComponent } from '../profile/profile.component';
@@ -17,6 +17,7 @@ import { IRestaurantModel } from '../interfaces/IRestaurantModel';
 
 export class CollectionComponent implements OnInit {
   user: object;
+  userID: number;
   favoriateList: IFavoriteListModel;
   restaurantIDList: number[] = [];
   restaurants: IRestaurantModel[] = [];
@@ -25,7 +26,12 @@ export class CollectionComponent implements OnInit {
 
   constructor(private collectionData: CollectionService,
               private restaurantData: RestaurantService,
-              private authService: AuthService) { }
+              private auth: AuthService) { 
+                this.auth.getSession().subscribe(data => {
+                  this.userID = data.userID;
+                  console.log("profile: " + JSON.stringify(data)); 
+                })
+              }
 
   ngOnInit() {
     // get the collection by favoriateListID
@@ -78,11 +84,5 @@ export class CollectionComponent implements OnInit {
     } else {
       console.log('restaurantID is null');
     }
-  }
-
-  // console.log('restaurants list:', restaurants);
-
-  get userID(): string {
-    return this.authService.userID;
   }
 }

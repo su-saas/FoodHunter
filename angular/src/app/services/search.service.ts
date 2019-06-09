@@ -7,7 +7,7 @@ import { IRestaurantModel } from '../interfaces/IRestaurantModel';
   providedIn: 'root'
 })
 export class SearchService {
-  private searchKeyWordUrl = 'http://localhost:8080/search';
+  private searchKeyWordUrl = '/search';
 
   constructor(private http: HttpClient) { }
 

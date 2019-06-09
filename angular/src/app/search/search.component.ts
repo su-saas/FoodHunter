@@ -13,8 +13,8 @@ export class SearchComponent implements OnInit {
 	private nextStationUrl: string;
 	private restaurant: IRestaurantModel;
 	private rID: number;
-	private notFind: boolean;
-	private submitted: boolean;
+	public notFind: boolean;
+	public submitted: boolean;
 	options = [
 		{ description: 'Restaurant Name' },
 	];
