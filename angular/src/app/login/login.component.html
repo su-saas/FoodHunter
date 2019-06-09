@@ -15,39 +15,40 @@
                 <div class="modal-dialog cascading-modal" role="document">
                   <div class="modal-content">
                     <div class="modal-c-tabs">
-                      <ul class="nav nav-tabs md-tabs tabs-2 orange darken-3" role="tablist">
+                      <ul class="nav nav-tabs md-tabs tabs-2 purple darken-3" role="tablist">
                         <li class="nav-item">
                           <h4 class="nav-link active" data-toggle="tab" role="tab" style="font-weight: bold">
-                            <i class="fas fa-user mr-1 text-center"></i>Login</h4>
+                            <!-- <i class="fas fa-user mr-1 text-center"></i> -->
+                              Login</h4>
                         </li>
                         
                       </ul>
                       <form class="tab-content" #myform="ngForm" (ngSubmit)="tryLogin(myform)">
                         <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
                           <div class="modal-body mb-1">
-                            <div class="md-form form-sm mb-5">
+                            <!-- <div class="md-form form-sm mb-5">
                               <i class="fas fa-envelope prefix"></i>
                               <input type="email" id="modalLRInput10" class="form-control form-control-sm validate" placeholder="User ID"
                                name = "userID" style="font-size: 15px" [(ngModel)] = 'userID'>
-                              <!-- <label data-error="wrong" data-success="right" for="modalLRInput10" style="font-size: 15px">Your email</label> -->
-                            </div>
+                              <label data-error="wrong" data-success="right" for="modalLRInput10" style="font-size: 15px">Your email</label>
+                            </div> -->
               
-                            <div class="md-form form-sm mb-4">
+                            <!-- <div class="md-form form-sm mb-4">
                               <i class="fas fa-lock prefix"></i>
                               <input type="password" id="modalLRInput11" class="form-control form-control-sm validate" placeholder="Password not required" 
-                              name = "password" style="font-size: 15px" required ngModel>
+                              name = "password" style="font-size: 15px" required ngModel>  -->
                               <!-- <label data-error="wrong" data-success="right" for="modalLRInput11" style="font-size: 15px">Your password</label> -->
-                            </div>
+                            <!-- </div> --> 
                             <div class="text-center mt-2">
-                              <button class="btn_1 peach-gradient">Log in</button>
+                              <button class="btn_1 purple-gradient">Google</button>
                             </div>
                           </div>
                           <!--Footer-->
                           <div class="modal-footer">
-                            <div class="options text-center text-md-right mt-1">
-                              <p>Login with?  <a href="#" class="blue-text">Google</a></p>
+                            <div class="options text-center ">
+                              <p>Want to login with Facebook? Sorry you can only login with Google</p>
                             </div>
-                            <button type="button" class="btn_1 btn-outline-deep-orange waves-effect ml-auto" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn_1 btn-outline-purple waves-effect ml-auto" data-dismiss="modal">Close</button>
                           </div>
                         </div>
                       </form>
