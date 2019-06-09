@@ -1,6 +1,6 @@
 <section class="magazine-section my-5">
 	<h2 class="h1-responsive font-weight-bold text-left my-5">{{ detail.restaurantName }}&nbsp;&nbsp;
-			<a [routerLink]="['/collection']"><span class="fa fa-star"></span></a></h2>
+			<a (click)="addToCollection()"><span class="fa fa-star"></span></a></h2>
 	<div class="row">
 		<div class="col-lg-6 col-md-12">
 			<div class="single-news mb-lg-0 mb-4">

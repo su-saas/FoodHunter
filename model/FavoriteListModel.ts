@@ -83,13 +83,29 @@ class FavoriteListModel {
             response.json(res);
         });
     }
-    public getFavoriteListByID(userID: Number, response: any){
+    public getFavoriteListByID(favoriteListID: Number, response: any){
+        var query = this.model.find({favoriteListID: favoriteListID});
+        query.exec((err, favoriteLists) => {
+            if(err){
+                console.error(err);
+                response.json(favoriteLists);
+            }
+            else{
+                response.json(favoriteLists);
+            }
+        });
+    }
+
+    public getFavoriteListByUserID(userID: Number, response: any){
         var query = this.model.find({userID: userID});
         query.exec((err, favoriteLists) => {
             if(err){
                 console.error(err);
+                response.json(favoriteLists);
             }
-            response.json(favoriteLists);
+            else{
+                response.json(favoriteLists);
+            }
         });
     }
 
