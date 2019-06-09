@@ -30,6 +30,11 @@ class FavoriteList {
             this.FavoriteLists.getFavoriteListByID(favoriteListID, res);
         });
 
+        router.get('/favoriteList/user/:userID',(req, res) => {
+            var userID = req.params.userID;
+            this.FavoriteLists.getFavoriteListByUserID(userID, res);
+        });
+
         router.delete('/favoriteList/:favoriteListID',(req, res) => {
             var favoriteListID = req.params.favoriteListID;
             this.FavoriteLists.deleteFavoriteListByID(favoriteListID, res);

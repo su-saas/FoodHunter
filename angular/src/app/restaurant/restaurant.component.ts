@@ -26,5 +26,6 @@ export class RestaurantComponent implements OnInit {
     }
     
     addToCollection(){
+        this.collectionService.addCollection(this.detail.userID, this.detail.restaurantID);
     }
 }
