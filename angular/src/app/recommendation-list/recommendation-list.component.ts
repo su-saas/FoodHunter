@@ -11,7 +11,7 @@ import { filter } from 'rxjs/operators';
 })
 export class RecommendationListComponent implements OnInit {
   private restaurantIdList: number[];
-  private recommendationList: IRestaurantModel[] = [];
+  public recommendationList: IRestaurantModel[] = [];
   private userId: number = 3;
 
   @Input('isChange') isChange: boolean = false;

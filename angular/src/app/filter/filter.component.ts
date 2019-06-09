@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class FilterComponent implements OnInit {
   //private searchUrl = 'search';
   //private url = 'filter';
-  private isCollapse: boolean;
+  public isCollapse: boolean;
   clickCount: number;
   //isSubmit: boolean = false;
   tagList: any;

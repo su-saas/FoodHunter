@@ -1,4 +1,4 @@
-interface IRestaurantTagListModel{
+interface IRestaurantTagListModel {
     restaurantID: number; 
     rtaglistID: number; 
     rtagList: number[];
