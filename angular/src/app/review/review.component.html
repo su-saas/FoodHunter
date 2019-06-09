@@ -1,5 +1,5 @@
 <h2 class="h1-responsive font-weight-bold text-left my-5">Reviews&nbsp;&nbsp;
-	<a [style.visibility]="this.rID==0? 'hidden': 'visible'" [routerLink]="['/addreview']" [queryParams]='{uID: this.uID, rID: this.rID}'>
+	<a [style.visibility]="this.rID==0? 'hidden': 'visible'" [routerLink]="['/addreview']" [uID]="uID" [queryParams]='{rID: this.rID}'>
 		<i class="fa fa-plus" aria-hidden="true"></i>
 	</a>
 </h2>	  

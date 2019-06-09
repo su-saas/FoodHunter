@@ -5,11 +5,14 @@
 				<div class="profile-content">
 					<div class="container">
 						<div class="form-group">
-							<h3 class="title">Review</h3>>
+							<h3 class="title">Review</h3>
+							<div class="form_mar">
+								<input class="form-control rounded-0" style="font-size: 20px" placeholder="Title" #title>
+							</div>
 							<textarea class="form-control rounded-0" style="font-size: 20px" rows="5" #content></textarea>
 						</div>
 						<div class="btn_2">
-							<button class="btn peach-gradient btn_1" (click)="addNewReview(content.value)">Save</button>&nbsp;
+							<button class="btn peach-gradient btn_1" (click)="addNewReview(content.value, title.value)">Save</button>&nbsp;
 							<button type="button" class="btn purple-gradient btn_1" (click)="goBackToRestaurant()">Cancel</button>
 						</div>
 					</div>                  

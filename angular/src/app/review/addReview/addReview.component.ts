@@ -21,11 +21,11 @@ export class AddReviewComponent implements OnInit {
 		this.rID = Number(this.route.snapshot.queryParams.rID);
 	}
 
-	addNewReview(content: string) {
+	addNewReview(content: string, title: string) {
 		const body = {
 			userID: this.uID,
 			restaurantID: this.rID,
-			title: 'title',
+			title: title,
 			content: content,
 			date: new Date().toLocaleString()
 		};
