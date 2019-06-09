@@ -26,7 +26,8 @@ export class ProfileComponent implements OnInit {
   tagList: any;
   priorityList: number[] = [];
   tagPriList: string[] = [];
-  
+  userIdtemp: number = 3;
+
   constructor(private data: ProfileService,
               private route: ActivatedRoute,
               private authService: AuthService,
@@ -39,7 +40,7 @@ export class ProfileComponent implements OnInit {
       console.log(this.route.snapshot.queryParams.userID);
       //this.userID = this.route.snapshot.queryParams.userID;
       // this.data.getProfileByFoodieID(parseInt(this.userID)).subscribe(data => {
-      this.data.getProfileByFoodieID(3).subscribe(data => {
+      this.data.getProfileByFoodieID(this.userIdtemp).subscribe(data => {
         this.users = data;
         this.userName = data.userName;
         this.email = data.emailAddress;
@@ -49,7 +50,7 @@ export class ProfileComponent implements OnInit {
       //this.id = parseInt(this.userID);
       // this.data.getProfileByFoodieID(this.id).subscribe(data => {
       // this.data.getProfileByFoodieID(this.id).subscribe(data => {
-      this.data.getProfileByFoodieID(3).subscribe(data => {
+      this.data.getProfileByFoodieID(this.userIdtemp).subscribe(data => {
         this.users = data;
         this.userName = data.userName;
         this.email = data.emailAddress;
@@ -70,6 +71,7 @@ export class ProfileComponent implements OnInit {
       });
     }
   }
+
 
 
 

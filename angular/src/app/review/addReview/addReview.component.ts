@@ -10,14 +10,14 @@ import { ReviewService } from '../../services/review.service';
 })
 export class AddReviewComponent implements OnInit {
 	private rID: number;
-	private uID: number;
-	constructor(
-		private route: ActivatedRoute,
-		private router: Router,
-		private reviewService: ReviewService
-	) {}
+	// private uID: number;
+	@Input('uID') uID = 0;
+
+	constructor(private route: ActivatedRoute,
+				private router: Router,
+				private reviewService: ReviewService) {}
+				
 	ngOnInit() {
-		this.uID = Number(this.route.snapshot.queryParams.uID);
 		this.rID = Number(this.route.snapshot.queryParams.rID);
 	}
 

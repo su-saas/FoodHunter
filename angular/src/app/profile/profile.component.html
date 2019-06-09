@@ -21,22 +21,22 @@
                             <div class="profile-tabs">
                               <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" [routerLink]="['/profile']" [queryParams]='{uID: id}' role="tab" data-toggle="tab">
+                                    <a class="nav-link active" role="tab" data-toggle="tab" href="#profile">
                                         Profile
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" [routerLink]="['/review']" role="tab" data-toggle="tab">
+                                    <a class="nav-link" role="tab" data-toggle="tab" href="#review">
                                         Review
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" [routerLink]="['/collection']" role="tab" data-toggle="tab">
+                                    <a class="nav-link" role="tab" data-toggle="tab" href="#collection">
                                         Collection
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" [routerLink]="['/tagSelection']" role="tab" data-toggle="tab">
+                                    <a class="nav-link" role="tab" data-toggle="tab">
                                         TagSelection
                                     </a>
                                 </li>
@@ -44,15 +44,25 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row badge_style_1" *ngIf= "tagPriList">
-                        <div class="col-md-3 ml-auto mr-auto">
-                           <h6>current priority of tags: </h6>     
-                        </div>
-                        <div class="col-md-9 ml-auto mr-auto">
-                            <div class="col-md-3 ml-auto badge_style_2  justify-content-left" *ngFor="let tag of tagPriList">
-                                <span class="badge badge-pill purple-gradient">{{ tag }}</span>
+                    <div class="row tab-content" >
+                        <div class="tab-pane" id="profile">
+                            <div class="badge_style_1" *ngIf= "tagPriList">
+                                <div class="col-md-3 ml-auto mr-auto">
+                                    <h6>current priority of tags: </h6>     
+                                </div>
+                                <div class="col-md-9 ml-auto mr-auto">
+                                    <div class="col-md-3 ml-auto badge_style_2  justify-content-left" *ngFor="let tag of tagPriList">
+                                        <span class="badge badge-pill purple-gradient">{{ tag }}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="tab-pane" id="review">
+                            <app-review [uID]= "userIdtemp"></app-review>
+                        </div>
+                        <!-- <div class="tab-pane" id="collection">
+                            <app-collection></app-collection>
+                        </div>                        -->
                     </div>
                 </div>                  
             </div>                   
@@ -61,3 +71,18 @@
 
 <router-outlet></router-outlet>
 
+<!-- <div class=navbar navbar-light bg-faded>
+        <ul class=nav navbar-nav>
+          <a class=nav-item nav-link active data-toggle=tab href=#start>Start</a>
+          <a class=nav-item nav-link data-toggle=tab href=#form>Form</a>
+          <a class=nav-item nav-link data-toggle=tab href=#status>Status</a>
+          <a class=nav-item nav-link data-toggle=tab href=#reports>Reports</a>
+        </ul>
+      </div>
+      
+      <div class=tab-content>
+        <div class=tab-pane active id=start>1</div>
+        <div class=tab-pane id=form>2</div>
+        <div class=tab-pane id=status>3</div>
+        <div class=tab-pane id=reports>4</div>
+      </div> -->
