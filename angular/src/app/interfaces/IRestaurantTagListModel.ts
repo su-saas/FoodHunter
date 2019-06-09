@@ -1,6 +1,4 @@
-import Mongoose = require("mongoose");
-
-interface IRestaurantTagListModel extends Mongoose.Document {
+interface IRestaurantTagListModel {
     restaurantID: number; 
     rtaglistID: number; 
     rtagList: number[];
