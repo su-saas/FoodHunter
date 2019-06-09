@@ -64,7 +64,7 @@ class App {
         this.expressApp.use(expressSession({
             key: 'user_sid',
             secret: 'keyboard cat', 
-            cookie: {maxAge: 10*60*1000}, 
+            cookie: {maxAge: 1*60*1000}, 
             store: new mongoStore({
                 url: DataAccess.DB_CONNECTION_STRING,
                 db: mongooseConnection.db, 
@@ -79,7 +79,8 @@ class App {
     //////////////////////////////////////////////////
     //*************** google login ******************/
     private validateAuth(req, res, next):void {
-        if (req.isAuthenticated()  && req.cookies.user_sid) { 
+        // && req.cookies.user_sid  => not allow the user log in two different account in the same browser
+        if (req.isAuthenticated()) { 
             console.log("user is authenticated"); 
             console.log("validate user id: " + req.user.id);
             console.log("validate email: " + req.user.emails[0].value);
