@@ -23,7 +23,6 @@ export class ProfileComponent implements OnInit {
   favoriteListID: number;
   favoriateList: IFavoriteListModel;
   restaurantIDList: number[] = [];
-  level: number = 0;
   tagList: any;
   priorityList: number[] = [];
   tagPriList: string[] = [];
@@ -54,7 +53,6 @@ export class ProfileComponent implements OnInit {
         this.users = data;
         this.userName = data.userName;
         this.email = data.emailAddress;
-        this.level = data.reviewList.length / 2;
         this.tagSelectionService.getAllTags().subscribe(
           res => {
             this.tagList = res;
