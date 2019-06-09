@@ -46,8 +46,8 @@ class GooglePassport {
                             console.log("create: " + resp1.statusCode);
                         });
                     }
-                    return done(null, profile);
                 });
+                return done(null, profile);
             })
         }
     ));
