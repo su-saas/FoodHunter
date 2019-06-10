@@ -1,12 +1,8 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CollectionService } from '../services/collection.service';
 import { RestaurantService } from '../services/restaurant.service';
-import { Subscription } from 'rxjs';
-// import { MessageService } from '../message.service';
 import { AuthService } from '../services/auth.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ProfileService } from '../services/profile.service';
-import { ProfileComponent } from '../profile/profile.component';
+import { Router } from '@angular/router';
 import { IFavoriteListModel } from '../interfaces/IFavoriteListModel';
 import { IRestaurantModel } from '../interfaces/IRestaurantModel';
 @Component({
@@ -21,48 +17,41 @@ export class CollectionComponent implements OnInit {
   favoriateList: IFavoriteListModel;
   restaurantIDList: number[] = [];
   restaurants: IRestaurantModel[] = [];
-  // used to update collection
-  newrestaurantIDList: number[] = [];
   private restaurantDetailUrl = 'restaurants/';
+  newrestaurantIDList: number[] = [];             // used to update collection
 
-  //@Input('userID') userID = 0;
-  
 
   constructor(private router: Router,
               private collectionData: CollectionService,
               private restaurantData: RestaurantService,
-              private auth: AuthService) { 
-                this.auth.getSession().subscribe(data => {
-                  this.userID = data.userID;
-                  console.log("profile: " + JSON.stringify(data)); 
-                })
-              }
+              private auth: AuthService) { }
 
   ngOnInit() {
-    // get the collection by favoriateListID
-    if (this.userID > 0) {
-      this.collectionData.getCollectionByUserID(this.userID).subscribe(data => {
-        this.favoriateList = data;
-        console.log(this.favoriateList);
-        this.restaurantIDList = this.favoriateList[0].restaurantIDList;
-        console.log('favoriateList: ', this.favoriateList);
-  
-        // get every restaurant in the favoriateList
-        for (let each of this.restaurantIDList) {
-          // console.log('each: ', each);
-          this.restaurantData.getByID(each).subscribe(restaurant => {
-            this.restaurants.push(restaurant);
-            console.log('restaurant: ', restaurant);
-          });
-        }
-      });
-    }   
+    this.auth.getSession().subscribe(data => {
+      this.userID = data.userID;
+      console.log('profile: ' + JSON.stringify(data));
+      // get the collection by favoriateListID
+      if (this.userID > 0) {
+        this.collectionData.getCollectionByUserID(this.userID).subscribe(
+          data => {
+            this.favoriateList = data;
+            this.restaurantIDList = this.favoriateList[0].restaurantIDList;
+            console.log('favoriateList of collection: ', this.favoriateList);
+            // get every restaurant in the favoriateList
+            for (let each of this.restaurantIDList) {
+              this.restaurantData.getByID(each).subscribe(restaurant => {
+                this.restaurants.push(restaurant);
+                console.log('restaurant in fav list of collection: ', restaurant);
+              });
+            }
+        });
+      }
+    });
   }
 
   click(rID) {
     var nextStationUrl = this.restaurantDetailUrl + rID;
     this.router.navigateByUrl(nextStationUrl);
-    console.log("collection got user id:", this.userID);
   }
 
   // add new restaurant to this collection
@@ -79,7 +68,7 @@ export class CollectionComponent implements OnInit {
       console.log('new list object: ', body);
       this.collectionData.updateCollectionByListID(this.favoriateList[0].favoriteListID, body);
     } else {
-      console.log('restaurantID is null');
+      console.log('restaurantID is null when add into collection');
     }
   }
 
@@ -96,7 +85,7 @@ export class CollectionComponent implements OnInit {
       console.log('new list: ', body);
       this.collectionData.updateCollectionByListID(this.favoriateList[0].favoriteListID, body);
     } else {
-      console.log('restaurantID is null');      
+      console.log('restaurantID is null when delete from collection');
     }
   }
 }
