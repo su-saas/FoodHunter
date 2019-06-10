@@ -33,7 +33,7 @@ export class RestaurantComponent implements OnInit {
         this.restaurantService.getByID(this.route.snapshot.params.rID).subscribe(
             res => {
                 this.detail = res;
-                this.restaurantAvatar = res.restaurantAvtar;
+                this.restaurantAvatar = res.restaurantAvatar;
                 console.log('restaurant info: ', this.detail);
             });
     }
