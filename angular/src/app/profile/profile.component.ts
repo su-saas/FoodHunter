@@ -1,11 +1,9 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../services/profile.service';
-import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { CollectionService } from '../services/collection.service';
 import { IFavoriteListModel } from '../interfaces/IFavoriteListModel';
-import { RecommendationListService } from '../services/recommendation-list.service';
-import { TagSelectionService } from '../services/tag-selection.service';
+
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -13,34 +11,27 @@ import { TagSelectionService } from '../services/tag-selection.service';
 })
 export class ProfileComponent implements OnInit {
   userID: number;
-  userName:string;
-  emailAddress:string;
+  userName: string;
+  emailAddress: string;
   favoriteListID: number;
   favoriateList: IFavoriteListModel;
   restaurantIDList: number[] = [];
   avatarPicture: string;
 
   constructor(private auth: AuthService,
-    private profileService: ProfileService,
-    private route: ActivatedRoute,
-    private collectionservice: CollectionService,
-    private recommendationListService: RecommendationListService,
-    ) {
-      this.auth.getSession().subscribe(data => {
-        this.userID = data.userID;
-        this.emailAddress = data.emailAddress;
-        this.userName = data.userName; 
-        console.log("profile: " + JSON.stringify(data)); 
-      })
-    }
+              private profileService: ProfileService) { }
 
   ngOnInit() {
-    console.log("here is profile: ", this.userID);
-    this.profileService.getProfileByFoodieID(this.userID).subscribe(foodieinfo => {
-      this.avatarPicture = foodieinfo.avatar;
+    this.auth.getSession().subscribe(data => {
+      this.userID = data.userID;
+      this.emailAddress = data.emailAddress;
+      this.userName = data.userName;
+      console.log('profile: ' + JSON.stringify(data));
+      console.log('user of profile: ', this.userID);
+      this.profileService.getProfileByFoodieID(this.userID).subscribe(
+        foodieinfo => this.avatarPicture = foodieinfo.avatar
+      );
     });
   }
 
 }
-  
-  
