@@ -14,7 +14,8 @@
 		<div class="col-lg-6 col-md-12">
 			<div class="single-news mb-lg-0 mb-4">
 				<div class="view overlay rounded z-depth-1-half mb-4">
-					<img class="img-fluid" src='../../assets/img/restaurant4.png' alt="Sample image">
+					<!-- <img class="img-fluid" src='../../assets/img/restaurant4.png' alt="Sample image"> -->
+					<img class="img-fluid" src= {{restaurantAvatar}}  alt="Sample image">
 					<a>
 						<div class="mask rgba-white-slight"></div>
 					</a>
@@ -31,3 +32,6 @@
 		</div>
 	</div>
 </section>
+
+<router-outlet></router-outlet>
+<!-- <app-collection #coll [style.visibility]="hidden"></app-collection> -->

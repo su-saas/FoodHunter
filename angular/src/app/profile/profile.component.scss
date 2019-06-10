@@ -112,12 +112,12 @@ img.rounded {
     border-radius: 4px;
 }
 
-.nav-pills .nav-item .nav-link.active {
-    color: #fff;
-    font-size: 15px;
-    background-color: #9c27b0;
-    box-shadow: 0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(156,39,176,.6);
-}
+// .active {
+//     color: #fff;
+//     font-size: 15px;
+//     background-color: #9c27b0;
+//     box-shadow: 0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(156,39,176,.6);
+// }
 
 // .nav-pills .nav-item .nav-link.a:active {
 //     color: #fff;
@@ -143,6 +143,11 @@ img.rounded {
     color: white;
 }
 
+.active a {
+    background-color:purple !important;  
+    color: white !important;
+}
+
 
 .nav-pills .nav-item i {
     display: block;
@@ -158,18 +163,7 @@ img.rounded {
     padding: 0px 0px 50px 0px;
 }
 
-.badge {
-    font-size: 12px;
-    padding: 10px;
-}
 
-.badge_style_1 {
-    padding: 50px;
-}
-
-.badge_style_2 {
-    padding: 10px 30px 10px 120px;
-}
 
 
 

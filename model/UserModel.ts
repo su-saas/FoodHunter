@@ -141,7 +141,10 @@ class FoodieModel extends UserModel {
                 },
                 favoriteListID: {
                     type: Number,
-                }
+                },
+                avatar: {
+                    type: String,
+                },
             }, {collection: "user"}
         );
         this.schema.index({userID: 1}, {password: null}, {emailAddress: null},

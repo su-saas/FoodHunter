@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { IRestaurantModel } from '../interfaces/IRestaurantModel';
 import { SearchService } from '../services/search.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
 	selector: 'app-search',
@@ -15,12 +16,19 @@ export class SearchComponent implements OnInit {
 	private rID: number;
 	public notFind: boolean;
 	public submitted: boolean;
+	userID: number;
 	options = [
 		{ description: 'Restaurant Name' },
 	];
 
 	constructor(private router: Router,
-		           private searchService: SearchService) { }
+				private searchService: SearchService,
+				private auth: AuthService) {
+					this.auth.getSession().subscribe(data => {
+					this.userID = data.userID;
+					console.log("profile: " + JSON.stringify(data)); 
+					})
+				 }
 
 	ngOnInit() {
 		this.notFind = true;

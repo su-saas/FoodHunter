@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class FilterService {
-  private tagUrl = 'http://localhost:8080/tag';
+  private tagUrl = '/tag';
 
   constructor(private http: HttpClient) { }
 

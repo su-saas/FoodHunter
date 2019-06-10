@@ -47,6 +47,9 @@ class RestaurantModel {
                     type: Number, 
                     required: true
                 },
+                restaurantAvtar: {
+                    type: String,
+                },
             }, {collection: 'restaurant'}
         );
     }

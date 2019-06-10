@@ -12,6 +12,7 @@ import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
 import { RecommendationListComponent } from './recommendation-list/recommendation-list.component';
 import { TagSelectionComponent } from './tag-selection/tag-selection.component';
+import { CurrentTagPriorityComponent } from './current-tag-priority/current-tag-priority.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'restaurants/:rID', component: RestaurantComponent },
   { path: 'addreview', component: AddReviewComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'currentTagPriority', component: CurrentTagPriorityComponent},
   { path: 'collection', component: CollectionComponent },
   { path: 'review', component: ReviewComponent },
   { path: 'search', component: SearchComponent},

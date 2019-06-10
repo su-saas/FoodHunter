@@ -3,6 +3,7 @@ import { IRestaurantModel } from '../interfaces/IRestaurantModel';
 import { RecommendationListService } from '../services/recommendation-list.service';
 import { RestaurantService } from '../services/restaurant.service';
 import { filter } from 'rxjs/operators';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-recommendation-list',
@@ -12,19 +13,25 @@ import { filter } from 'rxjs/operators';
 export class RecommendationListComponent implements OnInit {
   private restaurantIdList: number[];
   public recommendationList: IRestaurantModel[] = [];
-  private userId: number = 3;
+  private userID: number;
 
   @Input('isChange') isChange: boolean = false;
   @Input('newList') newList: any = [];
 
   constructor(private recommendationListService: RecommendationListService,
-              private restaurantService: RestaurantService) { }
+              private restaurantService: RestaurantService,
+              private auth: AuthService) {
+                this.auth.getSession().subscribe(data => {
+                this.userID = data.userID;
+                console.log("profile: " + JSON.stringify(data)); 
+              })
+               }
 
   ngOnInit() {
     if (!this.isChange) {
       console.log(this.isChange);
       console.log(this.newList);
-      this.recommendationListService.getTagListId(this.userId).subscribe(
+      this.recommendationListService.getTagListId(this.userID).subscribe(
         res => {
           console.log(res);
           this.recommendationListService.getRecommendationList(res['tagListID']).subscribe(

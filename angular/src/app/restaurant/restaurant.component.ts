@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { IRestaurantModel } from '../interfaces/IRestaurantModel';
+import { Component, OnInit, Input } from '@angular/core';
+import {IRestaurantModel} from '../interfaces/IRestaurantModel';
 import { RestaurantService } from '../services/restaurant.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CollectionService } from '../services/collection.service';
@@ -13,6 +13,7 @@ import { AuthService } from '../services/auth.service';
 export class RestaurantComponent implements OnInit {
 
     detail: IRestaurantModel;
+    restaurantAvatar: string;
 
     addCollectionClicked: boolean;
     addCollectionSuccessOrNot: boolean;
@@ -33,13 +34,19 @@ export class RestaurantComponent implements OnInit {
     ngOnInit() {
         this.addCollectionClicked = false;
         this.addCollectionSuccessOrNot = false;
-        this.restaurantService.getByID(this.route.snapshot.params.rID).subscribe(
-            res => {
-                this.detail = res;
-                console.log(this.detail);
-            }
-        );
+        if (this.route.snapshot.params.rID > 0) {
+            this.restaurantService.getByID(this.route.snapshot.params.rID).subscribe(
+                res => {
+                    this.detail = res;
+                    this.restaurantAvatar = res.restaurantAvtar;
+                    console.log(this.detail);}
+            );
+    
+            console.log("restaurant info: ", this.detail);
+        }        
     }
+    
+   
 
     addToCollection() {
         this.collectionService.addCollection(this.currentUserID, this.detail.restaurantID)

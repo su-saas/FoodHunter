@@ -9,10 +9,11 @@
 		<div *ngIf="!isUser">
 			<div class="col-md-3">
 				<div class="view overlay rounded z-depth-1 mb-4">
-					<img class="img-fluid" src='../../assets/img/profile.png' alt="Sample image">
-					<a>
-						<div class="mask rgba-white-slight"></div>
-					</a>
+				<!-- <img class="img-fluid" src='../../assets/img/profile.png' alt="Sample image"> -->
+				<img class="img-fluid" src={{users[i]?.avatar}} alt="Sample image">
+				<a>
+					<div class="mask rgba-white-slight"></div>
+				</a>
 				</div>
 			</div>
 			<div class="col-md-9">
@@ -38,3 +39,4 @@
 		</div>
 	</div>
 </div>
+

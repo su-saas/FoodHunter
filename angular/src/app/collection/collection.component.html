@@ -1,21 +1,20 @@
-    
-<div class="container">   
-    <div class="col">
-        <div class="col-md-3 col-md-6 mb-4">
-            <div class="collections">
-                <h3 class="display-3">Collection &nbsp;&nbsp;
-                </h3>
-                <div class="panel panel-default" *ngFor="let restaurant of restaurants">
-                    <div class="panel-heading">{{restaurant.restaurantName}} &nbsp;</div>
-                    <div class="panel-body"></div>
-                        <p class="card-text"><strong>Address: </strong>{{restaurant.address}}</p>
-                        <p class="card-text"><strong>Hours: </strong>{{restaurant.hours}}</p>
-                        <p class="card-text"><strong>Introduction: </strong>{{restaurant.introductionContent}}</p>
-                    </div>                    
-                </div>
+<h2 class="h1-responsive font-weight-bold text-left my-5">Collection</h2>
+<div *ngFor="let restaurant of restaurants">
+    <div class="col-md-6" >
+        <div class="card mb-5">
+            <div class="view overlay">
+                <img class="card-img-top" src='../../assets/img/restaurant3.jpg' alt="Card image cap">
+                <a (click)="click(restaurant.restaurantID)">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title" style="font-size: 25px; font-weight: bold">{{restaurant.restaurantName}}</h4>
+                <p class="card-text" style="font-size: 12px"><strong>Address: </strong>{{restaurant.address}}</p>
+                <p class="card-text" style="font-size: 12px"><strong>Open Hours: </strong>{{restaurant.hours}}</p>
+                <p class="card-text" style="font-size: 12px"><strong >Introduction: </strong>{{restaurant.introductionContent}}</p>
             </div>
         </div>
-    </div>
-    
-    
-<router-outlet></router-outlet>
+    </div> 
+</div>
+ 

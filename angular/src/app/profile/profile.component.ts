@@ -12,23 +12,20 @@ import { TagSelectionService } from '../services/tag-selection.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  users: Object;
   userID: number;
   userName:string;
   emailAddress:string;
   favoriteListID: number;
   favoriateList: IFavoriteListModel;
   restaurantIDList: number[] = [];
-  tagList: any;
-  priorityList: number[] = [];
-  tagPriList: string[] = [];
-  
+  avatarPicture: string;
+
   constructor(private auth: AuthService,
-    private data: ProfileService,
+    private profileService: ProfileService,
     private route: ActivatedRoute,
     private collectionservice: CollectionService,
     private recommendationListService: RecommendationListService,
-    private tagSelectionService: TagSelectionService) {
+    ) {
       this.auth.getSession().subscribe(data => {
         this.userID = data.userID;
         this.emailAddress = data.emailAddress;
@@ -38,29 +35,12 @@ export class ProfileComponent implements OnInit {
     }
 
   ngOnInit() {
-      this.data.getProfileByFoodieID(this.userID).subscribe(
-        data => {
-          this.users = data;
-          this.userName = data.userName;
-          this.emailAddress = data.emailAddress;
-          this.tagSelectionService.getAllTags().subscribe(
-            res => {
-              this.tagList = res;
-              this.data.getFoodieTagListByFoodieID(this.userID).subscribe(
-                response => {
-                  this.priorityList = response.tagList;
-                  for (let i = 0; i < this.tagList.length; i++) {
-                    let message: string = this.tagList[i]['tagName'] + ": " + this.priorityList[i];
-                    console.log(message);
-                    this.tagPriList.push(message);
-                  }
-                  console.log(this.tagPriList);
-              });
-          });
-      });
-    }
+    console.log("here is profile: ", this.userID);
+    this.profileService.getProfileByFoodieID(this.userID).subscribe(foodieinfo => {
+      this.avatarPicture = foodieinfo.avatar;
+    });
+  }
+
 }
   
   
-
-
