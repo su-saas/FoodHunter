@@ -26,14 +26,15 @@ export class ReviewComponent implements OnInit {
 		private authService: AuthService,
 		private reviewService: ReviewService,
 		private profileService: ProfileService,
-		private restaurantService: RestaurantService) { }
+		private restaurantService: RestaurantService) { 
+			this.authService.getSession().subscribe(
+				data => {
+					this.currentUserID = data.userID;
+				}
+			);
+		}
 
 	ngOnInit() {
-		this.authService.getSession().subscribe(
-			data => {
-				this.currentUserID = data.userID;
-			}
-		);
 		if (this.rID > 0) {
 			this.reviewService.getByRestaurantID(this.rID)
 				.subscribe(reviews => {
