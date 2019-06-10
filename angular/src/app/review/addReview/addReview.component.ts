@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class AddReviewComponent implements OnInit {
 	private rID: number;
 	// private uID: number;
-	currentUserID: number;
+	private currentUserID: number;
 
 	constructor(
 		private authService: AuthService,
@@ -28,8 +28,9 @@ export class AddReviewComponent implements OnInit {
 
 	ngOnInit() {
 		this.rID = Number(this.route.snapshot.queryParams.rID);
-		console.log('rID:' + this.rID);
-		console.log('uID:' + this.currentUserID);
+		if (typeof this.currentUserID === 'undefined') {
+			this.router.navigateByUrl('/');
+		}
 	}
 
 	addNewReview(content: string, title: string) {
