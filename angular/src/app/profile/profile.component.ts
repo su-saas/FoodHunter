@@ -18,9 +18,7 @@ export class ProfileComponent implements OnInit {
   favoriteListID: number;
   favoriateList: IFavoriteListModel;
   restaurantIDList: number[] = [];
-  tagList: any;
-  priorityList: number[] = [];
-  tagPriList: string[] = [];
+ 
   // avatarPicture: string = "https://drive.google.com/uc?id=1rGvNT1klU8v287D6twZ5Up1ewfwDRZsT";
   avatarPicture: string;
 
@@ -29,7 +27,7 @@ export class ProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private collectionservice: CollectionService,
     private recommendationListService: RecommendationListService,
-    private tagSelectionService: TagSelectionService) {
+    ) {
       // this.auth.getSession().subscribe(data => {
       //   this.userID = data.userID;
       //   this.emailAddress = data.emailAddress;
@@ -39,26 +37,11 @@ export class ProfileComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.tagSelectionService.getAllTags().subscribe(
-      res => {
-        this.tagList = res;
-        //console.log(this.tagList);
-        this.profileService.getFoodieTagListByFoodieID(this.userID).subscribe(
-          response => {
-            this.priorityList = response.tagList;
-            for (let i = 0; i < this.tagList.length; i++) {
-              let message: string = this.tagList[i]['tagName'] + ": " + this.priorityList[i];
-              console.log(message);
-              this.tagPriList.push(message);
-            }
-            console.log(this.tagPriList);
-        });
-    });
-
-    this.profileService.getProfileByFoodieID(77).subscribe(foodieinfo => {
+    this.profileService.getProfileByFoodieID(this.userID).subscribe(foodieinfo => {
       this.avatarPicture = foodieinfo.avatar;
     });
   }
+
 }
   
   

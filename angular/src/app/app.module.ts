@@ -21,6 +21,7 @@ import { FilterComponent } from './filter/filter.component';
 import { RecommendationListComponent } from './recommendation-list/recommendation-list.component';
 import { TagSelectionComponent } from './tag-selection/tag-selection.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { CurrentTagPriorityComponent } from './current-tag-priority/current-tag-priority.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 		RecommendationListComponent,
 		TagSelectionComponent,
 		NotFoundComponent,
+		CurrentTagPriorityComponent,
 	],
 	imports: [
 		BrowserModule,

@@ -21,8 +21,8 @@
                             <div class="profile-tabs">
                               <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" role="tab" data-toggle="tab" href="#profile">
-                                        Profile
+                                    <a class="nav-link" role="tab" data-toggle="tab" href="#tagPrio">
+                                        Tag Priority
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -45,17 +45,8 @@
                         </div>
                     </div>
                     <div class="row tab-content" >
-                        <div class="tab-pane" id="profile">
-                            <div class="badge_style_1" *ngIf= "tagPriList">
-                                <div class="col-md-3 ml-auto mr-auto">
-                                    <h6>current priority of tags: </h6>     
-                                </div>
-                                <div class="col-md-9 ml-auto mr-auto">
-                                    <div class="col-md-3 ml-auto badge_style_2  justify-content-left" *ngFor="let tag of tagPriList">
-                                        <span class="badge badge-pill purple-gradient">{{ tag }}</span>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="tab-pane" id="tagPrio">
+                            <app-current-tag-priority [userID]= "userID"></app-current-tag-priority>
                         </div>
                         <div class="tab-pane" id="review">
                             <app-review [userID]= "userID"></app-review>
