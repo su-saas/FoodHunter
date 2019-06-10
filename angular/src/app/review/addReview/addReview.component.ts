@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ReviewComponent } from '../review.component';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ReviewService } from '../../services/review.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Sleep } from 'src/app/utils/utils';
 
 @Component({
 	selector: 'app-addreview',
@@ -29,6 +29,8 @@ export class AddReviewComponent implements OnInit {
 	ngOnInit() {
 		this.rID = Number(this.route.snapshot.queryParams.rID);
 		if (typeof this.currentUserID === 'undefined') {
+			alert('not login');
+			Sleep(2000);
 			this.router.navigateByUrl('/');
 		}
 	}
