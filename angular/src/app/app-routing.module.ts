@@ -33,12 +33,12 @@ const routes: Routes = [
 
 /////////////////////////////////////
 /*********** FOR DEPLOY ************/
-// export const routing = RouterModule.forRoot(routes, {useHash:true});
+export const routing = RouterModule.forRoot(routes, {useHash:true});
 
 ////////////////////////////////
 /*********** LOCAL ************/
-@NgModule({
+/*@NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { }*/

@@ -22,7 +22,6 @@ export class ProfileComponent implements OnInit {
   tagList: any;
   priorityList: number[] = [];
   tagPriList: string[] = [];
-  userIdtemp: number = 3;
   
   constructor(private auth: AuthService,
     private data: ProfileService,
@@ -30,16 +29,16 @@ export class ProfileComponent implements OnInit {
     private collectionservice: CollectionService,
     private recommendationListService: RecommendationListService,
     private tagSelectionService: TagSelectionService) {
-      // this.auth.getSession().subscribe(data => {
-      //   this.userID = data.userID;
-      //   this.emailAddress = data.emailAddress;
-      //   this.userName = data.userName; 
-      //   console.log("profile: " + JSON.stringify(data)); 
-      // })
+      this.auth.getSession().subscribe(data => {
+        this.userID = data.userID;
+        this.emailAddress = data.emailAddress;
+        this.userName = data.userName; 
+        console.log("profile: " + JSON.stringify(data)); 
+      })
     }
 
   ngOnInit() {
-      this.data.getProfileByFoodieID(this.userIdtemp).subscribe(
+      this.data.getProfileByFoodieID(this.userID).subscribe(
         data => {
           this.users = data;
           this.userName = data.userName;
@@ -47,7 +46,7 @@ export class ProfileComponent implements OnInit {
           this.tagSelectionService.getAllTags().subscribe(
             res => {
               this.tagList = res;
-              this.data.getFoodieTagListByFoodieID(this.userIdtemp).subscribe(
+              this.data.getFoodieTagListByFoodieID(this.userID).subscribe(
                 response => {
                   this.priorityList = response.tagList;
                   for (let i = 0; i < this.tagList.length; i++) {
