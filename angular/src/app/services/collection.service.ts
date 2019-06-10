@@ -8,7 +8,7 @@ import { IFavoriteListModel } from '../interfaces/IFavoriteListModel';
 	providedIn: 'root'
 })
 export class CollectionService {
-  private favoriateListUrl = 'http://localhost:8080/favoriteList/';
+  private favoriateListUrl = '/favoriteList/';
   private fListByUserIdUrl = 'http://localhost:8080/favoriteList/'
   constructor(private http: HttpClient) { }
 
