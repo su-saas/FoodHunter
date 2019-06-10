@@ -12,7 +12,6 @@ import { IFoodieTagListModel } from '../interfaces/IFoodieTagListModel';
 })
 export class ProfileService {
   private foodieurl = '/foodie/';
-// private url: string = 'https://foodhunter.azurewebsites.net/foodie/';
   private tagListUrl = '/tagList/';
   constructor(private http: HttpClient) { }
 

@@ -4,7 +4,7 @@ import { RestaurantService } from '../services/restaurant.service';
 import { Subscription } from 'rxjs';
 // import { MessageService } from '../message.service';
 import { AuthService } from '../services/auth.service';
-import { Router  , ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
 import { ProfileComponent } from '../profile/profile.component';
 import { IFavoriteListModel } from '../interfaces/IFavoriteListModel';
@@ -25,13 +25,14 @@ export class CollectionComponent implements OnInit {
   newrestaurantIDList: number[] = [];
 
   constructor(private collectionData: CollectionService,
-              private restaurantData: RestaurantService,
-              private auth: AuthService) { 
-                // this.auth.getSession().subscribe(data => {
-                //   this.userID = data.userID;
-                //   console.log("profile: " + JSON.stringify(data)); 
-                // })
-              }
+    private restaurantData: RestaurantService,
+    private authService: AuthService) {
+    this.authService.getSession().subscribe(
+      data => {
+        this.userID = data.userID;
+      }
+    );
+  }
 
   ngOnInit() {
     // get the collection by favoriateListID
@@ -55,7 +56,7 @@ export class CollectionComponent implements OnInit {
   addRestaurantToCollection(restaurantId: number) {
     this.restaurantIDList.push(restaurantId);
     console.log('restaurantIDList: ', this.restaurantIDList);
-    if (restaurantId !== null ) {
+    if (restaurantId !== null) {
       const body = {
         favoriteListID: this.favoriateList[0].favoriteListID,
         userID: this.favoriateList[0].userID,
@@ -73,7 +74,7 @@ export class CollectionComponent implements OnInit {
   deleteRestaurantFromCollection(restaurantId: number) {
     // find the restaurantID in the list and remove it
     this.restaurantIDList.splice(this.restaurantIDList.indexOf(restaurantId), 1);
-    if (restaurantId !== null ) {
+    if (restaurantId !== null) {
       const body = {
         favoriteListID: this.favoriateList[0].favoriteListID,
         userID: this.favoriateList[0].userID,
