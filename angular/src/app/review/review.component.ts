@@ -3,8 +3,6 @@ import { IReviewModel } from '../interfaces/IReviewModel';
 import { IFoodieModel } from '../interfaces/IFoodieModel';
 import { ReviewService } from '../services/review.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RestaurantComponent } from '../restaurant/restaurant.component';
-import { IRestaurantModel } from '../interfaces/IRestaurantModel';
 import { ProfileService } from '../services/profile.service';
 import { RestaurantService } from '../services/restaurant.service';
 
@@ -14,7 +12,6 @@ import { RestaurantService } from '../services/restaurant.service';
 	styleUrls: ['./review.component.scss']
 })
 export class ReviewComponent implements OnInit {
-	// @Input() restaurant: IRestaurantModel;
 	lists: IReviewModel[] = [];
 	users: IFoodieModel[] = [];
 	isUser: boolean = false;
@@ -43,20 +40,21 @@ export class ReviewComponent implements OnInit {
 					}
 				});
 		} else {
-			this.isUser = true;			
+			this.isUser = true;
 			this.reviewService.getByUserID(this.uID)
-			.subscribe(
-				reviews => {
-					for (let i = 0; i < reviews.length; i++) {
-						this.lists[i] = reviews[i];
-						this.rIdList[i] = reviews[i].restaurantID;
-						this.restaurantService.getByID(this.lists[i].restaurantID)
-						.subscribe(restaurant => this.rNameList[i] = restaurant.restaurantName
-						)
-					}
-				});
-			// 	}
-			// );
+				.subscribe(
+					reviews => {
+						for (let i = 0; i < reviews.length; i++) {
+							this.lists[i] = reviews[i];
+							this.rIdList[i] = reviews[i].restaurantID;
+							this.restaurantService.getByID(this.lists[i].restaurantID)
+								.subscribe(
+									restaurant => {
+										this.rNameList[i] = restaurant.restaurantName;
+									}
+								)
+						}
+					});
 		}
 	}
 

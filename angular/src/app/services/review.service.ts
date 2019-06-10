@@ -9,9 +9,7 @@ import { IReviewModel } from '../interfaces/IReviewModel';
 	providedIn: 'root'
 })
 export class ReviewService {
-	private url = 'http://localhost:8080/review';
-
-	// private url: string = 'https://foodhunter.azurewebsites.net/review';
+	private url = '/review';
 	constructor(private http: HttpClient) { }
 
 	getByRestaurantID(rID: number): Observable<IReviewModel[]> {
@@ -20,7 +18,7 @@ export class ReviewService {
 			.pipe(
 				map(response => {
 					const updatedResponse = [];
-					for (let i = 0; i < response.length; i ++) {
+					for (let i = 0; i < response.length; i++) {
 						if (response[i].restaurantID === rID) {
 							updatedResponse.push(response[i]);
 						}
@@ -36,7 +34,7 @@ export class ReviewService {
 			.pipe(
 				map(response => {
 					const updatedResponse = [];
-					for (let i = 0; i < response.length; i ++) {
+					for (let i = 0; i < response.length; i++) {
 						if (response[i].userID === uID) {
 							updatedResponse.push(response[i]);
 						}
@@ -48,7 +46,7 @@ export class ReviewService {
 
 	add(body: any) {
 		let headers = new HttpHeaders();
-  headers = headers.set('Content-Type', 'application/json');
+		headers = headers.set('Content-Type', 'application/json');
 		return this.http.post(this.url, JSON.stringify(body), {
 			headers,
 		});
