@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular",
+            "outputPath": "dist/angularDist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -92,7 +92,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": ["node_modules/jquery/dist/jquery.js"],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -142,5 +144,5 @@
       }
     }
   },
-  "defaultProject": "angular" 
+  "defaultProject": "angular"
 }

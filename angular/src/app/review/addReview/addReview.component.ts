@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ReviewComponent } from '../review.component';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ReviewService } from '../../services/review.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Sleep } from 'src/app/utils/utils';
 
 @Component({
 	selector: 'app-addreview',
@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class AddReviewComponent implements OnInit {
 	private rID: number;
 	// private uID: number;
-	currentUserID: number;
+	private currentUserID: number;
 
 	constructor(
 		private authService: AuthService,
