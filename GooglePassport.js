@@ -35,8 +35,8 @@ var GooglePassport = /** @class */ (function () {
                             console.log("create: " + resp1.statusCode);
                         });
                     }
-                    return done(null, profile);
                 });
+                return done(null, profile);
             });
         }));
         passport.serializeUser(function (user, done) {

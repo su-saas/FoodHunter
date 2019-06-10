@@ -54,7 +54,7 @@ var App = /** @class */ (function () {
         this.expressApp.use(expressSession({
             key: 'user_sid',
             secret: 'keyboard cat',
-            cookie: { maxAge: 10 * 60 * 1000 },
+            cookie: { maxAge: 1 * 60 * 1000 },
             store: new mongoStore({
                 url: DataAccess_1.DataAccess.DB_CONNECTION_STRING,
                 db: mongooseConnection.db,
@@ -67,7 +67,8 @@ var App = /** @class */ (function () {
     //////////////////////////////////////////////////
     //*************** google login ******************/
     App.prototype.validateAuth = function (req, res, next) {
-        if (req.isAuthenticated() && req.cookies.user_sid) {
+        // && req.cookies.user_sid  => not allow the user log in two different account in the same browser
+        if (req.isAuthenticated()) {
             console.log("user is authenticated");
             console.log("validate user id: " + req.user.id);
             console.log("validate email: " + req.user.emails[0].value);
@@ -83,11 +84,14 @@ var App = /** @class */ (function () {
         router.get('/auth/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login', 'email'] }));
         router.get('/auth/google/callback', passport.authenticate('google', { successRedirect: '/#/profile', failureRedirect: '/' }));
         router.get('/auth/user', this.validateAuth, function (req, res) {
-            var email = _this.googlePassportObj.email;
-            newReq.get(req.protocol + "://" + req.get('host') + "/login/" + email, {}, function (err, resp, body) {
-                console.log('/auth/user: ' + body);
-                res.send(body);
-            });
+            console.log("req.cookies.user_sid: " + req.cookies.user_sid);
+            if (req.cookies.user_sid) {
+                var email = _this.googlePassportObj.email;
+                newReq.get(req.protocol + "://" + req.get('host') + "/login/" + email, {}, function (err, resp, body) {
+                    console.log('/auth/user: ' + body);
+                    res.send(body);
+                });
+            }
         });
         //////////////////////////////////////////////////
         //*************** google login end ***************/
