@@ -40,12 +40,9 @@ var RestaurantModel = /** @class */ (function () {
             averagePrice: {
                 type: Number,
                 required: true
-<<<<<<< HEAD
             },
             restaurantAvtar: {
                 type: String
-=======
->>>>>>> add js
             }
         }, { collection: 'restaurant' });
     };
