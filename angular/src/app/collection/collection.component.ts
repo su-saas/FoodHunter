@@ -17,12 +17,15 @@ import { IRestaurantModel } from '../interfaces/IRestaurantModel';
 
 export class CollectionComponent implements OnInit {
   user: object;
-  userID: number;
+  //userID: number;
   favoriateList: IFavoriteListModel;
   restaurantIDList: number[] = [];
   restaurants: IRestaurantModel[] = [];
   // used to update collection
   newrestaurantIDList: number[] = [];
+
+  @Input('userID') userID = 0;
+  
 
   constructor(private collectionData: CollectionService,
     private restaurantData: RestaurantService,
@@ -36,8 +39,9 @@ export class CollectionComponent implements OnInit {
 
   ngOnInit() {
     // get the collection by favoriateListID
-    this.collectionData.getCollectionByListID(3).subscribe(data => {
+    this.collectionData.getCollectionByUserID(this.userID).subscribe(data => {
       this.favoriateList = data;
+      console.log(this.favoriateList);
       this.restaurantIDList = this.favoriateList[0].restaurantIDList;
       console.log('favoriateList: ', this.favoriateList);
 

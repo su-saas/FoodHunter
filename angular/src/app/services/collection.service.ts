@@ -8,15 +8,14 @@ import { IFavoriteListModel } from '../interfaces/IFavoriteListModel';
 	providedIn: 'root'
 })
 export class CollectionService {
+<<<<<<< HEAD
   private favoriateListUrl = '/favoriteList/';
   private fListByUserIdUrl = 'http://localhost:8080/favoriteList/'; 
+=======
+  private favoriateListUrl = 'http://localhost:8080/favoriteList/';
+  private fListByUserIdUrl = 'http://localhost:8080/favoriteList/user/'
+>>>>>>> updated collection
   constructor(private http: HttpClient) { }
-
-	// get collection by favoriteListID
-	getCollectionByListID(listID: number): Observable<IFavoriteListModel> {
-		console.log(listID);
-		return this.http.get<IFavoriteListModel>(this.favoriateListUrl + listID);
-	}
 
 	getCollectionByUserID(userID: number): Observable<IFavoriteListModel> {
 		console.log(userID);
@@ -32,7 +31,7 @@ export class CollectionService {
 	// add restaurant to the collection of the user
 	addCollection(userID: number, restaurantID: number): Observable<boolean> {
 		let successOrNot = new Subject<boolean>();
-		const url = this.favoriateListUrl + 'user/' + userID;
+		const url = this.fListByUserIdUrl + userID;
 		this.http.get<IFavoriteListModel[]>(url)
 			.subscribe(favoriteList => {
 				let exist = false;
