@@ -17,43 +17,52 @@ import { IRestaurantModel } from '../interfaces/IRestaurantModel';
 
 export class CollectionComponent implements OnInit {
   user: object;
-  //userID: number;
+  userID: number;
   favoriateList: IFavoriteListModel;
   restaurantIDList: number[] = [];
   restaurants: IRestaurantModel[] = [];
   // used to update collection
   newrestaurantIDList: number[] = [];
+  private restaurantDetailUrl = 'restaurants/';
 
-  @Input('userID') userID = 0;
+  //@Input('userID') userID = 0;
   
 
-  constructor(private collectionData: CollectionService,
-    private restaurantData: RestaurantService,
-    private authService: AuthService) {
-    this.authService.getSession().subscribe(
-      data => {
-        this.userID = data.userID;
-      }
-    );
-  }
+  constructor(private router: Router,
+              private collectionData: CollectionService,
+              private restaurantData: RestaurantService,
+              private auth: AuthService) { 
+                this.auth.getSession().subscribe(data => {
+                  this.userID = data.userID;
+                  console.log("profile: " + JSON.stringify(data)); 
+                })
+              }
 
   ngOnInit() {
     // get the collection by favoriateListID
-    this.collectionData.getCollectionByUserID(this.userID).subscribe(data => {
-      this.favoriateList = data;
-      console.log(this.favoriateList);
-      this.restaurantIDList = this.favoriateList[0].restaurantIDList;
-      console.log('favoriateList: ', this.favoriateList);
+    if (this.userID > 0) {
+      this.collectionData.getCollectionByUserID(this.userID).subscribe(data => {
+        this.favoriateList = data;
+        console.log(this.favoriateList);
+        this.restaurantIDList = this.favoriateList[0].restaurantIDList;
+        console.log('favoriateList: ', this.favoriateList);
+  
+        // get every restaurant in the favoriateList
+        for (let each of this.restaurantIDList) {
+          // console.log('each: ', each);
+          this.restaurantData.getByID(each).subscribe(restaurant => {
+            this.restaurants.push(restaurant);
+            console.log('restaurant: ', restaurant);
+          });
+        }
+      });
+    }   
+  }
 
-      // get every restaurant in the favoriateList
-      for (let each of this.restaurantIDList) {
-        // console.log('each: ', each);
-        this.restaurantData.getByID(each).subscribe(restaurant => {
-          this.restaurants.push(restaurant);
-          console.log('restaurant: ', restaurant);
-        });
-      }
-    });
+  click(rID) {
+    var nextStationUrl = this.restaurantDetailUrl + rID;
+    this.router.navigateByUrl(nextStationUrl);
+    console.log("collection got user id:", this.userID);
   }
 
   // add new restaurant to this collection
@@ -87,7 +96,7 @@ export class CollectionComponent implements OnInit {
       console.log('new list: ', body);
       this.collectionData.updateCollectionByListID(this.favoriateList[0].favoriteListID, body);
     } else {
-      console.log('restaurantID is null');
+      console.log('restaurantID is null');      
     }
   }
 }

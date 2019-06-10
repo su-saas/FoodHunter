@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 
 export class TagSelectionService {
-  private tagUrl = 'http://localhost:8080/tag';
-  private listUrl = 'http://localhost:8080/tagList';
+  private tagUrl = '/tag';
+  private listUrl = '/tagList';
 
   constructor(private http: HttpClient) { }
 

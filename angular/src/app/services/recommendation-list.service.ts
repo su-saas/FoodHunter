@@ -5,9 +5,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RecommendationListService {
-  private tagListUrl = 'http://localhost:8080/tagList/';
-  private recommendationListUrl = 'http://localhost:8080/recommendationlist/tagList/';
-  private restaurantUrl = 'http://localhost:8080/restaurant/';
+  private tagListUrl = '/tagList/';
+  private recommendationListUrl = '/recommendationlist/tagList/';
+  private restaurantUrl = '/restaurant/';
 
 
   constructor(private http: HttpClient) { }

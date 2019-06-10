@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TagSelectionService } from '../services/tag-selection.service';
 import { ProfileService } from '../services/profile.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-current-tag-priority',
@@ -11,11 +12,18 @@ export class CurrentTagPriorityComponent implements OnInit {
   tagPriList: string[] = [];
   priorityList: number[] = [];
   tagList: any;
+  userID: number;
 
-  @Input('userID') userID = 0;
+  //@Input('userID') userID = 0;
 
   constructor(private profileService: ProfileService,
-              private tagSelectionService: TagSelectionService) { }
+              private tagSelectionService: TagSelectionService,
+              private auth: AuthService) {
+                this.auth.getSession().subscribe(data => {
+                  this.userID = data.userID;
+                  console.log("profile: " + JSON.stringify(data)); 
+                })
+               }
 
   ngOnInit() {
     this.tagSelectionService.getAllTags().subscribe(

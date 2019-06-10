@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TagSelectionService } from '../services/tag-selection.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-tag-selection',
@@ -12,14 +13,20 @@ export class TagSelectionComponent implements OnInit {
   //private userID: number;
   private tagListID: number;
   private searchUrl = 'search';
+  userID: number;
   tagList: any;
   newList = [];
 
-  @Input('userID') userID = 0;
+  //@Input('userID') userID = 0;
   constructor(private tagSelectionService: TagSelectionService,
               private router: Router,
               private route: ActivatedRoute,
-              private data: ProfileService) {
+              private data: ProfileService,
+              private auth: AuthService) {
+                this.auth.getSession().subscribe(data => {
+                  this.userID = data.userID;
+                  console.log("profile: " + JSON.stringify(data)); 
+                })
   }
 
   ngOnInit() {

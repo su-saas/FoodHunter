@@ -12,14 +12,12 @@ import { TagSelectionService } from '../services/tag-selection.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  userID: number = 2;
-  userName:string = "Helena";
-  emailAddress:string = "helenawang77@gmail.com";
+  userID: number;
+  userName:string;
+  emailAddress:string;
   favoriteListID: number;
   favoriateList: IFavoriteListModel;
   restaurantIDList: number[] = [];
- 
-  // avatarPicture: string = "https://drive.google.com/uc?id=1rGvNT1klU8v287D6twZ5Up1ewfwDRZsT";
   avatarPicture: string;
 
   constructor(private auth: AuthService,
@@ -28,15 +26,16 @@ export class ProfileComponent implements OnInit {
     private collectionservice: CollectionService,
     private recommendationListService: RecommendationListService,
     ) {
-      // this.auth.getSession().subscribe(data => {
-      //   this.userID = data.userID;
-      //   this.emailAddress = data.emailAddress;
-      //   this.userName = data.userName; 
-      //   console.log("profile: " + JSON.stringify(data)); 
-      // })
+      this.auth.getSession().subscribe(data => {
+        this.userID = data.userID;
+        this.emailAddress = data.emailAddress;
+        this.userName = data.userName; 
+        console.log("profile: " + JSON.stringify(data)); 
+      })
     }
 
   ngOnInit() {
+    console.log("here is profile: ", this.userID);
     this.profileService.getProfileByFoodieID(this.userID).subscribe(foodieinfo => {
       this.avatarPicture = foodieinfo.avatar;
     });
