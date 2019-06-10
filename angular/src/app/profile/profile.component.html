@@ -36,7 +36,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" role="tab" data-toggle="tab">
+                                    <a class="nav-link" role="tab" data-toggle="tab" href="#tagCollection">
                                         TagSelection
                                     </a>
                                 </li>
@@ -62,7 +62,11 @@
                         </div>
                         <div class="tab-pane" id="collection">
                             <app-collection [userID]= "userID"></app-collection>
-                        </div>                       
+                        </div>
+                        <div class="tab-pane" id="tagCollection">
+                            <app-tag-selection [userID]= "userID"></app-tag-selection>
+                        </div> 
+
                     </div>
                 </div>                  
             </div>                   

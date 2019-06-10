@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TagSelectionService } from '../services/tag-selection.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
@@ -9,12 +9,13 @@ import { ProfileService } from '../services/profile.service';
   styleUrls: ['./tag-selection.component.scss']
 })
 export class TagSelectionComponent implements OnInit {
-  private userID: number = 2;
+  //private userID: number;
   private tagListID: number;
   private searchUrl = 'search';
   tagList: any;
   newList = [];
 
+  @Input('userID') userID = 0;
   constructor(private tagSelectionService: TagSelectionService,
               private router: Router,
               private route: ActivatedRoute,
@@ -40,20 +41,13 @@ export class TagSelectionComponent implements OnInit {
       this.newList.push(num);
     }
     console.log(this.newList);
-    // if (this.route.snapshot.queryParams.uID) {
-    //   console.log(this.route.snapshot.queryParams.uID);
-    //   this.userID = this.route.snapshot.queryParams.uID;
-    //   console.log(this.userID);
-      this.data.getProfileByFoodieID(this.userID).subscribe(data => {
-        this.tagListID = data.tagListID;
-        if (this.tagListID !== null) {
-          this.tagSelectionService.updateTagPriorityList(this.userID, this.newList);
-        } else {
-          console.log('Already exists');
-        }
-      });
-
-    //}
-    //this.router.navigateByUrl(this.searchUrl);
-    }
+    this.data.getProfileByFoodieID(this.userID).subscribe(data => {
+      this.tagListID = data.tagListID;
+      if (this.tagListID !== null) {
+        this.tagSelectionService.updateTagPriorityList(this.userID, this.newList);
+      } else {
+        console.log('Not exists');
+      }
+    });
+  }
 }

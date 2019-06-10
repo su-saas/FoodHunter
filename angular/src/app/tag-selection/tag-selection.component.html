@@ -1,37 +1,36 @@
+<h2 class="h1-responsive font-weight-bold text-left my-5">Tag Priority Setting</h2>
 <section class="slider align-items-center">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <div class="slider-title_box">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="slider-content_wrap">
-                                <h1 class="fontsize">Please select your tag and rank them</h1>
-                                <h3>Please set these tags in different priority, or you won't get an accurate recommendation</h3>
-                            </div>
-                        </div>					
+            <div class="col-md-12">                        					
+                <form class="container" #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+                    <div class="row" *ngIf="tagList">                   
+                        <div class="form-group col-md-3" *ngFor="let tag of tagList">  
+                            <mdb-card class="mb-3"  bgColor="bg-secondary" style="max-width: 25rem">
+                                <mdb-card-header class="tagStyle">{{tag.tagName}}</mdb-card-header>
+                                <mdb-card-body>
+                                    <select class="form-control tagStyle" id="conditionsselect1" name="{{tag.tagName}}" ngModel required>
+                                        <option *ngFor="let tag of tagList; let i = index; let each = tag">
+                                            {{i+1}}
+                                        </option>
+                                    </select>
+                                </mdb-card-body>
+                            </mdb-card>
+                        </div>
                     </div>
-                    <form class="container" #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-                        <div class="row" *ngIf="tagList">                   
-                            <div class="form-group col-md-3" *ngFor="let tag of tagList">  
-                                <mdb-card class="mb-3" bgColor="bg-white" style="max-width: 25rem">
-                                    <mdb-card-header class="tagStyle">{{tag.tagName}}</mdb-card-header>
-                                    <mdb-card-body>
-                                        <select class="form-control tagStyle" id="conditionsselect1" name="{{tag.tagName}}" ngModel required>
-                                            <option *ngFor="let tag of tagList; let i = index; let each = tag">
-                                                {{i+1}}
-                                            </option>
-                                        </select>
-                                    </mdb-card-body>
-                                </mdb-card>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="text">
+                            <h4>Note: Please set these tags in different priority, or you won't get an accurate recommendation</h4>
                             </div>
                         </div>
-                        <div>
-                            <button type="submit" class="btn peach-gradient" [disabled]="f.invalid">Submit</button>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn purple-gradient" style="float: right" [disabled]="f.invalid">Submit</button>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </section>
+  
