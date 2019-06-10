@@ -17,19 +17,20 @@ export class AddReviewComponent implements OnInit {
 		private authService: AuthService,
 		private route: ActivatedRoute,
 		private router: Router,
-		private reviewService: ReviewService) { }
-
-	ngOnInit() {
+		private reviewService: ReviewService) {
 		this.authService.getSession().subscribe(
 			data => {
 				this.currentUserID = data.userID;
 			}
 		);
+	}
+
+	ngOnInit() {
 		this.rID = Number(this.route.snapshot.queryParams.rID);
 	}
 
 	addNewReview(content: string, title: string) {
-		console.log("here is userId", this.currentUserID);
+		console.log("here is userId" + this.currentUserID);
 		const body = {
 			userID: this.currentUserID,
 			restaurantID: this.rID,
