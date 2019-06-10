@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ReviewComponent } from '../review.component';
-import { ActivatedRoute, Params, Router} from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ReviewService } from '../../services/review.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
 	selector: 'app-addreview',
@@ -11,19 +12,27 @@ import { ReviewService } from '../../services/review.service';
 export class AddReviewComponent implements OnInit {
 	private rID: number;
 	// private uID: number;
-	@Input('uID') uID = 0;
+	currentUserID: number;
 
-	constructor(private route: ActivatedRoute,
-				private router: Router,
-				private reviewService: ReviewService) {}
-				
+	constructor(
+		private authService: AuthService,
+		private route: ActivatedRoute,
+		private router: Router,
+		private reviewService: ReviewService) {
+		this.authService.getSession().subscribe(
+			data => {
+				this.currentUserID = data.userID;
+			}
+		);
+	}
+
 	ngOnInit() {
 		this.rID = Number(this.route.snapshot.queryParams.rID);
 	}
 
 	addNewReview(content: string, title: string) {
 		const body = {
-			userID: this.uID,
+			userID: this.currentUserID,
 			restaurantID: this.rID,
 			title: title,
 			content: content,

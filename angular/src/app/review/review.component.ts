@@ -5,6 +5,7 @@ import { ReviewService } from '../services/review.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
 import { RestaurantService } from '../services/restaurant.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
 	selector: 'app-review',
@@ -12,42 +13,48 @@ import { RestaurantService } from '../services/restaurant.service';
 	styleUrls: ['./review.component.scss']
 })
 export class ReviewComponent implements OnInit {
-	lists: IReviewModel[] = [];
-	users: IFoodieModel[] = [];
+	reviewList: IReviewModel[] = [];
+	userList: IFoodieModel[] = [];
 	isUser: boolean = false;
 	rIdList: number[] = [];
 	rNameList: string[] = [];
+	currentUserID: number;
 
 	@Input('rID') rID = 0;
-	@Input('uID') uID = 0;
 
 	constructor(
+		private authService: AuthService,
 		private reviewService: ReviewService,
 		private profileService: ProfileService,
-		private route: ActivatedRoute,
 		private restaurantService: RestaurantService
-	) { }
+	) {
+		this.authService.getSession().subscribe(
+            data => {
+                this.currentUserID = data.userID;
+            }
+        );
+	 }
 	ngOnInit() {
-		if (this.rID > 0 && this.uID > 0) {
+		if (this.rID > 0) {
 			this.reviewService.getByRestaurantID(this.rID)
 				.subscribe(reviews => {
 					for (let i = 0; i < reviews.length; i++) {
-						this.lists[i] = reviews[i];
+						this.reviewList[i] = reviews[i];
 						this.profileService.getProfileByFoodieID(reviews[i].userID)
 							.subscribe(user => {
-								this.users.push(user);
+								this.userList.push(user);
 							});
 					}
 				});
 		} else {
 			this.isUser = true;
-			this.reviewService.getByUserID(this.uID)
+			this.reviewService.getByUserID(this.currentUserID)
 				.subscribe(
 					reviews => {
 						for (let i = 0; i < reviews.length; i++) {
-							this.lists[i] = reviews[i];
+							this.reviewList[i] = reviews[i];
 							this.rIdList[i] = reviews[i].restaurantID;
-							this.restaurantService.getByID(this.lists[i].restaurantID)
+							this.restaurantService.getByID(this.reviewList[i].restaurantID)
 								.subscribe(
 									restaurant => {
 										this.rNameList[i] = restaurant.restaurantName;
