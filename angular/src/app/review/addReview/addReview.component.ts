@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReviewService } from '../../services/review.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { Sleep } from 'src/app/utils/utils';
+
 
 @Component({
 	selector: 'app-addreview',
@@ -11,27 +11,25 @@ import { Sleep } from 'src/app/utils/utils';
 })
 export class AddReviewComponent implements OnInit {
 	private rID: number;
-	// private uID: number;
 	private currentUserID: number;
 
 	constructor(
 		private authService: AuthService,
 		private route: ActivatedRoute,
 		private router: Router,
-		private reviewService: ReviewService) {
+		private reviewService: ReviewService) { }
+
+	ngOnInit() {
 		this.authService.getSession().subscribe(
 			data => {
 				this.currentUserID = data.userID;
 			}
 		);
-	}
-
-	ngOnInit() {
-		//this.rID = Number(this.route.snapshot.queryParams.rID);
+		this.rID = Number(this.route.snapshot.queryParams.rID);
 	}
 
 	addNewReview(content: string, title: string) {
-		console.log("here is userId", this.userID);
+		console.log("here is userId", this.currentUserID);
 		const body = {
 			userID: this.currentUserID,
 			restaurantID: this.rID,
@@ -50,6 +48,7 @@ export class AddReviewComponent implements OnInit {
 			}
 		);
 	}
+
 	goBackToRestaurant() {
 		this.router.navigateByUrl('/restaurants/' + this.rID);
 	}

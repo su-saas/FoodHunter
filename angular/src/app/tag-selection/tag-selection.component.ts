@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TagSelectionService } from '../services/tag-selection.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 
@@ -10,50 +9,41 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./tag-selection.component.scss']
 })
 export class TagSelectionComponent implements OnInit {
-  //private userID: number;
   private tagListID: number;
-  private searchUrl = 'search';
   userID: number;
   tagList: any;
   newList = [];
 
-  //@Input('userID') userID = 0;
   constructor(private tagSelectionService: TagSelectionService,
-              private router: Router,
-              private route: ActivatedRoute,
               private data: ProfileService,
               private auth: AuthService) {
-                this.auth.getSession().subscribe(data => {
-                  this.userID = data.userID;
-                  console.log("profile: " + JSON.stringify(data)); 
-                })
   }
 
   ngOnInit() {
+    this.auth.getSession().subscribe(data => {
+      this.userID = data.userID;
+      console.log('profile: ' + JSON.stringify(data));
+    });
     this.tagSelectionService.getAllTags().subscribe(
       res => this.tagList = res
     );
 
   }
 
-  indexMatchValidator() {
-    // TODO
-  }
-
   onSubmit(f) {
     console.log(f.value);
-    for (const key in f.value) {
-      const value = f.value[key];
-      const num = +value;
+    for (let key in f.value) {
+      let value = f.value[key];
+      let num = +value;
       this.newList.push(num);
     }
-    console.log(this.newList);
+    console.log('get new list from user in tagSelection edit: ', this.newList);
     this.data.getProfileByFoodieID(this.userID).subscribe(data => {
       this.tagListID = data.tagListID;
       if (this.tagListID !== null) {
         this.tagSelectionService.updateTagPriorityList(this.userID, this.newList);
       } else {
-        console.log('Not exists');
+        console.log('you can not edit tagList, tagList does not exist');
       }
     });
   }

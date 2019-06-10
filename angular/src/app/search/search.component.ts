@@ -38,16 +38,16 @@ export class SearchComponent implements OnInit {
 	onSubmit(f) {
 		this.submitted = true;
 		var name = String(f.value.restaurantName).toLowerCase();
-		console.log(name);
+		console.log('input restaurant name: ', name);
 		this.searchService.getRestaurantByName(name)
 			.subscribe(res => {
 				this.submitted = true;
 				if (res.length > 0) {
 					this.notFind = false;
 					this.restaurant = res[0];
-					console.log(res);
+					console.log('get restaurant: ', res);
 					this.rID = this.restaurant.restaurantID;
-					console.log(this.rID);
+					console.log('get restaurant id: ', this.rID);
 					this.nextStationUrl = this.restaurantDetailUrl + this.rID;
 					this.router.navigateByUrl(this.nextStationUrl);
 				}

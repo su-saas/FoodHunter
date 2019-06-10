@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { TagSelectionService } from '../services/tag-selection.service';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
@@ -14,32 +14,32 @@ export class CurrentTagPriorityComponent implements OnInit {
   tagList: any;
   userID: number;
 
-  //@Input('userID') userID = 0;
-
   constructor(private profileService: ProfileService,
               private tagSelectionService: TagSelectionService,
-              private auth: AuthService) {
-                this.auth.getSession().subscribe(data => {
-                  this.userID = data.userID;
-                  console.log("profile: " + JSON.stringify(data)); 
-                })
-               }
+              private auth: AuthService) { }
 
   ngOnInit() {
-    this.tagSelectionService.getAllTags().subscribe(
-      res => {
-        this.tagList = res;
-        //console.log(this.tagList);
-        this.profileService.getFoodieTagListByFoodieID(this.userID).subscribe(
-          response => {
-            this.priorityList = response.tagList;
-            for (let i = 0; i < this.tagList.length; i++) {
-              let message: string = this.tagList[i]['tagName'] + ": " + this.priorityList[i];
-              console.log(message);
-              this.tagPriList.push(message);
-            }
-            console.log(this.tagPriList);
+    this.auth.getSession().subscribe(data => {
+      this.userID = data.userID;
+      console.log('profile: ' + JSON.stringify(data));
+      if (this.userID > 0) {
+        this.tagSelectionService.getAllTags().subscribe(
+          res => {
+            this.tagList = res;
+            this.profileService.getFoodieTagListByFoodieID(this.userID).subscribe(
+              response => {
+                this.priorityList = response.tagList;
+                for (let i = 0; i < this.tagList.length; i++) {
+                  let message: string = this.tagList[i]['tagName'] + ': ' + this.priorityList[i];
+                  console.log(message);
+                  this.tagPriList.push(message);
+                }
+                console.log(this.tagPriList);
+            });
         });
+      } else {
+        console.log('cannot get user id in currentTag');
+      }
     });
   }
 
