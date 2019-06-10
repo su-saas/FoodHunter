@@ -6,5 +6,6 @@ interface IRestaurantModel {
     phoneNum: string;
     introductionContent: string;
     hours: string;
+    restaurantAvtar: string;
 }
 export {IRestaurantModel};

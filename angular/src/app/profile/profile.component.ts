@@ -20,7 +20,9 @@ export class ProfileComponent implements OnInit {
   restaurantIDList: number[] = [];
   tagList: any;
   priorityList: number[] = [];
-  tagPriList: string[] = []; 
+  tagPriList: string[] = [];
+  // avatarPicture: string = "https://drive.google.com/uc?id=1rGvNT1klU8v287D6twZ5Up1ewfwDRZsT";
+  avatarPicture: string;
 
   constructor(private auth: AuthService,
     private profileService: ProfileService,
@@ -52,7 +54,11 @@ export class ProfileComponent implements OnInit {
             console.log(this.tagPriList);
         });
     });
-    }
+
+    this.profileService.getProfileByFoodieID(77).subscribe(foodieinfo => {
+      this.avatarPicture = foodieinfo.avatar;
+    });
+  }
 }
   
   

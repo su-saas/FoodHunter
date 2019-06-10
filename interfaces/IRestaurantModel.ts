@@ -8,5 +8,6 @@ interface IRestaurantModel extends Mongoose.Document {
     phoneNum: string;
     introductionContent: string;
     hours: string;
+    restaurantAvtar: string;
 }
 export {IRestaurantModel};
