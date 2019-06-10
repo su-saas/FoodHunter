@@ -23,6 +23,7 @@ import { TagSelectionComponent } from './tag-selection/tag-selection.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CurrentTagPriorityComponent } from './current-tag-priority/current-tag-priority.component';
 
+import {AuthService} from './services/auth.service';
 
 @NgModule({
 	declarations: [
@@ -51,8 +52,8 @@ import { CurrentTagPriorityComponent } from './current-tag-priority/current-tag-
 		ReactiveFormsModule,
 		MDBBootstrapModule.forRoot(),
 	],
-	schemas: [NO_ERRORS_SCHEMA],
-	providers: [],
+	schemas: [ NO_ERRORS_SCHEMA ],
+	providers: [AuthService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

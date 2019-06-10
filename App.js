@@ -54,7 +54,7 @@ var App = /** @class */ (function () {
         this.expressApp.use(expressSession({
             key: 'user_sid',
             secret: 'keyboard cat',
-            cookie: { maxAge: 5 * 60 * 1000 },
+            cookie: { maxAge: 1 * 60 * 1000 },
             store: new mongoStore({
                 url: DataAccess_1.DataAccess.DB_CONNECTION_STRING,
                 db: mongooseConnection.db,
@@ -92,6 +92,12 @@ var App = /** @class */ (function () {
                     res.send(body);
                 });
             }
+        });
+        router.get('/logout', function (req, res) {
+            console.log("clear cookie");
+            res.clearCookie(req.cookies.user_sid);
+            _this.googlePassportObj.email = "";
+            return res.redirect("/#/login");
         });
         //////////////////////////////////////////////////
         //*************** google login end ***************/

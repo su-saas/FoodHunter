@@ -64,7 +64,7 @@ class App {
         this.expressApp.use(expressSession({
             key: 'user_sid',
             secret: 'keyboard cat',
-            cookie: { maxAge: 5 * 60 * 1000 },
+            cookie: { maxAge: 1 * 60 * 1000 },
             store: new mongoStore({
                 url: DataAccess.DB_CONNECTION_STRING,
                 db: mongooseConnection.db,
@@ -114,6 +114,13 @@ class App {
                 });
             }
         });
+        
+        router.get('/logout', (req, res) => {
+            console.log("clear cookie");
+            res.clearCookie(req.cookies.user_sid);
+            this.googlePassportObj.email = ""; 
+            return res.redirect("/#/login");
+        })
 
         //////////////////////////////////////////////////
         //*************** google login end ***************/
