@@ -80,7 +80,7 @@ class App {
     //*************** google login ******************/
     private validateAuth(req, res, next):void {
         // && req.cookies.user_sid  => not allow the user log in two different account in the same browser
-        if (req.isAuthenticated() && req.cookies.user_sid) { 
+        if (req.isAuthenticated()) { 
             console.log("user is authenticated"); 
             console.log("validate user id: " + req.user.id);
             console.log("validate email: " + req.user.emails[0].value);
@@ -105,11 +105,14 @@ class App {
     );
 
     router.get('/auth/user', this.validateAuth, (req, res) => {
-        var email = this.googlePassportObj.email;
-        newReq.get(req.protocol+"://"+req.get('host') + "/login/" + email,{},(err, resp, body)=>{
-            console.log('/auth/user: ' + body);
-            res.send(body);
-        });
+        console.log("req.cookies.user_sid: " + req.cookies.user_sid)
+        if(req.cookies.user_sid){
+            var email = this.googlePassportObj.email;
+            newReq.get(req.protocol+"://"+req.get('host') + "/login/" + email,{},(err, resp, body)=>{
+                console.log('/auth/user: ' + body);
+                res.send(body);
+            });
+        }
     });
 
     //////////////////////////////////////////////////
