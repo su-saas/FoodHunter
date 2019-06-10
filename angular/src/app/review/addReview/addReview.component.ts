@@ -28,11 +28,6 @@ export class AddReviewComponent implements OnInit {
 
 	ngOnInit() {
 		this.rID = Number(this.route.snapshot.queryParams.rID);
-		if (typeof this.currentUserID === 'undefined') {
-			alert('not login');
-			Sleep(2000);
-			this.router.navigateByUrl('/');
-		}
 	}
 
 	addNewReview(content: string, title: string) {
