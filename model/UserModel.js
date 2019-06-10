@@ -137,9 +137,12 @@ var FoodieModel = /** @class */ (function (_super) {
             },
             favoriteListID: {
                 type: Number
+<<<<<<< HEAD
             },
             avatar: {
                 type: String
+=======
+>>>>>>> add js
             }
         }, { collection: "user" });
         this.schema.index({ userID: 1 }, { password: null }, { emailAddress: null }, { unique: true });

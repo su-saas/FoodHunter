@@ -6,11 +6,7 @@ var FavoriteListModel_1 = require("../model/FavoriteListModel");
 var FavoriteList = /** @class */ (function () {
     //Run configuration methods on the Express instance.
     function FavoriteList() {
-<<<<<<< HEAD
-        this.idGenerator = 10000;
-=======
         this.idGenerator = 1000;
->>>>>>> add js
         this.FavoriteLists = new FavoriteListModel_1.FavoriteListModel();
     }
     FavoriteList.prototype.registerRoutes = function (router) {
@@ -25,10 +21,6 @@ var FavoriteList = /** @class */ (function () {
         router.get('/favoriteList/:favoriteListID', function (req, res) {
             var favoriteListID = req.params.favoriteListID;
             _this.FavoriteLists.getFavoriteListByID(favoriteListID, res);
-        });
-        router.get('/favoriteList/user/:userID', function (req, res) {
-            var userID = req.params.userID;
-            _this.FavoriteLists.getFavoriteListByUserID(userID, res);
         });
         router["delete"]('/favoriteList/:favoriteListID', function (req, res) {
             var favoriteListID = req.params.favoriteListID;
