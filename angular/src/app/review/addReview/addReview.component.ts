@@ -28,6 +28,8 @@ export class AddReviewComponent implements OnInit {
 
 	ngOnInit() {
 		this.rID = Number(this.route.snapshot.queryParams.rID);
+		console.log('rID:' + this.rID);
+		console.log('uID:' + this.currentUserID);
 	}
 
 	addNewReview(content: string, title: string) {

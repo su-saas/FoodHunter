@@ -49,7 +49,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 		ReactiveFormsModule,
 		MDBBootstrapModule.forRoot(),
 	],
-	schemas: [ NO_ERRORS_SCHEMA ],
+	schemas: [NO_ERRORS_SCHEMA],
 	providers: [],
 	bootstrap: [AppComponent]
 })
