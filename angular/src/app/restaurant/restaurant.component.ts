@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {IRestaurantModel} from '../interfaces/IRestaurantModel';
 import { RestaurantService } from '../services/restaurant.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CollectionService } from '../services/collection.service';
 import { AuthService } from '../services/auth.service';
 
@@ -11,51 +11,42 @@ import { AuthService } from '../services/auth.service';
     styleUrls: ['./restaurant.component.scss']
 })
 export class RestaurantComponent implements OnInit {
-
     detail: IRestaurantModel;
     restaurantAvatar: string;
-
     addCollectionClicked: boolean;
     addCollectionSuccessOrNot: boolean;
     currentUserID: number;
+
     constructor(
         private authService: AuthService,
         private restaurantService: RestaurantService,
         private collectionService: CollectionService,
-        private route: ActivatedRoute
-    ) {
+        private route: ActivatedRoute) { }
+
+    ngOnInit() {
         this.authService.getSession().subscribe(
             data => {
                 this.currentUserID = data.userID;
-            }
-        );
+                this.addCollectionClicked = false;
+                this.addCollectionSuccessOrNot = false;
+                if (this.route.snapshot.params.rID > 0) {
+                    this.restaurantService.getByID(this.route.snapshot.params.rID).subscribe(
+                        res => {
+                            this.detail = res;
+                            this.restaurantAvatar = res.restaurantAvtar;
+                            console.log(this.detail);
+                        });
+                    console.log('restaurant info: ', this.detail);
+                }
+            });
     }
-
-    ngOnInit() {
-        this.addCollectionClicked = false;
-        this.addCollectionSuccessOrNot = false;
-        if (this.route.snapshot.params.rID > 0) {
-            this.restaurantService.getByID(this.route.snapshot.params.rID).subscribe(
-                res => {
-                    this.detail = res;
-                    this.restaurantAvatar = res.restaurantAvtar;
-                    console.log(this.detail);}
-            );
-    
-            console.log("restaurant info: ", this.detail);
-        }        
-    }
-    
-   
 
     addToCollection() {
-        this.collectionService.addCollection(this.currentUserID, this.detail.restaurantID)
-            .subscribe(
-                res => {
-                    this.addCollectionClicked = true;
-                    this.addCollectionSuccessOrNot = res;
-                    console.log("create success or not:" + this.addCollectionSuccessOrNot);
-                }
-            );
+        this.collectionService.addCollection(this.currentUserID, this.detail.restaurantID).subscribe(
+            res => {
+                this.addCollectionClicked = true;
+                this.addCollectionSuccessOrNot = res;
+                console.log('create success or not:' + this.addCollectionSuccessOrNot);
+            });
     }
 }
