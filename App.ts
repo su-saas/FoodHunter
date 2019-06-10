@@ -80,7 +80,7 @@ class App {
     //*************** google login ******************/
     private validateAuth(req, res, next):void {
         // && req.cookies.user_sid  => not allow the user log in two different account in the same browser
-        if (req.isAuthenticated()) { 
+        if (req.isAuthenticated() && req.cookies.user_sid) { 
             console.log("user is authenticated"); 
             console.log("validate user id: " + req.user.id);
             console.log("validate email: " + req.user.emails[0].value);
