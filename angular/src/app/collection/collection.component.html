@@ -1,74 +1,21 @@
     
-<div class="container">
-        <div class="row">            
-            <div class="col-lg-3">         
-                <h1 class="my-4">Hi {{ userProfile.userName }}</h1>
-                <div class="list-group">
-                <a [routerLink]="['/profile']" class="list-group-item">Profile</a>
-                <a [routerLink]="['/review']" [queryParams]='{uID: 3}' class="list-group-item">Reviews</a>
-                <a [routerLink]="['/tagSelection']" [queryParams]='{uID: 3}'class="list-group-item">Tag Selection </a>
-                <a [routerLink]="['/collection']"class="list-group-item">Collections</a>
-            </div>            
-        </div>
-    
-        <div class="col">
-            <div class="col-md-3 col-md-6 mb-4">
-                <div class="collections">
-                    <h3 class="display-3">Collection &nbsp;&nbsp;
-                    </h3>
-                    <div class="panel panel-default" *ngFor="let restaurant of restaurants">
-                        <div class="panel-heading">{{restaurant.restaurantName}} &nbsp;</div>
-                        <div class="panel-body"></div>
-                            <p class="card-text"><strong>Address: </strong>{{restaurant.address}}</p>
-                            <p class="card-text"><strong>Hours: </strong>{{restaurant.hours}}</p>
-                            <p class="card-text"><strong>Introduction: </strong>{{restaurant.introductionContent}}</p>
-                        </div>                    
-                    </div>
+<div class="container">   
+    <div class="col">
+        <div class="col-md-3 col-md-6 mb-4">
+            <div class="collections">
+                <h3 class="display-3">Collection &nbsp;&nbsp;
+                </h3>
+                <div class="panel panel-default" *ngFor="let restaurant of restaurants">
+                    <div class="panel-heading">{{restaurant.restaurantName}} &nbsp;</div>
+                    <div class="panel-body"></div>
+                        <p class="card-text"><strong>Address: </strong>{{restaurant.address}}</p>
+                        <p class="card-text"><strong>Hours: </strong>{{restaurant.hours}}</p>
+                        <p class="card-text"><strong>Introduction: </strong>{{restaurant.introductionContent}}</p>
+                    </div>                    
                 </div>
             </div>
         </div>
-    
-    
-        <!-- /.col-lg-3 -->
-        <!-- <div class="col">    
-            <div class="col-md-3 mb-4">
-                <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="/assets/img/login.jpg" alt=""height="400" width="250"></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                    <a href="#">Fries King</a>
-                    </h4>
-                    <h5>1740 N 61th, Seattle,98103 </h5>
-                    <p class="card-text">French fries</p>
-                </div>
-                </div>
-            </div>        
-            <div class="col-md-3 col-md-6 mb-4">
-                <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="/assets/img/login01.jpg" alt=""height="400" width="250"></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                    <a href="#">Super Burger</a>
-                    </h4>
-                    <h5>1140 N 45th, Seattle,98103</h5>
-                    <p class="card-text">Burgers</p>
-                </div>
-                </div>
-            </div>        
-            <div class="col-md-3 col-md-6 mb-4">
-                <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="/assets/img/register01.jpg" alt=""height="400" width="250"></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                    <a href="#">Coffee</a>
-                    </h4>
-                    <h5>111 N 25th, Seattle,98103</h5>
-                    <p class="card-text">coffee!</p>
-                </div>
-                </div>
-            </div>
-        </div> -->
     </div>
     
-    <router-outlet></router-outlet>
-    <!-- <app-profile #userProfile style="visibility: hidden"></app-profile> -->
+    
+<router-outlet></router-outlet>

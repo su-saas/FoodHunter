@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
                 response => {
                   this.priorityList = response.tagList;
                   for (let i = 0; i < this.tagList.length; i++) {
-                    let message: string = this.tagList[i]['tagName'] + ": " + this.priorityList[i].toString();
+                    let message: string = this.tagList[i]['tagName'] + ": " + this.priorityList[i];
                     console.log(message);
                     this.tagPriList.push(message);
                   }
