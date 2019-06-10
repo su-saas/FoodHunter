@@ -30,38 +30,38 @@ export class ReviewComponent implements OnInit {
 
 	ngOnInit() {
 		this.authService.getSession().subscribe(
-            data => {
+			data => {
 				this.currentUserID = data.userID;
-				if (this.rID > 0) {
-					this.reviewService.getByRestaurantID(this.rID)
-						.subscribe(reviews => {
-							for (let i = 0; i < reviews.length; i++) {
-								this.reviewList[i] = reviews[i];
-								this.profileService.getProfileByFoodieID(reviews[i].userID)
-									.subscribe(user => {
-										this.userList.push(user);
-									});
-							}
-						});
-				} else {
-					this.isUser = true;
-					this.reviewService.getByUserID(this.currentUserID)
-						.subscribe(
-							reviews => {
-								for (let i = 0; i < reviews.length; i++) {
-									this.reviewList[i] = reviews[i];
-									this.rIdList[i] = reviews[i].restaurantID;
-									this.restaurantService.getByID(this.reviewList[i].restaurantID)
-										.subscribe(
-											restaurant => {
-												this.rNameList[i] = restaurant.restaurantName;
-											}
-										)
-								}
+			}
+		);
+		if (this.rID > 0) {
+			this.reviewService.getByRestaurantID(this.rID)
+				.subscribe(reviews => {
+					for (let i = 0; i < reviews.length; i++) {
+						this.reviewList[i] = reviews[i];
+						this.profileService.getProfileByFoodieID(reviews[i].userID)
+							.subscribe(user => {
+								this.userList.push(user);
 							});
-				}
-            }
-        );
+					}
+				});
+		} else {
+			this.isUser = true;
+			this.reviewService.getByUserID(this.currentUserID)
+				.subscribe(
+					reviews => {
+						for (let i = 0; i < reviews.length; i++) {
+							this.reviewList[i] = reviews[i];
+							this.rIdList[i] = reviews[i].restaurantID;
+							this.restaurantService.getByID(this.reviewList[i].restaurantID)
+								.subscribe(
+									restaurant => {
+										this.rNameList[i] = restaurant.restaurantName;
+									}
+								)
+						}
+					});
+		}
 	}
 
 }
