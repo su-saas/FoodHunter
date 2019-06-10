@@ -6,19 +6,7 @@ var FavoriteListModel_1 = require("../model/FavoriteListModel");
 var FavoriteList = /** @class */ (function () {
     //Run configuration methods on the Express instance.
     function FavoriteList() {
-<<<<<<< HEAD
         this.idGenerator = 10000;
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-        this.idGenerator = 10000;
-=======
-        this.idGenerator = 1000;
->>>>>>> add js
-=======
-        this.idGenerator = 1000;
->>>>>>> add js
->>>>>>> add js
         this.FavoriteLists = new FavoriteListModel_1.FavoriteListModel();
     }
     FavoriteList.prototype.registerRoutes = function (router) {
