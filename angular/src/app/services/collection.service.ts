@@ -8,13 +8,19 @@ import { IFavoriteListModel } from '../interfaces/IFavoriteListModel';
 	providedIn: 'root'
 })
 export class CollectionService {
-  private favoriateListUrl = '/favoriteList/';
+  private favoriateListUrl = 'http://localhost:8080/favoriteList/';
+  private fListByUserIdUrl = 'http://localhost:8080/favoriteList/'
   constructor(private http: HttpClient) { }
 
 	// get collection by favoriteListID
 	getCollectionByListID(listID: number): Observable<IFavoriteListModel> {
 		console.log(listID);
 		return this.http.get<IFavoriteListModel>(this.favoriateListUrl + listID);
+	}
+
+	getCollectionByUserID(userID: number): Observable<IFavoriteListModel> {
+		console.log(userID);
+		return this.http.get<IFavoriteListModel>(this.fListByUserIdUrl + userID);
 	}
 
 	// add restaurant to the collection
