@@ -54,15 +54,7 @@ var App = /** @class */ (function () {
         this.expressApp.use(expressSession({
             key: 'user_sid',
             secret: 'keyboard cat',
-<<<<<<< HEAD
-<<<<<<< HEAD
             cookie: { maxAge: 1 * 60 * 1000 },
-=======
-            cookie: { maxAge: 5 * 60 * 1000 },
->>>>>>> add js
-=======
-            cookie: { maxAge: 1 * 60 * 1000 },
->>>>>>> add logout
             store: new mongoStore({
                 url: DataAccess_1.DataAccess.DB_CONNECTION_STRING,
                 db: mongooseConnection.db,
@@ -101,21 +93,12 @@ var App = /** @class */ (function () {
                 });
             }
         });
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> add logout
         router.get('/logout', function (req, res) {
             console.log("clear cookie");
             res.clearCookie(req.cookies.user_sid);
             _this.googlePassportObj.email = "";
             return res.redirect("/#/login");
         });
-<<<<<<< HEAD
-=======
->>>>>>> add js
-=======
->>>>>>> add logout
         //////////////////////////////////////////////////
         //*************** google login end ***************/
         // add routes
