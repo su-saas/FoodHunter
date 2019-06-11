@@ -29,24 +29,25 @@ export class CollectionComponent implements OnInit {
 	ngOnInit() {
 		this.auth.getSession().subscribe(data => {
 			this.userID = data.userID;
-			console.log('get current user: ' + JSON.stringify(data));
+      console.log('get current user in collection: ' + JSON.stringify(data));
+      // get the collection by favoriateListID
+      if (this.userID > 0) {
+        this.collectionData.getCollectionByUserID(this.userID).subscribe(
+          data => {
+            this.favoriateList = data;
+            this.restaurantIDList = this.favoriateList[0].restaurantIDList;
+            console.log('favoriateList of collection: ', this.favoriateList);
+            // get every restaurant in the favoriateList
+            for (let each of this.restaurantIDList) {
+              this.restaurantData.getByID(each).subscribe(restaurant => {
+                this.restaurants.push(restaurant);
+                console.log('restaurant in fav list of collection: ', restaurant);
+              });
+            }
+          });
+      }
 		});
-		// get the collection by favoriateListID
-		if (this.userID > 0) {
-			this.collectionData.getCollectionByUserID(this.userID).subscribe(
-				data => {
-					this.favoriateList = data;
-					this.restaurantIDList = this.favoriateList[0].restaurantIDList;
-					console.log('favoriateList of collection: ', this.favoriateList);
-					// get every restaurant in the favoriateList
-					for (let each of this.restaurantIDList) {
-						this.restaurantData.getByID(each).subscribe(restaurant => {
-							this.restaurants.push(restaurant);
-							console.log('restaurant in fav list of collection: ', restaurant);
-						});
-					}
-				});
-		}
+		
 	}
 
 	click(rID) {

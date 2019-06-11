@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
       this.userID = data.userID;
       this.emailAddress = data.emailAddress;
       this.userName = data.userName;
-      console.log('profile: ' + JSON.stringify(data));
+      console.log('profile in profile: ' + JSON.stringify(data));
       console.log('user of profile: ', this.userID);
       this.profileService.getProfileByFoodieID(this.userID).subscribe(
         foodieinfo => this.avatarPicture = foodieinfo.avatar
