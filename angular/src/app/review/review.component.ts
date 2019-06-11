@@ -30,14 +30,17 @@ export class ReviewComponent implements OnInit {
 			this.authService.getSession().subscribe(
 				data => {
 					this.currentUserID = data.userID;
+					console.log('in review com, get user:' + this.currentUserID);
 				}
 			);
 		}
 
 	ngOnInit() {
 		if (this.rID > 0) {
+			console.log('in review com, get r id:' + this.rID);
 			this.reviewService.getByRestaurantID(this.rID)
 				.subscribe(reviews => {
+					console.log('in review com, get all reivews:' + reviews);
 					for (let i = 0; i < reviews.length; i++) {
 						this.reviewList[i] = reviews[i];
 						this.profileService.getProfileByFoodieID(reviews[i].userID)
