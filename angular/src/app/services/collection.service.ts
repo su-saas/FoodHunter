@@ -25,8 +25,10 @@ export class CollectionService {
 	addCollection(userID: number, restaurantID: number): Observable<boolean> {
 		let successOrNot = new Subject<boolean>();
 		const url = this.favoriateListUrl + 'user/' + userID;
+		console.log('in collection service, url is ' + url);
 		this.http.get<IFavoriteListModel[]>(url)
 			.subscribe(favoriteList => {
+				console.log('in collection service, favoritelist length is ' + favoriteList.length);
 				let exist = false;
 				if (favoriteList.length > 0) {
 					let restaurants = favoriteList[0].restaurantIDList;
