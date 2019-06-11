@@ -25,6 +25,7 @@ export class RestaurantComponent implements OnInit {
         this.authService.getSession().subscribe(
             data => {
                 this.currentUserID = data.userID;
+                console.log('in restaurant com, get user:' + this.currentUserID);
             });
     }
 
@@ -35,7 +36,7 @@ export class RestaurantComponent implements OnInit {
             res => {
                 this.detail = res;
                 this.restaurantAvatar = res.restaurantAvatar;
-                console.log('restaurant info: ', this.detail);
+                console.log('in restaurant com, get restaurant info: ' + this.detail);
             });
     }
 
@@ -44,7 +45,7 @@ export class RestaurantComponent implements OnInit {
             res => {
                 this.addCollectionClicked = true;
                 this.addCollectionSuccessOrNot = res;
-                console.log('create success or not:' + this.addCollectionSuccessOrNot);
+                console.log('in restaurant com, add collection success or not:' + this.addCollectionSuccessOrNot);
             });
     }
 }
