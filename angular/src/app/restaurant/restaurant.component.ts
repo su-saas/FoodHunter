@@ -1,5 +1,5 @@
-import { Component, OnInit} from '@angular/core';
-import {IRestaurantModel} from '../interfaces/IRestaurantModel';
+import { Component, OnInit } from '@angular/core';
+import { IRestaurantModel } from '../interfaces/IRestaurantModel';
 import { RestaurantService } from '../services/restaurant.service';
 import { ActivatedRoute } from '@angular/router';
 import { CollectionService } from '../services/collection.service';
@@ -22,24 +22,23 @@ export class RestaurantComponent implements OnInit {
         private authService: AuthService,
         private restaurantService: RestaurantService,
         private collectionService: CollectionService,
-        private route: ActivatedRoute) { }
+        private route: ActivatedRoute
+    ) {
+    }
 
     ngOnInit() {
         this.authService.getSession().subscribe(
             data => {
                 this.currentUserID = data.userID;
-                this.addCollectionClicked = false;
-                this.addCollectionSuccessOrNot = false;
-                this.rID = this.route.snapshot.params.rID;
-                if ( this.rID > 0) {
-                    console.log('get rID from params in restaurant:', this.rID);
-                    this.restaurantService.getByID(this.rID).subscribe(
-                        res => {
-                            this.detail = res;
-                            this.restaurantAvatar = res.restaurantAvatar;
-                            console.log('restaurant info: ', this.detail);
-                        });
-                }
+                console.log('in restaurant com, get user:' + this.currentUserID);
+            });
+        this.addCollectionClicked = false;
+        this.addCollectionSuccessOrNot = false;
+        this.restaurantService.getByID(this.route.snapshot.params.rID).subscribe(
+            res => {
+                this.detail = res;
+                this.restaurantAvatar = res.restaurantAvatar;
+                console.log('in restaurant com, get restaurant info: ' + this.detail);
             });
     }
 
@@ -48,7 +47,7 @@ export class RestaurantComponent implements OnInit {
             res => {
                 this.addCollectionClicked = true;
                 this.addCollectionSuccessOrNot = res;
-                console.log('create success or not:' + this.addCollectionSuccessOrNot);
+                console.log('in restaurant com, add collection success or not:' + this.addCollectionSuccessOrNot);
             });
     }
 }

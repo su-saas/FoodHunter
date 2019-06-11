@@ -1,32 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
-import { IRestaurantModel } from '../interfaces/IRestaurantModel';
 import { IFavoriteListModel } from '../interfaces/IFavoriteListModel';
 @Injectable({
 	providedIn: 'root'
 })
 export class CollectionService {
-  private favoriateListUrl = '/favoriteList/';
-  constructor(private http: HttpClient) { }
+	private favoriateListUrl = '/favoriteList/';
+	constructor(private http: HttpClient) { }
 
 	getCollectionByUserID(userID: number): Observable<IFavoriteListModel> {
-		console.log(userID);
-		return this.http.get<IFavoriteListModel>(this.favoriateListUrl +"user/" + userID);
+		return this.http.get<IFavoriteListModel>(this.favoriateListUrl + "user/" + userID);
 	}
 
 	// add restaurant to the collection
 	updateCollectionByListID(listID: number, newList: object) {
 		const url = this.favoriateListUrl + listID;
-		return this.http.put(url, newList).subscribe(res => console.log('updated'));
+		return this.http.put(url, newList).subscribe(res => {
+			console.log('collection updated:' + res);
+		});
 	}
+	// add restaurant to the collection of the user
 	// add restaurant to the collection of the user
 	addCollection(userID: number, restaurantID: number): Observable<boolean> {
 		let successOrNot = new Subject<boolean>();
-		const url = this.favoriateListUrl+"user/" + userID;
+		const url = this.favoriateListUrl + 'user/' + userID;
+		console.log('in collection service, url is ' + url);
 		this.http.get<IFavoriteListModel[]>(url)
 			.subscribe(favoriteList => {
+				console.log('in collection service, favoritelist length is ' + favoriteList.length);
 				let exist = false;
 				if (favoriteList.length > 0) {
 					let restaurants = favoriteList[0].restaurantIDList;
@@ -37,28 +39,29 @@ export class CollectionService {
 						}
 					}
 				}
+				console.log('in collection service, ' + restaurantID + ' exist: ' + exist);
 				if (!exist) {
 					//no record
 					if (favoriteList.length === 0) {
 						const body = {
-							"userID": userID,
-							"restaurantIDList": [restaurantID]
+							'userID': userID,
+							'restaurantIDList': [restaurantID]
 						};
 						this.http.post(this.favoriateListUrl, body)
 							.subscribe(res => {
-								console.log("create result:" + res);
+								console.log('create favoriateList result:' + res);
 								successOrNot.next(true);
 							});
 					}
 					else {
 						favoriteList[0].restaurantIDList.push(restaurantID);
 						const body = {
-							"userID": userID,
-							"restaurantIDList": favoriteList[0].restaurantIDList
+							'userID': userID,
+							'restaurantIDList': favoriteList[0].restaurantIDList
 						};
 						this.http.put(this.favoriateListUrl, body)
 							.subscribe(res => {
-								console.log("create result:" + res);
+								console.log('update favoriateList result:' + res);
 								successOrNot.next(true);
 							});
 					}
@@ -67,9 +70,7 @@ export class CollectionService {
 					console.log('already exist');
 					successOrNot.next(false);
 				}
-			})
-			;
+			});
 		return successOrNot.asObservable();
 	}
-
 }

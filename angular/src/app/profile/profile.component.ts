@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
   avatarPicture: string;
 
   constructor(private auth: AuthService,
-              private profileService: ProfileService) { }
+    private profileService: ProfileService) { }
 
   ngOnInit() {
     this.auth.getSession().subscribe(data => {
