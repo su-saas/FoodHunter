@@ -1,20 +1,22 @@
-<h2 class="h1-responsive font-weight-bold text-left my-5">Collection</h2>
-<div *ngFor="let restaurant of restaurants">
-    <div class="col-md-6" >
-        <div class="card mb-5">
-            <div class="view overlay">
-                <img class="card-img-top" src={{restaurant.restaurantAvatar}} alt="Card image cap">
-                <a (click)="click(restaurant.restaurantID)">
-                    <div class="mask rgba-white-slight"></div>
-                </a>
+<div style="padding: 10px">
+    <h2 class="h1-responsive font-weight-bold text-left my-5">Collection</h2>
+    <div *ngFor="let restaurant of restaurants">
+        <div class="col-md-6" >
+            <div class="card mb-5">
+                <div class="view overlay">
+                    <img class="card-img-top" src={{restaurant.restaurantAvatar}} alt="Card image cap">
+                    <a (click)="click(restaurant.restaurantID)">
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title" style="font-size: 25px; font-weight: bold">{{restaurant.restaurantName}}</h4>
+                    <p class="card-text" style="font-size: 12px"><strong>Address: </strong>{{restaurant.address}}</p>
+                    <p class="card-text" style="font-size: 12px"><strong>Open Hours: </strong>{{restaurant.hours}}</p>
+                    <p class="card-text" style="font-size: 12px"><strong >Introduction: </strong>{{restaurant.introductionContent}}</p>
+                </div>
             </div>
-            <div class="card-body">
-                <h4 class="card-title" style="font-size: 25px; font-weight: bold">{{restaurant.restaurantName}}</h4>
-                <p class="card-text" style="font-size: 12px"><strong>Address: </strong>{{restaurant.address}}</p>
-                <p class="card-text" style="font-size: 12px"><strong>Open Hours: </strong>{{restaurant.hours}}</p>
-                <p class="card-text" style="font-size: 12px"><strong >Introduction: </strong>{{restaurant.introductionContent}}</p>
-            </div>
-        </div>
-    </div> 
+        </div> 
+    </div>
 </div>
  
