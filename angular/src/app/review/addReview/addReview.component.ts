@@ -31,23 +31,25 @@ export class AddReviewComponent implements OnInit {
 
 	addNewReview(content: string, title: string) {
 		console.log("here is userId" + this.currentUserID);
-		const body = {
-			userID: this.currentUserID,
-			restaurantID: this.rID,
-			title: title,
-			content: content,
-			date: new Date().toLocaleString()
-		};
-		this.reviewService.add(body).subscribe(
-			(val) => {
-				// console.log("POST call successful value returned:", val, typeof(val));
-				if (val > 0) {
-					this.goBackToRestaurant();
-				} else {
-					console.log('fail to create');
+		if (this.currentUserID > 0) {
+			const body = {
+				userID: this.currentUserID,
+				restaurantID: this.rID,
+				title: title,
+				content: content,
+				date: new Date().toLocaleString()
+			};
+			this.reviewService.add(body).subscribe(
+				(val) => {
+					// console.log("POST call successful value returned:", val, typeof(val));
+					if (val > 0) {
+						this.goBackToRestaurant();
+					} else {
+						console.log('fail to create');
+					}
 				}
-			}
-		);
+			);
+		}
 	}
 
 	goBackToRestaurant() {
