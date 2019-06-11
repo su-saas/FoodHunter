@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TagSelectionService } from '../services/tag-selection.service';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
@@ -13,6 +13,8 @@ export class TagSelectionComponent implements OnInit {
   userID: number;
   tagList: any;
   newList = [];
+
+  //@ViewChild(CurrentTagPriorityComponent) private currentTagComponent: CurrentTagPriorityComponent;
 
   constructor(private tagSelectionService: TagSelectionService,
               private data: ProfileService,
