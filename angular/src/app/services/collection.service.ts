@@ -39,6 +39,7 @@ export class CollectionService {
 						}
 					}
 				}
+				console.log('in collection service, ' + restaurantID + ' exist: ' + exist);
 				if (!exist) {
 					//no record
 					if (favoriteList.length === 0) {
@@ -48,7 +49,7 @@ export class CollectionService {
 						};
 						this.http.post(this.favoriateListUrl, body)
 							.subscribe(res => {
-								console.log('create result:' + res);
+								console.log('create favoriateList result:' + res);
 								successOrNot.next(true);
 							});
 					}
@@ -60,7 +61,7 @@ export class CollectionService {
 						};
 						this.http.put(this.favoriateListUrl, body)
 							.subscribe(res => {
-								console.log('create result:' + res);
+								console.log('update favoriateList result:' + res);
 								successOrNot.next(true);
 							});
 					}
