@@ -21,9 +21,10 @@ export class CollectionService {
 		});
 	}
 	// add restaurant to the collection of the user
+	// add restaurant to the collection of the user
 	addCollection(userID: number, restaurantID: number): Observable<boolean> {
 		let successOrNot = new Subject<boolean>();
-		const url = this.favoriateListUrl + "user/" + userID;
+		const url = this.favoriateListUrl + 'user/' + userID;
 		this.http.get<IFavoriteListModel[]>(url)
 			.subscribe(favoriteList => {
 				let exist = false;

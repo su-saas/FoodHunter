@@ -7,14 +7,6 @@
 <div class="single-news mb-4" *ngFor="let singleReview of reviewList; let i = index">
 	<div class="row">
 		<div *ngIf="!isUser">
-			<div class="col-md-3">
-				<div class="view overlay rounded z-depth-1 mb-4">
-					<img class="img-fluid" src='../../assets/img/profile.png' alt="Sample image">
-					<a>
-						<div class="mask rgba-white-slight"></div>
-					</a>
-				</div>
-			</div>
 			<div class="col-md-9">
 				<p class="font-weight-bold dark-grey-text" style="font-size: 18px">{{userList[i]?.userName}}:
 					{{singleReview.title}} &nbsp;</p>
