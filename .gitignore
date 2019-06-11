@@ -6,7 +6,7 @@ node_modules/*
 *.sh
 angular/node_modules/*
 package-lock.json
-
+angularDist/
 
 #*.js	
 #route/*.js	

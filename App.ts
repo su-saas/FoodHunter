@@ -64,7 +64,7 @@ class App {
         this.expressApp.use(expressSession({
             key: 'user_sid',
             secret: 'keyboard cat',
-            cookie: { maxAge: 1 * 60 * 1000 },
+            cookie: { maxAge: 10 * 60 * 1000 },
             store: new mongoStore({
                 url: DataAccess.DB_CONNECTION_STRING,
                 db: mongooseConnection.db,

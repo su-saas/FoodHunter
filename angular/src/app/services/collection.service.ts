@@ -6,16 +6,16 @@ import { IFavoriteListModel } from '../interfaces/IFavoriteListModel';
 	providedIn: 'root'
 })
 export class CollectionService {
-	private favoriateListUrl = '/favoriteList/';
+	private favoriateListUrl = '/favoriteList';
 	constructor(private http: HttpClient) { }
 
 	getCollectionByUserID(userID: number): Observable<IFavoriteListModel> {
-		return this.http.get<IFavoriteListModel>(this.favoriateListUrl + "user/" + userID);
+		return this.http.get<IFavoriteListModel>(this.favoriateListUrl + '/user/' + userID);
 	}
 
 	// add restaurant to the collection
 	updateCollectionByListID(listID: number, newList: object) {
-		const url = this.favoriateListUrl + listID;
+		const url = this.favoriateListUrl + '/' + listID;
 		return this.http.put(url, newList).subscribe(res => {
 			console.log('collection updated:' + res);
 		});
@@ -24,7 +24,7 @@ export class CollectionService {
 	// add restaurant to the collection of the user
 	addCollection(userID: number, restaurantID: number): Observable<boolean> {
 		let successOrNot = new Subject<boolean>();
-		const url = this.favoriateListUrl + 'user/' + userID;
+		const url = this.favoriateListUrl + '/user/' + userID;
 		console.log('in collection service, url is ' + url);
 		this.http.get<IFavoriteListModel[]>(url)
 			.subscribe(favoriteList => {
@@ -47,11 +47,14 @@ export class CollectionService {
 							'userID': userID,
 							'restaurantIDList': [restaurantID]
 						};
-						this.http.post(this.favoriateListUrl, body)
-							.subscribe(res => {
-								console.log('create favoriateList result:' + res);
-								successOrNot.next(true);
-							});
+						let headers = new HttpHeaders();
+						headers = headers.set('Content-Type', 'application/json');
+						this.http.post(this.favoriateListUrl, body, {
+							headers,
+						}).subscribe(res => {
+							console.log('create favoriateList result:' + res);
+							successOrNot.next(true);
+						});
 					}
 					else {
 						favoriteList[0].restaurantIDList.push(restaurantID);
@@ -59,11 +62,14 @@ export class CollectionService {
 							'userID': userID,
 							'restaurantIDList': favoriteList[0].restaurantIDList
 						};
-						this.http.put(this.favoriateListUrl, body)
-							.subscribe(res => {
-								console.log('update favoriateList result:' + res);
-								successOrNot.next(true);
-							});
+						let headers = new HttpHeaders();
+						headers = headers.set('Content-Type', 'application/json');
+						this.http.put(this.favoriateListUrl + '/' + favoriteList[0].favoriteListID, body, {
+							headers,
+						}).subscribe(res => {
+							console.log('update favoriateList result:' + res);
+							successOrNot.next(true);
+						});
 					}
 				}
 				else {
