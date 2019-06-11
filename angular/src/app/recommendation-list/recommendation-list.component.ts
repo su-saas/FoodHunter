@@ -26,7 +26,7 @@ export class RecommendationListComponent implements OnInit {
   ngOnInit() {
     this.auth.getSession().subscribe(data => {
       this.userID = data.userID;
-      console.log('profile: ' + JSON.stringify(data));
+      console.log('profile in recommendation list: ' + JSON.stringify(data));
       if (!this.isChange) {
         console.log('get submit from filter in recommendList: ', this.isChange);
         console.log('get new tagList from filter in recommendList: ', this.newList);

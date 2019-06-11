@@ -32,9 +32,9 @@ export class RestaurantComponent implements OnInit {
                 this.currentUserID = data.userID;
                 console.log('in restaurant com, get user:' + this.currentUserID);
             });
-        this.addCollectionClicked = false;
-        this.addCollectionSuccessOrNot = false;
-        this.restaurantService.getByID(this.route.snapshot.params.rID).subscribe(
+            this.addCollectionClicked = false;
+            this.addCollectionSuccessOrNot = false;
+            this.restaurantService.getByID(this.route.snapshot.params.rID).subscribe(
             res => {
                 this.detail = res;
                 this.restaurantAvatar = res.restaurantAvatar;

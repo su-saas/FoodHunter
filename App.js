@@ -93,12 +93,6 @@ var App = /** @class */ (function () {
                 });
             }
         });
-        router.get('/logout', function (req, res) {
-            console.log("clear cookie");
-            res.clearCookie(req.cookies.user_sid);
-            _this.googlePassportObj.email = "";
-            return res.redirect("/#/login");
-        });
         //////////////////////////////////////////////////
         //*************** google login end ***************/
         // add routes

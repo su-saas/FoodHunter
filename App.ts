@@ -16,16 +16,16 @@ import { RecommendationList } from './route/RecommendationListRoute';
 
 import { Router } from "express-serve-static-core";
 import GooglePassportObj from './GooglePassport';
-import { DataAccess } from './DataAccess';
+import {DataAccess} from './DataAccess';
 let mongooseConnection = DataAccess.mongooseConnection;
 let cookieParser = require('cookie-parser');
-let expressSession = require('express-session');
-let mongoStore = require('connect-mongo')({ session: expressSession });
+let expressSession = require('express-session'); 
+let mongoStore = require('connect-mongo')({session: expressSession});
 let mongoose = require('mongoose');
 let passport = require('passport');
 let newReq = require('request');
 
-var allowCrossDomain = function (req, res, next) {
+var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
@@ -37,7 +37,7 @@ class App {
 
     // ref to Express instance
     public expressApp: express.Application;
-    public googlePassportObj: GooglePassportObj;
+    public googlePassportObj:GooglePassportObj;
     //Run configuration methods on the Express instance.
     constructor() {
         this.expressApp = express();
@@ -51,7 +51,7 @@ class App {
         this.expressApp.use(logger("dev"));
         this.expressApp.use(bodyParser.json());
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
-        this.expressApp.use(function (req, res, next) {
+        this.expressApp.use(function(req, res, next) {
             res.header('Access-Control-Allow-Origin', "*");
             res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
             res.header('Access-Control-Allow-Headers', 'Content-Type');
@@ -63,11 +63,11 @@ class App {
         this.expressApp.use(cookieParser());
         this.expressApp.use(expressSession({
             key: 'user_sid',
-            secret: 'keyboard cat',
-            cookie: { maxAge: 10 * 60 * 1000 },
+            secret: 'keyboard cat', 
+            cookie: {maxAge: 1*60*1000}, 
             store: new mongoStore({
                 url: DataAccess.DB_CONNECTION_STRING,
-                db: mongooseConnection.db,
+                db: mongooseConnection.db, 
                 collection: 'sessions'
             })
         }));
@@ -78,13 +78,13 @@ class App {
 
     //////////////////////////////////////////////////
     //*************** google login ******************/
-    private validateAuth(req, res, next): void {
+    private validateAuth(req, res, next):void {
         // && req.cookies.user_sid  => not allow the user log in two different account in the same browser
-        if (req.isAuthenticated()) {
-            console.log("user is authenticated");
+        if (req.isAuthenticated()) { 
+            console.log("user is authenticated"); 
             console.log("validate user id: " + req.user.id);
             console.log("validate email: " + req.user.emails[0].value);
-            return next();
+            return next(); 
         }
         console.log("user is not authenticated");
         res.redirect('/');
@@ -93,37 +93,30 @@ class App {
     // configure API endpoints.
     private routes(): void {
         let router: Router = express.Router();
-        router.get('/auth/google',
-            passport.authenticate('google',
-                { scope: ['https://www.googleapis.com/auth/plus.login', 'email'] }
-            )
-        );
+        router.get('/auth/google', 
+        passport.authenticate('google', 
+        { scope: ['https://www.googleapis.com/auth/plus.login', 'email'] }
+        )
+    );
 
-        router.get('/auth/google/callback',
-            passport.authenticate('google',
-                { successRedirect: '/#/profile', failureRedirect: '/' })
-        );
+    router.get('/auth/google/callback', 
+        passport.authenticate('google', 
+        { successRedirect: '/#/profile', failureRedirect: '/'})
+    );
 
-        router.get('/auth/user', this.validateAuth, (req, res) => {
-            console.log("req.cookies.user_sid: " + req.cookies.user_sid)
-            if (req.cookies.user_sid) {
-                var email = this.googlePassportObj.email;
-                newReq.get(req.protocol + "://" + req.get('host') + "/login/" + email, {}, (err, resp, body) => {
-                    console.log('/auth/user: ' + body);
-                    res.send(body);
-                });
-            }
-        });
-        
-        router.get('/logout', (req, res) => {
-            console.log("clear cookie");
-            res.clearCookie(req.cookies.user_sid);
-            this.googlePassportObj.email = ""; 
-            return res.redirect("/#/login");
-        })
+    router.get('/auth/user', this.validateAuth, (req, res) => {
+        console.log("req.cookies.user_sid: " + req.cookies.user_sid)
+        if(req.cookies.user_sid){
+            var email = this.googlePassportObj.email;
+            newReq.get(req.protocol+"://"+req.get('host') + "/login/" + email,{},(err, resp, body)=>{
+                console.log('/auth/user: ' + body);
+                res.send(body);
+            });
+        }
+    });
 
-        //////////////////////////////////////////////////
-        //*************** google login end ***************/
+    //////////////////////////////////////////////////
+    //*************** google login end ***************/
         // add routes
         this.addRoutes(router);
         this.expressApp.use(allowCrossDomain);
@@ -131,9 +124,9 @@ class App {
 
         /////////////////////////////////////
         /*********** FOR DEPLOY ************/
-        this.expressApp.use('/', express.static(__dirname + '/angularDist'));
-    }
-    private addRoutes(router: express.Router): void {
+        this.expressApp.use('/', express.static(__dirname+'/angularDist'));     
+  }    
+    private addRoutes(router: express.Router): void{
         var review = new Review();
         review.registerRoutes(router);
         var favoriteList = new FavoriteList();
@@ -162,4 +155,4 @@ class App {
 
 }
 
-export { App };
+export {App};

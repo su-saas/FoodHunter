@@ -22,7 +22,7 @@ export class TagSelectionComponent implements OnInit {
   ngOnInit() {
     this.auth.getSession().subscribe(data => {
       this.userID = data.userID;
-      console.log('profile: ' + JSON.stringify(data));
+      console.log('profile in tag-selection: ' + JSON.stringify(data));
     });
     this.tagSelectionService.getAllTags().subscribe(
       res => this.tagList = res

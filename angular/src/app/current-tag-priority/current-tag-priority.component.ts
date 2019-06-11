@@ -21,7 +21,7 @@ export class CurrentTagPriorityComponent implements OnInit {
   ngOnInit() {
     this.auth.getSession().subscribe(data => {
       this.userID = data.userID;
-      console.log('profile: ' + JSON.stringify(data));
+      console.log('profile in current tag: ' + JSON.stringify(data));
       if (this.userID > 0) {
         this.tagSelectionService.getAllTags().subscribe(
           res => {
