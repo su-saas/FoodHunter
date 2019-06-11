@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TagSelectionService } from '../services/tag-selection.service';
 import { ProfileService } from '../services/profile.service';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+
 
 @Component({
   selector: 'app-tag-selection',
@@ -14,10 +16,9 @@ export class TagSelectionComponent implements OnInit {
   tagList: any;
   newList = [];
 
-  //@ViewChild(CurrentTagPriorityComponent) private currentTagComponent: CurrentTagPriorityComponent;
-
   constructor(private tagSelectionService: TagSelectionService,
               private data: ProfileService,
+              private router: Router,
               private auth: AuthService) {
   }
 
@@ -51,4 +52,5 @@ export class TagSelectionComponent implements OnInit {
       });
     }
   }
+
 }
