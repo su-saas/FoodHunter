@@ -3,6 +3,7 @@ exports.__esModule = true;
 var express = require("express");
 var logger = require("morgan");
 var bodyParser = require("body-parser");
+var session = require("express-session");
 var UserRoute_1 = require("./route/UserRoute");
 var FoodieTagListRoute_1 = require("./route/FoodieTagListRoute");
 var TagRoute_1 = require("./route/TagRoute");
@@ -14,14 +15,9 @@ var RestaurantTagListRoute_1 = require("./route/RestaurantTagListRoute");
 var ApplicationFormRoute_1 = require("./route/ApplicationFormRoute");
 var RecommendationListRoute_1 = require("./route/RecommendationListRoute");
 var GooglePassport_1 = require("./GooglePassport");
-var DataAccess_1 = require("./DataAccess");
-var mongooseConnection = DataAccess_1.DataAccess.mongooseConnection;
-var cookieParser = require('cookie-parser');
-var expressSession = require('express-session');
-var mongoStore = require('connect-mongo')({ session: expressSession });
-var mongoose = require('mongoose');
 var passport = require('passport');
 var newReq = require('request');
+var logout = require('express-passport-logout');
 var allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -42,25 +38,13 @@ var App = /** @class */ (function () {
         this.expressApp.use(logger("dev"));
         this.expressApp.use(bodyParser.json());
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
+        this.expressApp.use(session({ secret: 'keyboard cat' }));
         this.expressApp.use(function (req, res, next) {
             res.header('Access-Control-Allow-Origin', "*");
             res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
             res.header('Access-Control-Allow-Headers', 'Content-Type');
             next();
         });
-        //////////////////////////////////////////////////
-        //*************** for session ******************/
-        this.expressApp.use(cookieParser());
-        this.expressApp.use(expressSession({
-            key: 'user_sid',
-            secret: 'keyboard cat',
-            cookie: { maxAge: 5 * 60 * 1000 },
-            store: new mongoStore({
-                url: DataAccess_1.DataAccess.DB_CONNECTION_STRING,
-                db: mongooseConnection.db,
-                collection: 'sessions'
-            })
-        }));
         this.expressApp.use(passport.initialize());
         this.expressApp.use(passport.session());
     };
@@ -84,14 +68,15 @@ var App = /** @class */ (function () {
         router.get('/auth/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login', 'email'] }));
         router.get('/auth/google/callback', passport.authenticate('google', { successRedirect: '/#/profile', failureRedirect: '/' }));
         router.get('/auth/user', this.validateAuth, function (req, res) {
-            console.log("req.cookies.user_sid: " + req.cookies.user_sid);
-            if (req.cookies.user_sid) {
-                var email = _this.googlePassportObj.email;
-                newReq.get(req.protocol + "://" + req.get('host') + "/login/" + email, {}, function (err, resp, body) {
-                    console.log('/auth/user: ' + body);
-                    res.send(body);
-                });
-            }
+            var email = _this.googlePassportObj.email;
+            newReq.get(req.protocol + "://" + req.get('host') + "/login/" + email, {}, function (err, resp, body) {
+                res.send(body);
+            });
+        });
+        router.get('/logout', function (req, res) {
+            _this.googlePassportObj.email = "";
+            logout();
+            return res.redirect("/#/login");
         });
         //////////////////////////////////////////////////
         //*************** google login end ***************/
