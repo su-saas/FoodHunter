@@ -36,36 +36,38 @@ export class ReviewComponent implements OnInit {
 		}
 
 	ngOnInit() {
-		if (this.rID > 0) {
-			console.log('in review com, get r id:' + this.rID);
-			this.reviewService.getByRestaurantID(this.rID)
-				.subscribe(reviews => {
-					console.log('in review com, get all reivews:' + reviews);
-					for (let i = 0; i < reviews.length; i++) {
-						this.reviewList[i] = reviews[i];
-						this.profileService.getProfileByFoodieID(reviews[i].userID)
-							.subscribe(user => {
-								this.userList.push(user);
-							});
-					}
-				});
-		} else {
-			this.isUser = true;
-			this.reviewService.getByUserID(this.currentUserID)
-				.subscribe(
-					reviews => {
-						for (let i = 0; i < reviews.length; i++) {
-							this.reviewList[i] = reviews[i];
-							this.rIdList[i] = reviews[i].restaurantID;
-							this.restaurantService.getByID(this.reviewList[i].restaurantID)
-								.subscribe(
-									restaurant => {
-										this.rNameList[i] = restaurant.restaurantName;
-									}
-								)
-						}
-					});
-		}
+		this.authService.getSession().subscribe(
+            data => {
+				this.currentUserID = data.userID;
+				console.log('user id in review: ', this.currentUserID);
+				console.log('rID get by review: ', this.rID);
+				if (this.rID > 0) {
+					this.reviewService.getByRestaurantID(this.rID).subscribe(
+						reviews => {
+							for (let i = 0; i < reviews.length; i++) {
+								this.reviewList[i] = reviews[i];
+								console.log('get reviews by restaurant id:', reviews);
+								console.log('single review by restaurant id:', this.reviewList[i]);
+								this.profileService.getProfileByFoodieID(reviews[i].userID).subscribe(
+									user => this.userList.push(user)
+								);
+							}
+							console.log("get users by reviews: ", this.userList);
+						});
+				} else {
+					this.isUser = true;
+					this.reviewService.getByUserID(this.currentUserID).subscribe(
+						reviews => {
+							for (let i = 0; i < reviews.length; i++) {
+								this.reviewList[i] = reviews[i];
+								this.rIdList[i] = reviews[i].restaurantID;
+								this.restaurantService.getByID(this.reviewList[i].restaurantID).subscribe(
+										restaurant => this.rNameList[i] = restaurant.restaurantName
+								);
+							}
+						});
+				}
+     });
 	}
 
 }

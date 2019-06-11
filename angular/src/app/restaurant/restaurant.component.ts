@@ -16,6 +16,7 @@ export class RestaurantComponent implements OnInit {
     addCollectionClicked: boolean;
     addCollectionSuccessOrNot: boolean;
     currentUserID: number;
+    rID: number;
 
     constructor(
         private authService: AuthService,
