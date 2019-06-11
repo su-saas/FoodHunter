@@ -64,7 +64,7 @@ export class CollectionService {
 						};
 						let headers = new HttpHeaders();
 						headers = headers.set('Content-Type', 'application/json');
-						this.http.put(this.favoriateListUrl, body, {
+						this.http.put(this.favoriateListUrl + '/' + favoriteList[0].favoriteListID, body, {
 							headers,
 						}).subscribe(res => {
 							console.log('update favoriateList result:' + res);
