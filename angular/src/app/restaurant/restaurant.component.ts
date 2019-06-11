@@ -21,13 +21,14 @@ export class RestaurantComponent implements OnInit {
         private authService: AuthService,
         private restaurantService: RestaurantService,
         private collectionService: CollectionService,
-        private route: ActivatedRoute) { }
-
-    ngOnInit() {
+        private route: ActivatedRoute) {
         this.authService.getSession().subscribe(
             data => {
                 this.currentUserID = data.userID;
             });
+    }
+
+    ngOnInit() {
         this.addCollectionClicked = false;
         this.addCollectionSuccessOrNot = false;
         this.restaurantService.getByID(this.route.snapshot.params.rID).subscribe(
