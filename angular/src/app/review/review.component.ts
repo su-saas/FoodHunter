@@ -48,17 +48,20 @@ export class ReviewComponent implements OnInit {
 							console.log("get users by reviews: ", this.userList);
 						});
 				} else {
-					this.isUser = true;
-					this.reviewService.getByUserID(this.currentUserID).subscribe(
-						reviews => {
-							for (let i = 0; i < reviews.length; i++) {
-								this.reviewList[i] = reviews[i];
-								this.rIdList[i] = reviews[i].restaurantID;
-								this.restaurantService.getByID(this.reviewList[i].restaurantID).subscribe(
-										restaurant => this.rNameList[i] = restaurant.restaurantName
-								);
-							}
-						});
+					if (this.currentUserID > 0) {
+						this.isUser = true;
+						this.reviewService.getByUserID(this.currentUserID).subscribe(
+							reviews => {
+								for (let i = 0; i < reviews.length; i++) {
+									this.reviewList[i] = reviews[i];
+									this.rIdList[i] = reviews[i].restaurantID;
+									this.restaurantService.getByID(this.reviewList[i].restaurantID).subscribe(
+											restaurant => this.rNameList[i] = restaurant.restaurantName
+									);
+								}
+							});
+					}
+					
 				}
      });
 	}

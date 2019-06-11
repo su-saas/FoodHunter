@@ -40,13 +40,15 @@ export class TagSelectionComponent implements OnInit {
       this.newList.push(num);
     }
     console.log('get new list from user in tagSelection edit: ', this.newList);
-    this.data.getProfileByFoodieID(this.userID).subscribe(data => {
-      this.tagListID = data.tagListID;
-      if (this.tagListID !== null) {
-        this.tagSelectionService.updateTagPriorityList(this.userID, this.newList);
-      } else {
-        console.log('you can not edit tagList, tagList does not exist');
-      }
-    });
+    if (this.userID > 0) {
+      this.data.getProfileByFoodieID(this.userID).subscribe(data => {
+        this.tagListID = data.tagListID;
+        if (this.tagListID !== null) {
+          this.tagSelectionService.updateTagPriorityList(this.userID, this.newList);
+        } else {
+          console.log('you can not edit tagList, tagList does not exist');
+        }
+      });
+    }
   }
 }
