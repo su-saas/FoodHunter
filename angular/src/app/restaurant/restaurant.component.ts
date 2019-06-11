@@ -16,6 +16,7 @@ export class RestaurantComponent implements OnInit {
     addCollectionClicked: boolean;
     addCollectionSuccessOrNot: boolean;
     currentUserID: number;
+    rID: number;
 
     constructor(
         private authService: AuthService,
@@ -29,14 +30,15 @@ export class RestaurantComponent implements OnInit {
                 this.currentUserID = data.userID;
                 this.addCollectionClicked = false;
                 this.addCollectionSuccessOrNot = false;
-                if (this.route.snapshot.params.rID > 0) {
-                    this.restaurantService.getByID(this.route.snapshot.params.rID).subscribe(
+                this.rID = this.route.snapshot.params.rID;
+                if ( this.rID > 0) {
+                    console.log('get rID from params in restaurant:', this.rID);
+                    this.restaurantService.getByID(this.rID).subscribe(
                         res => {
                             this.detail = res;
-                            this.restaurantAvatar = res.restaurantAvtar;
-                            console.log(this.detail);
+                            this.restaurantAvatar = res.restaurantAvatar;
+                            console.log('restaurant info: ', this.detail);
                         });
-                    console.log('restaurant info: ', this.detail);
                 }
             });
     }
