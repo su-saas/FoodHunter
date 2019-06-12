@@ -18,14 +18,15 @@ export class AddReviewComponent implements OnInit {
 		private route: ActivatedRoute,
 		private router: Router,
 		private reviewService: ReviewService) {
+		
+	}
+
+	ngOnInit() {
 		this.authService.getSession().subscribe(
 			data => {
 				this.currentUserID = data.userID;
 			}
 		);
-	}
-
-	ngOnInit() {
 		this.rID = Number(this.route.snapshot.queryParams.rID);
 	}
 
