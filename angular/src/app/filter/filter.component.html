@@ -6,7 +6,7 @@
       </div>
       <form class="panel-body" *ngIf="isCollapse" #f="ngForm" (ngSubmit)="onSubmit(f)"novalidate>
         <div style="padding: 5px 0px 10px 0px">
-          <h5>Please set these tags in different priority, or you won't get an accurate recommendation</h5>
+          <h5>Please set these tags in different priority, or you won't be allowed to submit your new tag priority</h5>
         </div>       
         <div class="col-md" *ngIf="tagList" >                     
           <div class="form-group" *ngFor="let tag of tagList" >                           
