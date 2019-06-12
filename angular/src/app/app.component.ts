@@ -11,9 +11,15 @@ export class AppComponent {
 
   constructor(private auth: AuthService){
     console.log("app.component.ts: " + this.isLoggedIn); 
-    this.auth.getSession().subscribe(data => {
-      if(data.userID){
-        this.isLoggedIn = true; 
+    this.auth.getStatus().subscribe(res => {
+      console.log("/status:" + res); 
+      console.log("/status type:" + typeof(res));
+      if(res){
+        this.auth.getSession().subscribe(data => {
+          if(data.userID){
+            this.isLoggedIn = true; 
+          }
+        })
       }
     })
   }

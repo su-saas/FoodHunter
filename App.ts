@@ -91,6 +91,14 @@ class App {
             return res.redirect("/#/login");
         })
 
+        router.get('/loggedIn', (req, res) => {
+            if(this.googlePassportObj.email != null && this.googlePassportObj.email != ""){
+                res.send("true");
+            }else{
+                res.send("false"); 
+            }
+        })
+
     //////////////////////////////////////////////////
     //*************** google login end ***************/
         // add routes

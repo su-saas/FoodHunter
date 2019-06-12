@@ -61,11 +61,10 @@ class ReviewModel {
         this.model = mongooseConnection.model<IReviewModel>("review", this.schema);
     }
     public createReview(review, response: any) {
-        var res = false;
         this.model(review).save((err) => {
             if (err) {
                 console.error(err);
-                response.json(err);
+                response.json(0);
             }
             else {
                 response.json(review.reviewID);
