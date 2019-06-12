@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { TagSelectionService } from '../services/tag-selection.service';
 import { Router } from '@angular/router';
 import { AlgorithmService } from '../services/algorithm.service';
-import { RestaurantService } from '../services/restaurant.service';
-import { IRestaurantModel } from '../interfaces/IRestaurantModel';
 
 @Component({
   selector: 'app-filter',
@@ -31,9 +29,6 @@ export class FilterComponent implements OnInit {
           this.isCollapse = false;
           this.clickCount = 0;
         });
-      // this.score = this.algorithmService.getRecommandationByTaglist(this.newList);
-      // console.log(this.score);
-      // this.getTopThreeRestaurants();
   }
 
   onClick() {
@@ -43,6 +38,19 @@ export class FilterComponent implements OnInit {
     } else {
       this.isCollapse = false;
     }
+  }
+
+  checkValidation(f) {
+    let set = new Set();
+    for (let key in f.value) {
+      let value = f.value[key];
+      let num = +value;
+      set.add(num);
+    }
+    if (set.size < this.tagList.length) {
+      return false;
+    }
+    return true;
   }
 
   onSubmit(f) {
@@ -55,9 +63,9 @@ export class FilterComponent implements OnInit {
       const num = +value;
       this.newList.push(num);
     }
-    console.log('inside the onsubmit', this.newList);
-    this.topThreeRestaurantId = this.algorithmService.getRecommandationByTaglist(this.newList);
-    console.log("top three restaurant: ", this.topThreeRestaurantId);
+    console.log('inside the onsubmit filter', this.newList);
+    //this.topThreeRestaurantId = this.algorithmService.getRecommandationByTaglist(this.newList);
+    //console.log("top three restaurant id : ", this.topThreeRestaurantId);
   }
 
 }

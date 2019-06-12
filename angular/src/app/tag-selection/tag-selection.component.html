@@ -17,16 +17,17 @@
                                         </select>
                                     </mdb-card-body>
                                 </mdb-card>
+                                
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="text">
-                                <h4>Note: Please set these tags in different priority, or you won't get an accurate recommendation</h4>
+                                <h4>Note: Please set these tags in different priority, or you won't be allowed to submit your new tag priority</h4>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <button type="submit" class="btn purple-gradient" style="float: right" [disabled]="f.invalid">Submit</button>
+                                <button type="submit" class="btn purple-gradient" style="float: right" [disabled]="!checkValidation(f)">Submit</button>
                             </div>
                         </div>
                     </form>
