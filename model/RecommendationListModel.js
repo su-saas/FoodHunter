@@ -73,7 +73,7 @@ var RecommendationListModel = /** @class */ (function () {
     RecommendationListModel.prototype.updateRecommendationListByTagListID = function (response, taglistID, recommendationlist) {
         console.log('foodie tag id:', taglistID);
         console.log('new list in model:', recommendationlist);
-        this.model.findOneAndUpdate({ foodietaglistID: taglistID }, recommendationlist, { "new": true }, function (err, updatedlist) {
+        this.model.findOneAndUpdate({ foodietaglistID: taglistID }, { restaurantList: recommendationlist }, { "new": true }, function (err, updatedlist) {
             if (err) {
                 response.send(err);
             }

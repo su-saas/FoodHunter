@@ -52,6 +52,7 @@ class RecommendationList {
             var tagListID = req.params.tagListID;
             console.log('try to update:', tagListID);
             var newrecommendationList = req.body;
+            console.log('get list from service in route:', newrecommendationList);
             this.recommendationList.updateRecommendationListByTagListID(res, tagListID, newrecommendationList);
         });
 
