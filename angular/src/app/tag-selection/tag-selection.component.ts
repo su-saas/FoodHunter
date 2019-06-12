@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TagSelectionService } from '../services/tag-selection.service';
 import { ProfileService } from '../services/profile.service';
 import { Router } from '@angular/router';
@@ -20,7 +20,6 @@ export class TagSelectionComponent implements OnInit {
   constructor(private tagSelectionService: TagSelectionService,
               private recommendationListService: RecommendationListService,
               private data: ProfileService,
-              private router: Router,
               private auth: AuthService,
               private location: Location) {
   }
@@ -65,16 +64,12 @@ export class TagSelectionComponent implements OnInit {
         if (this.tagListID !== null) {
           this.tagSelectionService.updateTagPriorityList(this.userID, this.newList);
           this.recommendationListService.updateRecommendationList(this.newList, this.tagListID);
-          this.load();
+          location.reload();
         } else {
           console.log('you can not edit tagList, tagList does not exist');
         }
       });
     }
   }
-
-  load() {
-    location.reload();
-  }
-
+  
 }
