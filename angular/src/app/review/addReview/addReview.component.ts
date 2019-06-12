@@ -18,7 +18,7 @@ export class AddReviewComponent implements OnInit {
 		private route: ActivatedRoute,
 		private router: Router,
 		private reviewService: ReviewService) {
-		
+
 	}
 
 	ngOnInit() {
@@ -31,7 +31,7 @@ export class AddReviewComponent implements OnInit {
 	}
 
 	addNewReview(content: string, title: string) {
-		console.log("here is userId" + this.currentUserID);
+		console.log('here is userId' + this.currentUserID);
 		if (this.currentUserID > 0) {
 			const body = {
 				userID: this.currentUserID,
@@ -40,16 +40,16 @@ export class AddReviewComponent implements OnInit {
 				content: content,
 				date: new Date().toLocaleString()
 			};
-			this.reviewService.add(body).subscribe(
-				(val) => {
-					// console.log("POST call successful value returned:", val, typeof(val));
-					if (val > 0) {
-						this.goBackToRestaurant();
-					} else {
-						console.log('fail to create');
+			this.reviewService.add(body)
+				.subscribe(
+					(val) => {
+						if (val > 0) {
+							this.goBackToRestaurant();
+						} else {
+							console.log('fail to create');
+						}
 					}
-				}
-			);
+				);
 		}
 	}
 
