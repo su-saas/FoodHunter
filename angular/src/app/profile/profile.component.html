@@ -16,27 +16,29 @@
                             </div>
                         </div>
                     </div>
+                    <!-- /angular ng build --prod -->
+                    <!-- cd.. node AppServer.js-->
                     <div class="row">
                         <div class="col-md-6 ml-auto mr-auto">
                             <div class="profile-tabs">
                               <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link" role="tab" data-toggle="tab" href="#tagPrio">
+                                    <a class="nav-link" role="tab" data-toggle="tab" href="#tagPrio" (click)="onTabChage(tabId.currentTagPriorityTab)">
                                         Tag Priority
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" role="tab" data-toggle="tab" href="#review">
+                                    <a class="nav-link" role="tab" data-toggle="tab" href="#review" (click)="onTabChage(tabId.reviewTab)">
                                         Review
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" role="tab" data-toggle="tab" href="#collection">
+                                    <a class="nav-link" role="tab" data-toggle="tab" href="#collection" (click)="onTabChage(tabId.collectionTab)">
                                         Collection
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" role="tab" data-toggle="tab" href="#tagCollection">
+                                    <a class="nav-link" role="tab" data-toggle="tab" href="#tagCollection" (click)="onTabChage(tabId.tagSelectionTab)">
                                         TagSelection
                                     </a>
                                 </li>
@@ -46,16 +48,16 @@
                     </div>
                     <div class="row tab-content" >
                         <div class="tab-pane" id="tagPrio">
-                            <app-current-tag-priority></app-current-tag-priority>
+                            <app-current-tag-priority [currentTab]="currentTabSubject"></app-current-tag-priority>
                         </div>
                         <div class="tab-pane" id="review">
-                            <app-review></app-review>
+                            <app-review [currentTab]="currentTabSubject"></app-review>
                         </div>
                         <div class="tab-pane" id="collection">
-                            <app-collection></app-collection>
+                            <app-collection [currentTab]="currentTabSubject"></app-collection>
                         </div>
                         <div class="tab-pane" id="tagCollection">
-                            <app-tag-selection></app-tag-selection>
+                            <app-tag-selection [currentTab]="currentTabSubject"></app-tag-selection>
                         </div> 
 
                     </div>
