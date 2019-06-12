@@ -1,5 +1,7 @@
 <section class="container text-center">  
     <h1 class="h1-responsive font-weight-bold title">Restaurant Recommendation</h1>
+    <h3>newList: {{newList}}</h3>
+    <h3>submitStatus: {{isChange}}</h3>
     <div class="container" *ngIf="recommendationList" >
       <div  *ngFor="let recommend of recommendationList">
         <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">

@@ -4,7 +4,7 @@ import { RecommendationListService } from '../services/recommendation-list.servi
 import { RestaurantService } from '../services/restaurant.service';
 import { AuthService } from '../services/auth.service';
 import { AlgorithmService } from '../services/algorithm.service';
-
+import { DataService } from '../services/data.service';
 @Component({
   selector: 'app-recommendation-list',
   templateUrl: './recommendation-list.component.html',
@@ -16,19 +16,27 @@ export class RecommendationListComponent implements OnInit {
   private userID: number;
   private tagListIDByUser: number;
   private tagList: number[] = [];
-
+  // for testing
+  public newList: number[] = [];
 
 // tslint:disable-next-line: no-input-rename
-  @Input ('isChange') isChange = false;
+  // @Input ('isChange') isChange = false;
+  isChange: boolean;
   // tslint:disable-next-line:no-input-rename
-  @Input ('newList') newList: any = [];
+  // @Input ('newList') newList: any = [];
 
   constructor(private recommendationListService: RecommendationListService,
               private restaurantService: RestaurantService,
               private auth: AuthService,
-              private algorithmService: AlgorithmService) { }
+              private algorithmService: AlgorithmService,
+              private dataService: DataService) { }
 
   ngOnInit() {
+    // subscribe data change of the newlist
+
+    this.dataService.cast.subscribe(newTagList => this.newList = newTagList);
+    this.dataService.anotherCast.subscribe(status => this.isChange = status);
+    console.log('inside recommendation, status of submit: ', this.isChange);
     this.auth.getSession().subscribe(data => {
       this.userID = data.userID;
       console.log('profile in recommendation list: ' + JSON.stringify(data));
@@ -51,6 +59,7 @@ export class RecommendationListComponent implements OnInit {
                 } else {
                   this.getRecommendRestaurantIdList();
                   this.getRestaurant();
+                  console.log('get list when you have no recommendationList:', this.restaurantIdList);
                   this.recommendationListService.createRecommendationList(this.tagListIDByUser, this.restaurantIdList);
                 }
               });
@@ -74,6 +83,7 @@ export class RecommendationListComponent implements OnInit {
 
   getRecommendRestaurantIdList() {
     this.restaurantIdList = this.algorithmService.getRecommandationByTaglist(this.tagList);
+    console.log('restaurantIdList got from algo:', this.restaurantIdList);
   }
 
 }
