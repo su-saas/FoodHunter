@@ -42,10 +42,12 @@ export class TagSelectionComponent implements OnInit {
       let num = +value;
       set.add(num);
     }
-    if (set.size < this.tagList.length) {
-      return false;
+    if (typeof this.tagList !== 'undefined') {
+      if (set.size < this.tagList.length) {
+        return false;
+      }
+      return true;
     }
-    return true;
   }
 
   onSubmit(f) {
