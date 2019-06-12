@@ -59,19 +59,19 @@ export class AlgorithmService {
       // calculate score of each tag
       for (let i = 0; i < taglist.length; i++) {
         priority = taglist.indexOf(i + 1);
-        // console.log('priority: ', priority);
+        //console.log('priority: ', priority);
         // totalScore = totalScore + (1 + Math.log10((eachRtagModel.rtagList[priority] + 1) * weightingRate));
-        // console.log('totalScore: ', totalScore);
         totalScore = totalScore + (1 + Math.log10(eachRtagModel.rtagList[priority] + 1)) * weightingRate;
+        //console.log('totalScore: ', totalScore);
         // the weightingRate for each priority decreased by 0.2
         weightingRate = weightingRate - 0.2;
-        // console.log('weightingRate: ', weightingRate);
+        //console.log('weightingRate: ', weightingRate);
       }
       // console.log('outside for loop');
       this.score[restaurantNumber] = totalScore;
       // console.log('this score: ', this.score[restaurantNumber]);
       restaurantNumber = restaurantNumber + 1;
-      // console.log("restaurant: ", eachRtagModel.restaurantID + " score is : " + totalScore);
+      //console.log('restaurant: ', eachRtagModel.restaurantID + ' score is : ' + totalScore);
     }
     console.log('this score: ', this.score);
     return this.getTopThreeRestaurants();

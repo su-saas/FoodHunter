@@ -3,6 +3,7 @@ import { IRestaurantModel } from '../interfaces/IRestaurantModel';
 import { RecommendationListService } from '../services/recommendation-list.service';
 import { RestaurantService } from '../services/restaurant.service';
 import { AuthService } from '../services/auth.service';
+import { AlgorithmService } from '../services/algorithm.service';
 
 @Component({
   selector: 'app-recommendation-list',
@@ -13,6 +14,9 @@ export class RecommendationListComponent implements OnInit {
   private restaurantIdList: number[];
   public recommendationList: IRestaurantModel[] = [];
   private userID: number;
+  private tagListIDByUser: number;
+  private tagList: number[] = [];
+
 
 // tslint:disable-next-line: no-input-rename
   @Input ('isChange') isChange = false;
@@ -21,7 +25,8 @@ export class RecommendationListComponent implements OnInit {
 
   constructor(private recommendationListService: RecommendationListService,
               private restaurantService: RestaurantService,
-              private auth: AuthService) { }
+              private auth: AuthService,
+              private algorithmService: AlgorithmService) { }
 
   ngOnInit() {
     this.auth.getSession().subscribe(data => {
@@ -33,24 +38,42 @@ export class RecommendationListComponent implements OnInit {
         this.recommendationListService.getTagListId(this.userID).subscribe(
           res => {
             console.log('exists user taglist: ', res);
-            this.recommendationListService.getRecommendationList(res['tagListID']).subscribe(
+            this.tagListIDByUser = res['tagListID'];
+            this.tagList = res['tagList'];
+            this.recommendationListService.getRecommendationList(this.tagListIDByUser).subscribe(
               response => {
-                console.log('exists recommend list: ', response);
-                this.restaurantIdList = response['restaurantList'];
-                console.log('get list: ', this.restaurantIdList);
-                // tslint:disable-next-line:forin
-                for (let each of this.restaurantIdList) {
-                  this.restaurantService.getByID(+each).subscribe(
-                    result => this.recommendationList.push(result)
-                    );
+                if (response !== null) {
+                  console.log('exists recommend list: ', response);
+                  this.restaurantIdList = response['restaurantList'];
+                  console.log('get list: ', this.restaurantIdList);
+                  this.getRestaurant();
+                  console.log('final get the recommendationList: ', this.recommendationList);
+                } else {
+                  this.getRecommendRestaurantIdList();
+                  this.getRestaurant();
+                  this.recommendationListService.createRecommendationList(this.tagListIDByUser, this.restaurantIdList);
                 }
-                console.log('final get the recommendationList: ', this.recommendationList);
               });
           });
       } else {
-        // algo
+        this.getRecommendRestaurantIdList();
+        this.getRestaurant();
       }
     });
+  }
+
+  getRestaurant() {
+    if (this.restaurantIdList.length > 0) {
+      for (let each of this.restaurantIdList) {
+        this.restaurantService.getByID(+each).subscribe(
+          result => this.recommendationList.push(result)
+          );
+      }
+    }
+  }
+
+  getRecommendRestaurantIdList() {
+    this.restaurantIdList = this.algorithmService.getRecommandationByTaglist(this.tagList);
   }
 
 }
