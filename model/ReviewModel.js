@@ -53,11 +53,10 @@ var ReviewModel = /** @class */ (function () {
         this.model = mongooseConnection.model("review", this.schema);
     };
     ReviewModel.prototype.createReview = function (review, response) {
-        var res = false;
         this.model(review).save(function (err) {
             if (err) {
                 console.error(err);
-                response.json(err);
+                response.json(0);
             }
             else {
                 response.json(review.reviewID);
