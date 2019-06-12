@@ -45,9 +45,8 @@ var RecommendationList = /** @class */ (function () {
         });
         router.post('/recommendationlist', function (req, res) {
             var newrecommendationList = req.body;
-            newrecommendationList.recommendationlistID = _this.idGenerator;
-            _this.idGenerator++;
-            console.log('try to create:', req.params.recommendationlistID);
+            newrecommendationList.recommendationlistID = _this.idGenerator + newrecommendationList.foodietaglistID;
+            console.log('try to create:', newrecommendationList.recommendationlistID);
             _this.recommendationList.createRecommendationList(res, newrecommendationList);
         });
     };
