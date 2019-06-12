@@ -70,6 +70,14 @@ var RecommendationListModel = /** @class */ (function () {
             response.json(updatedlist);
         });
     };
+    RecommendationListModel.prototype.updateRecommendationListByTagListID = function (response, taglistID, recommendationlist) {
+        this.model.findOneAndUpdate({ foodietaglistID: taglistID }, recommendationlist, { "new": true }, function (err, updatedlist) {
+            if (err) {
+                response.send(err);
+            }
+            response.json(updatedlist);
+        });
+    };
     //delete recommendationlist
     //param: recommendationlistID
     RecommendationListModel.prototype.deleteRecommendationList = function (response, recommendationlistID) {

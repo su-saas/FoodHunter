@@ -5,7 +5,7 @@
 			<i class="fa fa-plus" aria-hidden="true"></i>
 		</a>
 	</h2>
-	<div class="single-news mb-4" *ngFor="let singleReview of reviewList; let i = index">
+	<div class="single-news mb-4" *ngFor="let singleReview of reviewList; let i = index" style="padding: 0px 30px 0px 0px">
 		<div class="row">
 			<div *ngIf="userList">
 				<div *ngIf="!isUser">
@@ -30,13 +30,13 @@
 				</div>
 			</div>
 			<div *ngIf="isUser">
-				<div class="col-md-9" *ngIf="rNameList">
-					<p class="font-weight-bold dark-grey-text" style="font-size: 18px">{{i+1}}. {{rNameList[i]}}:
-						{{singleReview.title}}&nbsp;</p>
-					<div class="d-flex justify-content-between">
-						<div class="col-11 pl-0 mb-3">
-							<p class="dark-grey-text" style="font-size: 15px">{{singleReview.content}}</p>
-						</div>
+				<div *ngIf="rNameList">
+					<div class="row">
+						<p class="font-weight-bold dark-grey-text" style="font-size: 18px">{{i+1}}. {{rNameList[i]}}:
+							{{singleReview.title}}&nbsp;</p>
+					</div>
+					<div class="row d-flex justify-content-between">
+						<p class="dark-grey-text" style="font-size: 15px">{{singleReview.content}}</p>
 					</div>
 				</div>
 			</div>

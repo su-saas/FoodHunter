@@ -26,7 +26,6 @@ var RecommendationList = /** @class */ (function () {
             console.log('try to get taglistID:', taglistID);
             _this.recommendationList.getrecommendationListByTagListID(res, taglistID);
         });
-        // get by 
         router["delete"]('/recommendationlist/:recommendationlistID', function (req, res) {
             var recommendationlistID = req.params.recommendationlistID;
             console.log('try to delete listID:', recommendationlistID);
@@ -37,6 +36,12 @@ var RecommendationList = /** @class */ (function () {
             console.log('try to update:', recommendationlistID);
             var newrecommendationList = req.body;
             _this.recommendationList.updateRecommendationList(res, recommendationlistID, newrecommendationList);
+        });
+        router.put('/recommendationlist/tagList/:tagListID', function (req, res) {
+            var tagListID = req.params.tagListID;
+            console.log('try to update:', tagListID);
+            var newrecommendationList = req.body;
+            _this.recommendationList.updateRecommendationListByTagListID(res, tagListID, newrecommendationList);
         });
         router.post('/recommendationlist', function (req, res) {
             var newrecommendationList = req.body;

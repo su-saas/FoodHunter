@@ -85,6 +85,16 @@ class RecommendationListModel {
         });
     }
 
+    public updateRecommendationListByTagListID(response: any, taglistID: number, recommendationlist: any) {
+        this.model.findOneAndUpdate({ foodietaglistID: taglistID }, recommendationlist, { new: true }, (err, updatedlist) => {
+            if (err) {
+                response.send(err);
+            }
+            response.json(updatedlist);
+
+        });
+    }
+
     //delete recommendationlist
     //param: recommendationlistID
     public deleteRecommendationList(response: any, recommendationlistID: number) {
