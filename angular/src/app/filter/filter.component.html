@@ -1,30 +1,36 @@
-<section>
-  <div class="row">
-      <div class="panel">
-        <div class="panel-heading peach-gradient">
-          <h3 class="panel-title" (click)="onClick()">Recommendation</h3>
-        </div>
-        <form class="panel-body" *ngIf="isCollapse" #f="ngForm" (ngSubmit)="onSubmit(f)"novalidate>
-          <div style="padding: 5px 0px 10px 0px">
-            <h5>Please set these tags in different priority, or you won't get an accurate recommendation</h5>
-          </div>       
-          <div class="col-md" *ngIf="tagList" >                     
-            <div class="form-group" *ngFor="let tag of tagList" >                           
-              <h4 class = "text" style="font-weight: bold">{{tag.tagName}}</h4>
-              <select class="form-control" style="font-size: 15px" id="conditionsselect1" name="{{tag.tagName}}" ngModel required>
-                <option *ngFor="let tag of tagList; let i = index">
-                    {{i+1}}
-                </option>
-              </select>
-            </div>
-          </div>
-          <div class="btn-group form-group" role="group" aria-label="Basic example">
-            <button type="submit" class="btn peach-gradient" [disabled]="f.invalid">Find Now</button>
-          </div>
-        </form>
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel">
+      <div class="panel-heading peach-gradient">
+        <h3 class="panel-title" (click)="onClick()">Recommendation</h3>
       </div>
+      <form class="panel-body" *ngIf="isCollapse" #f="ngForm" (ngSubmit)="onSubmit(f)"novalidate>
+        <div style="padding: 5px 0px 10px 0px">
+          <h5>Please set these tags in different priority, or you won't get an accurate recommendation</h5>
+        </div>       
+        <div class="col-md" *ngIf="tagList" >                     
+          <div class="form-group" *ngFor="let tag of tagList" >                           
+            <h4 class = "text" style="font-weight: bold">{{tag.tagName}}</h4>
+            <select class="form-control" style="font-size: 15px" id="conditionsselect1" name="{{tag.tagName}}" ngModel required>
+              <option *ngFor="let tag of tagList; let i = index">
+                  {{i+1}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="btn-group form-group" role="group" aria-label="Basic example">
+          <button type="submit" class="btn peach-gradient" [disabled]="f.invalid">Find Now</button>
+        </div>
+      </form>
+    </div>
   </div>
-</section>
+  <div class="col-md-8">
+    <app-recommendation-list [isChange] = "isSubmit" [newList] = "newList" [parentData] = "name"></app-recommendation-list>
+  </div>
+</div>
+
+  
+  
 
   
   

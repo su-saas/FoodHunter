@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TagSelectionService } from '../services/tag-selection.service';
 import { Router } from '@angular/router';
+import { AlgorithmService } from '../services/algorithm.service';
+import { RestaurantService } from '../services/restaurant.service';
+import { IRestaurantModel } from '../interfaces/IRestaurantModel';
 
 @Component({
   selector: 'app-filter',
@@ -8,16 +11,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
-  //private searchUrl = 'search';
-  //private url = 'filter';
   public isCollapse: boolean;
   clickCount: number;
-  //isSubmit: boolean = false;
+  isSubmit = false;
   tagList: any;
-  newList = [];
+  public newList = [1, 2, 3, 4, 5, 6, 7, 8];
+  public topThreeRestaurantId: number[] = [];
+  public name = 'data from parent';
 
   constructor(private tagSelectionService: TagSelectionService,
-              private router: Router) {
+              private router: Router,
+              private algorithmService: AlgorithmService) {
   }
 
   ngOnInit() {
@@ -27,6 +31,9 @@ export class FilterComponent implements OnInit {
           this.isCollapse = false;
           this.clickCount = 0;
         });
+      // this.score = this.algorithmService.getRecommandationByTaglist(this.newList);
+      // console.log(this.score);
+      // this.getTopThreeRestaurants();
   }
 
   onClick() {
@@ -39,14 +46,18 @@ export class FilterComponent implements OnInit {
   }
 
   onSubmit(f) {
-    //this.isSubmit = true;
+    this.isSubmit = true;
     console.log(f.value);
     // tslint:disable-next-line:forin
+    this.newList = [];
     for (const key in f.value) {
       const value = f.value[key];
       const num = +value;
       this.newList.push(num);
     }
-    console.log(this.newList);
+    console.log('inside the onsubmit', this.newList);
+    this.topThreeRestaurantId = this.algorithmService.getRecommandationByTaglist(this.newList);
+    console.log("top three restaurant: ", this.topThreeRestaurantId);
   }
+
 }
