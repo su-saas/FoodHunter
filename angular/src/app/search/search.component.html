@@ -30,7 +30,7 @@
 					</form>
 					<div class="row">
 						<div class="col-md-12">
-							<div class="p-3 mb-2 bg-gradient-warning message" role="alert" *ngIf="submitted && notFind">Oops! No restaurantName found! Please try another one!</div>
+							<div class="p-3 mb-2 bg-gradient-warning message" role="alert" *ngIf="!found && submitted">Oops! No restaurantName found! Please try another one!</div>
 						</div>
 					</div>					
 				</div>
