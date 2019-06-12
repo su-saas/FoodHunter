@@ -1,22 +1,20 @@
-import * as Mongoose  from "mongoose";
-import {DataAccess} from "../DataAccess";
-import {IUserModel} from "../interfaces/IUserModel";
+import * as Mongoose from "mongoose";
+import { DataAccess } from "../DataAccess";
+import { IUserModel } from "../interfaces/IUserModel";
 import { IFoodieModel } from "../interfaces/IFoodieModel";
 
 let mongooseConnection: Mongoose.Connection = DataAccess.mongooseConnection;
-let mongooseObj: any = DataAccess.mongooseInstance;
 
 abstract class UserModel {
-    public schema:any;
-    public model:any;
+    public schema: any;
+    public model: any;
 
-    // the constructor of the model
     public constructor() {
         this.createSchema();
         this.createModel();
     }
 
-    public static constructorFromData(id: Number, name: String, pwd: String, email: String, typ: Number){
+    public static constructorFromData(id: Number, name: String, pwd: String, email: String, typ: Number) {
         let newObj = {
             userID: id,
             userName: name,
@@ -26,15 +24,14 @@ abstract class UserModel {
         }
         return newObj;
     }
-    // the abstract method which should be implemented in derived classes
     abstract createSchema(): void;
     abstract createModel(): void;
 
     // create user by user information
     // assumption: each user can only create themselves (type check)
-    public createUser(response:any, user: any): any {
+    public createUser(response: any, user: any): any {
         this.model(user).save((err: any, newUser: any) => {
-            if(err) {
+            if (err) {
                 response.send(err);
             }
             response.json(newUser);
@@ -44,13 +41,13 @@ abstract class UserModel {
     // for each user they need to provide userID and password to LOGIN
     // payload: userID
     //          password
-    public logInByIDAndPassword(response:any, payload: any): any {
+    public logInByIDAndPassword(response: any, payload: any): any {
         if (payload.userID === 1) {
             console.error("Please sign up at first");
         } else {
-            var query: any = this.model.findOne({userID: payload.userID}, {password: payload.password});
-            query.exec( (err: any, user: any) => {
-                if(err) {
+            var query: any = this.model.findOne({ userID: payload.userID }, { password: payload.password });
+            query.exec((err: any, user: any) => {
+                if (err) {
                     response.send(err);
                 }
                 response.json(user);
@@ -58,24 +55,22 @@ abstract class UserModel {
         }
     }
 
-    // todo: log out*************************************
-
     // for each user they need to provide their userID to GET themselves
     // for admin he needs to provide user's userID to GET user
-    public getUserByID(response:any, userId: number): any {
-        var query: any = this.model.findOne({userID: userId});
-        query.exec( (err: any, tag: any) => {
-            if(err) {
+    public getUserByID(response: any, userId: number): any {
+        var query: any = this.model.findOne({ userID: userId });
+        query.exec((err: any, tag: any) => {
+            if (err) {
                 response.send(err);
             }
             response.json(tag);
         });
     }
 
-    public getUserByemailAddress(response:any, emailAddress: string): any {
-        var query: any = this.model.findOne({emailAddress: emailAddress});
-        query.exec( (err: any, tag: any) => {
-            if(err) {
+    public getUserByemailAddress(response: any, emailAddress: string): any {
+        var query: any = this.model.findOne({ emailAddress: emailAddress });
+        query.exec((err: any, tag: any) => {
+            if (err) {
                 response.send(err);
             }
             response.json(tag);
@@ -83,9 +78,9 @@ abstract class UserModel {
     }
 
     // for each user they need to provide their userID and the updated body to UPDATE themselves
-    public updateUserByID(response:any, userId: number, body: any): any {
-        this.model.findOneAndUpdate({userID: userId}, body, { new: true }, (err: any, newUser: any) => {
-            if(err) {
+    public updateUserByID(response: any, userId: number, body: any): any {
+        this.model.findOneAndUpdate({ userID: userId }, body, { new: true }, (err: any, newUser: any) => {
+            if (err) {
                 response.send(err);
             }
             response.json(newUser);
@@ -95,18 +90,17 @@ abstract class UserModel {
     // for each user they need to provide their userID to DELETE themselves
     // for admin he needs to provide user's userID to DELETE user
     public deleteUserByID(response: any, userId: number): any {
-        this.model.remove({userID: userId}, (err: any) => {
-            if(err) {
+        this.model.remove({ userID: userId }, (err: any) => {
+            if (err) {
                 response.send(err);
             }
-            response.json({ message: "Successfully deleted " + userId});
+            response.json({ message: "Successfully deleted " + userId });
         });
     }
 }
 
 class FoodieModel extends UserModel {
 
-    // the constructor of the model
     public constructor() {
         super();
     }
@@ -117,7 +111,7 @@ class FoodieModel extends UserModel {
                 userID: {
                     type: Number,
                     required: true,
-                    unique : true,
+                    unique: true,
                     dropDups: true,
                 },
                 userName: {
@@ -145,21 +139,20 @@ class FoodieModel extends UserModel {
                 avatar: {
                     type: String,
                 },
-            }, {collection: "user"}
+            }, { collection: "user" }
         );
-        this.schema.index({userID: 1}, {password: null}, {emailAddress: null},
-             {unique: true});
+        this.schema.index({ userID: 1 }, { password: null }, { emailAddress: null },
+            { unique: true });
     }
 
     public createModel(): void {
         this.model = mongooseConnection.model<IFoodieModel>("foodie", this.schema);
     }
 }
-export {FoodieModel};
+export { FoodieModel };
 
 class RestaurantOwnerModel extends UserModel {
 
-    // the constructor of the model
     public constructor() {
         super();
     }
@@ -170,7 +163,7 @@ class RestaurantOwnerModel extends UserModel {
                 userID: {
                     type: Number,
                     required: true,
-                    unique : true,
+                    unique: true,
                     dropDups: true,
                 },
                 userName: {
@@ -189,18 +182,17 @@ class RestaurantOwnerModel extends UserModel {
                     type: Number,
                     required: true,
                 },
-            }, {collection: "user"}
+            }, { collection: "user" }
         );
     }
     public createModel(): void {
         this.model = mongooseConnection.model<IUserModel>("rOwner", this.schema);
     }
 }
-export {RestaurantOwnerModel};
+export { RestaurantOwnerModel };
 
-class AdminModel extends UserModel{
+class AdminModel extends UserModel {
 
-    // the constructor of the model
     public constructor() {
         super();
     }
@@ -211,7 +203,7 @@ class AdminModel extends UserModel{
                 userID: {
                     type: Number,
                     required: true,
-                    unique : true,
+                    unique: true,
                     dropDups: true,
                 },
                 userName: {
@@ -230,7 +222,7 @@ class AdminModel extends UserModel{
                     type: Number,
                     required: true,
                 },
-            }, {collection: "user"}
+            }, { collection: "user" }
         );
     }
 
@@ -238,31 +230,31 @@ class AdminModel extends UserModel{
         this.model = mongooseConnection.model<IUserModel>("admin", this.schema);
     }
 
-    public getAllUsers(response:any): any {
+    public getAllUsers(response: any): any {
         var query: any = this.model.find({});
-        query.exec( (err: any, userList: any) => {
+        query.exec((err: any, userList: any) => {
             response.json(userList);
         });
     }
 
-    public getAllFoodies(response:any, foodieType: number): any {
-        var query: any = this.model.find({userType: 1});
-        query.exec( (err: any, foodieList: IFoodieModel[]) => {
+    public getAllFoodies(response: any, foodieType: number): any {
+        var query: any = this.model.find({ userType: 1 });
+        query.exec((err: any, foodieList: IFoodieModel[]) => {
             response.json(foodieList);
         });
     }
 
-    public getAllRestaurantOwners(response:any): any {
-       var query: any = this.model.find({userType: 2});
-            query.exec( (err: any, ownerList: IUserModel[]) => {
-                response.json(ownerList);
+    public getAllRestaurantOwners(response: any): any {
+        var query: any = this.model.find({ userType: 2 });
+        query.exec((err: any, ownerList: IUserModel[]) => {
+            response.json(ownerList);
         });
     }
-    public getAllAdmins(response:any): any {
-        var query: any = this.model.find({userType: 3});
-        query.exec( (err: any, adminList: IUserModel[]) => {
+    public getAllAdmins(response: any): any {
+        var query: any = this.model.find({ userType: 3 });
+        query.exec((err: any, adminList: IUserModel[]) => {
             response.json(adminList);
         });
     }
 }
-export {AdminModel};
+export { AdminModel };

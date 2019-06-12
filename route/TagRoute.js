@@ -6,7 +6,7 @@ var Tag = /** @class */ (function () {
     // run configuration methods on the Express instance.
     function Tag() {
         this.Tag = new TagModel_1.TagModel();
-        this.idGenerator = 10;
+        this.idGenerator = 1000;
     }
     Tag.prototype.registerRoutes = function (router) {
         this.routes(router);

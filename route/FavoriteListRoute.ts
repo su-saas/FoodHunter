@@ -11,7 +11,7 @@ class FavoriteList {
 
     //Run configuration methods on the Express instance.
     constructor() {
-        this.idGenerator = 10000;
+        this.idGenerator = 1000;
         this.FavoriteLists = new FavoriteListModel();
     }
 

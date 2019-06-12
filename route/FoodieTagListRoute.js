@@ -6,7 +6,7 @@ var FoodieTagList = /** @class */ (function () {
     // run configuration methods on the Express instance.
     function FoodieTagList() {
         this.TagList = new FoodieTagListModel_1.FoodieTagListModel();
-        this.idGenerator = 10;
+        this.idGenerator = 1000;
     }
     FoodieTagList.prototype.registerRoutes = function (router) {
         this.routes(router);

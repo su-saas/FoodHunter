@@ -5,7 +5,7 @@ var RestaurantModel_1 = require("../model/RestaurantModel");
 var Restaurant = /** @class */ (function () {
     function Restaurant() {
         this.Restaurant = new RestaurantModel_1.RestaurantModel();
-        this.idGenerator = 10;
+        this.idGenerator = 1000;
     }
     Restaurant.prototype.registerRestaurantRoutes = function (router) {
         this.routes(router);

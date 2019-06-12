@@ -1,14 +1,7 @@
 
 import * as path from 'path';
 import * as express from 'express';
-import * as logger from 'morgan';
-import * as mongodb from 'mongodb';
-import * as url from 'url';
-import * as bodyParser from 'body-parser';
-
 import { RecommendationListModel } from '../model/RecommendationListModel';
-import { RestaurantTagListModel } from '../model/RestaurantTagListModel';
-import { IRecommendationListModel } from '../interfaces/IRecommendationListModel';
 
 // Creates and configures an ExpressJS web server.
 class RecommendationList {
@@ -19,7 +12,7 @@ class RecommendationList {
     //Run configuration methods on the Express instance.
     constructor() {
         this.recommendationList = new RecommendationListModel();
-        this.idGenerator = 10;
+        this.idGenerator = 1000;
     }
 
     public registerRoutes(router: express.Router) {

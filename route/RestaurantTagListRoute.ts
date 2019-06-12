@@ -1,9 +1,4 @@
-import * as path from 'path';
 import * as express from 'express';
-import * as logger from 'morgan';
-import * as mongodb from 'mongodb';
-import * as url from 'url';
-import * as bodyParser from 'body-parser';
 import {RestaurantTagListModel} from '../model/RestaurantTagListModel';
 
 class RestaurantTagList {
@@ -13,7 +8,7 @@ class RestaurantTagList {
     
     constructor() {
         this.rTagList = new RestaurantTagListModel();
-        this.idGenerator = 10;
+        this.idGenerator = 1000;
     }
 
     public registerrTagListRoutes(router: express.Router) {

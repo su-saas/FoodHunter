@@ -1,9 +1,8 @@
 import Mongoose = require("mongoose");
-import {DataAccess} from "./../DataAccess";
+import { DataAccess } from "./../DataAccess";
 import { ITagModel } from "../interfaces/ITagModel";
 
 let mongooseConnection: Mongoose.Connection = DataAccess.mongooseConnection;
-let mongooseObj: any = DataAccess.mongooseInstance;
 
 class TagModel {
     public schema: any;
@@ -19,7 +18,7 @@ class TagModel {
             {
                 tagID: Number,
                 tagName: String,
-            }, {collection: "tag"}
+            }, { collection: "tag" }
         );
     }
 
@@ -27,51 +26,51 @@ class TagModel {
         this.model = mongooseConnection.model<ITagModel>("tag", this.schema);
     }
 
-    public createTag(response:any, tag: any): any {
+    public createTag(response: any, tag: any): any {
         this.model(tag).save((err: any, newTag: any) => {
-            if(err) {
+            if (err) {
                 response.send(err);
             }
             response.json(newTag);
         });
     }
 
-    public getAllTags(response:any): any {
+    public getAllTags(response: any): any {
         var query: any = this.model.find({});
-        query.exec( (err: any, tagList: any) => {
-            if(err) {
+        query.exec((err: any, tagList: any) => {
+            if (err) {
                 response.send(err);
             }
             response.json(tagList);
         });
     }
 
-    public getTagByTagID(response:any, tagId: number): any {
-        var query: any = this.model.findOne({tagID: tagId});
-        query.exec( (err: any, tag: any) => {
-            if(err) {
+    public getTagByTagID(response: any, tagId: number): any {
+        var query: any = this.model.findOne({ tagID: tagId });
+        query.exec((err: any, tag: any) => {
+            if (err) {
                 response.send(err);
             }
             response.json(tag);
         });
     }
 
-    public updateTagByTagID(response:any, tagId: number, tagBody: any): any {
-        this.model.findOneAndUpdate({tagID: tagId}, tagBody, { new: true }, (err: any, newTag: any) => {
-            if(err) {
+    public updateTagByTagID(response: any, tagId: number, tagBody: any): any {
+        this.model.findOneAndUpdate({ tagID: tagId }, tagBody, { new: true }, (err: any, newTag: any) => {
+            if (err) {
                 response.send(err);
             }
             response.json(newTag);
         });
     }
 
-    public deleteTagByTagID(response:any, tagId: number): any {
-        this.model.remove({tagID: tagId}, (err: any) => {
-            if(err) {
+    public deleteTagByTagID(response: any, tagId: number): any {
+        this.model.remove({ tagID: tagId }, (err: any) => {
+            if (err) {
                 response.send(err);
             }
-            response.json({ message: "Successfully deleted " + tagId});
+            response.json({ message: "Successfully deleted " + tagId });
         });
     }
 }
-export {TagModel};
+export { TagModel };

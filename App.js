@@ -18,12 +18,6 @@ var GooglePassport_1 = require("./GooglePassport");
 var passport = require('passport');
 var newReq = require('request');
 var logout = require('express-passport-logout');
-var allowCrossDomain = function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', "*");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-};
 // creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
@@ -35,16 +29,17 @@ var App = /** @class */ (function () {
     }
     // configure Express middleware.
     App.prototype.middleware = function () {
-        this.expressApp.use(logger("dev"));
-        this.expressApp.use(bodyParser.json());
-        this.expressApp.use(bodyParser.urlencoded({ extended: false }));
-        this.expressApp.use(session({ secret: 'keyboard cat' }));
-        this.expressApp.use(function (req, res, next) {
+        var allowCrossDomain = function (req, res, next) {
             res.header('Access-Control-Allow-Origin', "*");
             res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
             res.header('Access-Control-Allow-Headers', 'Content-Type');
             next();
-        });
+        };
+        this.expressApp.use(logger("dev"));
+        this.expressApp.use(bodyParser.json());
+        this.expressApp.use(bodyParser.urlencoded({ extended: false }));
+        this.expressApp.use(session({ secret: 'keyboard cat' }));
+        this.expressApp.use(allowCrossDomain);
         this.expressApp.use(passport.initialize());
         this.expressApp.use(passport.session());
     };
@@ -82,10 +77,7 @@ var App = /** @class */ (function () {
         //*************** google login end ***************/
         // add routes
         this.addRoutes(router);
-        this.expressApp.use(allowCrossDomain);
         this.expressApp.use('/', router);
-        /////////////////////////////////////
-        /*********** FOR DEPLOY ************/
         this.expressApp.use('/', express.static(__dirname + '/angularDist'));
     };
     App.prototype.addRoutes = function (router) {

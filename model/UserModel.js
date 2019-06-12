@@ -16,9 +16,7 @@ exports.__esModule = true;
 var Mongoose = require("mongoose");
 var DataAccess_1 = require("../DataAccess");
 var mongooseConnection = DataAccess_1.DataAccess.mongooseConnection;
-var mongooseObj = DataAccess_1.DataAccess.mongooseInstance;
 var UserModel = /** @class */ (function () {
-    // the constructor of the model
     function UserModel() {
         this.createSchema();
         this.createModel();
@@ -60,7 +58,6 @@ var UserModel = /** @class */ (function () {
             });
         }
     };
-    // todo: log out*************************************
     // for each user they need to provide their userID to GET themselves
     // for admin he needs to provide user's userID to GET user
     UserModel.prototype.getUserByID = function (response, userId) {
@@ -104,7 +101,6 @@ var UserModel = /** @class */ (function () {
 }());
 var FoodieModel = /** @class */ (function (_super) {
     __extends(FoodieModel, _super);
-    // the constructor of the model
     function FoodieModel() {
         return _super.call(this) || this;
     }
@@ -152,7 +148,6 @@ var FoodieModel = /** @class */ (function (_super) {
 exports.FoodieModel = FoodieModel;
 var RestaurantOwnerModel = /** @class */ (function (_super) {
     __extends(RestaurantOwnerModel, _super);
-    // the constructor of the model
     function RestaurantOwnerModel() {
         return _super.call(this) || this;
     }
@@ -190,7 +185,6 @@ var RestaurantOwnerModel = /** @class */ (function (_super) {
 exports.RestaurantOwnerModel = RestaurantOwnerModel;
 var AdminModel = /** @class */ (function (_super) {
     __extends(AdminModel, _super);
-    // the constructor of the model
     function AdminModel() {
         return _super.call(this) || this;
     }

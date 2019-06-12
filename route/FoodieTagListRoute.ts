@@ -12,7 +12,7 @@ class FoodieTagList {
     // run configuration methods on the Express instance.
     constructor() {
         this.TagList = new FoodieTagListModel();
-        this.idGenerator = 10;
+        this.idGenerator = 1000;
     }
 
     public registerRoutes(router: express.Router): void {
