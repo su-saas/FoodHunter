@@ -57,7 +57,7 @@ export class TagSelectionComponent implements OnInit {
   }
 
   load() {
-    location.reload()
+    location.reload();
   }
 
 }
