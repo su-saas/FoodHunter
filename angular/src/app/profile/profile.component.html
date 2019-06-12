@@ -23,22 +23,22 @@
                             <div class="profile-tabs">
                               <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link" role="tab" data-toggle="tab" href="#tagPrio" (click)="onTabChage(tabId.currentTagPriorityTab)">
+                                    <a class="nav-link" role="tab" data-toggle="tab" href="#tagPrio">
                                         Tag Priority
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" role="tab" data-toggle="tab" href="#review" (click)="onTabChage(tabId.reviewTab)">
+                                    <a class="nav-link" role="tab" data-toggle="tab" href="#review">
                                         Review
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" role="tab" data-toggle="tab" href="#collection" (click)="onTabChage(tabId.collectionTab)">
+                                    <a class="nav-link" role="tab" data-toggle="tab" href="#collection">
                                         Collection
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" role="tab" data-toggle="tab" href="#tagCollection" (click)="onTabChage(tabId.tagSelectionTab)">
+                                    <a class="nav-link" role="tab" data-toggle="tab" href="#tagCollection">
                                         TagSelection
                                     </a>
                                 </li>
@@ -48,16 +48,16 @@
                     </div>
                     <div class="row tab-content" >
                         <div class="tab-pane" id="tagPrio">
-                            <app-current-tag-priority [currentTab]="currentTabSubject"></app-current-tag-priority>
+                            <app-current-tag-priority></app-current-tag-priority>
                         </div>
                         <div class="tab-pane" id="review">
-                            <app-review [currentTab]="currentTabSubject"></app-review>
+                            <app-review></app-review>
                         </div>
                         <div class="tab-pane" id="collection">
-                            <app-collection [currentTab]="currentTabSubject"></app-collection>
+                            <app-collection></app-collection>
                         </div>
                         <div class="tab-pane" id="tagCollection">
-                            <app-tag-selection [currentTab]="currentTabSubject"></app-tag-selection>
+                            <app-tag-selection></app-tag-selection>
                         </div> 
 
                     </div>
