@@ -73,6 +73,14 @@ var App = /** @class */ (function () {
             logout();
             return res.redirect("/#/login");
         });
+        router.get('/loggedIn', function (req, res) {
+            if (_this.googlePassportObj.email != null && _this.googlePassportObj.email != "") {
+                res.send("true");
+            }
+            else {
+                res.send("false");
+            }
+        });
         //////////////////////////////////////////////////
         //*************** google login end ***************/
         // add routes
