@@ -305,7 +305,7 @@ rtaglistCollection.insert(
     {
         restaurantID: 1,
         rtaglistID: 1,
-        rtagList: [13, 500, 15, 110, 35, 600, 0, 0]
+        rtagList: [13, 500, 15, 110, 35, 600, 12, 22]
     }
 )
 
@@ -313,7 +313,7 @@ rtaglistCollection.insert(
     {
         restaurantID: 2,
         rtaglistID: 2,
-        rtagList: [11, 29, 190, 0, 340, 0, 39, 85]
+        rtagList: [11, 29, 190, 7, 340, 30, 39, 85]
     }
 )
 
@@ -321,7 +321,7 @@ rtaglistCollection.insert(
     {
         restaurantID: 3,
         rtaglistID: 3,
-        rtagList: [140, 0, 8, 30, 0, 120, 34, 180]
+        rtagList: [140, 1, 8, 30, 0, 120, 34, 180]
     }
 )
 
@@ -329,7 +329,7 @@ rtaglistCollection.insert(
     {
         restaurantID: 4,
         rtaglistID: 4,
-        rtagList: [100, 20, 50, 83, 500, 40, 0, 120]
+        rtagList: [100, 20, 50, 83, 500, 40, 6, 120]
     }
 )
 
@@ -337,28 +337,28 @@ rtaglistCollection.insert(
     {
         restaurantID: 5,
         rtaglistID: 5,
-        rtagList: [0, 300, 100, 0, 90, 70, 333, 289]
+        rtagList: [24, 300, 100, 2, 90, 70, 333, 289]
     }
 )
 rtaglistCollection.insert(
     {
         restaurantID: 6,
         rtaglistID: 6,
-        rtagList: [1, 3, 6, 8, 3, 0, 1, 7]
+        rtagList: [150, 3, 68, 84, 35, 3, 145, 100]
     }
 )
 rtaglistCollection.insert(
     {
         restaurantID: 7,
         rtaglistID: 7,
-        rtagList: [6, 23, 4, 1, 2, 7, 8, 3]
+        rtagList: [60, 230, 45, 100, 27, 70, 88 35]
     }
 )
 rtaglistCollection.insert(
     {
         restaurantID: 8,
         rtaglistID: 8,
-        rtagList: [0, 0, 0, 0, 0, 0, 0, 0]
+        rtagList: [200, 40, 120, 30, 120, 21, 8, 0]
     }
 )
 
