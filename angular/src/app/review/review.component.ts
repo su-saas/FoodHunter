@@ -30,24 +30,11 @@ export class ReviewComponent implements OnInit {
 
 	ngOnInit() {
 		this.authService.getSession().subscribe(
-            data => {
+			data => {
 				this.currentUserID = data.userID;
 				console.log('user id in review: ', this.currentUserID);
-				console.log('rID get by review: ', this.rID);
-				if (this.rID > 0) {
-					this.reviewService.getByRestaurantID(this.rID).subscribe(
-						reviews => {
-							for (let i = 0; i < reviews.length; i++) {
-								this.reviewList[i] = reviews[i];
-								console.log('get reviews by restaurant id:', reviews);
-								console.log('single review by restaurant id:', this.reviewList[i]);
-								this.profileService.getProfileByFoodieID(reviews[i].userID).subscribe(
-									user => this.userList.push(user)
-								);
-							}
-							console.log("get users by reviews: ", this.userList);
-						});
-				} else {
+				if (this.rID > 0) { }
+				else {
 					if (this.currentUserID > 0) {
 						this.isUser = true;
 						this.reviewService.getByUserID(this.currentUserID).subscribe(
@@ -56,14 +43,29 @@ export class ReviewComponent implements OnInit {
 									this.reviewList[i] = reviews[i];
 									this.rIdList[i] = reviews[i].restaurantID;
 									this.restaurantService.getByID(this.reviewList[i].restaurantID).subscribe(
-											restaurant => this.rNameList[i] = restaurant.restaurantName
+										restaurant => this.rNameList[i] = restaurant.restaurantName
 									);
 								}
 							});
 					}
-					
 				}
-     });
+			}
+		);
+		console.log('rID get by review: ', this.rID);
+		if (this.rID > 0) {
+			this.reviewService.getByRestaurantID(this.rID).subscribe(
+				reviews => {
+					for (let i = 0; i < reviews.length; i++) {
+						this.reviewList[i] = reviews[i];
+						console.log('get reviews by restaurant id:', reviews);
+						console.log('single review by restaurant id:', this.reviewList[i]);
+						this.profileService.getProfileByFoodieID(reviews[i].userID).subscribe(
+							user => this.userList.push(user)
+						);
+					}
+					console.log("get users by reviews: ", this.userList);
+				});
+		}
 	}
 
 }

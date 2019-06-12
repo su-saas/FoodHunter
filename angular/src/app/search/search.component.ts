@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth.service';
 	styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-	private restaurantDetailUrl = 'restaurants/';
+	private restaurantDetailUrl = '/restaurants/';
 	private nextStationUrl: string;
 	private restaurant: IRestaurantModel;
 	private rID: number;
@@ -48,6 +48,7 @@ export class SearchComponent implements OnInit {
 					this.rID = this.restaurant.restaurantID;
 					console.log('get restaurant id: ', this.rID);
 					this.nextStationUrl = this.restaurantDetailUrl + this.rID;
+					console.log('get restaurant url: ', this.nextStationUrl);
 					this.router.navigateByUrl(this.nextStationUrl);
 				} else {
 					this.found = false;
