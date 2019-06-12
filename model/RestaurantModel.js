@@ -3,7 +3,6 @@ exports.__esModule = true;
 var Mongoose = require("mongoose");
 var DataAccess_1 = require("./../DataAccess");
 var mongooseConnection = DataAccess_1.DataAccess.mongooseConnection;
-var mongooseObj = DataAccess_1.DataAccess.mongooseInstance;
 var RestaurantModel = /** @class */ (function () {
     function RestaurantModel() {
         this.createSchema();

@@ -1,19 +1,19 @@
 import Mongoose = require("mongoose");
-import {DataAccess} from '../DataAccess';
+import { DataAccess } from '../DataAccess';
 import { IFavoriteListModel } from "../interfaces/IFavoriteListModel";
 
 var mongooseConnection = DataAccess.mongooseConnection;
 
 class FavoriteListModel {
-    public schema:any;
-    public model:any;
+    public schema: any;
+    public model: any;
 
     public constructor() {
         this.createSchema();
         this.createModel();
     }
 
-    public static constructorFromData(favoriteListID: Number, userID: Number, restaurantIDList: Number[]){
+    public static constructorFromData(favoriteListID: Number, userID: Number, restaurantIDList: Number[]) {
         let newObj = {
             favoriteListID: favoriteListID,
             userID: userID,
@@ -28,7 +28,7 @@ class FavoriteListModel {
                 favoriteListID: {
                     type: Number,
                     required: true,
-                    unique : true, 
+                    unique: true,
                     dropDups: true
                 },
                 userID: {
@@ -39,7 +39,7 @@ class FavoriteListModel {
                     type: [Number],
                     required: true
                 },
-            }, {collection: 'favoriteList'}
+            }, { collection: 'favoriteList' }
         );
     }
     public createModel(): void {
@@ -47,11 +47,11 @@ class FavoriteListModel {
     }
     public createFavoriteList(favoriteList, response: any) {
         var res = false;
-        this.model(favoriteList).save( (err) => {
-            if(err){
+        this.model(favoriteList).save((err) => {
+            if (err) {
                 console.error(err);
             }
-            else{
+            else {
                 res = true;
             }
             response.json(favoriteList.favoriteListID);
@@ -60,11 +60,11 @@ class FavoriteListModel {
 
     public deleteFavoriteListByID(favoriteListID: Number, response: any) {
         var res = false;
-        this.model.deleteOne({favoriteListID: favoriteListID}, (err) => {
-            if(err){
+        this.model.deleteOne({ favoriteListID: favoriteListID }, (err) => {
+            if (err) {
                 console.error(err);
             }
-            else{
+            else {
                 res = true;
             }
             response.json(res);
@@ -73,37 +73,37 @@ class FavoriteListModel {
 
     public updateFavoriteList(favoriteListID: Number, favoriteList, response: any) {
         var res = false;
-        this.model.findOneAndUpdate({favoriteListID: favoriteListID}, favoriteList, { new: true } , (err) => {
-            if(err){
+        this.model.findOneAndUpdate({ favoriteListID: favoriteListID }, favoriteList, { new: true }, (err) => {
+            if (err) {
                 console.error(err);
             }
-            else{
+            else {
                 res = true;
             }
             response.json(res);
         });
     }
-    public getFavoriteListByID(favoriteListID: Number, response: any){
-        var query = this.model.find({favoriteListID: favoriteListID});
+    public getFavoriteListByID(favoriteListID: Number, response: any) {
+        var query = this.model.find({ favoriteListID: favoriteListID });
         query.exec((err, favoriteLists) => {
-            if(err){
+            if (err) {
                 console.error(err);
                 response.json(favoriteLists);
             }
-            else{
+            else {
                 response.json(favoriteLists);
             }
         });
     }
 
-    public getFavoriteListByUserID(userID: Number, response: any){
-        var query = this.model.find({userID: userID});
+    public getFavoriteListByUserID(userID: Number, response: any) {
+        var query = this.model.find({ userID: userID });
         query.exec((err, favoriteLists) => {
-            if(err){
+            if (err) {
                 console.error(err);
                 response.json(favoriteLists);
             }
-            else{
+            else {
                 response.json(favoriteLists);
             }
         });
@@ -113,17 +113,17 @@ class FavoriteListModel {
         var query = this.model.find({});
         var favoriteLists = null;
         query.exec((err, res) => {
-            if(err){
+            if (err) {
                 console.error(err);
             }
-            else if(res.length > 0){
+            else if (res.length > 0) {
                 favoriteLists = res;
             }
-            else{
+            else {
                 console.log('no result');
             }
             response.json(favoriteLists);
         });
     }
 }
-export {FavoriteListModel};
+export { FavoriteListModel };

@@ -3,7 +3,6 @@ import { DataAccess } from './../DataAccess';
 import { IRecommendationListModel } from '../interfaces/IRecommendationListModel';
 
 let mongooseConnection = DataAccess.mongooseConnection;
-let mongooseObj = DataAccess.mongooseInstance;
 
 class RecommendationListModel {
     public schema: any;
@@ -44,9 +43,9 @@ class RecommendationListModel {
         this.model(recommendationList).save((err: any) => {
             if (err) {
                 response.send(err);
-            } 
+            }
             response.json({ message: 'Successfully created recommendation list!' });
-            
+
         });
     }
 
@@ -76,8 +75,8 @@ class RecommendationListModel {
 
     //update recommendationlist
     //param: response, recommendationlistID, recommendationlist
-    public updateRecommendationList(response: any, recommendationlistID: number, recommendationlist: any){
-        this.model.findOneAndUpdate({ recommendationlistID: recommendationlistID }, recommendationlist, { new: true },(err, updatedlist) => {
+    public updateRecommendationList(response: any, recommendationlistID: number, recommendationlist: any) {
+        this.model.findOneAndUpdate({ recommendationlistID: recommendationlistID }, recommendationlist, { new: true }, (err, updatedlist) => {
             if (err) {
                 response.send(err);
             }
@@ -89,12 +88,12 @@ class RecommendationListModel {
     //delete recommendationlist
     //param: recommendationlistID
     public deleteRecommendationList(response: any, recommendationlistID: number) {
-        this.model.deleteOne({ recommendationlistID: recommendationlistID }, (err)=> {
+        this.model.deleteOne({ recommendationlistID: recommendationlistID }, (err) => {
             if (err) {
                 response.send(err);
-            } 
+            }
             response.json({ message: 'Successfully deleted application form!' });
-            
+
         });
     }
 

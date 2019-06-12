@@ -1,4 +1,3 @@
-import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
@@ -16,22 +15,14 @@ import { RecommendationList } from './route/RecommendationListRoute';
 
 import { Router } from "express-serve-static-core";
 import GooglePassportObj from './GooglePassport';
-import {DataAccess} from './DataAccess';
 
 let passport = require('passport');
 let newReq = require('request');
 let logout = require('express-passport-logout');
-var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', "*");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-}
 
 // creates and configures an ExpressJS web server.
 class App {
 
-    // ref to Express instance
     public expressApp: express.Application;
     public googlePassportObj:GooglePassportObj;
     //Run configuration methods on the Express instance.
@@ -44,16 +35,17 @@ class App {
 
     // configure Express middleware.
     private middleware(): void {
-        this.expressApp.use(logger("dev"));
-        this.expressApp.use(bodyParser.json());
-        this.expressApp.use(bodyParser.urlencoded({ extended: false }));
-        this.expressApp.use(session({ secret: 'keyboard cat' }));
-        this.expressApp.use(function (req, res, next) {
+        let allowCrossDomain = function(req, res, next) {
             res.header('Access-Control-Allow-Origin', "*");
             res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
             res.header('Access-Control-Allow-Headers', 'Content-Type');
             next();
-        });
+        }
+        this.expressApp.use(logger("dev"));
+        this.expressApp.use(bodyParser.json());
+        this.expressApp.use(bodyParser.urlencoded({ extended: false }));
+        this.expressApp.use(session({ secret: 'keyboard cat' }));
+        this.expressApp.use(allowCrossDomain);
         this.expressApp.use(passport.initialize());
         this.expressApp.use(passport.session());
     }
@@ -103,11 +95,7 @@ class App {
     //*************** google login end ***************/
         // add routes
         this.addRoutes(router);
-        this.expressApp.use(allowCrossDomain);
         this.expressApp.use('/', router);
-
-        /////////////////////////////////////
-        /*********** FOR DEPLOY ************/
         this.expressApp.use('/', express.static(__dirname+'/angularDist'));     
   }    
     private addRoutes(router: express.Router): void{

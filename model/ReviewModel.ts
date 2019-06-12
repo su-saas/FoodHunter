@@ -1,19 +1,19 @@
 import Mongoose = require("mongoose");
-import {DataAccess} from '../DataAccess';
+import { DataAccess } from '../DataAccess';
 import { IReviewModel } from "../interfaces/IReviewModel";
 
 var mongooseConnection = DataAccess.mongooseConnection;
 
 class ReviewModel {
-    public schema:any;
-    public model:any;
+    public schema: any;
+    public model: any;
 
     public constructor() {
         this.createSchema();
         this.createModel();
     }
 
-    public static constructorFromData(reviewID: Number, userID: Number, restaurantID: Number, title: String, content: String, date: String){
+    public static constructorFromData(reviewID: Number, userID: Number, restaurantID: Number, title: String, content: String, date: String) {
         let newObj = {
             reviewID: reviewID,
             userID: userID,
@@ -31,7 +31,7 @@ class ReviewModel {
                 reviewID: {
                     type: Number,
                     required: true,
-                    unique : true, 
+                    unique: true,
                     dropDups: true
                 },
                 userID: {
@@ -54,7 +54,7 @@ class ReviewModel {
                     type: String,
                     required: true
                 },
-            }, {collection: 'review'}
+            }, { collection: 'review' }
         );
     }
     public createModel(): void {
@@ -62,12 +62,12 @@ class ReviewModel {
     }
     public createReview(review, response: any) {
         var res = false;
-        this.model(review).save( (err) => {
-            if(err){
+        this.model(review).save((err) => {
+            if (err) {
                 console.error(err);
                 response.json(err);
             }
-            else{
+            else {
                 response.json(review.reviewID);
             }
         });
@@ -75,12 +75,12 @@ class ReviewModel {
 
     public deleteReviewByID(reviewID: Number, response: any) {
         var res = false;
-        this.model.deleteOne({reviewID: reviewID}, (err) => {
-            if(err){
+        this.model.deleteOne({ reviewID: reviewID }, (err) => {
+            if (err) {
                 console.error(err);
                 response.json(err);
             }
-            else{
+            else {
                 response.json(res);
             }
         });
@@ -88,24 +88,24 @@ class ReviewModel {
 
     public updateReview(reviewID: Number, review, response: any) {
         var res = false;
-        this.model.findOneAndUpdate({reviewID: reviewID}, review, { new: true } ,  (err) => {
-            if(err){
+        this.model.findOneAndUpdate({ reviewID: reviewID }, review, { new: true }, (err) => {
+            if (err) {
                 console.error(err);
                 response.json(err);
             }
-            else{
+            else {
                 response.json(res);
             }
         });
     }
-    public getReviewByID(userID: Number, response: any){
-        var query = this.model.find({userID: userID});
+    public getReviewByID(userID: Number, response: any) {
+        var query = this.model.find({ userID: userID });
         query.exec((err, reviews) => {
-            if(err){
+            if (err) {
                 response.json(err);
                 console.error(err);
             }
-            else{
+            else {
                 response.json(reviews);
             }
         });
@@ -115,19 +115,19 @@ class ReviewModel {
         var query = this.model.find({});
         var reviews = null;
         query.exec((err, res) => {
-            if(err){
+            if (err) {
                 console.error(err);
                 response.json(err);
             }
-            else if(res.length > 0){
+            else if (res.length > 0) {
                 reviews = res;
                 response.json(reviews);
             }
-            else{
+            else {
                 response.json(reviews);
                 console.log('no result');
             }
         });
     }
 }
-export {ReviewModel};
+export { ReviewModel };

@@ -3,8 +3,6 @@ import { DataAccess } from './../DataAccess';
 import { IApplicationFormModel } from '../interfaces/IApplicationFormModel';
 
 let mongooseConnection = DataAccess.mongooseConnection;
-let mongooseObj = DataAccess.mongooseInstance;
-
 class ApplicationFormModel {
     public schema: any;
     public model: any;
@@ -51,19 +49,19 @@ class ApplicationFormModel {
 
     //create applicationform
     //param: response, applicationform
-    public createApplicationForm(response: any, applicationform: any){
+    public createApplicationForm(response: any, applicationform: any) {
         this.model(applicationform).save((err: any) => {
             if (err) {
                 response.send(err);
-            } 
+            }
             response.json({ message: 'Successfully created application form!' });
-            
+
         });
     }
 
     //get applicationform by id
     //param: response, formID
-    public getApplicationFormByID(response:any, formId: number) {
+    public getApplicationFormByID(response: any, formId: number) {
         var query = this.model.findOne({ formID: formId });
         query.exec((err, form) => {
             if (err) {
@@ -75,7 +73,7 @@ class ApplicationFormModel {
 
     //get all applicationforms
     //param: response
-    public getAllApplicationForm(response:any): any {
+    public getAllApplicationForm(response: any): any {
         var query = this.model.find({});
         query.exec((err, formArray) => {
             if (err) {
@@ -87,12 +85,12 @@ class ApplicationFormModel {
 
     //update applicationform
     //param: response, formID, applicationForm
-    public updateApplicationForm(response:any, formId: number, applicationform: any){
+    public updateApplicationForm(response: any, formId: number, applicationform: any) {
         this.model.findOneAndUpdate({ formID: formId }, applicationform, { new: true }, (err, form) => {
             if (err) {
                 response.send(err);
-            } 
-            response.json(form);           
+            }
+            response.json(form);
         });
     }
 
@@ -102,7 +100,7 @@ class ApplicationFormModel {
         this.model.deleteOne({ formID: formId }, (err, form) => {
             if (err) {
                 response.send(err);
-            } 
+            }
             response.json({ message: 'Successfully deleted application form!' });
         });
     }
