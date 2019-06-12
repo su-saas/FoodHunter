@@ -9,7 +9,7 @@ const NUMBER_OF_RESTAURANTS = 3; // return top 3 restaurants
   providedIn: 'root'
 })
 export class AlgorithmService {
-  private rtagListUrl = 'http://localhost:8080/rtags/';
+  private rtagListUrl = '/rtags/';
   private rtags: IRestaurantTagListModel[];
   private score: number[] = [];
   public topThreeRestaurant: IRestaurantModel[] = [];
