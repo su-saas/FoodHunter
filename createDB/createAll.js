@@ -351,7 +351,7 @@ rtaglistCollection.insert(
     {
         restaurantID: 7,
         rtaglistID: 7,
-        rtagList: [60, 230, 45, 100, 27, 70, 88 35]
+        rtagList: [60, 230, 45, 100, 27, 70, 88, 35]
     }
 )
 rtaglistCollection.insert(
