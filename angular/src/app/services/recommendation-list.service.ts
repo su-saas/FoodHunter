@@ -32,8 +32,9 @@ export class RecommendationListService {
   }
 
   updateRecommendationList(tagList, tagListId) {
-    // tslint:disable-next-line:prefer-const
+    console.log('I am ready to update');
     let newRecommendationList = this.algorithmService.getRecommandationByTaglist(tagList);
+    console.log('newTagList is:', newRecommendationList);
     return this.http.put(this.recommendationListUrl + tagListId, newRecommendationList).subscribe(
       res => console.log('Done'));
   }

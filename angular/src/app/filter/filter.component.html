@@ -6,20 +6,21 @@
       </div>
       <form class="panel-body" *ngIf="isCollapse" #f="ngForm" (ngSubmit)="onSubmit(f)"novalidate>
         <div style="padding: 5px 0px 10px 0px">
-          <h5>Please set these tags in different priority, or you won't get an accurate recommendation</h5>
+          <h5>Please set these tags in different priority, or you won't be allowed to submit your new tag priority</h5>
         </div>       
         <div class="col-md" *ngIf="tagList" >                     
           <div class="form-group" *ngFor="let tag of tagList" >                           
             <h4 class = "text" style="font-weight: bold">{{tag.tagName}}</h4>
             <select class="form-control" style="font-size: 15px" id="conditionsselect1" name="{{tag.tagName}}" ngModel required>
               <option *ngFor="let tag of tagList; let i = index">
-                  {{i+1}}
+                  {{i+1}}                  
               </option>
             </select>
           </div>
         </div>
+        
         <div class="btn-group form-group" role="group" aria-label="Basic example">
-          <button type="submit" class="btn peach-gradient" [disabled]="f.invalid">Find Now</button>
+          <button type="submit" class="btn peach-gradient" [disabled]="!checkValidation(f)">Find Now</button>
         </div>
       </form>
     </div>
