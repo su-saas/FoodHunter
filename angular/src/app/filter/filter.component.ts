@@ -72,6 +72,7 @@ export class FilterComponent implements OnInit {
     console.log('inside the onsubmit filter', this.newList);
     this.updateList();
     this.dataService.editSubmit(true);
+    location.reload();
     //this.topThreeRestaurantId = this.algorithmService.getRecommandationByTaglist(this.newList);
     //console.log("top three restaurant id : ", this.topThreeRestaurantId);
   }

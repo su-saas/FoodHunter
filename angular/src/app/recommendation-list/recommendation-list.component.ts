@@ -5,6 +5,7 @@ import { RestaurantService } from '../services/restaurant.service';
 import { AuthService } from '../services/auth.service';
 import { AlgorithmService } from '../services/algorithm.service';
 import { DataService } from '../services/data.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-recommendation-list',
   templateUrl: './recommendation-list.component.html',
@@ -16,6 +17,7 @@ export class RecommendationListComponent implements OnInit {
   private userID: number;
   private tagListIDByUser: number;
   private tagList: number[] = [];
+  private restaurantDetailUrl = 'restaurants/';
   // for testing
   public newList: number[] = [];
 
@@ -29,6 +31,7 @@ export class RecommendationListComponent implements OnInit {
               private restaurantService: RestaurantService,
               private auth: AuthService,
               private algorithmService: AlgorithmService,
+              private router: Router,
               private dataService: DataService) { }
 
   ngOnInit() {
@@ -84,5 +87,10 @@ export class RecommendationListComponent implements OnInit {
     this.restaurantIdList = this.algorithmService.getRecommandationByTaglist(this.tagList);
     console.log('restaurantIdList got from algo:', this.restaurantIdList);
   }
+
+  click(rID) {
+		var nextStationUrl = this.restaurantDetailUrl + rID;
+		this.router.navigateByUrl(nextStationUrl);
+	}
 
 }
