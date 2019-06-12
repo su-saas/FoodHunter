@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
 	private nextStationUrl: string;
 	private restaurant: IRestaurantModel;
 	private rID: number;
-	public notFind: boolean;
+	public found: boolean;
 	public submitted: boolean;
 	userID: number;
 	options = [
@@ -31,7 +31,7 @@ export class SearchComponent implements OnInit {
 				 }
 
 	ngOnInit() {
-		this.notFind = true;
+		this.found = true;
 		this.submitted = false;
 	}
 
@@ -43,13 +43,14 @@ export class SearchComponent implements OnInit {
 			.subscribe(res => {
 				this.submitted = true;
 				if (res.length > 0) {
-					this.notFind = false;
 					this.restaurant = res[0];
 					console.log('get restaurant: ', res);
 					this.rID = this.restaurant.restaurantID;
 					console.log('get restaurant id: ', this.rID);
 					this.nextStationUrl = this.restaurantDetailUrl + this.rID;
 					this.router.navigateByUrl(this.nextStationUrl);
+				} else {
+					this.found = false;
 				}
 			});
 		}
