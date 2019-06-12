@@ -13,13 +13,14 @@
             <h4 class = "text" style="font-weight: bold">{{tag.tagName}}</h4>
             <select class="form-control" style="font-size: 15px" id="conditionsselect1" name="{{tag.tagName}}" ngModel required>
               <option *ngFor="let tag of tagList; let i = index">
-                  {{i+1}}
+                  {{i+1}}                  
               </option>
             </select>
           </div>
         </div>
+        
         <div class="btn-group form-group" role="group" aria-label="Basic example">
-          <button type="submit" class="btn peach-gradient" [disabled]="f.invalid">Find Now</button>
+          <button type="submit" class="btn peach-gradient" [disabled]="!checkValidation(f)">Find Now</button>
         </div>
       </form>
     </div>

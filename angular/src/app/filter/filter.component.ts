@@ -40,6 +40,19 @@ export class FilterComponent implements OnInit {
     }
   }
 
+  checkValidation(f) {
+    let set = new Set();
+    for (let key in f.value) {
+      let value = f.value[key];
+      let num = +value;
+      set.add(num);
+    }
+    if (set.size < this.tagList.length) {
+      return false;
+    }
+    return true;
+  }
+
   onSubmit(f) {
     this.isSubmit = true;
     console.log(f.value);

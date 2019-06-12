@@ -4,6 +4,7 @@ import { ProfileService } from '../services/profile.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Location } from '@angular/common';
+import { RecommendationListService } from '../services/recommendation-list.service';
 
 @Component({
   selector: 'app-tag-selection',
@@ -17,6 +18,7 @@ export class TagSelectionComponent implements OnInit {
   newList = [];
 
   constructor(private tagSelectionService: TagSelectionService,
+              private recommendationListService: RecommendationListService,
               private data: ProfileService,
               private router: Router,
               private auth: AuthService,
@@ -31,11 +33,23 @@ export class TagSelectionComponent implements OnInit {
     this.tagSelectionService.getAllTags().subscribe(
       res => this.tagList = res
     );
+  }
 
+  checkValidation(f) {
+    let set = new Set();
+    for (let key in f.value) {
+      let value = f.value[key];
+      let num = +value;
+      set.add(num);
+    }
+    if (set.size < this.tagList.length) {
+      return false;
+    }
+    return true;
   }
 
   onSubmit(f) {
-    this.newList = []; 
+    this.newList = [];
     console.log(f.value);
     for (let key in f.value) {
       let value = f.value[key];
@@ -48,7 +62,8 @@ export class TagSelectionComponent implements OnInit {
         this.tagListID = data.tagListID;
         if (this.tagListID !== null) {
           this.tagSelectionService.updateTagPriorityList(this.userID, this.newList);
-          this.load();
+          this.recommendationListService.updateRecommendationList(this.newList, this.tagListID);
+          //this.load();
         } else {
           console.log('you can not edit tagList, tagList does not exist');
         }

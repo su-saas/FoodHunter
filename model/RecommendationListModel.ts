@@ -86,12 +86,14 @@ class RecommendationListModel {
     }
 
     public updateRecommendationListByTagListID(response: any, taglistID: number, recommendationlist: any) {
+        console.log('foodie tag id:', taglistID);
+        console.log('new list in model:', recommendationlist);
         this.model.findOneAndUpdate({ foodietaglistID: taglistID }, recommendationlist, { new: true }, (err, updatedlist) => {
             if (err) {
                 response.send(err);
             }
             response.json(updatedlist);
-
+            console.log('the updatedList in model:', updatedlist);
         });
     }
 
