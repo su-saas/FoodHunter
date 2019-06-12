@@ -6,7 +6,7 @@ var RecommendationList = /** @class */ (function () {
     //Run configuration methods on the Express instance.
     function RecommendationList() {
         this.recommendationList = new RecommendationListModel_1.RecommendationListModel();
-        this.idGenerator = 10;
+        this.idGenerator = 1000;
     }
     RecommendationList.prototype.registerRoutes = function (router) {
         this.routes(router);

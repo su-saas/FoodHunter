@@ -1,6 +1,5 @@
 "use strict";
 exports.__esModule = true;
-//connect to the model 
 var ReviewModel_1 = require("../model/ReviewModel");
 // Creates and configures an ExpressJS web server.
 var Review = /** @class */ (function () {

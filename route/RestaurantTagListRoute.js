@@ -4,7 +4,7 @@ var RestaurantTagListModel_1 = require("../model/RestaurantTagListModel");
 var RestaurantTagList = /** @class */ (function () {
     function RestaurantTagList() {
         this.rTagList = new RestaurantTagListModel_1.RestaurantTagListModel();
-        this.idGenerator = 10;
+        this.idGenerator = 1000;
     }
     RestaurantTagList.prototype.registerrTagListRoutes = function (router) {
         this.routes(router);

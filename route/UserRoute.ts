@@ -1,8 +1,6 @@
 import * as express from "express";
 import { FoodieModel, RestaurantOwnerModel, AdminModel } from "../model/UserModel";
 import { Router } from "express-serve-static-core";
-import { IUserModel } from "../interfaces/IUserModel";
-import { IFoodieModel } from "../interfaces/IFoodieModel";
 
 // creates and configures an ExpressJS web server.
 class Foodie {
@@ -13,7 +11,7 @@ class Foodie {
     // run configuration methods on the Express instance.
     constructor() {
         this.Foodie = new FoodieModel();
-        this.idGenerator = 10;
+        this.idGenerator = 3000;
     }
 
     public registerRoutes(router: express.Router): void {
@@ -72,8 +70,6 @@ class RestaurantOwner {
 
     public Owner: RestaurantOwnerModel;
     private idGenerator: number;
-
-    // run configuration methods on the Express instance.
     constructor() {
         this.Owner = new RestaurantOwnerModel();
         this.idGenerator = 1000;
@@ -83,7 +79,6 @@ class RestaurantOwner {
         this.routes(router);
     }
 
-    // configure API endpoints.
     private routes(router: Router): void {
         // create restaurantOwner
         router.post("/restaurantOwner", (req, res) => {
@@ -93,14 +88,6 @@ class RestaurantOwner {
             this.idGenerator ++;
             this.Owner.createUser(res, user);
         });
-
-        // // get login page
-        // router.get("/login", (req, res) => {
-        //     var userPayload: any = req;
-        //     console.log("login with userID: ", userPayload.userID);
-        //     console.log("login with userPassword: ", userPayload.password);
-        //     this.Owner.logInByIDAndPassword(res, userPayload);
-        // });
 
         // get restaurantOwner by id
         router.get("/restaurantOwner/:userID", (req, res) => {
@@ -152,14 +139,6 @@ class Admin {
             this.idGenerator ++;
             this.Admin.createUser(res, user);
         });
-
-        // // get login page
-        // router.get("/login", (req, res) => {
-        //     var userPayload: any = req;
-        //     console.log("login with userID: ", userPayload.userID);
-        //     console.log("login with userPassword: ", userPayload.password);
-        //     this.Admin.logInByIDAndPassword(res, userPayload);
-        // });
 
         // get foodie by id
         router.get("/admin/foodies/:userID", (req, res) => {

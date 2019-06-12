@@ -16,7 +16,7 @@ class ApplicationForm {
 
     //Run configuration methods on the Express instance.
     constructor() {
-        this.idGenerator = 10;
+        this.idGenerator = 1000;
         this.applicationForm = new ApplicationFormModel();
     }
 

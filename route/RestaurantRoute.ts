@@ -1,9 +1,6 @@
 import * as path from 'path';
 import * as express from 'express';
-import * as logger from 'morgan';
-import * as mongodb from 'mongodb';
 import * as url from 'url';
-import * as bodyParser from 'body-parser';
 import {RestaurantModel} from '../model/RestaurantModel';
 
 class Restaurant {
@@ -13,7 +10,7 @@ class Restaurant {
     
     constructor() {
         this.Restaurant = new RestaurantModel(); 
-        this.idGenerator = 10;
+        this.idGenerator = 1000;
     }
 
     public registerRestaurantRoutes(router: express.Router) {

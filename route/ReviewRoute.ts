@@ -1,7 +1,5 @@
 import * as path from 'path';
 import * as express from 'express';
-
-//connect to the model 
 import {ReviewModel} from '../model/ReviewModel'
 
 // Creates and configures an ExpressJS web server.

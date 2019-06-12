@@ -5,7 +5,7 @@ var ApplicationFormModel_1 = require("../model/ApplicationFormModel");
 var ApplicationForm = /** @class */ (function () {
     //Run configuration methods on the Express instance.
     function ApplicationForm() {
-        this.idGenerator = 10;
+        this.idGenerator = 1000;
         this.applicationForm = new ApplicationFormModel_1.ApplicationFormModel();
     }
     ApplicationForm.prototype.registerRoutes = function (router) {

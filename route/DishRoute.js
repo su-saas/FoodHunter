@@ -4,7 +4,7 @@ var DishModel_1 = require("../model/DishModel");
 var Dish = /** @class */ (function () {
     function Dish() {
         this.Dish = new DishModel_1.DishModel();
-        this.idGenerator = 10;
+        this.idGenerator = 1000;
     }
     Dish.prototype.registerDishRoutes = function (router) {
         this.routes(router);

@@ -11,7 +11,7 @@ class Dish {
     private idGenerator: number;
     constructor() {
         this.Dish = new DishModel();
-        this.idGenerator = 10;
+        this.idGenerator = 1000;
     }
     public registerDishRoutes(router: express.Router) {
       this.routes(router);

@@ -6,7 +6,7 @@ var Foodie = /** @class */ (function () {
     // run configuration methods on the Express instance.
     function Foodie() {
         this.Foodie = new UserModel_1.FoodieModel();
-        this.idGenerator = 10;
+        this.idGenerator = 3000;
     }
     Foodie.prototype.registerRoutes = function (router) {
         this.routes(router);
@@ -56,7 +56,6 @@ var Foodie = /** @class */ (function () {
 }());
 exports.Foodie = Foodie;
 var RestaurantOwner = /** @class */ (function () {
-    // run configuration methods on the Express instance.
     function RestaurantOwner() {
         this.Owner = new UserModel_1.RestaurantOwnerModel();
         this.idGenerator = 1000;
@@ -64,7 +63,6 @@ var RestaurantOwner = /** @class */ (function () {
     RestaurantOwner.prototype.registerRoutes = function (router) {
         this.routes(router);
     };
-    // configure API endpoints.
     RestaurantOwner.prototype.routes = function (router) {
         var _this = this;
         // create restaurantOwner
@@ -75,13 +73,6 @@ var RestaurantOwner = /** @class */ (function () {
             _this.idGenerator++;
             _this.Owner.createUser(res, user);
         });
-        // // get login page
-        // router.get("/login", (req, res) => {
-        //     var userPayload: any = req;
-        //     console.log("login with userID: ", userPayload.userID);
-        //     console.log("login with userPassword: ", userPayload.password);
-        //     this.Owner.logInByIDAndPassword(res, userPayload);
-        // });
         // get restaurantOwner by id
         router.get("/restaurantOwner/:userID", function (req, res) {
             var userId = req.params.userID;
@@ -125,13 +116,6 @@ var Admin = /** @class */ (function () {
             _this.idGenerator++;
             _this.Admin.createUser(res, user);
         });
-        // // get login page
-        // router.get("/login", (req, res) => {
-        //     var userPayload: any = req;
-        //     console.log("login with userID: ", userPayload.userID);
-        //     console.log("login with userPassword: ", userPayload.password);
-        //     this.Admin.logInByIDAndPassword(res, userPayload);
-        // });
         // get foodie by id
         router.get("/admin/foodies/:userID", function (req, res) {
             var userId = req.params.userID;
