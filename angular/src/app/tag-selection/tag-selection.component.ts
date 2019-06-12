@@ -65,7 +65,7 @@ export class TagSelectionComponent implements OnInit {
         if (this.tagListID !== null) {
           this.tagSelectionService.updateTagPriorityList(this.userID, this.newList);
           this.recommendationListService.updateRecommendationList(this.newList, this.tagListID);
-          //this.load();
+          this.load();
         } else {
           console.log('you can not edit tagList, tagList does not exist');
         }
