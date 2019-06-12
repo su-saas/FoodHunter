@@ -57,13 +57,11 @@ class RecommendationList {
 
         router.post('/recommendationlist', (req, res) => {          
             var newrecommendationList = req.body;
-            newrecommendationList.recommendationlistID = this.idGenerator;
-            this.idGenerator ++;
-            console.log('try to create:', req.params.recommendationlistID);
+            newrecommendationList.recommendationlistID = this.idGenerator + newrecommendationList.foodietaglistID;
+            console.log('try to create:', newrecommendationList.recommendationlistID);
             this.recommendationList.createRecommendationList(res, newrecommendationList);
         });
     }
 }
 
 export { RecommendationList };
-
