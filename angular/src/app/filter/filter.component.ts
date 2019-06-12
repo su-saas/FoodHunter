@@ -15,7 +15,7 @@ export class FilterComponent implements OnInit {
   clickCount: number;
   isSubmit = false;
   tagList: any;
-  public newList = [1, 2, 3, 4, 5, 6, 7, 8];
+  public newList: number[] = [];
   public topThreeRestaurantId: number[] = [];
   public name = 'data from parent';
 
