@@ -15,7 +15,7 @@ userCollection.insert(
         userType: 1,
         password: null,
         emailAddress: "xzheng0624@gmail.com",
-        avatar: 'https://drive.google.com/uc?id=1Px72TDiKAK8Vlr6GQyNv03C1Vy6anQ9x',
+        avatar: '../../assets/img/Xing.jpg',
         tagListID: 1,
         favoriteListID: 1
     })
@@ -27,7 +27,7 @@ userCollection.insert(
         userType: 1,
         password: null,
         emailAddress: "helenawang77@gmail.com",
-        avatar: 'https://drive.google.com/uc?id=1rGvNT1klU8v287D6twZ5Up1ewfwDRZsT',
+        avatar: '../../assets/img/profile.png',
         tagListID: 2,
         favoriteListID: 2
     })
@@ -39,7 +39,7 @@ userCollection.insert(
         userType: 1,
         password: null,
         emailAddress: "erica820822@gmail.com",
-        avatar: 'https://drive.google.com/uc?id=1rGvNT1klU8v287D6twZ5Up1ewfwDRZsT',
+        avatar: '../../assets/img/Erica.jpg',
         tagListID: 3,
         favoriteListID: 3
     })
@@ -51,7 +51,7 @@ userCollection.insert(
         userType: 1,
         password: null,
         emailAddress: "nealdeng77@gmail.com",
-        avatar: 'https://drive.google.com/uc?id=1_J4TsG6Z9Hm8AnpYHpepJ1_6RmADUCId',
+        avatar: '../../assets/img/daniel.jpg',
         tagListID: 4,
         favoriteListID: 4
     })
@@ -159,7 +159,7 @@ restaurantCollection.insert(
         introductionContent: "Italian Restaurant",
         hours: "M-F 11:30am - 1:00am",
         averagePrice: 30,
-        restaurantAvatar: ' https://drive.google.com/uc?id=1S0qUZBSYQitgwSHvopV-FwdK3xyYPCTL',
+        restaurantAvatar: '../../assets/img/restaurant1.jpg',
     }
 )
 
@@ -173,7 +173,7 @@ restaurantCollection.insert(
         introductionContent: "Japanese Restaurant",
         hours: "M-F 11:30am - 9:00pm",
         averagePrice: 25,
-        restaurantAvatar: 'https://drive.google.com/uc?id=1P-tt-lkaCWeNrinwzI5ImzpXtFDfxu42',
+        restaurantAvatar: '../../assets/img/restaurant2.jpg',
     }
 )
 
@@ -187,7 +187,7 @@ restaurantCollection.insert(
         introductionContent: "Thai Restaurant",
         hours: "M-F 11:00am - 8:00pm",
         averagePrice: 15,
-        restaurantAvatar: 'https://drive.google.com/uc?id=1S0qUZBSYQitgwSHvopV-FwdK3xyYPCTL',
+        restaurantAvatar: '../../assets/img/restaurant3.jpg',
     }
 )
 
@@ -201,7 +201,7 @@ restaurantCollection.insert(
         introductionContent: "Dedicated to the art of sushi and Japanese fusion food.",
         hours: "M-F 11:00am - 8:00pm",
         averagePrice: 100,
-        restaurantAvatar: 'https://drive.google.com/uc?id=1S0qUZBSYQitgwSHvopV-FwdK3xyYPCTL',
+        restaurantAvatar: '../../assets/img/restaurant4.png',
     }
 )
 
@@ -215,7 +215,7 @@ restaurantCollection.insert(
         introductionContent: "new style",
         hours: "M-F 11:00am - 8:00pm",
         averagePrice: 30,
-        restaurantAvatar: 'https://drive.google.com/uc?id=1S0qUZBSYQitgwSHvopV-FwdK3xyYPCTL',
+        restaurantAvatar: '../../assets/img/restaurant5.jpg',
     }
 )
 
@@ -230,7 +230,7 @@ restaurantCollection.insert(
         introductionContent: "Linda Derschang is a restauranteur, designer, and staple of the Capitol Hill food and nightlife scene. ",
         hours: "M-F 11:00am - 8:00pm",
         averagePrice: 45,
-        restaurantAvatar: 'https://drive.google.com/uc?id=1S0qUZBSYQitgwSHvopV-FwdK3xyYPCTL',
+        restaurantAvatar: '../../assets/img/restaurant6.jpg',
     }
 )
 
@@ -244,7 +244,7 @@ restaurantCollection.insert(
         introductionContent: "the perfect place to come as a group",
         hours: "M-F 11:00am - 8:00pm",
         averagePrice: 50,
-        restaurantAvatar: 'https://drive.google.com/uc?id=1S0qUZBSYQitgwSHvopV-FwdK3xyYPCTL',
+        restaurantAvatar: '../../assets/img/restaurant7.jpg',
     }
 )
 
@@ -258,7 +258,7 @@ restaurantCollection.insert(
         introductionContent: "94 Pike St Ste 30 Seattle, WA 98101",
         hours: "M-F 11:00am - 8:00pm",
         averagePrice: 30,
-        restaurantAvatar: 'https://drive.google.com/uc?id=1S0qUZBSYQitgwSHvopV-FwdK3xyYPCTL',
+        restaurantAvatar: '../../assets/img/restaurant8.jpg',
     }
 )
 
