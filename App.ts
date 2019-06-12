@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-
+import * as session from 'express-session';
 import { Foodie, RestaurantOwner, Admin } from "./route/UserRoute";
 import { FoodieTagList } from "./route/FoodieTagListRoute";
 import { Tag } from "./route/TagRoute";
@@ -17,14 +17,10 @@ import { RecommendationList } from './route/RecommendationListRoute';
 import { Router } from "express-serve-static-core";
 import GooglePassportObj from './GooglePassport';
 import {DataAccess} from './DataAccess';
-let mongooseConnection = DataAccess.mongooseConnection;
-let cookieParser = require('cookie-parser');
-let expressSession = require('express-session'); 
-let mongoStore = require('connect-mongo')({session: expressSession});
-let mongoose = require('mongoose');
+
 let passport = require('passport');
 let newReq = require('request');
-
+let logout = require('express-passport-logout');
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -51,27 +47,13 @@ class App {
         this.expressApp.use(logger("dev"));
         this.expressApp.use(bodyParser.json());
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
-        this.expressApp.use(function(req, res, next) {
+        this.expressApp.use(session({ secret: 'keyboard cat' }));
+        this.expressApp.use(function (req, res, next) {
             res.header('Access-Control-Allow-Origin', "*");
             res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
             res.header('Access-Control-Allow-Headers', 'Content-Type');
             next();
         });
-
-        //////////////////////////////////////////////////
-        //*************** for session ******************/
-        this.expressApp.use(cookieParser());
-        this.expressApp.use(expressSession({
-            key: 'user_sid',
-            secret: 'keyboard cat', 
-            cookie: {maxAge: 5*60*1000}, 
-            store: new mongoStore({
-                url: DataAccess.DB_CONNECTION_STRING,
-                db: mongooseConnection.db, 
-                collection: 'sessions'
-            })
-        }));
-
         this.expressApp.use(passport.initialize());
         this.expressApp.use(passport.session());
     }
@@ -93,27 +75,29 @@ class App {
     // configure API endpoints.
     private routes(): void {
         let router: Router = express.Router();
-        router.get('/auth/google', 
-        passport.authenticate('google', 
-        { scope: ['https://www.googleapis.com/auth/plus.login', 'email'] }
-        )
-    );
+        router.get('/auth/google',
+            passport.authenticate('google',
+                { scope: ['https://www.googleapis.com/auth/plus.login', 'email'] }
+            )
+        );
 
-    router.get('/auth/google/callback', 
-        passport.authenticate('google', 
-        { successRedirect: '/#/profile', failureRedirect: '/'})
-    );
+        router.get('/auth/google/callback',
+            passport.authenticate('google',
+                { successRedirect: '/#/profile', failureRedirect: '/' })
+        );
 
-    router.get('/auth/user', this.validateAuth, (req, res) => {
-        console.log("req.cookies.user_sid: " + req.cookies.user_sid)
-        if(req.cookies.user_sid){
+        router.get('/auth/user', this.validateAuth, (req, res) => {
             var email = this.googlePassportObj.email;
             newReq.get(req.protocol+"://"+req.get('host') + "/login/" + email,{},(err, resp, body)=>{
-                console.log('/auth/user: ' + body);
                 res.send(body);
             });
-        }
-    });
+        });
+
+        router.get('/logout', (req, res) => {
+            this.googlePassportObj.email = ""; 
+            logout();
+            return res.redirect("/#/login");
+        })
 
     //////////////////////////////////////////////////
     //*************** google login end ***************/
