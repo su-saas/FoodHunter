@@ -3,7 +3,7 @@ import { TagSelectionService } from '../services/tag-selection.service';
 import { ProfileService } from '../services/profile.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-tag-selection',
@@ -19,7 +19,8 @@ export class TagSelectionComponent implements OnInit {
   constructor(private tagSelectionService: TagSelectionService,
               private data: ProfileService,
               private router: Router,
-              private auth: AuthService) {
+              private auth: AuthService,
+              private location: Location) {
   }
 
   ngOnInit() {
@@ -34,6 +35,7 @@ export class TagSelectionComponent implements OnInit {
   }
 
   onSubmit(f) {
+    this.newList = []; 
     console.log(f.value);
     for (let key in f.value) {
       let value = f.value[key];
@@ -46,11 +48,16 @@ export class TagSelectionComponent implements OnInit {
         this.tagListID = data.tagListID;
         if (this.tagListID !== null) {
           this.tagSelectionService.updateTagPriorityList(this.userID, this.newList);
+          this.load();
         } else {
           console.log('you can not edit tagList, tagList does not exist');
         }
       });
     }
+  }
+
+  load() {
+    location.reload()
   }
 
 }

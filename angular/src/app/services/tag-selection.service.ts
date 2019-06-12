@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +20,6 @@ export class TagSelectionService {
       tagList: list,
     };
     const url = this.listUrl + '/' + id;
-    return this.http.put(`${url}`, obj).subscribe(res => console.log('Done'));
+    return this.http.put(url, obj).subscribe(res => console.log('Done'));
   }
 }
