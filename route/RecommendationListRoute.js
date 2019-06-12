@@ -41,6 +41,7 @@ var RecommendationList = /** @class */ (function () {
             var tagListID = req.params.tagListID;
             console.log('try to update:', tagListID);
             var newrecommendationList = req.body;
+            console.log('get list from service in route:', newrecommendationList);
             _this.recommendationList.updateRecommendationListByTagListID(res, tagListID, newrecommendationList);
         });
         router.post('/recommendationlist', function (req, res) {

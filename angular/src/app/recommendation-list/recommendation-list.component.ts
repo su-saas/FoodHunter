@@ -33,7 +33,6 @@ export class RecommendationListComponent implements OnInit {
 
   ngOnInit() {
     // subscribe data change of the newlist
-
     this.dataService.cast.subscribe(newTagList => this.newList = newTagList);
     this.dataService.anotherCast.subscribe(status => this.isChange = status);
     console.log('inside recommendation, status of submit: ', this.isChange);
