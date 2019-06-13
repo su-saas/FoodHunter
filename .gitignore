@@ -1,16 +1,4 @@
-.DS_Store
-db/*
-.vs/*
-.vscode/*
-node_modules/*
-*.sh
-angular/node_modules/*
 package-lock.json
-angularDist/
-*.js	
 
-!test/TestRestaurant.js
-!test/TestTag.js
-!test/TestFoodie.js
-!test/TestReview.js
-!createDB/createAll.js
+*.js
+node_modules/*
