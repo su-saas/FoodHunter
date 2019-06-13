@@ -8,7 +8,7 @@ var expect = chai.expect;
 var http = require('http');
 chai.use(chaiHttp);
 
-var addr = "http://foodhunter.azurewebsites.net";
+var addr = "http://foodhunterapp.azurewebsites.net";
 
 describe('Test restaurant list', function () {
 
