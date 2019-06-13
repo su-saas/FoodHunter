@@ -4,7 +4,7 @@ var chaiHttp = require('chai-http')
 var expect = chai.expect;
 chai.use(chaiHttp);
 
-var addr = "http://foodhunter.azurewebsites.net";
+var addr = "http://foodhunterapp.azurewebsites.net";
 
 describe('Testing get one review', function(){
     var response;

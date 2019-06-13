@@ -3,6 +3,9 @@
 # URL
 https://foodhunterapp.azurewebsites.net/
 
+# Trello
+https://trello.com/b/yRHxcO3A/pandaman
+
 # Feedback
 - feedback1 folder
   - Consider having something like Pandora music app setting where you denote what are your favorite restaurants and it takes that into account. 
