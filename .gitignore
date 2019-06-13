@@ -7,11 +7,8 @@ node_modules/*
 angular/node_modules/*
 package-lock.json
 angularDist/
-
 *.js	
-route/*.js	
-model/*.js	
-interfaces/*.js
+
 !test/TestRestaurant.js
 !test/TestTag.js
 !test/TestFoodie.js
