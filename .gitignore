@@ -3,3 +3,6 @@ package-lock.json
 *.js
 node_modules/*
 angularDist/*
+
+db/*
+!db/.gitkeep
